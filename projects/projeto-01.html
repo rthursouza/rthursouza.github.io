@@ -1,0 +1,1591 @@
+﻿<!DOCTYPE html>
+<!--
+  ============================================================================
+  ESTUDO DE CASO 01 — NASAJON · PDV MOBILE-FIRST
+  ----------------------------------------------------------------------------
+  Gerado a partir de projeto-template.html. A estrutura, as classes e os
+  ganchos de comportamento são idênticos ao template — só o conteúdo muda.
+
+  Para editar: o guia completo está no README (seção 7). Para trocar as
+  imagens: apague o <span class="media__label"> e descomente o <img> logo
+  abaixo dele. Nada mais precisa mudar.
+
+  IDIOMAS — mesma regra da home (documentada no topo de ../index.html):
+    • texto corrido  → elementos gêmeos <p lang="pt-BR"> / <p lang="en">
+    • títulos h1–h6  → spans gêmeos DENTRO do mesmo elemento
+    • atributos      → data-en-alt, data-en-aria-label, data-en-content…
+
+  CAMINHOS — este arquivo está em /projects/, então tudo da raiz usa "../".
+  ============================================================================
+-->
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap crítico — idêntico ao da home. Ver comentário em ../index.html -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.remove('no-js');
+      root.classList.add('js');
+
+      var lang = null;
+      var theme = null;
+
+      try {
+        lang = localStorage.getItem('portfolio-lang');
+        theme = localStorage.getItem('portfolio-theme');
+      } catch (err) { /* localStorage bloqueado: segue nos padrões */ }
+
+      if (lang === 'en') {
+        root.setAttribute('data-lang', 'en');
+        root.setAttribute('lang', 'en');
+      }
+
+      /* Sem escolha salva, vale a preferência do sistema. */
+      if (theme !== 'claro' && theme !== 'escuro') {
+        theme = window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches
+          ? 'claro'
+          : 'escuro';
+      }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- ==================== SEO ==================== -->
+  <title data-en="A POS that leaves the counter — Case study · Arthur Souza">Um PDV que sai do balcão — Estudo de caso · Arthur Souza</title>
+
+  <meta name="description"
+        content="Como a observação em loja derrubou 45% de um projeto de PDV já desenhado para desktop — e o redesenho mobile-first reduziu em 30% o tempo de fechamento de venda."
+        data-en-content="How in-store observation knocked down 45% of a POS project already designed for desktop — and the mobile-first redesign cut time to close a sale by 30%.">
+
+  <meta name="author" content="Arthur Souza">
+  <meta name="robots" content="index, follow">
+  <!-- Valor do modo escuro (o padrão); o script.js reescreve ao trocar. -->
+  <meta name="theme-color" content="#20293A">
+
+  <!-- TROQUE O DOMÍNIO em todas as URLs absolutas abaixo -->
+  <link rel="canonical" href="https://SEU-DOMINIO.com/projects/projeto-01.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://SEU-DOMINIO.com/projects/projeto-01.html">
+  <meta property="og:site_name" content="Arthur Souza">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title"
+        content="Um PDV que sai do balcão — Estudo de caso"
+        data-en-content="A POS that leaves the counter — Case study">
+  <meta property="og:description"
+        content="45% do projeto descartado depois da pesquisa. Mobile-first, ação crítica protegida e −30% no tempo de venda."
+        data-en-content="45% of the project scrapped after research. Mobile-first, protected critical actions and −30% time per sale.">
+  <!-- OG IMAGE — 1200×630px -->
+  <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-01.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+        content="Estudo de caso: um PDV que sai do balcão, por Arthur Souza"
+        data-en-content="Case study: a POS that leaves the counter, by Arthur Souza">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+        content="Um PDV que sai do balcão — Estudo de caso"
+        data-en-content="A POS that leaves the counter — Case study">
+  <meta name="twitter:description"
+        content="45% do projeto descartado depois da pesquisa. Mobile-first, ação crítica protegida e −30% no tempo de venda."
+        data-en-content="45% of the project scrapped after research. Mobile-first, protected critical actions and −30% time per sale.">
+  <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-01.jpg">
+
+  <!-- ==================== FAVICON ==================== -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2320293A'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23E08A63' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <!--
+  <link rel="icon" href="../assets/favicon/favicon.ico" sizes="32x32">
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../assets/favicon/site.webmanifest">
+  -->
+
+  <!-- ==================== TIPOGRAFIA ====================
+       Fontes locais em assets/fonts/, declaradas em @font-face no topo do
+       style.css. Nenhuma requisição a CDN. Ver a nota completa em
+       ../index.html. -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="../assets/fonts/inter-latin-400-normal.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="../assets/fonts/bricolage-grotesque-latin-800-normal.woff2">
+
+  <link rel="stylesheet" href="../style.css">
+  <script src="../script.js" defer></script>
+</head>
+
+<body class="page-case">
+
+  <a class="skip-link" href="#conteudo">
+    <span lang="pt-BR">Pular para o conteúdo</span><span lang="en">Skip to content</span>
+  </a>
+
+  <div class="nav-sentinel" data-nav-sentinel aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       SPRITE DE ÍCONES — idêntico ao da home (inline evita requisição e
+       funciona ao abrir o arquivo localmente, onde <use href="externo"> falha).
+       ========================================================================== -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+       aria-hidden="true" focusable="false">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17 17 7M8 7h9v9"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7h16M4 12h16M4 17h16"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 6 12 12M18 6 6 18"/>
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/>
+    </symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4z"/>
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 3v5h5"/><path d="M6 3h8l5 5v13H6z"/><path d="M9 13h6M9 17h6"/>
+    </symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 6-6 6 6 6"/>
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 6 6 6-6 6"/>
+    </symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3H3v6M15 21h6v-6M21 9V3h-6M3 15v6h6"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 12.5 5 5 11-11"/>
+    </symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+      <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a7.5 7.5 0 1 0 10.8 10.8Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ==========================================================================
+       HEADER — nas páginas de case, os links apontam para as âncoras da home
+       ========================================================================== -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+
+      <a class="brand" href="../index.html" aria-label="Arthur Souza — voltar ao início"
+         data-en-aria-label="Arthur Souza — back home">
+        <span class="brand__mark" aria-hidden="true">A</span>
+        <span class="brand__text">
+          <span class="brand__name">Arthur Souza</span>
+          <span class="brand__role">
+            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+          </span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav-principal" data-nav-panel
+           aria-label="Navegação principal" data-en-aria-label="Main navigation">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html#inicio">
+              <span lang="pt-BR">Início</span><span lang="en">Home</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html#sobre">
+              <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html#projetos" aria-current="true">
+              <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html#contato">
+              <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <div class="nav__prefs">
+            <!-- SELETOR DE IDIOMA -->
+            <div class="lang-switch" role="group"
+                 aria-label="Selecionar idioma" data-en-aria-label="Select language"
+                 data-lang-switch>
+              <svg class="icon lang-switch__icon" aria-hidden="true" focusable="false">
+                <use href="#i-globe"></use>
+              </svg>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="pt-BR" aria-pressed="true" lang="pt-BR">PT</button>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="en" aria-pressed="false" lang="en">EN</button>
+            </div>
+
+            <!-- ALTERNÂNCIA DE TEMA — rótulo fixo, aria-pressed como único
+                 dono do estado. Ver a nota completa em ../index.html. -->
+            <button class="theme-toggle" type="button"
+                    data-theme-toggle
+                    aria-pressed="false"
+                    aria-label="Modo claro" data-en-aria-label="Light mode">
+              <svg class="icon theme-toggle__moon" aria-hidden="true" focusable="false">
+                <use href="#i-moon"></use>
+              </svg>
+              <svg class="icon theme-toggle__sun" aria-hidden="true" focusable="false">
+                <use href="#i-sun"></use>
+              </svg>
+            </button>
+          </div>
+
+          <a class="btn btn--secondary btn--sm" href="../index.html#contato">
+            <span lang="pt-BR">Vamos conversar</span><span lang="en">Let's talk</span>
+          </a>
+        </div>
+      </nav>
+
+      <button class="nav-toggle" type="button"
+              data-nav-toggle
+              aria-controls="nav-principal"
+              aria-expanded="false"
+              aria-label="Abrir menu" data-en-aria-label="Open menu">
+        <svg class="icon nav-toggle__open" aria-hidden="true" focusable="false">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon nav-toggle__close" aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+
+  <main id="conteudo" class="main">
+
+    <article class="case">
+
+      <!-- ==================================================================== -->
+      <!-- 01 · HERO                                                            -->
+      <!-- ==================================================================== -->
+      <header class="case-hero section" aria-labelledby="case-titulo">
+        <div class="container">
+
+          <nav class="breadcrumb" aria-label="Você está aqui"
+               data-en-aria-label="Breadcrumb">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="../index.html">
+                  <span lang="pt-BR">Início</span><span lang="en">Home</span>
+                </a>
+              </li>
+              <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="../index.html#projetos">
+                  <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+                </a>
+              </li>
+              <li class="breadcrumb__item" aria-current="page">
+                <span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span>
+              </li>
+            </ol>
+          </nav>
+
+          <p class="eyebrow" data-reveal>
+            <span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span>
+          </p>
+
+          <h1 class="case-hero__title" id="case-titulo" data-reveal>
+            <span lang="pt-BR">Um PDV que sai do balcão: 45% do projeto descartado, 30% menos tempo por venda</span><span lang="en">A POS that leaves the counter: 45% of the project scrapped, 30% less time per sale</span>
+          </h1>
+
+          <p class="case-hero__lead" data-reveal lang="pt-BR">
+            O operador atendia o cliente no meio da loja, anotava o pedido num
+            papel e mandava para o caixa — onde alguém procurava aquele pedido,
+            venda a venda, com a fila crescendo. O projeto já estava desenhado
+            para desktop quando a pesquisa mostrou a quem ele precisava servir.
+          </p>
+          <p class="case-hero__lead" data-reveal lang="en">
+            The operator served the customer in the middle of the store, wrote
+            the order on a slip of paper and sent it to the register — where
+            someone hunted for it, sale by sale, while the queue grew. The
+            project was already designed for desktop when research revealed who
+            it actually had to serve.
+          </p>
+
+          <!-- METADADOS DO PROJETO -->
+          <dl class="case-meta" data-reveal>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Empresa</span><span lang="en">Company</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">Nasajon · ERP</span><span lang="en">Nasajon · ERP</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Ano</span><span lang="en">Year</span>
+              </dt>
+              <dd class="case-meta__value">2026</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">2 meses</span><span lang="en">2 months</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Meu papel</span><span lang="en">My role</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">UX Designer (único designer do projeto)</span><span lang="en">UX Designer (sole designer on the project)</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Time</span><span lang="en">Team</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">1 PM · 2 desenvolvedores · 1 especialista de suporte</span><span lang="en">1 PM · 2 developers · 1 support specialist</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Ferramentas</span><span lang="en">Tools</span>
+              </dt>
+              <dd class="case-meta__value">
+                <ul class="chips chips--sm">
+                  <li class="chip chip--sm">Figma</li>
+                  <li class="chip chip--sm">Miro</li>
+                  <li class="chip chip--sm">NotebookLM</li>
+                  <li class="chip chip--sm">Google Slides</li>
+                  <li class="chip chip--sm">Claude Code</li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="container container--wide" data-reveal>
+          <figure class="media media--21x9 media--framed">
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
+            </span>
+            <!--
+              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              Esta é a imagem LCP desta página: eager + fetchpriority="high".
+
+            <img src="../assets/images/projeto-01-hero.jpg"
+                 alt="Telas finais do PDV em tablet, celular e terminal, com a venda sendo fechada fora do balcão"
+                 data-en-alt="Final POS screens on tablet, phone and terminal, with a sale being closed away from the counter"
+                 width="2100" height="900"
+                 loading="eager" fetchpriority="high" decoding="async">
+            -->
+          </figure>
+        </div>
+      </header>
+
+      <!-- ==================================================================== -->
+      <!-- 02 · CONTEXTO                                                        -->
+      <!-- ==================================================================== -->
+      <section class="section" id="contexto" aria-labelledby="contexto-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">01 — Contexto</span><span lang="en">01 — Context</span>
+            </p>
+            <h2 class="section-head__title" id="contexto-titulo">
+              <span lang="pt-BR">O produto e o momento</span><span lang="en">The product and the moment</span>
+            </h2>
+          </header>
+
+          <div class="prose" data-reveal>
+            <p lang="pt-BR">
+              A Nasajon é uma empresa de ERP, e o PDV é a frente de caixa que
+              atende as lojas físicas dos clientes dela: varejo genérico, de loja
+              única a rede. Já havia uma solução de frente de caixa no portfólio,
+              mas antiga o bastante para que a decisão fosse refazer do zero em
+              vez de continuar remendando.
+            </p>
+            <p lang="en">
+              Nasajon is an ERP company, and the PDV is the point-of-sale front
+              end serving its clients' physical stores: general retail, from
+              single shops to chains. A checkout solution already existed in the
+              portfolio, but it was old enough that the decision was to rebuild
+              from scratch rather than keep patching it.
+            </p>
+            <p lang="pt-BR">
+              Na primeira leva são mais de 40 lojas, com no mínimo três operadores
+              cada. O projeto não nasceu de um incêndio — nasceu de uma
+              oportunidade de mercado que a solução antiga já não alcançava. Isso
+              muda o tipo de pressão: não havia um problema urgente para apagar,
+              havia um padrão a estabelecer.
+            </p>
+            <p lang="en">
+              The first wave covers more than 40 stores, with at least three
+              operators each. The project wasn't born from a fire — it was born
+              from a market opportunity the legacy solution could no longer reach.
+              That changes the kind of pressure: there was no urgent problem to
+              put out, there was a standard to set.
+            </p>
+          </div>
+
+          <!-- PESQUISA -->
+          <figure class="media media--16x9" data-reveal>
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Fluxo antigo: a pré-venda no papel · 1600×900</span><span lang="en">Legacy flow: the paper pre-sale · 1600×900</span>
+            </span>
+            <!--
+            <img src="../assets/images/projeto-01-contexto.png"
+                 alt="Diagrama do fluxo antigo: atendimento anotado no papel e busca manual do pedido no caixa"
+                 data-en-alt="Diagram of the legacy flow: order written on paper and searched by hand at the register"
+                 width="1600" height="900" loading="lazy" decoding="async">
+            -->
+            <figcaption class="media__caption">
+              <span lang="pt-BR">O fluxo original: pedido anotado à mão, entregue no caixa e procurado manualmente entre todas as vendas abertas.</span><span lang="en">The original flow: order written by hand, carried to the register and searched for manually among every open sale.</span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 03 · DESAFIO / PROBLEMA                                              -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt" id="desafio" aria-labelledby="desafio-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">02 — Desafio</span><span lang="en">02 — Challenge</span>
+            </p>
+            <h2 class="section-head__title" id="desafio-titulo">
+              <span lang="pt-BR">O problema, dos dois lados</span><span lang="en">The problem, from both sides</span>
+            </h2>
+          </header>
+
+          <div class="split" data-reveal>
+
+            <div class="split__col">
+              <h3 class="split__title">
+                <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
+              </h3>
+              <div class="prose prose--sm">
+                <p lang="pt-BR">
+                  A Nasajon vendia ERP para lojistas que compravam a frente de
+                  caixa de outro fornecedor. Pelo menos cinco clientes já estavam
+                  nessa situação — número pequeno, mas suficiente para provar que
+                  a fatia existia e estava saindo. A solução antiga da casa não
+                  sobrevivia a uma demonstração: travava negócio novo, e o
+                  argumento contra ela raramente era função. Era aparência e
+                  facilidade de uso.
+                </p>
+                <p lang="en">
+                  Nasajon sold ERP to retailers who bought their checkout software
+                  from someone else. At least five clients were already in that
+                  position — a small number, but enough to prove the slice existed
+                  and was leaking out. The in-house legacy solution didn't survive
+                  a demo: it blocked new deals, and the argument against it was
+                  rarely function. It was looks and ease of use.
+                </p>
+              </div>
+            </div>
+
+            <div class="split__col">
+              <h3 class="split__title">
+                <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
+              </h3>
+              <div class="prose prose--sm">
+                <p lang="pt-BR">
+                  Fora do balcão, o atendimento acontecia no papel. O operador
+                  anotava o pedido e voltava ao caixa — ou entregava o papel na
+                  mão do cliente para que ele mesmo levasse, uma pré-venda
+                  improvisada. No caixa, alguém precisava então encontrar aquele
+                  pedido no meio de todos os outros, manualmente. A fila crescia
+                  enquanto isso, e parte dela ia embora.
+                </p>
+                <p lang="en">
+                  Away from the counter, service happened on paper. The operator
+                  wrote the order down and walked back to the register — or handed
+                  the slip to the customer to carry over themselves, an improvised
+                  pre-sale. At the register, someone then had to find that order
+                  among all the others, by hand. The queue grew while that
+                  happened, and part of it walked out.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- INSIGHTS -->
+          <blockquote class="quote" data-reveal>
+            <p class="quote__text" lang="pt-BR">
+              “Nós perdíamos muito tempo buscando manualmente venda a venda,
+              pedido a pedido, para encontrar o do cliente — o que ocasionava
+              filas grandes e desistências.”
+            </p>
+            <p class="quote__text" lang="en">
+              “We lost a lot of time searching manually, sale by sale, order by
+              order, to find the customer's — which caused long queues and people
+              giving up.”
+            </p>
+            <footer class="quote__author">
+              <span lang="pt-BR">— Operador de PDV, durante a observação em campo</span><span lang="en">— POS operator, during field observation</span>
+            </footer>
+          </blockquote>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 04 · OBJETIVOS                                                       -->
+      <!-- ==================================================================== -->
+      <section class="section" id="objetivos" aria-labelledby="objetivos-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">03 — Objetivos</span><span lang="en">03 — Goals</span>
+            </p>
+            <h2 class="section-head__title" id="objetivos-titulo">
+              <span lang="pt-BR">O que precisávamos alcançar</span><span lang="en">What we needed to achieve</span>
+            </h2>
+          </header>
+
+          <ul class="checklist" data-reveal>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Capturar a fatia de frente de caixa que clientes de ERP da Nasajon já compravam de concorrentes.</span><span lang="en">Capture the point-of-sale slice that Nasajon's ERP clients were already buying from competitors.</span>
+            </li>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Entregar mobile-first: o operador atende e fecha a venda circulando pela loja com tablet ou celular, sem ficar preso ao balcão.</span><span lang="en">Ship mobile-first: the operator serves and closes the sale while moving around the store with a tablet or phone, never tied to the counter.</span>
+            </li>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Reduzir o esforço de uso a ponto de o sistema ser operável sem treinamento longo.</span><span lang="en">Cut the effort of use to the point where the system is operable without lengthy training.</span>
+            </li>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Sustentar a comparação comercial: a interface precisava ganhar da concorrente na demonstração, que era onde o negócio travava.</span><span lang="en">Hold up in a sales demo: the interface had to win the comparison against the competitor, which was where deals stalled.</span>
+            </li>
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 05 · MEU PAPEL                                                       -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt" id="papel" aria-labelledby="papel-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">04 — Meu papel</span><span lang="en">04 — My role</span>
+            </p>
+            <h2 class="section-head__title" id="papel-titulo">
+              <span lang="pt-BR">O que foi meu</span><span lang="en">What was mine</span>
+            </h2>
+            <p class="section-head__lead" lang="pt-BR">
+              Fui o único designer do projeto: conduzi o discovery, a pesquisa, a
+              definição, a ideação, a validação e a UI final. Duas ressalvas
+              honestas. A decisão de abandonar o desktop não foi minha sozinha —
+              saiu por consenso, a partir do que a pesquisa mostrou. E boa parte
+              do que entendi sobre a operação de loja veio da pessoa do suporte
+              dentro do time, que conhecia as múltiplas facetas do dia a dia que
+              nenhuma entrevista minha teria alcançado.
+            </p>
+            <p class="section-head__lead" lang="en">
+              I was the only designer on the project: I ran discovery, research,
+              definition, ideation, validation and the final UI. Two honest
+              caveats. Dropping desktop wasn't my call alone — it came out of
+              consensus, from what the research showed. And much of what I
+              understood about store operations came from the support specialist
+              on the team, who knew the many facets of the day-to-day that no
+              interview of mine would have reached.
+            </p>
+          </header>
+
+          <ul class="chips chips--lg" data-reveal
+              aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
+            <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
+            <li class="chip"><span lang="pt-BR">Pesquisa de usuários</span><span lang="en">User research</span></li>
+            <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
+            <li class="chip"><span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span></li>
+            <li class="chip"><span lang="pt-BR">Definição</span><span lang="en">Definition</span></li>
+            <li class="chip"><span lang="pt-BR">Ideação</span><span lang="en">Ideation</span></li>
+            <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
+            <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
+            <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
+            <li class="chip"><span lang="pt-BR">Design de Interação</span><span lang="en">Interaction Design</span></li>
+            <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
+            <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 06 · PROCESSO                                                        -->
+      <!-- ==================================================================== -->
+      <section class="section" id="processo" aria-labelledby="processo-titulo">
+        <div class="container">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">05 — Processo</span><span lang="en">05 — Process</span>
+            </p>
+            <h2 class="section-head__title" id="processo-titulo">
+              <span lang="pt-BR">Como cheguei lá</span><span lang="en">How I got there</span>
+            </h2>
+            <p class="section-head__lead" lang="pt-BR">
+              Double Diamond em dois meses. A terceira etapa trocou a persona do
+              projeto, e a quarta jogou fora 45% do que já estava desenhado.
+            </p>
+            <p class="section-head__lead" lang="en">
+              Double Diamond in two months. The third stage swapped the project's
+              persona, and the fourth threw away 45% of what was already designed.
+            </p>
+          </header>
+
+          <ol class="timeline">
+
+            <!-- BENCHMARK -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Comecei olhando para quem já estava ganhando essa venda: Linx,
+                  TOTVS, Omie e Senior. O que eu procurava não era funcionalidade
+                  — a solução antiga da casa tinha função. Procurava entender por
+                  que a interface deles passava na demonstração e a nossa não.
+                  Isso fixou o critério de sucesso do projeto antes de eu desenhar
+                  qualquer coisa: a tela precisava vencer uma comparação, não só
+                  cumprir uma lista de requisitos.
+                </p>
+                <p class="timeline__text" lang="en">
+                  I started by looking at whoever was already winning this sale:
+                  Linx, TOTVS, Omie and Senior. What I was after wasn't features —
+                  the in-house legacy product had features. I wanted to understand
+                  why their interface survived a demo and ours didn't. That set
+                  the project's success criterion before I designed anything: the
+                  screen had to win a comparison, not just tick a requirements
+                  list.
+                </p>
+                <!-- PESQUISA -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Benchmark dos concorrentes · 1200×675</span><span lang="en">Competitor benchmark · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-benchmark.png"
+                       alt="Comparação das frentes de caixa de Linx, TOTVS, Omie e Senior"
+                       data-en-alt="Comparison of the Linx, TOTVS, Omie and Senior checkout products"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- PESQUISA -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Observação em loja</span><span lang="en">In-store observation</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Em vez de entrevistar operadores fora de contexto, fui ver a
+                  operação acontecendo. Foi a escolha que definiu o projeto: o
+                  comportamento mais importante — o operador atendendo longe do
+                  balcão, com um papel na mão — é o tipo de coisa que ninguém
+                  relata numa entrevista, porque para quem faz todo dia aquilo não
+                  é um problema, é só “como se trabalha”.
+                </p>
+                <p class="timeline__text" lang="en">
+                  Instead of interviewing operators out of context, I went to
+                  watch the operation happen. That choice defined the project: the
+                  most important behaviour — the operator serving customers away
+                  from the counter, with a slip of paper in hand — is the kind of
+                  thing nobody reports in an interview, because to someone who
+                  does it every day it isn't a problem, it's just “how the job
+                  works”.
+                </p>
+                <!-- PESQUISA -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Registro da observação em loja · 1200×675</span><span lang="en">In-store observation notes · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-pesquisa.png"
+                       alt="Registro da observação da operação de loja, com anotações do fluxo de atendimento"
+                       data-en-alt="Record of the in-store observation, with notes on the service flow"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- INSIGHTS -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Insights</span><span lang="en">Insights</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  A pesquisa devolveu uma persona que não era a que estávamos
+                  desenhando para. A principal não é quem opera o caixa: é quem
+                  atende o cliente circulando pela loja, justamente para que ele
+                  não precise chegar ao balcão. O papel anotado que trocava de mão
+                  não era um improviso do funcionário — era o produto faltando.
+                </p>
+                <p class="timeline__text" lang="en">
+                  Research handed back a persona that wasn't the one we were
+                  designing for. The primary user isn't whoever operates the
+                  register: it's whoever serves the customer while moving around
+                  the store, precisely so the customer never has to reach the
+                  counter. The handwritten slip changing hands wasn't an employee
+                  workaround — it was the missing product.
+                </p>
+                <!-- INSIGHTS -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Síntese da pesquisa · 1200×675</span><span lang="en">Research synthesis · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-insights.png"
+                       alt="Síntese da pesquisa apontando o operador de loja como persona principal"
+                       data-en-alt="Research synthesis identifying the store operator as the primary persona"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- USER FLOW -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Definição: o desktop cai</span><span lang="en">Definition: desktop is dropped</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  O projeto de desktop já estava desenhado. Com a persona correta
+                  na mesa ele deixou de fazer sentido — não se atende andando pela
+                  loja com uma tela de balcão. Cerca de <strong>45% do que estava
+                  pronto foi descartado</strong>, e a decisão saiu por consenso, a
+                  partir da pesquisa, não por preferência minha. A adaptação doeu
+                  menos do que o número sugere: o conceito e as regras de negócio
+                  continuaram valendo. O que mudou foi a plataforma — e com ela
+                  tudo que depende de mão, dedo e distância.
+                </p>
+                <p class="timeline__text" lang="pt-BR">
+                  Mobile-first, e não mobile-only: o mesmo produto roda em
+                  celular, tablet, computador e terminal PoS. A ordem é que
+                  importa. Partir do dedo e crescer para o mouse funciona; o
+                  contrário era exatamente o que estávamos jogando fora.
+                </p>
+                <p class="timeline__text" lang="en">
+                  The desktop design was already done. With the right persona on
+                  the table it stopped making sense — you don't serve customers
+                  walking around a store with a counter-bound screen. Roughly
+                  <strong>45% of the finished work was scrapped</strong>, and the
+                  call came out of consensus, from the research, not from my
+                  preference. Adapting hurt less than the number suggests: the
+                  concept and the business rules still held. What changed was the
+                  platform — and with it everything that depends on hands, thumbs
+                  and distance.
+                </p>
+                <p class="timeline__text" lang="en">
+                  Mobile-first, not mobile-only: the same product runs on phones,
+                  tablets, desktops and POS terminals. The order is what matters.
+                  Starting from the thumb and scaling up to the mouse works; the
+                  reverse was exactly what we were throwing away.
+                </p>
+                <!-- USER FLOW -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Antes e depois da mudança de plataforma · 1200×675</span><span lang="en">Before and after the platform shift · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-definicao.png"
+                       alt="Comparação entre o fluxo desenhado para desktop e o novo fluxo mobile-first"
+                       data-en-alt="Comparison between the desktop flow and the new mobile-first flow"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- WIREFRAMES / BAIXA FIDELIDADE -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Ideação e wireframes</span><span lang="en">Ideation and wireframes</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Explorei as alternativas de estrutura sozinho e desci direto
+                  para baixa fidelidade, testando ali antes de qualquer decisão de
+                  cor ou estilo. Numa tela que vai ser tocada com o dedo, o que
+                  precisa ser validado primeiro é onde as coisas ficam e o quanto
+                  elas são grandes — não como elas parecem.
+                </p>
+                <p class="timeline__text" lang="en">
+                  I explored the structural alternatives on my own and went
+                  straight to low fidelity, testing there before any decision
+                  about colour or style. On a screen that will be touched with a
+                  thumb, what needs validating first is where things sit and how
+                  big they are — not how they look.
+                </p>
+                <!-- BAIXA FIDELIDADE -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Wireframes de baixa fidelidade · 1200×675</span><span lang="en">Low-fidelity wireframes · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-wireframes.png"
+                       alt="Wireframes de baixa fidelidade das telas de atendimento e fechamento de venda"
+                       data-en-alt="Low-fidelity wireframes of the service and checkout screens"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- PROTÓTIPOS -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Protótipo em código</span><span lang="en">Prototype in code</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Levei o protótipo além do clicável de Figma: usei Claude Code
+                  para implementá-lo de verdade, com as animações e interações já
+                  definidas. Num produto em que a interação <em>é</em> o argumento
+                  de venda — o concorrente ganhava por parecer melhor de usar —, um
+                  protótipo que se comporta como o produto vale mais do que uma
+                  tela que se parece com ele.
+                </p>
+                <p class="timeline__text" lang="en">
+                  I took the prototype past a clickable Figma file: I used Claude
+                  Code to actually implement it, with the animations and
+                  interactions already defined. In a product where interaction
+                  <em>is</em> the sales argument — the competitor was winning by
+                  seeming nicer to use — a prototype that behaves like the product
+                  is worth more than a screen that looks like it.
+                </p>
+                <!-- ALTA FIDELIDADE -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Protótipo implementado em código · 1200×675</span><span lang="en">Prototype implemented in code · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-prototipo.png"
+                       alt="Protótipo funcional em código, com animações e interações do fluxo de venda"
+                       data-en-alt="Working code prototype, with the animations and interactions of the sales flow"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- INTERFACE FINAL -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>07</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Interface final</span><span lang="en">Final interface</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Dimensionei os alvos seguindo as diretrizes de plataforma e
+                  depois testei com o dedo, em aparelho real. A diretriz garante o
+                  mínimo; ela não garante que funcione para quem está em pé,
+                  segurando o tablet com um braço e atendendo um cliente com o
+                  outro.
+                </p>
+                <p class="timeline__text" lang="pt-BR">
+                  Classifiquei como crítica toda ação capaz de causar dano ao
+                  usuário ou prejuízo à operação, e protegi em duas camadas. A
+                  primeira é posicional: essas ações saíram da tela inicial. Não é
+                  esconder por esconder — ninguém cancela uma venda de passagem, e
+                  quem vai fazer isso está focado só naquilo. A segunda é senha
+                  gerencial, para o que não pode depender apenas da intenção de
+                  quem tocou.
+                </p>
+                <p class="timeline__text" lang="en">
+                  I sized the targets by platform guidelines and then tested with
+                  my thumb, on real devices. Guidelines guarantee the minimum;
+                  they don't guarantee it works for someone standing up, holding
+                  the tablet with one arm and serving a customer with the other.
+                </p>
+                <p class="timeline__text" lang="en">
+                  I classified as critical every action capable of harming the
+                  user or costing the business, and protected them in two layers.
+                  The first is positional: those actions left the home screen. Not
+                  hiding for the sake of hiding — nobody cancels a sale in
+                  passing, and whoever is about to do it is focused on nothing
+                  else. The second is a manager password, for what can't rest on
+                  the intent of whoever tapped.
+                </p>
+                <!-- MOCKUP -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Alvos de toque e ações protegidas · 1200×675</span><span lang="en">Touch targets and protected actions · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-ui.png"
+                       alt="Telas finais com os alvos de toque dimensionados e as ações críticas protegidas"
+                       data-en-alt="Final screens with sized touch targets and protected critical actions"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- IMPLEMENTAÇÃO -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>08</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Handoff e revisão</span><span lang="en">Handoff and review</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  O handoff não foi um arquivo: foi o próprio protótipo em código.
+                  Os desenvolvedores receberam o comportamento rodando, não
+                  descrito. Acompanhei a sprint fazendo revisões e respondendo
+                  dúvidas sobre como cada componente deveria funcionar — que é
+                  justamente onde a especificação escrita costuma falhar, porque
+                  ela responde o que a tela mostra e não o que ela faz quando algo
+                  sai do esperado.
+                </p>
+                <p class="timeline__text" lang="en">
+                  The handoff wasn't a file: it was the code prototype itself. The
+                  developers got the behaviour running, not described. I stayed
+                  through the sprint reviewing work and answering questions about
+                  how each component should behave — which is exactly where
+                  written specs tend to fail, because they answer what the screen
+                  shows and not what it does when something goes wrong.
+                </p>
+                <!-- IMPLEMENTAÇÃO -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Handoff e revisão de sprint · 1200×675</span><span lang="en">Handoff and sprint review · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-handoff.png"
+                       alt="Protótipo em código usado como handoff, ao lado da tela implementada"
+                       data-en-alt="Code prototype used as handoff, alongside the implemented screen"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+          </ol>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 07 · SOLUÇÃO                                                         -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt" id="solucao" aria-labelledby="solucao-titulo">
+        <div class="container">
+
+          <header class="section-head container--prose" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">06 — Solução</span><span lang="en">06 — Solution</span>
+            </p>
+            <h2 class="section-head__title" id="solucao-titulo">
+              <span lang="pt-BR">Fechar a venda onde o cliente está</span><span lang="en">Close the sale where the customer is</span>
+            </h2>
+          </header>
+
+          <!-- MOCKUP -->
+          <figure class="media media--16x9 media--framed" data-reveal>
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
+            </span>
+            <!--
+            <img src="../assets/images/projeto-01-solucao.png"
+                 alt="Novo PDV mobile-first: venda sendo fechada no tablet e pedido recuperado no caixa por código"
+                 data-en-alt="New mobile-first POS: a sale being closed on a tablet and the order retrieved at the register by code"
+                 width="1600" height="900" loading="lazy" decoding="async">
+            -->
+          </figure>
+
+          <div class="decisions" data-reveal>
+
+            <article class="decision">
+              <h3 class="decision__title">
+                <span lang="pt-BR">A venda inteira na mão do operador</span><span lang="en">The whole sale in the operator's hands</span>
+              </h3>
+              <p class="decision__text" lang="pt-BR">
+                O operador fecha a venda completa de onde estiver na loja. Quando
+                faz sentido pagar no caixa — dinheiro, por exemplo — ele gera uma
+                pré-venda e o cliente leva o cupom. A pré-venda não foi eliminada:
+                ela era um comportamento legítimo da operação, não um desvio. O
+                que acabou foi o que a tornava cara — ela ser ilegível para quem
+                recebe.
+              </p>
+              <p class="decision__text" lang="en">
+                The operator closes the entire sale from anywhere in the store.
+                When paying at the register makes sense — cash, for instance — they
+                generate a pre-sale and the customer carries the slip over. The
+                pre-sale wasn't eliminated: it was a legitimate behaviour of the
+                operation, not a workaround. What ended was what made it
+                expensive — being illegible to whoever received it.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3 class="decision__title">
+                <span lang="pt-BR">A busca acabou: código, nome ou QR</span><span lang="en">The search is over: code, name or QR</span>
+              </h3>
+              <p class="decision__text" lang="pt-BR">
+                No caixa, o pedido é encontrado por código, por nome ou por QR
+                Code. Antes, a fila esperava alguém varrer venda a venda até achar
+                a certa — e o custo não era só o tempo, era não haver clareza sobre
+                o que se estava procurando. São três caminhos porque a loja não
+                escolhe o cliente que chega: uns trazem o cupom, outros só sabem o
+                próprio nome.
+              </p>
+              <p class="decision__text" lang="en">
+                At the register, the order is found by code, by name or by QR
+                code. Before, the queue waited while someone swept through sale
+                after sale to find the right one — and the cost wasn't only time,
+                it was having no clarity about what was being looked for. Three
+                paths, because a shop doesn't get to choose which customer walks
+                in: some bring the slip, others only know their own name.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3 class="decision__title">
+                <span lang="pt-BR">Ação crítica protegida em duas camadas</span><span lang="en">Critical actions protected in two layers</span>
+              </h3>
+              <p class="decision__text" lang="pt-BR">
+                Ação capaz de causar dano ao usuário ou prejuízo à operação não
+                fica na tela inicial, e parte delas exige senha gerencial. As duas
+                camadas resolvem coisas diferentes: tirar da tela inicial evita o
+                toque acidental de quem está com pressa e o tablet numa mão só; a
+                senha cobre o que não pode depender apenas da intenção de quem
+                tocou.
+              </p>
+              <p class="decision__text" lang="en">
+                Any action capable of harming the user or costing the business
+                stays off the home screen, and some require a manager password.
+                The two layers solve different problems: moving them off the home
+                screen prevents the accidental tap of someone in a hurry holding
+                the tablet one-handed; the password covers what can't rest on the
+                intent of whoever tapped.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3 class="decision__title">
+                <span lang="pt-BR">Área de toque desenhada para o pior caso</span><span lang="en">Touch targets designed for the worst case</span>
+              </h3>
+              <p class="decision__text" lang="pt-BR">
+                Dimensionei os alvos pela diretriz de plataforma e validei com o
+                dedo, em aparelho real, considerando o pior caso: pessoa em pé,
+                tablet apoiado em um braço, cliente esperando. É a decisão mais
+                invisível do projeto e a que mais aparece no uso — errar o botão
+                numa venda é o tipo de falha que o operador paga na frente do
+                cliente.
+              </p>
+              <p class="decision__text" lang="en">
+                I sized the targets by platform guidelines and validated them with
+                my thumb, on real devices, against the worst case: someone
+                standing, tablet balanced on one arm, customer waiting. It's the
+                most invisible decision in the project and the one that shows up
+                most in use — hitting the wrong button during a sale is the kind
+                of failure the operator pays for in front of the customer.
+              </p>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 08 · RESULTADOS                                                      -->
+      <!-- ==================================================================== -->
+      <section class="section" id="resultados" aria-labelledby="resultados-titulo">
+        <div class="container">
+
+          <header class="section-head container--prose" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">07 — Resultados</span><span lang="en">07 — Results</span>
+            </p>
+            <h2 class="section-head__title" id="resultados-titulo">
+              <span lang="pt-BR">O que mudou, medido</span><span lang="en">What changed, measured</span>
+            </h2>
+            <p class="section-head__lead" lang="pt-BR">
+              Apurado por relato das lojas que adotaram o PDV — não houve janela
+              de telemetria até o fechamento deste estudo. Estão aqui porque
+              foram consistentes o bastante para orientar decisão, e declarados
+              pelo que são.
+            </p>
+            <p class="section-head__lead" lang="en">
+              Measured through reports from the stores that adopted the PDV —
+              there was no telemetry window up to the closing of this case study.
+              They're here because they were consistent enough to guide decisions,
+              and stated for exactly what they are.
+            </p>
+          </header>
+
+          <!-- MÉTRICAS -->
+          <div class="metrics" data-reveal>
+
+            <div class="metric">
+              <p class="metric__value">−30%</p>
+              <h3 class="metric__label">
+                <span lang="pt-BR">Tempo médio de fechamento de venda</span><span lang="en">Average time to close a sale</span>
+              </h3>
+              <p class="metric__note">
+                <span lang="pt-BR">De 5min para 3min30, por relato das lojas</span><span lang="en">From 5min to 3min30, reported by the stores</span>
+              </p>
+            </div>
+
+            <div class="metric">
+              <p class="metric__value">−20%</p>
+              <h3 class="metric__label">
+                <span lang="pt-BR">Churn de contrato</span><span lang="en">Contract churn</span>
+              </h3>
+              <p class="metric__note">
+                <span lang="pt-BR">Clientes que estavam prestes a cancelar com a Nasajon</span><span lang="en">Clients who were on the verge of cancelling with Nasajon</span>
+              </p>
+            </div>
+
+          </div>
+          <!-- RESULTADOS -->
+          <figure class="media media--16x9 container--prose" data-reveal>
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Tempo de fechamento antes e depois · 1200×675</span><span lang="en">Time to close, before and after · 1200×675</span>
+            </span>
+            <!--
+            <img src="../assets/images/projeto-01-resultados.png"
+                 alt="Comparação do tempo médio de fechamento de venda antes e depois do novo PDV"
+                 data-en-alt="Comparison of the average time to close a sale before and after the new POS"
+                 width="1200" height="675" loading="lazy" decoding="async">
+            -->
+            <figcaption class="media__caption">
+              <span lang="pt-BR">Tempo médio de fechamento de venda relatado pelas lojas, antes e depois da adoção do novo PDV.</span><span lang="en">Average time to close a sale as reported by the stores, before and after adopting the new POS.</span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 09 · APRENDIZADOS                                                    -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt" id="aprendizados" aria-labelledby="aprendizados-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">08 — Aprendizados</span><span lang="en">08 — Learnings</span>
+            </p>
+            <h2 class="section-head__title" id="aprendizados-titulo">
+              <span lang="pt-BR">O que eu levaria para o próximo projeto</span><span lang="en">What I'd carry into the next project</span>
+            </h2>
+          </header>
+
+          <div class="prose" data-reveal>
+            <p lang="pt-BR">
+              <strong>Premissa herdada também é premissa.</strong> Quando entrei
+              no produto, a plataforma já estava definida: era desktop, e ninguém
+              questionava, porque frente de caixa historicamente é desktop. Tratei
+              aquilo como dado do problema em vez de decisão a validar, e desenhei
+              em cima. A pesquisa veio depois e derrubou. Os 45% descartados são a
+              conta dessa ordem invertida — não de erro no desenho, mas de eu ter
+              aceitado como pergunta respondida algo que ninguém tinha perguntado.
+            </p>
+            <p lang="en">
+              <strong>An inherited assumption is still an assumption.</strong> When
+              I joined the product, the platform was already settled: desktop, and
+              nobody questioned it, because point of sale has historically been
+              desktop. I treated that as a given of the problem rather than a
+              decision to validate, and designed on top of it. The research came
+              later and knocked it down. The 45% we scrapped is the bill for that
+              inverted order — not for bad design, but for my accepting as answered
+              a question nobody had asked.
+            </p>
+
+            <p lang="pt-BR">
+              <strong>Hoje a pesquisa vem antes, e procura pessoa, não opinião.</strong>
+              O que mudou não foi “pesquisar mais” — foi o alvo. Ir à loja ver a
+              operação acontecer entregou em uma visita o que nenhuma rodada de
+              entrevista teria entregado, porque a dor central era invisível para
+              quem a vivia: para o operador, andar com um papel na mão não era um
+              problema, era o trabalho. Começo pelo comportamento real de quem usa,
+              e só depois olho para o que o produto já assumiu sobre essa pessoa.
+            </p>
+            <p lang="en">
+              <strong>Now research comes first, and it looks for people, not opinions.</strong>
+              What changed wasn't “doing more research” — it was the target. Going
+              to the shop floor to watch the operation happen delivered in a single
+              visit what no round of interviews would have, because the core pain
+              was invisible to the people living it: for the operator, walking
+              around with a slip of paper wasn't a problem, it was the job. I start
+              from the real behaviour of whoever uses the thing, and only then look
+              at what the product has already assumed about them.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 10 · GALERIA + LIGHTBOX                                              -->
+      <!-- ==================================================================== -->
+      <section class="section" id="galeria" aria-labelledby="galeria-titulo">
+        <div class="container">
+
+          <header class="section-head container--prose" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">09 — Galeria</span><span lang="en">09 — Gallery</span>
+            </p>
+            <h2 class="section-head__title" id="galeria-titulo">
+              <span lang="pt-BR">Telas e artefatos</span><span lang="en">Screens and artefacts</span>
+            </h2>
+          </header>
+
+          <ul class="gallery" data-gallery data-reveal>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-01-galeria-01.jpg"
+                 data-caption="Tela inicial do PDV no tablet, com a venda aberta fora do balcão"
+                 data-caption-en="POS home screen on a tablet, with a sale open away from the counter">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-galeria-01-thumb.jpg"
+                       alt="Tela inicial do PDV em tablet"
+                       data-en-alt="POS home screen on a tablet"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: tela inicial no tablet</span><span lang="en">Enlarge: home screen on tablet</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-01-galeria-02.jpg"
+                 data-caption="Pré-venda digital: o cupom que o cliente leva ao caixa"
+                 data-caption-en="Digital pre-sale: the slip the customer carries to the register">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-galeria-02-thumb.jpg"
+                       alt="Tela de geração da pré-venda com o cupom e o código"
+                       data-en-alt="Pre-sale generation screen with the slip and its code"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: pré-venda digital</span><span lang="en">Enlarge: digital pre-sale</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-01-galeria-03.jpg"
+                 data-caption="No caixa: o pedido encontrado por código, nome ou QR Code"
+                 data-caption-en="At the register: the order found by code, name or QR code">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-galeria-03-thumb.jpg"
+                       alt="Busca do pedido no caixa pelas três formas de identificação"
+                       data-en-alt="Order lookup at the register through the three identification paths"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: busca do pedido no caixa</span><span lang="en">Enlarge: order lookup at the register</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-01-galeria-04.jpg"
+                 data-caption="Ações críticas: fora da tela inicial e atrás de senha gerencial"
+                 data-caption-en="Critical actions: off the home screen and behind a manager password">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-galeria-04-thumb.jpg"
+                       alt="Fluxo de uma ação crítica, com a confirmação por senha gerencial"
+                       data-en-alt="Flow of a critical action, with manager password confirmation"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: ações críticas protegidas</span><span lang="en">Enlarge: protected critical actions</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-01-galeria-05.jpg"
+                 data-caption="Wireframes de baixa fidelidade, testados antes de qualquer decisão de estilo"
+                 data-caption-en="Low-fidelity wireframes, tested before any decision about style">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-galeria-05-thumb.jpg"
+                       alt="Conjunto de wireframes de baixa fidelidade do fluxo de venda"
+                       data-en-alt="Set of low-fidelity wireframes of the sales flow"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: wireframes de baixa fidelidade</span><span lang="en">Enlarge: low-fidelity wireframes</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-01-galeria-06.jpg"
+                 data-caption="Observação da operação acontecendo na loja"
+                 data-caption-en="Watching the operation happen on the shop floor">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-01-galeria-06-thumb.jpg"
+                       alt="Registro da observação da operação de loja"
+                       data-en-alt="Record of the in-store operation observation"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: observação em loja</span><span lang="en">Enlarge: in-store observation</span>
+                </span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- CTA FINAL DO CASE                                                    -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt case-cta" aria-labelledby="case-cta-titulo">
+        <div class="container container--prose">
+          <div class="contact" data-reveal>
+
+            <header class="section-head section-head--center">
+              <h2 class="section-head__title" id="case-cta-titulo">
+                <span lang="pt-BR">Quer conversar sobre este projeto?</span><span lang="en">Want to talk about this project?</span>
+              </h2>
+              <p class="section-head__lead" lang="pt-BR">
+                Tenho muito mais detalhe do que cabe numa página — inclusive o
+                que não funcionou.
+              </p>
+              <p class="section-head__lead" lang="en">
+                There's far more detail than fits on one page — including what
+                didn't work.
+              </p>
+            </header>
+
+            <div class="cluster cluster--center">
+              <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-mail"></use>
+                </svg>
+                <span lang="pt-BR">Entrar em contato</span><span lang="en">Get in touch</span>
+              </a>
+              <a class="btn btn--secondary btn--lg" href="projeto-02.html">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+                <span lang="pt-BR">Próximo caso: o app do entregador</span><span lang="en">Next case: the delivery driver app</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- ==========================================================================
+       LIGHTBOX — <dialog> nativo.
+       O elemento nativo entrega foco preso, Escape para fechar, fundo inerte e
+       ::backdrop sem nenhum JavaScript de acessibilidade. O script.js cuida
+       apenas de trocar a imagem, navegar e atualizar o contador.
+       ========================================================================== -->
+  <dialog class="lightbox" data-lightbox
+          aria-label="Visualizador de imagens" data-en-aria-label="Image viewer">
+
+    <div class="lightbox__bar">
+      <p class="lightbox__counter" data-lightbox-counter aria-live="polite">
+        <span class="visually-hidden">
+          <span lang="pt-BR">Imagem</span><span lang="en">Image</span>
+        </span>
+        1 / 6
+      </p>
+
+      <button class="lightbox__close" type="button" data-lightbox-close
+              aria-label="Fechar visualizador" data-en-aria-label="Close viewer">
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+    </div>
+
+    <figure class="lightbox__figure">
+      <img class="lightbox__image" data-lightbox-image decoding="async" alt=""
+           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+      <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
+    </figure>
+
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev
+            aria-label="Imagem anterior" data-en-aria-label="Previous image">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="#i-chevron-left"></use>
+      </svg>
+    </button>
+
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next
+            aria-label="Próxima imagem" data-en-aria-label="Next image">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="#i-chevron-right"></use>
+      </svg>
+    </button>
+
+  </dialog>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <p class="footer__copy">
+        <span lang="pt-BR">© <span data-year>2026</span> Arthur Souza. Desenhado e codificado à mão.</span><span lang="en">© <span data-year>2026</span> Arthur Souza. Designed and hand-coded.</span>
+      </p>
+
+      <ul class="footer__links">
+        <li>
+          <a class="footer__link" href="mailto:arthursouza_7@outlook.com">
+            <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="https://www.linkedin.com/in/arthursouza7/"
+             target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="../assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="../index.html">
+            <span lang="pt-BR">Voltar ao início</span><span lang="en">Back home</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </footer>
+
+</body>
+</html>

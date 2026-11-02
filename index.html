@@ -1,0 +1,965 @@
+﻿<!DOCTYPE html>
+<!--
+  ============================================================================
+  PORTFÓLIO — ARTHUR SOUZA · UX & PRODUCT DESIGNER
+  ----------------------------------------------------------------------------
+  Arquivo   : index.html (Home)
+  Stack     : HTML5 semântico · CSS3 · JavaScript Vanilla (ES6+)
+  Idiomas   : pt-BR (padrão) + en (alternável)
+
+  SISTEMA DE IDIOMAS — REGRA ÚNICA
+  --------------------------------
+  1) TEXTO VISÍVEL: todo texto tem um gêmeo no outro idioma.
+        <p lang="pt-BR">Texto…</p>
+        <p lang="en">Text…</p>
+     O CSS esconde o idioma inativo. Sem JavaScript, o pt-BR aparece.
+
+  2) TÍTULOS (h1–h6): os gêmeos ficam DENTRO do mesmo elemento, em spans.
+        <h2 id="x"><span lang="pt-BR">Sobre</span><span lang="en">About</span></h2>
+     Motivo: duplicar o <h2> duplicaria a estrutura de headings do documento,
+     e um aria-labelledby apontando para um título oculto ainda leria o
+     idioma errado — o cálculo do nome acessível ignora display:none apenas
+     no elemento referenciado, não nos filhos dele.
+
+  3) TEXTO EM ATRIBUTO (alt, aria-label, content, href): use data-en-*.
+        <img alt="Foto de perfil" data-en-alt="Profile photo">
+     O JavaScript troca o valor do atributo ao mudar de idioma.
+
+  Para editar um texto, edite-o onde ele está. Não há dicionário externo.
+
+  CONVENÇÕES DE MARCAÇÃO
+  ----------------------
+  class="..."   → apenas estilo (CSS). Nunca lido pelo JavaScript.
+  data-*        → apenas comportamento (JS). Nunca usado como seletor de estilo.
+  .is-*         → estado, escrito pelo JS e lido pelo CSS.
+
+  PLACEHOLDERS
+  ------------
+  Todo slot de mídia é um <figure class="media"> com proporção reservada
+  (sem layout shift) e o <img> real já pronto, comentado logo abaixo.
+  Para publicar a imagem: apague o <span class="media__label"> e descomente
+  o <img>. Nada mais precisa mudar.
+  ============================================================================
+-->
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--
+    BOOTSTRAP CRÍTICO (inline, ~20 linhas)
+    Roda antes da primeira pintura para evitar três flashes visuais:
+      a) FOUC das animações de entrada (troca .no-js por .js);
+      b) flash de idioma errado em quem já escolheu inglês;
+      c) flash de tema errado — por isso data-theme é resolvido AQUI, e não
+         no script.js, que só carrega depois do HTML parseado.
+    Sem JavaScript nenhum atributo é escrito: o site aparece em pt-BR e no
+    modo escuro, que são os padrões do projeto.
+    É o único JavaScript inline do projeto. Todo o resto vive em script.js.
+  -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.remove('no-js');
+      root.classList.add('js');
+
+      var lang = null;
+      var theme = null;
+
+      try {
+        lang = localStorage.getItem('portfolio-lang');
+        theme = localStorage.getItem('portfolio-theme');
+      } catch (err) { /* localStorage bloqueado: segue nos padrões */ }
+
+      if (lang === 'en') {
+        root.setAttribute('data-lang', 'en');
+        root.setAttribute('lang', 'en');
+      }
+
+      /* Sem escolha salva, vale a preferência do sistema. */
+      if (theme !== 'claro' && theme !== 'escuro') {
+        theme = window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches
+          ? 'claro'
+          : 'escuro';
+      }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- ==================== SEO ==================== -->
+  <title data-en="Arthur Souza — UX &amp; Product Designer">Arthur Souza — UX &amp; Product Designer</title>
+
+  <meta name="description"
+        content="UX &amp; Product Designer com 6 anos de experiência em ERP e produtos B2B complexos. Pesquisa, design de produto e design systems — do primeiro insight ao handoff."
+        data-en-content="UX &amp; Product Designer with 6 years of experience in ERP and complex B2B products. Research, product design and design systems — from first insight to handoff.">
+
+  <meta name="author" content="Arthur Souza">
+  <meta name="robots" content="index, follow">
+  <!-- Valor do modo escuro (o padrão). O script.js reescreve este content a
+       partir de --c-bg sempre que o tema muda. -->
+  <meta name="theme-color" content="#20293A">
+
+  <!--
+    ATENÇÃO — TROQUE O DOMÍNIO ANTES DE PUBLICAR.
+    Um canonical apontando para o domínio errado prejudica a indexação.
+    Substitua "https://SEU-DOMINIO.com" em todas as tags abaixo.
+  -->
+  <link rel="canonical" href="https://SEU-DOMINIO.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://SEU-DOMINIO.com/">
+  <meta property="og:site_name" content="Arthur Souza">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title"
+        content="Arthur Souza — UX &amp; Product Designer"
+        data-en-content="Arthur Souza — UX &amp; Product Designer">
+  <meta property="og:description"
+        content="Comecei fazendo capa de DVD. Hoje desenho os sistemas em que 100 empresas trabalham todo dia."
+        data-en-content="I started making DVD covers. Today I design the systems 100 companies work in every day.">
+  <!-- OG IMAGE — 1200×630px. Crie e salve em assets/images/og-cover.jpg -->
+  <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+        content="Portfólio de Arthur Souza, UX &amp; Product Designer"
+        data-en-content="Arthur Souza's portfolio, UX &amp; Product Designer">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+        content="Arthur Souza — UX &amp; Product Designer"
+        data-en-content="Arthur Souza — UX &amp; Product Designer">
+  <meta name="twitter:description"
+        content="Comecei fazendo capa de DVD. Hoje desenho os sistemas em que 100 empresas trabalham todo dia."
+        data-en-content="I started making DVD covers. Today I design the systems 100 companies work in every day.">
+  <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg">
+
+  <!-- ==================== FAVICON ==================== -->
+  <!--
+    O favicon abaixo é um SVG embutido (data URI): zero requisições, zero 404.
+    Ao gerar os arquivos definitivos em assets/favicon/, apague esta linha
+    e descomente o bloco seguinte.
+  -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2320293A'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23E08A63' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <!--
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  -->
+
+  <!-- ==================== TIPOGRAFIA ====================
+       Fontes locais em assets/fonts/, declaradas em @font-face no topo do
+       style.css. Nenhuma requisição a CDN: o site abre offline e não entrega
+       o IP de quem visita para um terceiro.
+       O preload antecipa só as duas famílias da primeira dobra — o navegador
+       descobriria as outras ao casar o @font-face com o texto, tarde demais.
+       crossorigin é obrigatório em preload de fonte, inclusive na origem. -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="assets/fonts/inter-latin-400-normal.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="assets/fonts/bricolage-grotesque-latin-800-normal.woff2">
+
+  <!-- ==================== ESTILO ==================== -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ==================== COMPORTAMENTO ==================== -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       SKIP LINK — primeiro elemento focável da página
+       ========================================================================== -->
+  <a class="skip-link" href="#conteudo">
+    <span lang="pt-BR">Pular para o conteúdo</span><span lang="en">Skip to content</span>
+  </a>
+
+  <!--
+    SENTINELA DA NAVBAR
+    Elemento de 1px observado por IntersectionObserver. Quando sai do viewport,
+    o header ganha .is-scrolled. Substitui o listener de scroll.
+  -->
+  <div class="nav-sentinel" data-nav-sentinel aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       SPRITE DE ÍCONES — SVG inline, definido uma vez por página.
+       Uso: <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-right"></use>
+            </svg>
+       ========================================================================== -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+       aria-hidden="true" focusable="false">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17 17 7M8 7h9v9"/>
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7h16M4 12h16M4 17h16"/>
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 6 12 12M18 6 6 18"/>
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/>
+    </symbol>
+
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4z"/>
+    </symbol>
+
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 3v5h5"/><path d="M6 3h8l5 5v13H6z"/><path d="M9 13h6M9 17h6"/>
+    </symbol>
+
+    <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 6-6 6 6 6"/>
+    </symbol>
+
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 6 6 6-6 6"/>
+    </symbol>
+
+    <symbol id="i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3H3v6M15 21h6v-6M21 9V3h-6M3 15v6h6"/>
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 12.5 5 5 11-11"/>
+    </symbol>
+
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+      <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/>
+    </symbol>
+
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+    </symbol>
+
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a7.5 7.5 0 1 0 10.8 10.8Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ==========================================================================
+       HEADER / NAVBAR FIXA
+       ========================================================================== -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+
+      <a class="brand" href="#inicio" aria-label="Arthur Souza — início"
+         data-en-aria-label="Arthur Souza — home">
+        <span class="brand__mark" aria-hidden="true">A</span>
+        <span class="brand__text">
+          <span class="brand__name">Arthur Souza</span>
+          <span class="brand__role">
+            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+          </span>
+        </span>
+      </a>
+
+      <!-- Navegação principal — o mesmo <ul> serve desktop e drawer mobile -->
+      <nav class="nav" id="nav-principal" data-nav-panel
+           aria-label="Navegação principal" data-en-aria-label="Main navigation">
+        <ul class="nav__list" data-scrollspy>
+          <li class="nav__item">
+            <a class="nav__link" href="#inicio">
+              <span lang="pt-BR">Início</span><span lang="en">Home</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#projetos">
+              <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#sobre">
+              <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#contato">
+              <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <div class="nav__prefs">
+            <!-- SELETOR DE IDIOMA -->
+            <div class="lang-switch" role="group"
+                 aria-label="Selecionar idioma" data-en-aria-label="Select language"
+                 data-lang-switch>
+              <svg class="icon lang-switch__icon" aria-hidden="true" focusable="false">
+                <use href="#i-globe"></use>
+              </svg>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="pt-BR" aria-pressed="true" lang="pt-BR">PT</button>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="en" aria-pressed="false" lang="en">EN</button>
+            </div>
+
+            <!--
+              ALTERNÂNCIA DE TEMA
+              O rótulo é fixo ("Modo claro") e quem carrega o estado é o
+              aria-pressed — mesmo contrato do botão do menu, que mantém
+              "Abrir menu" nos dois estados e deixa o aria-expanded falar.
+              Reescrever o rótulo criaria um segundo dono para a informação
+              e brigaria com a troca de idioma, que também escreve nele.
+            -->
+            <button class="theme-toggle" type="button"
+                    data-theme-toggle
+                    aria-pressed="false"
+                    aria-label="Modo claro" data-en-aria-label="Light mode">
+              <svg class="icon theme-toggle__moon" aria-hidden="true" focusable="false">
+                <use href="#i-moon"></use>
+              </svg>
+              <svg class="icon theme-toggle__sun" aria-hidden="true" focusable="false">
+                <use href="#i-sun"></use>
+              </svg>
+            </button>
+          </div>
+
+          <a class="btn btn--secondary btn--sm" href="#contato">
+            <span lang="pt-BR">Vamos conversar</span><span lang="en">Let's talk</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Botão do menu mobile -->
+      <button class="nav-toggle" type="button"
+              data-nav-toggle
+              aria-controls="nav-principal"
+              aria-expanded="false"
+              aria-label="Abrir menu" data-en-aria-label="Open menu">
+        <svg class="icon nav-toggle__open" aria-hidden="true" focusable="false">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon nav-toggle__close" aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Camada de escurecimento atrás do drawer mobile -->
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+
+  <main id="conteudo" class="main">
+
+    <!-- ========================================================================
+         01 · HERO
+         ======================================================================== -->
+    <section class="section hero" id="inicio" aria-labelledby="hero-titulo">
+      <div class="container hero__inner">
+
+        <div class="hero__content">
+
+          <p class="eyebrow" data-reveal>
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            <span lang="pt-BR">Disponível para novas oportunidades</span><span lang="en">Available for new opportunities</span>
+          </p>
+
+          <h1 class="hero__title" id="hero-titulo" data-reveal>
+            <span lang="pt-BR">Arthur Souza</span><span lang="en">Arthur Souza</span>
+          </h1>
+
+          <p class="hero__role" data-reveal>
+            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+          </p>
+
+          <p class="hero__lead" data-reveal lang="pt-BR">
+            Comecei fazendo capa de DVD. Hoje desenho os sistemas em que 100
+            empresas trabalham todo dia.
+          </p>
+          <p class="hero__lead" data-reveal lang="en">
+            I started making DVD covers. Today I design the systems 100
+            companies work in every day.
+          </p>
+
+          <p class="hero__support" data-reveal lang="pt-BR">
+            Seis anos em ERP e produtos B2B: o tipo de tela que ninguém escolhe
+            abrir, mas que alguém precisa usar por oito horas.
+          </p>
+          <p class="hero__support" data-reveal lang="en">
+            Six years in ERP and B2B products: the kind of screen nobody chooses
+            to open, but that someone has to use for eight hours.
+          </p>
+
+          <!-- BOTÕES PRINCIPAIS -->
+          <div class="hero__actions cluster" data-reveal>
+
+            <a class="btn btn--primary" href="#projetos">
+              <span lang="pt-BR">Ver projetos</span><span lang="en">View work</span>
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </a>
+
+            <!--
+              CURRÍCULO — salve o PDF em assets/ com este nome exato.
+              Abre em nova aba (e não baixa): quem está avaliando dá uma olhada
+              rápida sem se comprometer a guardar arquivo. rel="noopener" basta
+              aqui, porque o PDF é do próprio domínio — noreferrer só faria
+              sentido para link externo.
+            -->
+            <a class="btn btn--ghost btn--sm"
+               href="assets/curriculo-arthursouza-ux.pdf"
+               target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-file"></use>
+              </svg>
+              <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+              <span class="visually-hidden">
+                <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+              </span>
+            </a>
+
+            <!-- LINKEDIN — troque pela sua URL real -->
+            <a class="btn btn--ghost btn--sm"
+               href="https://www.linkedin.com/in/arthursouza7/"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-linkedin"></use>
+              </svg>
+              <span>LinkedIn</span>
+              <span class="visually-hidden">
+                <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+              </span>
+            </a>
+
+            <!-- E-MAIL — troque pelo seu endereço real -->
+            <a class="btn btn--ghost btn--sm" href="mailto:arthursouza_7@outlook.com">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-mail"></use>
+              </svg>
+              <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- FOTO PERFIL -->
+        <div class="hero__media" data-reveal>
+          <figure class="media media--4x5 media--framed">
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Foto de perfil · 800×1000</span><span lang="en">Profile photo · 800×1000</span>
+            </span>
+            <!--
+              SUBSTITUIR: apague o <span class="media__label"> acima e descomente.
+              Esta é a maior imagem visível no primeiro scroll (LCP):
+              use eager + fetchpriority="high" — nunca lazy.
+
+            <img src="assets/images/perfil.jpg"
+                 alt="Retrato de Arthur Souza"
+                 data-en-alt="Portrait of Arthur Souza"
+                 width="800" height="1000"
+                 loading="eager" fetchpriority="high" decoding="async">
+            -->
+          </figure>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         02 · SOBRE
+         ======================================================================== -->
+    <section class="section section--alt" id="projetos" aria-labelledby="projetos-titulo">
+      <div class="container">
+
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">
+            <span lang="pt-BR">Projetos</span><span lang="en">Selected work</span>
+          </p>
+          <h2 class="section-head__title" id="projetos-titulo">
+            <span lang="pt-BR">Três problemas e o que aprendi resolvendo cada um</span><span lang="en">Three problems, and what I learned solving each</span>
+          </h2>
+          <p class="section-head__lead" lang="pt-BR">
+            Cada estudo de caso mostra o processo completo: o contexto, as
+            decisões que tomei, o que deu errado no caminho e o resultado medido.
+          </p>
+          <p class="section-head__lead" lang="en">
+            Every case study shows the full process: the context, the decisions I
+            made, what went wrong along the way, and the measured outcome.
+          </p>
+        </header>
+
+        <div class="projects">
+
+          <!-- ---------------- PROJETO 01 ---------------- -->
+          <article class="project-card" data-reveal aria-labelledby="proj-01-titulo">
+
+            <a class="project-card__media-link" href="projects/projeto-01.html" tabindex="-1"
+               aria-hidden="true">
+              <!-- MOCKUP -->
+              <figure class="media media--16x9">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa do PDV Nasajon · 1600×900</span><span lang="en">Nasajon POS cover · 1600×900</span>
+                </span>
+                <!--
+                <img src="assets/images/projeto-01-capa.jpg"
+                     alt=""
+                     width="1600" height="900" loading="lazy" decoding="async">
+                -->
+              </figure>
+            </a>
+
+            <div class="project-card__body">
+
+              <ul class="meta-inline">
+                <li class="meta-inline__item">Nasajon</li>
+                <li class="meta-inline__item">2026</li>
+                <li class="meta-inline__item">
+                  <span lang="pt-BR">UX Design · ERP &amp; Varejo</span><span lang="en">UX Design · ERP &amp; Retail</span>
+                </li>
+              </ul>
+
+              <h3 class="project-card__title" id="proj-01-titulo">
+                <a class="project-card__link" href="projects/projeto-01.html">
+                  <span lang="pt-BR">Um PDV que sai do balcão</span><span lang="en">A POS that leaves the counter</span>
+                </a>
+              </h3>
+
+              <p class="project-card__summary" lang="pt-BR">
+                O operador atendia longe do balcão e mandava o pedido no papel
+                para o caixa, onde alguém o procurava venda a venda. A pesquisa
+                derrubou 45% do projeto já desenhado para desktop — e o redesenho
+                mobile-first cortou 30% do tempo de fechamento de venda.
+              </p>
+              <p class="project-card__summary" lang="en">
+                The operator served customers away from the counter and sent the
+                order to the register on paper, where someone hunted for it sale
+                by sale. Research knocked down 45% of a project already designed
+                for desktop — and the mobile-first redesign cut time to close a
+                sale by 30%.
+              </p>
+
+              <ul class="chips chips--sm" aria-label="Ferramentas utilizadas"
+                  data-en-aria-label="Tools used">
+                <li class="chip chip--sm">Figma</li>
+                <li class="chip chip--sm">Miro</li>
+                <li class="chip chip--sm">NotebookLM</li>
+                <li class="chip chip--sm">Claude Code</li>
+              </ul>
+
+              <p class="project-card__cta" aria-hidden="true">
+                <span lang="pt-BR">Ver estudo de caso</span><span lang="en">View case study</span>
+                <svg class="icon" focusable="false"><use href="#i-arrow-right"></use></svg>
+              </p>
+
+            </div>
+          </article>
+
+          <!-- ---------------- PROJETO 02 ---------------- -->
+          <article class="project-card" data-reveal aria-labelledby="proj-02-titulo">
+
+            <a class="project-card__media-link" href="projects/projeto-02.html" tabindex="-1"
+               aria-hidden="true">
+              <!-- MOCKUP -->
+              <figure class="media media--16x9">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa do app de logística · 1600×900</span><span lang="en">Logistics app cover · 1600×900</span>
+                </span>
+                <!--
+                <img src="assets/images/projeto-02-capa.jpg"
+                     alt=""
+                     width="1600" height="900" loading="lazy" decoding="async">
+                -->
+              </figure>
+            </a>
+
+            <div class="project-card__body">
+
+              <ul class="meta-inline">
+                <li class="meta-inline__item">Nasajon</li>
+                <li class="meta-inline__item">2025</li>
+                <li class="meta-inline__item">
+                  <span lang="pt-BR">UX Design · Logística &amp; Campo</span><span lang="en">UX Design · Logistics &amp; Field</span>
+                </li>
+              </ul>
+
+              <h3 class="project-card__title" id="proj-02-titulo">
+                <a class="project-card__link" href="projects/projeto-02.html">
+                  <span lang="pt-BR">A próxima parada, e a prova</span><span lang="en">The next stop, and the proof</span>
+                </a>
+              </h3>
+
+              <p class="project-card__summary" lang="pt-BR">
+                A entrega era gerida no papel: sem ordem definida de paradas, sem
+                rota planejada e com a prova reduzida a uma assinatura que se
+                perde. Projetei o app de campo e a plataforma que otimiza a
+                sequência — as duas pontas da mesma operação.
+              </p>
+              <p class="project-card__summary" lang="en">
+                Delivery was managed on paper: no defined order of stops, no
+                planned route, and proof reduced to a signature that gets lost. I
+                designed the field app and the platform that optimises the
+                sequence — both ends of the same operation.
+              </p>
+
+              <ul class="chips chips--sm" aria-label="Ferramentas utilizadas"
+                  data-en-aria-label="Tools used">
+                <li class="chip chip--sm">Figma</li>
+              </ul>
+
+              <p class="project-card__cta" aria-hidden="true">
+                <span lang="pt-BR">Ver estudo de caso</span><span lang="en">View case study</span>
+                <svg class="icon" focusable="false"><use href="#i-arrow-right"></use></svg>
+              </p>
+
+            </div>
+          </article>
+
+          <!-- ---------------- PROJETO 03 ---------------- -->
+          <article class="project-card" data-reveal aria-labelledby="proj-03-titulo">
+
+            <a class="project-card__media-link" href="projects/projeto-03.html" tabindex="-1"
+               aria-hidden="true">
+              <!-- MOCKUP -->
+              <figure class="media media--16x9">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa da Roteirização · 1600×900</span><span lang="en">Route planning cover · 1600×900</span>
+                </span>
+                <!--
+                <img src="assets/images/projeto-03-capa.jpg"
+                     alt=""
+                     width="1600" height="900" loading="lazy" decoding="async">
+                -->
+              </figure>
+            </a>
+
+            <div class="project-card__body">
+
+              <ul class="meta-inline">
+                <li class="meta-inline__item">Nasajon</li>
+                <li class="meta-inline__item">2025</li>
+                <li class="meta-inline__item">
+                  <span lang="pt-BR">UX Design · Gestão &amp; Análise</span><span lang="en">UX Design · Management &amp; Analytics</span>
+                </li>
+              </ul>
+
+              <h3 class="project-card__title" id="proj-03-titulo">
+                <a class="project-card__link" href="projects/projeto-03.html">
+                  <span lang="pt-BR">Rota calculada, decisão preservada</span><span lang="en">Route calculated, decision preserved</span>
+                </a>
+              </h3>
+
+              <p class="project-card__summary" lang="pt-BR">
+                O romaneio era montado de cabeça, sem estimativa de custo e sem
+                acompanhamento. A plataforma passou a calcular a sequência por
+                veículo, peso e distância — mantendo o gestor com a palavra final.
+                O custo por rota caiu 40%.
+              </p>
+              <p class="project-card__summary" lang="en">
+                Manifests were assembled from memory, with no cost estimate and no
+                tracking. The platform began calculating the sequence by vehicle,
+                weight and distance — while keeping the manager''s final say. Cost
+                per route fell 40%.
+              </p>
+
+              <ul class="chips chips--sm" aria-label="Ferramentas utilizadas"
+                  data-en-aria-label="Tools used">
+                <li class="chip chip--sm">Figma</li>
+                <li class="chip chip--sm">Moqups</li>
+              </ul>
+
+              <p class="project-card__cta" aria-hidden="true">
+                <span lang="pt-BR">Ver estudo de caso</span><span lang="en">View case study</span>
+                <svg class="icon" focusable="false"><use href="#i-arrow-right"></use></svg>
+              </p>
+
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         04 · CONTATO
+         ======================================================================== -->
+    <section class="section" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="container">
+
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">
+            <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+          </p>
+          <h2 class="section-head__title" id="sobre-titulo">
+            <span lang="pt-BR">Design é decidir o que não construir</span><span lang="en">Design is deciding what not to build</span>
+          </h2>
+        </header>
+
+        <div class="about">
+
+          <div class="about__bio prose" data-reveal>
+            <p lang="pt-BR">
+              Comecei a desenhar antes de saber que aquilo tinha nome. Ainda
+              criança, fazia edição de foto, capa, logo e arte para rede social;
+              mais tarde, capa e menu de DVD. Achei que meu caminho seria
+              computação, entrei na faculdade e fui parar num estágio que eu
+              jurava ser de web design — no meio dele descobri que era de UI/UX.
+              Nunca mais saí.
+            </p>
+            <p lang="en">
+              I started designing before I knew it had a name. As a kid I was
+              editing photos and making covers, logos and social media artwork;
+              later, DVD covers and menus. I assumed my path would be computing,
+              started university, and landed an internship I was certain was web
+              design — halfway through, I found out it was UI/UX. I never left.
+            </p>
+
+            <p lang="pt-BR">
+              Hoje trabalho com ERP e produtos B2B, onde a complexidade não é
+              escolha: quem está do outro lado depende daquela tela para fechar o
+              mês. O que me move é projeto novo — problema que ainda não tem
+              forma e onde dá para melhorar concretamente o dia de quem vai usar.
+            </p>
+            <p lang="en">
+              Today I work on ERP and B2B products, where complexity isn't a
+              choice: the person on the other side depends on that screen to close
+              the month. What moves me is a new project — a problem that doesn't
+              have a shape yet, and where there's a concrete chance to improve
+              someone's day.
+            </p>
+
+            <p lang="pt-BR">
+              Meu processo passa por duas conversas que muita gente pula: com o
+              suporte, para saber o que está quebrando de verdade, e com a
+              engenharia, para saber o limite do que dá para construir. Com as
+              duas na mão, monto uma matriz de esforço e impacto e fecho o
+              discovery num documento curto — tudo isso antes de desenhar a
+              primeira tela.
+            </p>
+            <p lang="en">
+              My process runs through two conversations most people skip: with
+              support, to learn what is actually breaking, and with engineering,
+              to learn the limits of what can be built. With both in hand, I map
+              effort against impact and close discovery in a short document — all
+              before drawing the first screen.
+            </p>
+          </div>
+
+          <!-- MÉTRICAS DE CARREIRA -->
+          <dl class="about__facts" data-reveal>
+            <div class="fact">
+              <dt class="fact__label">
+                <span lang="pt-BR">Experiência</span><span lang="en">Experience</span>
+              </dt>
+              <dd class="fact__value">
+                <span lang="pt-BR">6 anos</span><span lang="en">6 years</span>
+              </dd>
+            </div>
+            <div class="fact">
+              <dt class="fact__label">
+                <span lang="pt-BR">Foco</span><span lang="en">Focus</span>
+              </dt>
+              <dd class="fact__value">
+                <span lang="pt-BR">ERP, B2B &amp; SaaS</span><span lang="en">ERP, B2B &amp; SaaS</span>
+              </dd>
+            </div>
+            <div class="fact">
+              <dt class="fact__label">
+                <span lang="pt-BR">Clientes impactados</span><span lang="en">Clients impacted</span>
+              </dt>
+              <dd class="fact__value">+100</dd>
+            </div>
+            <div class="fact">
+              <dt class="fact__label">
+                <span lang="pt-BR">Base</span><span lang="en">Based in</span>
+              </dt>
+              <dd class="fact__value">
+                <span lang="pt-BR">Rio de Janeiro · Remoto</span><span lang="en">Rio de Janeiro · Remote</span>
+              </dd>
+            </div>
+          </dl>
+
+        </div>
+
+        <!-- HABILIDADES (chips) -->
+        <div class="skills" data-reveal>
+          <h3 class="skills__title" id="skills-titulo">
+            <span lang="pt-BR">Habilidades</span><span lang="en">Skills</span>
+          </h3>
+
+          <!--
+            ORDEM DOS CHIPS — não é aleatória nem alfabética.
+            Segue o arco do processo: descoberta → definição → design →
+            validação → entrega → domínio e ferramentas. Com 22 itens, a ordem
+            é o que impede a lista de virar nuvem de palavra-chave; ela faz o
+            trabalho que títulos de grupo fariam, sem criar componente novo.
+            Ao adicionar um chip, insira no grupo certo — não no fim.
+          -->
+          <ul class="chips" aria-labelledby="skills-titulo">
+            <!-- Descoberta -->
+            <li class="chip"><span lang="pt-BR">UX Research</span><span lang="en">UX Research</span></li>
+            <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
+            <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
+            <li class="chip"><span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span></li>
+
+            <!-- Definição e estratégia -->
+            <li class="chip"><span lang="pt-BR">Design Thinking</span><span lang="en">Design Thinking</span></li>
+            <li class="chip"><span lang="pt-BR">Product Thinking</span><span lang="en">Product Thinking</span></li>
+            <li class="chip"><span lang="pt-BR">Design Sprint</span><span lang="en">Design Sprint</span></li>
+            <li class="chip"><span lang="pt-BR">User Journey</span><span lang="en">User Journey</span></li>
+            <li class="chip"><span lang="pt-BR">User Flow</span><span lang="en">User Flow</span></li>
+
+            <!-- Design -->
+            <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
+            <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
+            <li class="chip"><span lang="pt-BR">Design de Interação</span><span lang="en">Interaction Design</span></li>
+            <li class="chip"><span lang="pt-BR">Design Systems</span><span lang="en">Design Systems</span></li>
+            <li class="chip"><span lang="pt-BR">Acessibilidade</span><span lang="en">Accessibility</span></li>
+
+            <!-- Validação -->
+            <li class="chip"><span lang="pt-BR">Testes de Usabilidade</span><span lang="en">Usability Testing</span></li>
+
+            <!-- Entrega -->
+            <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>
+            <li class="chip"><span lang="pt-BR">Método Ágil</span><span lang="en">Agile</span></li>
+
+            <!-- Domínio e ferramentas -->
+            <li class="chip"><span lang="pt-BR">ERP &amp; B2B</span><span lang="en">ERP &amp; B2B</span></li>
+            <li class="chip"><span lang="pt-BR">Figma</span><span lang="en">Figma</span></li>
+            <li class="chip"><span lang="pt-BR">HTML</span><span lang="en">HTML</span></li>
+            <li class="chip"><span lang="pt-BR">CSS</span><span lang="en">CSS</span></li>
+            <li class="chip"><span lang="pt-BR">JavaScript</span><span lang="en">JavaScript</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         03 · PROJETOS
+         ------------------------------------------------------------------------
+         Os cards são HTML estático — não são gerados por JavaScript.
+         Isso mantém o conteúdo indexável e funcional sem JS.
+         Para adicionar um projeto: duplique um <article class="project-card">
+         inteiro e troque o conteúdo. O README documenta o passo a passo.
+         ======================================================================== -->
+    <section class="section section--alt" id="contato" aria-labelledby="contato-titulo">
+      <div class="container">
+
+        <div class="contact" data-reveal>
+
+          <header class="section-head section-head--center">
+            <p class="eyebrow">
+              <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
+            </p>
+            <h2 class="section-head__title" id="contato-titulo">
+              <span lang="pt-BR">Tem um problema difícil? Vamos conversar.</span><span lang="en">Got a hard problem? Let's talk.</span>
+            </h2>
+            <p class="section-head__lead" lang="pt-BR">
+              Estou aberto a oportunidades de Product Design em produtos com
+              complexidade real. Respondo todos os e-mails em até 48 horas.
+            </p>
+            <p class="section-head__lead" lang="en">
+              I'm open to Product Design roles on genuinely complex products.
+              I reply to every email within 48 hours.
+            </p>
+          </header>
+
+          <div class="contact__actions cluster cluster--center">
+            <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-mail"></use>
+              </svg>
+              <span>arthursouza_7@outlook.com</span>
+            </a>
+
+            <a class="btn btn--secondary btn--lg"
+               href="https://www.linkedin.com/in/arthursouza7/"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-linkedin"></use>
+              </svg>
+              <span>LinkedIn</span>
+              <svg class="icon icon--xs" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up-right"></use>
+              </svg>
+              <span class="visually-hidden">
+                <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+              </span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <p class="footer__copy">
+        <span lang="pt-BR">© <span data-year>2026</span> Arthur Souza. Desenhado e codificado à mão.</span><span lang="en">© <span data-year>2026</span> Arthur Souza. Designed and hand-coded.</span>
+      </p>
+
+      <ul class="footer__links">
+        <li>
+          <a class="footer__link" href="mailto:arthursouza_7@outlook.com">
+            <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="https://www.linkedin.com/in/arthursouza7/"
+             target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="#inicio">
+            <span lang="pt-BR">Voltar ao topo</span><span lang="en">Back to top</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </footer>
+
+</body>
+</html>

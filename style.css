@@ -1,0 +1,2621 @@
+﻿@charset "UTF-8";
+/* ============================================================================
+   PORTFÓLIO — ARTHUR SOUZA · PRODUCT DESIGNER
+   ----------------------------------------------------------------------------
+   Arquivo : style.css
+   Stack   : CSS3 puro · Mobile First · Tema claro e escuro (escuro é o padrão)
+   Consome : index.html · projects/projeto-template.html (e as cópias 01–03)
+
+   ÍNDICE
+   ------
+   00 · FONTES (@font-face locais)
+   01 · RESET
+   02 · TOKENS (custom properties)
+   03 · BASE E TIPOGRAFIA
+   04 · SISTEMA DE IDIOMAS
+   05 · LAYOUT (main · container · section)
+   06 · UTILITÁRIOS (visually-hidden · cluster · icon · sprite · sentinela)
+   07 · ANIMAÇÕES DE ENTRADA (reveal)
+   08 · MÍDIA E PLACEHOLDERS
+   09 · TIPOGRAFIA DE CONTEÚDO (eyebrow · section-head · prose · quote)
+   10 · CHIPS
+   11 · BOTÕES
+   12 · SKIP LINK
+   13 · HEADER · BRAND · NAV · LANG SWITCH · NAV TOGGLE
+   14 · HERO (home)
+   15 · SOBRE (bio · fatos · habilidades)
+   16 · PROJETOS (cards)
+   17 · CONTATO
+   18 · FOOTER
+   19 · CASE · BREADCRUMB E HERO
+   20 · CASE · SPLIT E CHECKLIST
+   21 · CASE · TIMELINE
+   22 · CASE · DECISÕES E MÉTRICAS
+   23 · CASE · GALERIA
+   24 · LIGHTBOX
+   25 · PREFERÊNCIAS DO USUÁRIO (reduced motion · forced colors)
+
+   CONVENÇÕES
+   ----------
+   • Mobile First: o bloco base é o mobile; media queries só usam min-width.
+   • class="…" → estilo.  data-* → comportamento (JS).  .is-* → estado.
+   • Tema: data-theme="escuro" (padrão) | "claro" em <html>, escrito pelo JS.
+   • Breakpoints:
+       40rem (640px)  — grades de 2 colunas e ajustes de proporção
+       56rem (896px)  — troca do menu mobile para a navegação desktop
+       72rem (1152px) — layout editorial dos cards de projeto
+   • Animações usam somente transform e opacity: nunca geram reflow.
+
+   CAMADAS (z-index) — uma lista curta e explícita evita a guerra de números
+   -----------------------------------------------------------------------
+       0   body::before   brilho decorativo de topo
+       1   .main / .footer
+     205   .nav-backdrop  escurecimento do drawer
+     210   .header        precisa ficar ACIMA do backdrop, porque o drawer e
+                          o botão de fechar vivem dentro dele
+     220   .nav-toggle    acima do painel, dentro do contexto do header
+     300   .skip-link
+     400   .lightbox      (o <dialog> modal já sobe para a top layer)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   00 · FONTES
+   --------------------------------------------------------------------------
+   Arquivos locais em assets/fonts/ — subset latin (cobre todo o pt-BR),
+   licença OFL, ~154 KB no total. Nenhuma requisição a CDN de terceiros:
+   o site funciona offline e não vaza o IP de quem visita para o Google.
+
+   Três papéis, três famílias:
+     Bricolage Grotesque  600/800       → --font-display (títulos, hero)
+     Source Serif 4       400/400i/600  → --font-serif   (prosa, citações)
+     Inter                400/600       → --font-sans    (UI, labels, botões)
+
+   font-display: swap — o texto aparece na fonte de sistema e troca quando a
+   definitiva chega. Nunca há um período em que o conteúdo fica invisível.
+
+   ATENÇÃO aos pesos: estas são instâncias estáticas, não variáveis. O body
+   declara font-synthesis-weight: none, então um peso intermediário (550, 650)
+   é resolvido para o arquivo mais próximo — nunca engordado artificialmente.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("assets/fonts/bricolage-grotesque-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("assets/fonts/bricolage-grotesque-latin-800-normal.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("assets/fonts/source-serif-4-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("assets/fonts/source-serif-4-latin-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("assets/fonts/source-serif-4-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ==========================================================================
+   01 · RESET
+   Enxuto e opinativo: apenas o que este projeto realmente usa.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd, ol, ul {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+/* O atributo hidden precisa vencer qualquer display definido em classe.
+   Usado em [data-nav-backdrop]. */
+[hidden] {
+  display: none !important;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Impede que palavras longas (URLs, e-mails) estourem colunas estreitas. */
+p, h1, h2, h3, li, dd, figcaption {
+  overflow-wrap: break-word;
+}
+
+
+/* ==========================================================================
+   02 · TOKENS
+   Fonte única de verdade. Fora deste bloco não existe cor, raio, sombra ou
+   duração escrita à mão — só referência a variável (ou derivação direta).
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---------- COR · MODO ESCURO (padrão) ----------
+     Paleta "Papel & Tinta": a mesma papelaria vista à luz de um abajur.
+     Nada de preto #000 nem branco #FFF puros como texto ou fundo dominante.
+
+     Contrastes medidos sobre --c-bg:
+       --c-text        12,5:1    --c-text-muted   7,75:1
+       --c-accent       5,55:1   --c-text-subtle  3,89:1 (só decorativo/meta)
+     Texto sobre o botão primário usa --c-accent-ink (5,5:1), nunca branco:
+     branco sobre #E08A63 daria 2,2:1 e reprovaria em AA. */
+  --c-bg:            #20293A;   /* tinta da noite           */
+  --c-bg-alt:        #242E41;   /* um passo acima do bg     */
+  --c-surface:       #2A3549;   /* cards                    */
+  --c-surface-2:     #33405A;   /* superfície de apoio      */
+  --c-text:          #F2EDE3;   /* papel claro              */
+  --c-text-muted:    #B7BDCB;
+  --c-text-subtle:   #A7ADBC;   /* rótulo, legenda, meta — 4,76:1 */
+  --c-accent:        #E08A63;   /* terracota: a cor de ação */
+  --c-accent-hover:  #E89B79;
+  --c-accent-ink:    #20293A;   /* texto SOBRE o accent     */
+  --c-border:        rgba(242, 237, 227, .10);
+  --c-border-strong: rgba(242, 237, 227, .20);
+  --c-accent-soft:   rgba(224, 138, 99, .14);
+  --c-accent-line:   rgba(224, 138, 99, .36);
+  --c-glass:         rgba(32, 41, 58, .74);
+  --c-overlay:       rgba(14, 18, 27, .88);
+
+  /* O accent escrito em corpo de texto miúdo (eyebrow, CTA de card, link de
+     rodapé). No escuro é o próprio accent — 5,55:1, passa AA. No claro ele
+     precisa escurecer: #C1502E alcança 4,34:1, que vale para texto grande e
+     para componentes de interface, mas não para texto corrido. */
+  --c-accent-text:   #E08A63;
+
+  /* Lavagens do accent para o brilho de fundo e as texturas. Nunca um
+     gradiente que chame atenção para si mesmo. */
+  --c-glow:          rgba(224, 138, 99, .15);
+  --c-glow-faint:    rgba(224, 138, 99, .07);
+  --c-sheen:         rgba(242, 237, 227, .10);    /* filete interno da mídia */
+  --c-hatch:         rgba(242, 237, 227, .028);   /* hachura do placeholder  */
+
+  /* ---------- ESTADOS ----------
+     Reservados para feedback de formulário. Sobre --c-bg:
+     positive 7,22:1 · danger 5,53:1 · warning 7,37:1. */
+  --c-positive:      #A9BCA0;
+  --c-danger:        #E3867A;
+  --c-warning:       #D9B36A;
+
+  /* ---------- TINTA FIXA ----------
+     O lightbox é imersivo: a imagem precisa de um entorno escuro e neutro
+     nos DOIS temas — uma captura clara sobre papel claro perde os limites.
+     Por isso estes valores não acompanham a troca de modo. */
+  --c-ink-bg:        #2A3549;
+  --c-ink-bg-2:      #33405A;
+  --c-ink-text:      #F2EDE3;
+  --c-ink-muted:     #B7BDCB;
+  --c-ink-border:    rgba(242, 237, 227, .20);
+  --c-ink-glass:     rgba(32, 41, 58, .74);
+  --c-ink-overlay:   rgba(14, 18, 27, .92);
+
+  /* ---------- TIPOGRAFIA ----------
+     Três papéis, nunca misturados dentro do mesmo bloco de texto:
+       display → hero, títulos de seção e números grandes (600/800), com
+                 contenção: 1 a 2 ocorrências por tela;
+       serif   → prosa longa dos cases e citações (citação sempre em itálico);
+       sans    → todo o resto: navegação, rótulos, chips, botões, metadados.
+
+     Escala fluida: o termo do meio cresce com a viewport, o 1º e o 3º
+     travam os extremos para não quebrar em 320px nem inchar em 4K. */
+  --font-display: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont,
+                  "Segoe UI", sans-serif;
+  --font-serif:   "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                  "Helvetica Neue", Arial, sans-serif;
+
+  --fs-xs:   clamp(0.75rem,   0.735rem + 0.08vw, 0.8125rem);
+  --fs-sm:   clamp(0.875rem,  0.855rem + 0.10vw, 0.9375rem);
+  --fs-base: clamp(1rem,      0.975rem + 0.13vw, 1.0625rem);
+  --fs-md:   clamp(1.0625rem, 1.020rem + 0.22vw, 1.1875rem);
+  --fs-lg:   clamp(1.1875rem, 1.110rem + 0.38vw, 1.4375rem);
+  --fs-xl:   clamp(1.375rem,  1.240rem + 0.68vw, 1.875rem);
+  --fs-2xl:  clamp(1.75rem,   1.490rem + 1.30vw, 2.625rem);
+  --fs-3xl:  clamp(2.125rem,  1.660rem + 2.32vw, 3.5rem);
+  --fs-4xl:  clamp(2.5rem,    1.800rem + 3.50vw, 4.5rem);
+
+  --lh-tight:   1.08;
+  --lh-heading: 1.18;
+  --lh-snug:    1.4;
+  --lh-body:    1.68;
+
+  --tracking-tight: -0.022em;
+  --tracking-wide:   0.09em;
+
+  /* ---------- ESPAÇO ---------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+
+  --gutter:     clamp(1.25rem, 4vw, 2.5rem);
+  --section-py: clamp(3.5rem, 8vw, 7.5rem);
+  --gap-card:   clamp(1.25rem, 2.5vw, 2rem);
+
+  /* ---------- MEDIDAS ---------- */
+  --w-container: 76rem;   /* 1216px */
+  --w-wide:      88rem;   /* 1408px — hero de case e galerias largas */
+  --w-prose:     44rem;   /* 704px  — ~72 caracteres em --fs-base */
+  --header-h:    4.25rem;
+
+  --radius-sm:   0.5rem;
+  --radius:      0.875rem;
+  --radius-lg:   1.25rem;
+  --radius-xl:   1.75rem;
+  --radius-pill: 999px;
+
+  /* Sombras reencaixadas na tinta da noite — não no preto puro. */
+  --shadow:    0 12px 32px -12px rgba(10, 14, 22, .65);
+  --shadow-lg: 0 32px 64px -24px rgba(10, 14, 22, .80);
+
+  --shadow-accent:       0 8px 24px -12px rgba(224, 138, 99, .55);
+  --shadow-accent-hover: 0 12px 32px -12px rgba(224, 138, 99, .70);
+
+  /* ---------- MOVIMENTO ---------- */
+  --ease:     cubic-bezier(0.22, 0.61, 0.36, 1);   /* microinteração */
+  --ease-out: cubic-bezier(0.16, 1.00, 0.30, 1);   /* entrada: começa rápido */
+  --t-fast:   180ms;
+  --t:        240ms;
+  --t-slow:   360ms;
+  --t-reveal: 560ms;
+}
+
+/* --------------------------------------------------------------------------
+   MODO CLARO — "papel de dia"
+   --------------------------------------------------------------------------
+   Só os valores de cor mudam: tipografia, espaço, medida e movimento são os
+   mesmos nos dois temas.
+
+   O atributo data-theme é escrito pelo bootstrap inline do <head> antes da
+   primeira pintura — preferência salva, senão a do sistema — então não existe
+   flash de tema errado. Sem JavaScript nada é escrito e o modo escuro, que é
+   o padrão do portfólio, aparece.
+
+   Contrastes medidos sobre --c-bg:
+     --c-text 11,26:1 · --c-text-muted 5,77:1 · --c-text-subtle 2,83:1
+     --c-accent 4,34:1 — serve a texto grande e a interface, NÃO a texto
+     corrido; para isso --c-accent-text escurece para #A8431F (5,54:1).
+   -------------------------------------------------------------------------- */
+
+:root[data-theme="claro"] {
+  color-scheme: light;
+
+  --c-bg:            #FAF5EB;   /* papel-fibra                        */
+  --c-bg-alt:        #F4EEDF;
+  --c-surface:       #FFFFFF;   /* a folha: branco puro só como card  */
+  --c-surface-2:     #EFE8D8;
+  --c-text:          #27364B;   /* azul-tinta                         */
+  --c-text-muted:    #56607A;
+  --c-text-subtle:   #616774;   /* rótulo, legenda, meta              */
+  --c-accent:        #C1502E;
+  --c-accent-hover:  #A8431F;
+  --c-accent-ink:    #FFFFFF;   /* 4,71:1 sobre o accent              */
+  --c-accent-text:   #A8431F;   /* accent em texto miúdo: 5,54:1      */
+  --c-border:        #E4DCCB;
+  --c-border-strong: #D5CBB4;
+  --c-accent-soft:   rgba(193, 80, 46, .10);
+  --c-accent-line:   rgba(193, 80, 46, .34);
+  --c-glass:         rgba(250, 245, 235, .78);
+  --c-overlay:       rgba(39, 54, 75, .45);
+
+  --c-glow:          rgba(193, 80, 46, .08);
+  --c-glow-faint:    rgba(193, 80, 46, .05);
+  --c-sheen:         rgba(39, 54, 75, .08);
+  --c-hatch:         rgba(39, 54, 75, .035);
+
+  --c-positive:      #2F4A3C;
+  --c-danger:        #A33025;
+  --c-warning:       #7E5A14;
+
+  --shadow:    0 2px 8px rgba(39, 54, 75, .08);
+  --shadow-lg: 0 12px 32px -12px rgba(39, 54, 75, .18);
+
+  --shadow-accent:       0 8px 24px -12px rgba(193, 80, 46, .35);
+  --shadow-accent-hover: 0 12px 32px -12px rgba(193, 80, 46, .48);
+}
+
+@media (min-width: 56rem) {
+  :root {
+    --header-h: 5rem;
+  }
+}
+
+
+/* ==========================================================================
+   03 · BASE E TIPOGRAFIA
+   ========================================================================== */
+
+html {
+  /* Rolagem suave nas âncoras. O scroll-padding impede que o header fixo
+     cubra o título da seção de destino. */
+  scroll-behavior: smooth;
+  scroll-padding-block-start: calc(var(--header-h) + var(--sp-5));
+
+  /* Barra de rolagem discreta e alinhada ao tema. */
+  scrollbar-color: var(--c-border-strong) transparent;
+  scrollbar-width: thin;
+}
+
+/* Trava a rolagem enquanto o drawer mobile está aberto. Escrito pelo JS. */
+html.is-nav-open {
+  overflow: hidden;
+}
+
+body {
+  position: relative;          /* âncora do brilho em body::before */
+  min-height: 100vh;
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  /* Nenhuma animação de entrada pode criar barra horizontal. */
+  overflow-x: hidden;
+}
+
+/* Brilho de topo: dá profundidade ao hero sem custo de rede.
+   Rola com a página (absolute, não fixed) para não pesar o compositor. */
+body::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 0;
+  height: min(72vh, 44rem);
+  background-image:
+    radial-gradient(70% 60% at 50% -10%, var(--c-glow), transparent 70%),
+    radial-gradient(40% 40% at 85%   0%, var(--c-glow-faint), transparent 70%);
+  pointer-events: none;
+}
+
+/* Nas páginas de case o hero é textual e mais curto: brilho proporcional. */
+.page-case::before {
+  height: min(50vh, 30rem);
+}
+
+/* Títulos herdam a sans por padrão. A display é aplicada nominalmente, em
+   poucos lugares (hero, título de seção, número grande) — ver a nota de
+   contenção no bloco de tokens. Quem recebe display declara também o peso,
+   porque a família só existe em 600 e 800: um peso intermediário cairia no
+   arquivo errado. */
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+em {
+  font-style: italic;
+}
+
+::selection {
+  background-color: var(--c-accent);
+  color: var(--c-accent-ink);
+}
+
+/* Regra de foco única para o projeto inteiro: aparece no teclado, some no
+   clique de mouse, e o offset garante contraste contra qualquer superfície. */
+:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--c-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--c-border-strong);
+  border: 3px solid var(--c-bg);
+  border-radius: var(--radius-pill);
+}
+
+
+/* ==========================================================================
+   04 · SISTEMA DE IDIOMAS
+   --------------------------------------------------------------------------
+   Regra única: todo texto existe nos dois idiomas no HTML e o CSS esconde o
+   inativo. Sem JavaScript nenhum atributo data-lang é escrito, então o
+   pt-BR aparece — o site nunca fica vazio.
+
+   :not(.lang-switch__btn) é obrigatório: os dois botões do seletor têm lang
+   próprio (PT / EN) e precisam estar sempre visíveis.
+
+   Os seletores são descendentes, então o próprio <html lang="…"> nunca é
+   atingido — apenas o conteúdo dentro dele.
+   ========================================================================== */
+
+:root:not([data-lang="en"]) [lang="en"]:not(.lang-switch__btn) {
+  display: none;
+}
+
+:root[data-lang="en"] [lang="pt-BR"]:not(.lang-switch__btn) {
+  display: none;
+}
+
+
+/* ==========================================================================
+   05 · LAYOUT
+   ========================================================================== */
+
+.main {
+  position: relative;
+  z-index: 1;                              /* acima do brilho decorativo */
+  padding-block-start: var(--header-h);    /* compensa o header fixo */
+}
+
+.container {
+  width: 100%;
+  max-width: var(--w-container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--wide {
+  max-width: var(--w-wide);
+}
+
+/* --prose tem dois papéis:
+   1) modificador de .container  → largura de leitura + gutters herdados;
+   2) sozinho, em .section-head e .media → apenas centraliza e limita.
+   Por isso carrega margin-inline própria e não depende de .container. */
+.container--prose {
+  max-width: var(--w-prose);
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-py);
+}
+
+.section--alt {
+  background-color: var(--c-bg-alt);
+  border-block: 1px solid var(--c-border);
+}
+
+/* Duas seções alternadas em sequência (aprendizados + CTA, no case) não
+   devem exibir duas linhas coladas. */
+.section--alt + .section--alt {
+  border-block-start: 0;
+}
+
+/* Compensa o header fixo ao chegar por âncora — inclusive vindo de outra
+   página, como ../index.html#projetos. */
+section[id],
+main[id] {
+  scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
+}
+
+
+/* ==========================================================================
+   06 · UTILITÁRIOS
+   ========================================================================== */
+
+/* Invisível na tela, presente para leitores de tela. Mantém 1px no fluxo
+   (em vez de display:none) para continuar sendo anunciado. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Agrupamento horizontal que quebra sozinho. Usado nos grupos de botões. */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.cluster--center {
+  justify-content: center;
+}
+
+/* Ícones do sprite. Não declaramos fill nem stroke: cada <symbol> define os
+   seus e herda a cor do texto via currentColor. */
+.icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.icon--xs {
+  width: 0.85em;
+  height: 0.85em;
+}
+
+/* O sprite é estrutura, não conteúdo: sai do fluxo sem afetar o layout. */
+.svg-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Sentinela do header: fica 4rem abaixo do topo. Quando ela sai do viewport,
+   o IntersectionObserver marca .is-scrolled. Substitui um listener de scroll
+   (que dispararia dezenas de vezes por segundo). */
+.nav-sentinel {
+  position: absolute;
+  inset-block-start: 4rem;
+  inset-inline-start: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+
+/* ==========================================================================
+   07 · ANIMAÇÕES DE ENTRADA
+   --------------------------------------------------------------------------
+   O estado inicial só existe sob .js, porque só o IntersectionObserver sabe
+   removê-lo. Sem JavaScript nada fica invisível.
+   Anima apenas opacity + transform: zero reflow, composição na GPU.
+   ========================================================================== */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
+  transition:
+    opacity   var(--t-reveal) var(--ease-out),
+    transform var(--t-reveal) var(--ease-out);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Escalonamento em cascata nos grupos que entram juntos. Feito em CSS (e não
+   em JS) para manter o script enxuto: o delay só conta a partir do momento
+   em que o elemento já está visível, então nunca atrasa a primeira pintura.
+   Os gêmeos de idioma ocupam posições nth-child mesmo escondidos — por isso
+   os pares (4,5) e (6,7) compartilham o mesmo delay. */
+.js .hero__content > [data-reveal]:nth-child(2) { transition-delay:  60ms; }
+.js .hero__content > [data-reveal]:nth-child(3) { transition-delay: 100ms; }
+.js .hero__content > [data-reveal]:nth-child(4),
+.js .hero__content > [data-reveal]:nth-child(5) { transition-delay: 140ms; }
+.js .hero__content > [data-reveal]:nth-child(6),
+.js .hero__content > [data-reveal]:nth-child(7) { transition-delay: 180ms; }
+.js .hero__content > [data-reveal]:last-child   { transition-delay: 220ms; }
+
+.js .projects > [data-reveal]:nth-child(2) { transition-delay:  80ms; }
+.js .projects > [data-reveal]:nth-child(3) { transition-delay: 160ms; }
+
+.js .timeline > [data-reveal]:nth-child(even) { transition-delay: 70ms; }
+
+
+/* ==========================================================================
+   08 · MÍDIA E PLACEHOLDERS
+   --------------------------------------------------------------------------
+   Todo slot de imagem é um <figure class="media media--PROPORÇÃO">.
+   A proporção fica em --ratio (e não direto em aspect-ratio) porque as
+   figuras com legenda precisam aplicá-la ao filho, não ao figure inteiro.
+   Resultado: trocar o placeholder pela imagem real não move um pixel — CLS 0.
+   ========================================================================== */
+
+.media {
+  --ratio: 16 / 9;
+
+  position: relative;
+  aspect-ratio: var(--ratio);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Sem isto a imagem herda o alinhamento de baseline e deixa uma fresta
+     de 1px na base do figure. */
+  vertical-align: middle;
+}
+
+/* ---------- PROPORÇÕES ---------- */
+.media--21x9 { --ratio: 21 / 9; }
+.media--16x9 { --ratio: 16 / 9; }
+.media--4x3  { --ratio: 4 / 3; }
+.media--4x5  { --ratio: 4 / 5; }
+
+/* Em telas estreitas 21:9 vira uma faixa ilegível. */
+@media (max-width: 39.999rem) {
+  .media--21x9 { --ratio: 16 / 10; }
+}
+
+/* Mídia de apoio da timeline: largura limitada para não competir com o texto. */
+.media--sm {
+  max-width: 42rem;
+  margin-block-start: var(--sp-5);
+  border-radius: var(--radius);
+}
+
+/* Mídia de destaque (hero, capa, solução): sombra + filete interno que
+   sugere a borda de um dispositivo. */
+.media--framed {
+  border-color: var(--c-border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.media--framed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 var(--c-sheen);
+  pointer-events: none;
+}
+
+/* ---------- ETIQUETA DO PLACEHOLDER ----------
+   Cobre exatamente a caixa da imagem. Ao descomentar o <img> e apagar esta
+   etiqueta, o layout não muda. A borda tracejada vive aqui — e não no
+   .media — justamente para desaparecer junto com o placeholder. */
+.media__label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-4);
+  border: 1px dashed var(--c-border-strong);
+  border-radius: inherit;
+  background-image: linear-gradient(
+    135deg,
+    var(--c-hatch) 0 25%,
+    transparent 25% 50%,
+    var(--c-hatch) 50% 75%,
+    transparent 75% 100%
+  );
+  background-size: 14px 14px;
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-wide);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.media__caption {
+  padding-block-start: var(--sp-3);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+}
+
+/* ---------- FIGURA COM LEGENDA ----------
+   A legenda é irmã da imagem dentro do mesmo <figure>. Se o figure mantivesse
+   aspect-ratio e overflow:hidden, a caixa cresceria além da proporção e a
+   etiqueta absoluta cobriria o texto da legenda. Então, só neste caso, o
+   figure vira um contêiner neutro e a proporção desce para o filho. */
+.media:has(> .media__caption) {
+  aspect-ratio: auto;
+  overflow: visible;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.media:has(> .media__caption) > .media__label,
+.media:has(> .media__caption) > img {
+  position: static;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ratio);
+  border-radius: var(--radius-lg);
+}
+
+.media:has(> .media__caption) > img {
+  border: 1px solid var(--c-border);
+}
+
+
+/* ==========================================================================
+   09 · TIPOGRAFIA DE CONTEÚDO
+   ========================================================================== */
+
+/* ---------- EYEBROW ----------
+   Rótulo curto acima do título: caixa alta, tracking aberto, cor de destaque. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-block-end: var(--sp-4);
+  color: var(--c-accent-text);   /* texto miúdo: precisa do accent escurecido */
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* Ponto de status "disponível para oportunidades". */
+.eyebrow__dot {
+  position: relative;
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  background-color: var(--c-accent);
+  border-radius: var(--radius-pill);
+}
+
+.eyebrow__dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--c-accent);
+  border-radius: inherit;
+  animation: pulse 2.4s var(--ease-out) infinite;
+}
+
+@keyframes pulse {
+  0%        { opacity: .7; transform: scale(1); }
+  70%, 100% { opacity:  0; transform: scale(2.6); }
+}
+
+/* ---------- CABEÇALHO DE SEÇÃO ---------- */
+.section-head {
+  margin-block-end: clamp(2rem, 5vw, 3.5rem);
+  max-width: 46rem;
+}
+
+.section-head--center {
+  max-width: 38rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* O eyebrow é inline-flex: text-align do pai não o centraliza sozinho. */
+.section-head--center .eyebrow {
+  display: flex;
+  justify-content: center;
+}
+
+.section-head__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+}
+
+.section-head__lead {
+  margin-block-start: var(--sp-4);
+  max-width: 40rem;
+  color: var(--c-text-muted);
+  font-size: var(--fs-md);
+}
+
+.section-head--center .section-head__lead {
+  margin-inline: auto;
+}
+
+/* ---------- PROSA ----------
+   O espaço entre parágrafos vem do gap do bloco, nunca de margin no <p>:
+   sem colapso de margens e sem exceções de :first-child/:last-child. */
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  max-width: var(--w-prose);
+  color: var(--c-text-muted);
+  font-family: var(--font-serif);   /* a serifa é o texto para ser lido */
+  font-size: var(--fs-md);
+}
+
+.prose--sm {
+  gap: var(--sp-4);
+  font-size: var(--fs-base);
+}
+
+/* ---------- CITAÇÃO ----------
+   Fala real de pesquisa: filete de destaque em vez de aspas decorativas.
+   Serifa em itálico — a voz de outra pessoa dentro do texto. */
+.quote {
+  margin-block-start: clamp(2rem, 4vw, 3rem);
+  padding-inline-start: clamp(1.25rem, 3vw, 2rem);
+  border-inline-start: 2px solid var(--c-accent);
+}
+
+.quote__text {
+  color: var(--c-text);
+  font-family: var(--font-serif);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: pretty;
+}
+
+.quote__author {
+  margin-block-start: var(--sp-4);
+  color: var(--c-text-subtle);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+
+/* ==========================================================================
+   10 · CHIPS
+   Habilidades, ferramentas e responsabilidades.
+   ========================================================================== */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4375rem 0.8125rem;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    color            var(--t) var(--ease),
+    border-color     var(--t) var(--ease),
+    background-color var(--t) var(--ease);
+}
+
+/* Os chips não são interativos; o hover apenas dá vida à lista ao passar. */
+.chip:hover {
+  background-color: var(--c-surface-2);
+  border-color: var(--c-border-strong);
+  color: var(--c-text);
+}
+
+.chips--sm {
+  gap: 0.375rem;
+}
+
+.chip--sm {
+  padding: 0.25rem 0.625rem;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.01em;
+}
+
+.chips--lg {
+  gap: var(--sp-3);
+}
+
+.chips--lg .chip {
+  padding: 0.5625rem 1rem;
+  font-size: var(--fs-base);
+}
+
+
+/* ==========================================================================
+   11 · BOTÕES
+   Três níveis de hierarquia: primary (ação principal), secondary
+   (alternativa de mesmo peso) e ghost (terciária).
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: 2.875rem;          /* alvo de toque confortável */
+  padding: 0.6875rem 1.125rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 550;
+  line-height: 1.2;
+  letter-spacing: -0.008em;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--t) var(--ease),
+    border-color     var(--t) var(--ease),
+    color            var(--t) var(--ease),
+    box-shadow       var(--t) var(--ease),
+    transform        var(--t-fast) var(--ease);
+}
+
+.btn:hover {
+  transform: translate3d(0, -1px, 0);
+}
+
+.btn:active {
+  transform: none;
+}
+
+.btn .icon {
+  transition: transform var(--t) var(--ease);
+}
+
+.btn--primary {
+  background-color: var(--c-accent);
+  color: var(--c-accent-ink);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn--primary:hover {
+  background-color: var(--c-accent-hover);
+  box-shadow: var(--shadow-accent-hover);
+}
+
+/* A seta acompanha o movimento: sugere direção sem chamar atenção. */
+.btn--primary:hover .icon {
+  transform: translate3d(3px, 0, 0);
+}
+
+.btn--secondary {
+  background-color: var(--c-surface);
+  border-color: var(--c-border-strong);
+  color: var(--c-text);
+}
+
+.btn--secondary:hover {
+  background-color: var(--c-surface-2);
+  border-color: var(--c-accent-line);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--c-text-muted);
+}
+
+.btn--ghost:hover {
+  background-color: var(--c-surface);
+  color: var(--c-text);
+}
+
+.btn--sm {
+  min-height: 2.375rem;
+  padding: 0.4375rem 0.875rem;
+  font-size: var(--fs-xs);
+}
+
+.btn--lg {
+  min-height: 3.25rem;
+  padding: 0.875rem 1.5rem;
+  font-size: var(--fs-base);
+}
+
+
+/* ==========================================================================
+   12 · SKIP LINK
+   Primeiro elemento focável da página. Só aparece ao receber foco.
+   ========================================================================== */
+
+.skip-link {
+  position: fixed;
+  inset-block-start: var(--sp-3);
+  inset-inline-start: var(--sp-3);
+  z-index: 300;
+  padding: 0.75rem 1.125rem;
+  background-color: var(--c-accent);
+  border-radius: var(--radius);
+  color: var(--c-accent-ink);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transform: translate3d(0, calc(-100% - var(--sp-4)), 0);
+  transition: transform var(--t) var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   13 · HEADER · BRAND · NAV · LANG SWITCH · NAV TOGGLE
+   ========================================================================== */
+
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 210;   /* acima de .nav-backdrop — ver mapa de camadas no topo */
+  border-block-end: 1px solid transparent;
+  transition:
+    background-color var(--t-slow) var(--ease),
+    border-color     var(--t-slow) var(--ease);
+}
+
+/* Escrito pelo JS quando a .nav-sentinel sai do viewport. No topo da página
+   o header é invisível; ao rolar, ganha vidro fosco e filete. */
+.header.is-scrolled {
+  background-color: var(--c-glass);
+  border-block-end-color: var(--c-border);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header.is-scrolled {
+    background-color: var(--c-bg);
+  }
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  min-height: var(--header-h);
+}
+
+/* ---------- BRAND ---------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-inline-end: auto;
+  border-radius: var(--radius);
+}
+
+/* O monograma é a única assinatura gráfica do site: display em 800, sobre
+   dois tons vizinhos do terracota. */
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  background-image: linear-gradient(145deg, var(--c-accent-hover), var(--c-accent));
+  border-radius: 0.6875rem;
+  color: var(--c-accent-ink);
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: 800;
+  line-height: 1;
+  transition: transform var(--t) var(--ease);
+}
+
+.brand:hover .brand__mark {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  line-height: 1.1;
+}
+
+.brand__name {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+.brand__role {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+
+/* ---------- NAV · DRAWER MOBILE ----------
+   Base = mobile. Fechado, o painel sai da árvore de foco por visibility:
+   hidden — ninguém tabula para dentro de um menu invisível. */
+.nav {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  width: min(21rem, 86vw);
+  padding: calc(var(--header-h) + var(--sp-5)) var(--sp-5) var(--sp-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-color: var(--c-bg-alt);
+  border-inline-start: 1px solid var(--c-border);
+  box-shadow: var(--shadow-lg);
+  visibility: hidden;
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+  transition:
+    transform  var(--t-slow) var(--ease),
+    opacity    var(--t-slow) var(--ease),
+    visibility var(--t-slow) var(--ease);
+}
+
+/* Estado escrito pelo JS em [data-nav-panel]. */
+.nav.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.nav__link {
+  position: relative;
+  display: block;
+  padding: var(--sp-3) var(--sp-2);
+  border-radius: var(--radius-sm);
+  color: var(--c-text-muted);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  transition:
+    color            var(--t) var(--ease),
+    background-color var(--t) var(--ease);
+}
+
+.nav__link:hover {
+  background-color: var(--c-surface);
+  color: var(--c-text);
+}
+
+/* Seção atual: .is-current vem do scrollspy (home) e aria-current vem do
+   HTML estático (páginas de case). Mesmo tratamento visual. */
+.nav__link.is-current,
+.nav__link[aria-current] {
+  color: var(--c-text);
+}
+
+.nav__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  margin-block-start: auto;   /* ancora as ações no rodapé do drawer */
+  padding-block-start: var(--sp-5);
+  border-block-start: 1px solid var(--c-border);
+}
+
+.nav__actions .btn {
+  width: 100%;
+}
+
+/* ---------- PREFERÊNCIAS (idioma + tema) ----------
+   Mantém os dois controles lado a lado tanto no drawer (que é uma coluna)
+   quanto na barra do desktop (que é uma linha). */
+.nav__prefs {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+/* ---------- SELETOR DE IDIOMA ---------- */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+}
+
+.lang-switch__icon {
+  width: 1rem;
+  height: 1rem;
+  margin-inline-end: 0.25rem;
+  color: var(--c-text-subtle);
+}
+
+.lang-switch__btn {
+  padding: 0.3125rem 0.625rem;
+  border-radius: var(--radius-pill);
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition:
+    color            var(--t) var(--ease),
+    background-color var(--t) var(--ease);
+}
+
+.lang-switch__btn:hover {
+  color: var(--c-text);
+}
+
+/* O estado ativo é o próprio aria-pressed: uma fonte de verdade só,
+   compartilhada entre leitor de tela e pintura. */
+.lang-switch__btn[aria-pressed="true"] {
+  background-color: var(--c-accent-soft);
+  color: var(--c-accent-text);
+}
+
+/* ---------- ALTERNÂNCIA DE TEMA ----------
+   Um botão de dois estados, não dois botões. O aria-pressed é a única fonte
+   de verdade do estado ("Modo claro" ligado ou desligado) — e o ícone lê o
+   data-theme de <html>, que o JS escreve no mesmo instante. Ícone e leitor
+   de tela nunca podem discordar porque nenhum dos dois guarda estado. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  flex: none;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+  /* Muted, e não subtle: aqui o ícone é o conteúdo inteiro do botão — ele
+     precisa dos 3:1 de componente gráfico com folga, nos dois temas. */
+  color: var(--c-text-muted);
+  transition:
+    background-color var(--t) var(--ease),
+    border-color     var(--t) var(--ease),
+    color            var(--t) var(--ease);
+}
+
+.theme-toggle:hover {
+  background-color: var(--c-surface-2);
+  border-color: var(--c-border-strong);
+  color: var(--c-text);
+}
+
+.theme-toggle .icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* O ícone mostra o tema em vigor: lua à noite, sol de dia. */
+.theme-toggle__sun {
+  display: none;
+}
+
+:root[data-theme="claro"] .theme-toggle__sun {
+  display: block;
+}
+
+:root[data-theme="claro"] .theme-toggle__moon {
+  display: none;
+}
+
+/* ---------- BOTÃO DO MENU ---------- */
+.nav-toggle {
+  position: relative;
+  z-index: 220;   /* acima do painel, para poder fechá-lo */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  color: var(--c-text);
+  transition:
+    background-color var(--t) var(--ease),
+    border-color     var(--t) var(--ease);
+}
+
+.nav-toggle:hover {
+  background-color: var(--c-surface-2);
+  border-color: var(--c-border-strong);
+}
+
+.nav-toggle .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Hambúrguer ↔ X a partir do mesmo aria-expanded que o JS já atualiza:
+   nenhum estado duplicado entre acessibilidade e visual. */
+.nav-toggle__close,
+.nav-toggle[aria-expanded="true"] .nav-toggle__open {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__close {
+  display: block;
+}
+
+/* ---------- CAMADA DE ESCURECIMENTO ---------- */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 205;
+  background-color: var(--c-overlay);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* ---------- FALLBACK SEM JAVASCRIPT ----------
+   Sem JS não existe quem abra o drawer. O header deixa de ser fixo, o menu
+   vira uma barra estática que pode quebrar em várias linhas e o botão some.
+   A navegação nunca fica inacessível. */
+.no-js .header {
+  position: static;
+}
+
+.no-js .header__inner {
+  flex-wrap: wrap;
+}
+
+.no-js .main {
+  padding-block-start: var(--sp-6);
+}
+
+/* Sem JavaScript, três controles ficariam visíveis e inertes. Botão que não
+   responde é pior que botão ausente: ele promete e falha. O seletor de idioma
+   some porque o CSS já entrega o pt-BR, e o de tema porque o modo escuro é o
+   padrão do projeto — nenhuma função é perdida, só a ilusão de controle. */
+.no-js .nav-toggle,
+.no-js .lang-switch,
+.no-js .theme-toggle {
+  display: none;
+}
+
+.no-js .nav {
+  position: static;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  width: auto;
+  padding: 0;
+  overflow: visible;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+.no-js .nav__list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+}
+
+.no-js .nav__actions {
+  flex-direction: row;
+  align-items: center;
+  margin-block-start: 0;
+  padding-block-start: 0;
+  border-block-start: 0;
+}
+
+.no-js .nav__actions .btn {
+  width: auto;
+}
+
+/* ---------- NAV · DESKTOP ---------- */
+@media (min-width: 56rem) {
+  .nav {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--sp-6);
+    width: auto;
+    padding: 0;
+    overflow: visible;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--sp-1);
+  }
+
+  .nav__link {
+    padding: var(--sp-2) var(--sp-3);
+    font-size: var(--fs-sm);
+  }
+
+  .nav__link:hover {
+    background-color: transparent;
+  }
+
+  /* Filete que cresce do centro. Anima scaleX (composto na GPU), nunca
+     width — que forçaria layout a cada quadro. */
+  .nav__link::after {
+    content: "";
+    position: absolute;
+    inset-block-end: 0.125rem;
+    inset-inline: var(--sp-3);
+    height: 1px;
+    background-color: var(--c-accent);
+    transform: scaleX(0);
+    transition: transform var(--t) var(--ease);
+  }
+
+  .nav__link:hover::after,
+  .nav__link.is-current::after,
+  .nav__link[aria-current]::after {
+    transform: scaleX(1);
+  }
+
+  .nav__actions {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-block-start: 0;
+    padding-block-start: 0;
+    border-block-start: 0;
+  }
+
+  .nav__actions .btn {
+    width: auto;
+  }
+
+  .nav-toggle,
+  .nav-backdrop {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   14 · HERO (home)
+   ========================================================================== */
+
+.hero {
+  /* O padding-block-start do .main já afasta do header. */
+  padding-block-start: clamp(2.5rem, 6vw, 5rem);
+  padding-block-end: clamp(3.5rem, 8vw, 7rem);
+}
+
+.hero__inner {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+}
+
+.hero__role {
+  margin-block-start: var(--sp-3);
+  background-image: linear-gradient(100deg, var(--c-accent-hover), var(--c-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.hero__lead {
+  margin-block-start: var(--sp-5);
+  max-width: 34ch;
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: pretty;
+}
+
+.hero__support {
+  margin-block-start: var(--sp-4);
+  max-width: 48ch;
+  color: var(--c-text-muted);
+}
+
+.hero__actions {
+  margin-block-start: clamp(2rem, 4vw, 2.75rem);
+}
+
+.hero__media {
+  width: 100%;
+  max-width: 24rem;
+}
+
+/* No mobile a foto vem depois do texto — que é a ordem do HTML. A partir de
+   56rem ela ocupa a coluna da direita, sem reordenar o DOM. */
+@media (min-width: 56rem) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    align-items: center;
+  }
+
+  .hero__media {
+    max-width: none;
+    justify-self: end;
+  }
+}
+
+
+/* ==========================================================================
+   15 · SOBRE
+   ========================================================================== */
+
+.about {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* A coluna do grid já limita a medida: a prosa não precisa da sua. */
+.about__bio {
+  max-width: none;
+}
+
+/* ---------- FATOS DE CARREIRA ----------
+   <dl> em grade. Cada fato tem filete superior: leitura de tabela sem o
+   peso visual de uma tabela. */
+.about__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--sp-5) var(--sp-4);
+  align-content: start;
+}
+
+.fact {
+  padding-block-start: var(--sp-3);
+  border-block-start: 1px solid var(--c-border);
+}
+
+.fact__label {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.fact__value {
+  margin-block-start: var(--sp-2);
+  font-size: var(--fs-md);
+  font-weight: 550;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- HABILIDADES ---------- */
+.skills {
+  margin-block-start: clamp(2.5rem, 5vw, 4rem);
+  padding-block-start: clamp(2rem, 4vw, 3rem);
+  border-block-start: 1px solid var(--c-border);
+}
+
+.skills__title {
+  margin-block-end: var(--sp-5);
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+@media (min-width: 56rem) {
+  .about {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  }
+
+  .about__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sp-6) var(--sp-5);
+  }
+}
+
+
+/* ==========================================================================
+   16 · PROJETOS
+   --------------------------------------------------------------------------
+   Cada card é um <article>. O link real está no título; o ::after dele se
+   estica por todo o card, então clicar em qualquer ponto abre o case sem
+   duplicar links na navegação por teclado.
+   :focus-within espelha o hover para quem navega por Tab.
+   ========================================================================== */
+
+.projects {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+
+.project-card {
+  position: relative;   /* contêiner do link esticado */
+  display: grid;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;     /* recorta a imagem nos cantos do card */
+  transition:
+    background-color var(--t-slow) var(--ease),
+    border-color     var(--t-slow) var(--ease),
+    box-shadow       var(--t-slow) var(--ease),
+    transform        var(--t-slow) var(--ease);
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  background-color: var(--c-surface-2);
+  border-color: var(--c-border-strong);
+  box-shadow: var(--shadow);
+  transform: translate3d(0, -4px, 0);
+}
+
+.project-card__media-link {
+  display: block;
+  overflow: hidden;
+}
+
+/* Dentro do card a mídia é uma superfície contínua: quem recorta é o card. */
+.project-card .media {
+  background-color: var(--c-bg-alt);
+  border: 0;
+  border-radius: 0;
+}
+
+.project-card .media > img {
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.project-card:hover .media > img,
+.project-card:focus-within .media > img {
+  transform: scale(1.035);
+}
+
+.project-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+/* ---------- METADADOS EM LINHA ----------
+   Empresa · Ano · Categoria. O ponto médio é gerado em CSS porque é
+   decoração — não deve ser lido em voz alta. */
+.meta-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.meta-inline__item:not(:first-child)::before {
+  content: "·";
+  margin-inline: 0.5rem;
+  color: var(--c-border-strong);
+}
+
+.project-card__title {
+  font-size: var(--fs-xl);
+}
+
+.project-card__link {
+  color: var(--c-text);
+  transition: color var(--t) var(--ease);
+}
+
+.project-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.project-card:hover .project-card__link,
+.project-card:focus-within .project-card__link {
+  color: var(--c-accent);
+}
+
+.project-card__summary {
+  max-width: 52ch;
+  color: var(--c-text-muted);
+}
+
+.project-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-1);
+  color: var(--c-accent-text);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.project-card__cta .icon {
+  transition: transform var(--t) var(--ease);
+}
+
+.project-card:hover .project-card__cta .icon,
+.project-card:focus-within .project-card__cta .icon {
+  transform: translate3d(4px, 0, 0);
+}
+
+/* Layout editorial: mídia e texto lado a lado, alternando o lado a cada
+   card para criar ritmo durante a rolagem. */
+@media (min-width: 72rem) {
+  .project-card {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .project-card:nth-child(even) .project-card__media-link {
+    order: 2;
+  }
+
+  .project-card__body {
+    padding: clamp(2rem, 3vw, 3rem);
+  }
+}
+
+
+/* ==========================================================================
+   17 · CONTATO
+   Painel usado na home e no CTA final de cada estudo de caso.
+   ========================================================================== */
+
+.contact {
+  padding: clamp(2.25rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+  background-color: var(--c-surface);
+  background-image: radial-gradient(
+    80% 120% at 50% 0%,
+    var(--c-accent-soft),
+    transparent 70%
+  );
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+
+.contact .section-head {
+  margin-block-end: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+/* O botão principal traz o endereço de e-mail inteiro como rótulo — é o que
+   permite lê-lo e copiá-lo sem precisar clicar. Um endereço longo não cabe em
+   uma linha num celular estreito, e .btn é nowrap por padrão. Então aqui, e só
+   aqui, os botões ocupam a largura toda e o texto pode quebrar. Empilhados,
+   ainda ganham alvo de toque maior — que é o certo para a ação principal. */
+@media (max-width: 39.999rem) {
+  .contact__actions .btn {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .contact__actions .btn span {
+    overflow-wrap: anywhere;
+  }
+}
+
+
+/* ==========================================================================
+   18 · FOOTER
+   ========================================================================== */
+
+.footer {
+  position: relative;
+  z-index: 1;   /* em páginas curtas, acima do brilho de body::before */
+  padding-block: clamp(2rem, 4vw, 3rem);
+  border-block-start: 1px solid var(--c-border);
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  text-align: center;
+}
+
+.footer__copy {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-sm);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-2) var(--sp-5);
+}
+
+.footer__link {
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: color var(--t) var(--ease);
+}
+
+.footer__link:hover {
+  color: var(--c-accent-text);
+}
+
+@media (min-width: 40rem) {
+  .footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: start;
+  }
+}
+
+
+/* ==========================================================================
+   19 · CASE · BREADCRUMB E HERO
+   ========================================================================== */
+
+.case-hero {
+  padding-block-start: clamp(2rem, 5vw, 3.5rem);
+  padding-block-end: 0;   /* a imagem hero fecha a seção */
+}
+
+/* ---------- BREADCRUMB ---------- */
+.breadcrumb {
+  margin-block-end: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var(--c-text-subtle);
+  font-size: var(--fs-sm);
+}
+
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Separador decorativo: gerado em CSS para não ser anunciado. */
+.breadcrumb__item:not(:first-child)::before {
+  content: "/";
+  margin-inline: 0.5rem;
+  color: var(--c-border-strong);
+}
+
+.breadcrumb__link {
+  transition: color var(--t) var(--ease);
+}
+
+.breadcrumb__link:hover {
+  color: var(--c-text);
+}
+
+.breadcrumb__item[aria-current] {
+  color: var(--c-text-muted);
+}
+
+/* ---------- TÍTULO E RESUMO ---------- */
+.case-hero__title {
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+}
+
+.case-hero__lead {
+  margin-block-start: var(--sp-5);
+  max-width: 54ch;
+  color: var(--c-text-muted);
+  font-size: var(--fs-md);
+  text-wrap: pretty;
+}
+
+/* ---------- METADADOS DO PROJETO ----------
+   Grade de fatos com filetes: densa e escaneável, e cada linha continua
+   sendo um par <dt>/<dd> legítimo para leitores de tela. */
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  margin-block: clamp(2.5rem, 5vw, 3.5rem);
+  border-block-start: 1px solid var(--c-border);
+}
+
+.case-meta__row {
+  padding-block: var(--sp-4);
+  padding-inline-end: var(--sp-5);
+  border-block-end: 1px solid var(--c-border);
+}
+
+.case-meta__label {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.case-meta__value {
+  margin-block-start: var(--sp-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+}
+
+
+/* ==========================================================================
+   20 · CASE · SPLIT E CHECKLIST
+   ========================================================================== */
+
+/* ---------- SPLIT ----------
+   Problema de negócio vs. dor do usuário, sempre em pé de igualdade. */
+.split {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+.split__col {
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+}
+
+.split__title {
+  margin-block-end: var(--sp-4);
+  padding-block-end: var(--sp-3);
+  border-block-end: 1px solid var(--c-border);
+  font-size: var(--fs-base);
+  font-weight: 600;
+}
+
+/* A prosa dentro da coluna não deve impor a própria largura máxima. */
+.split__col .prose {
+  max-width: none;
+}
+
+@media (min-width: 40rem) {
+  .split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- CHECKLIST (objetivos) ---------- */
+.checklist {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.checklist__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  color: var(--c-text-muted);
+  line-height: var(--lh-snug);
+  transition: border-color var(--t) var(--ease);
+}
+
+.checklist__item:hover {
+  border-color: var(--c-accent-line);
+}
+
+.checklist__icon {
+  width: 1.375rem;
+  height: 1.375rem;
+  /* Alinha o ícone à primeira linha do texto, não ao topo da caixa. */
+  margin-block-start: 0.125rem;
+  background-color: var(--c-accent-soft);
+  border-radius: var(--radius-pill);
+  color: var(--c-accent);
+}
+
+
+/* ==========================================================================
+   21 · CASE · TIMELINE
+   --------------------------------------------------------------------------
+   <ol> com marcador numerado e fio vertical ligando as etapas. O fio é um
+   ::before da própria etapa — menos elementos no DOM — e desaparece sozinho
+   na última, sem precisar de classe extra.
+   ========================================================================== */
+
+.timeline {
+  --timeline-gap: clamp(2rem, 4vw, 3rem);
+  --timeline-marker: 2.5rem;
+
+  display: grid;
+  gap: var(--timeline-gap);
+}
+
+.timeline__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--timeline-marker) minmax(0, 1fr);
+  gap: var(--sp-4);
+}
+
+.timeline__step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  inset-block-start: calc(var(--timeline-marker) + var(--sp-2));
+  inset-block-end: calc((var(--timeline-gap) + var(--sp-2)) * -1);
+  inset-inline-start: calc(var(--timeline-marker) / 2);
+  width: 1px;
+  background-image: linear-gradient(
+    to bottom,
+    var(--c-border-strong),
+    var(--c-border)
+  );
+}
+
+.timeline__marker {
+  display: grid;
+  place-items: center;
+  width: var(--timeline-marker);
+  height: var(--timeline-marker);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--c-accent-text);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline__title {
+  margin-block-end: var(--sp-3);
+  font-size: var(--fs-lg);
+}
+
+.timeline__text {
+  max-width: 62ch;
+  color: var(--c-text-muted);
+}
+
+@media (min-width: 56rem) {
+  .timeline {
+    --timeline-marker: 3rem;
+  }
+
+  .timeline__step {
+    gap: var(--sp-6);
+  }
+}
+
+
+/* ==========================================================================
+   22 · CASE · DECISÕES E MÉTRICAS
+   ========================================================================== */
+
+/* ---------- DECISÕES DE DESIGN ---------- */
+.decisions {
+  display: grid;
+  gap: var(--gap-card);
+  margin-block-start: clamp(2rem, 4vw, 3rem);
+}
+
+.decision {
+  padding: clamp(1.375rem, 3vw, 2rem);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--t) var(--ease),
+    transform    var(--t) var(--ease);
+}
+
+.decision:hover {
+  border-color: var(--c-accent-line);
+  transform: translate3d(0, -2px, 0);
+}
+
+.decision__title {
+  margin-block-end: var(--sp-3);
+  font-size: var(--fs-md);
+}
+
+.decision__text {
+  color: var(--c-text-muted);
+}
+
+@media (min-width: 40rem) {
+  .decisions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- MÉTRICAS ----------
+   Flex, e não grid com auto-fit: o número de métricas varia por case (dois
+   resultados bem sustentados valem mais que quatro frouxos). Com auto-fit,
+   dois cards esticariam para meia tela cada, e um número solitário numa
+   caixa daquele tamanho parece defeito. O max-width segura a largura;
+   flex-grow distribui o que sobra sem deformar. */
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-card);
+  margin-block-end: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.metric {
+  flex: 1 1 13rem;
+  max-width: 22rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background-color: var(--c-surface);
+  background-image: linear-gradient(160deg, var(--c-accent-soft), transparent 60%);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+}
+
+/* Número grande: o terceiro e último lugar onde a display aparece. Em texto
+   deste corpo o accent já conta como "texto grande" e passa AA. */
+.metric__value {
+  color: var(--c-accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric__label {
+  margin-block-start: var(--sp-3);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+}
+
+.metric__note {
+  margin-block-start: var(--sp-2);
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+}
+
+
+/* ==========================================================================
+   23 · CASE · GALERIA
+   Cada item é um <a> para a imagem em tamanho real: com JS abre o lightbox,
+   sem JS abre a imagem. O visual é idêntico nos dois casos.
+   ========================================================================== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr));
+  gap: var(--gap-card);
+}
+
+.gallery__link {
+  display: block;
+  border-radius: var(--radius-lg);
+}
+
+.gallery__link .media {
+  transition:
+    border-color var(--t-slow) var(--ease),
+    box-shadow   var(--t-slow) var(--ease),
+    transform    var(--t-slow) var(--ease);
+}
+
+.gallery__link:hover .media,
+.gallery__link:focus-visible .media {
+  border-color: var(--c-accent-line);
+  box-shadow: var(--shadow);
+  transform: translate3d(0, -3px, 0);
+}
+
+.gallery__link .media > img {
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.gallery__link:hover .media > img {
+  transform: scale(1.04);
+}
+
+/* Selo de lupa: aparece no hover e também no foco por teclado. */
+.gallery__zoom {
+  position: absolute;
+  inset-block-end: var(--sp-3);
+  inset-inline-end: var(--sp-3);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background-color: var(--c-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--c-text);
+  opacity: 0;
+  transform: translate3d(0, 0.375rem, 0) scale(0.94);
+  transition:
+    opacity   var(--t) var(--ease),
+    transform var(--t) var(--ease);
+}
+
+.gallery__link:hover .gallery__zoom,
+.gallery__link:focus-visible .gallery__zoom {
+  opacity: 1;
+  transform: none;
+}
+
+.gallery__zoom .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+
+/* ==========================================================================
+   24 · LIGHTBOX
+   --------------------------------------------------------------------------
+   <dialog> nativo: foco preso, Escape para fechar, fundo inerte e ::backdrop
+   sem uma linha de JavaScript de acessibilidade.
+
+   ATENÇÃO: display só pode ser declarado no estado [open]. Declarado em
+   .lightbox, venceria a regra dialog:not([open]){display:none} da folha do
+   navegador (autor sempre vence UA) e o diálogo apareceria fechado.
+
+   O visualizador não acompanha o tema. Ele reaponta os tokens que usa para a
+   TINTA FIXA do bloco 02: uma captura de tela clara sobre papel claro perde
+   os próprios limites, e a moldura escura é o que devolve a borda da imagem.
+   Reapontar tokens (em vez de reescrever cada regra) mantém a folha com uma
+   fonte de cor só.
+   ========================================================================== */
+
+.lightbox {
+  --c-text:          var(--c-ink-text);
+  --c-text-muted:    var(--c-ink-muted);
+  --c-surface:       var(--c-ink-bg);
+  --c-surface-2:     var(--c-ink-bg-2);
+  --c-border-strong: var(--c-ink-border);
+  --c-glass:         var(--c-ink-glass);
+
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent;
+  border: 0;
+  color: var(--c-text);
+}
+
+.lightbox[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+/* O ::backdrop lê o token direto da raiz: a herança a partir do elemento de
+   origem é recente demais para se confiar nela aqui. */
+.lightbox::backdrop {
+  background-color: var(--c-ink-overlay);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--gutter);
+}
+
+.lightbox__counter {
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.lightbox__close {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--c-text);
+  transition:
+    background-color var(--t) var(--ease),
+    transform        var(--t) var(--ease);
+}
+
+.lightbox__close:hover {
+  background-color: var(--c-surface-2);
+  transform: rotate(90deg);
+}
+
+.lightbox__close .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Grade de duas faixas: a imagem recebe a altura restante (minmax 0 1fr) e a
+   legenda ocupa só o que precisa. Sem isto, uma legenda longa empurraria a
+   imagem para fora da tela. */
+.lightbox__figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  place-items: center;
+  gap: var(--sp-4);
+  min-height: 0;
+  margin: 0;
+  padding: 0 clamp(1rem, 8vw, 5rem) var(--sp-6);
+}
+
+.lightbox__image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background-color: var(--c-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox__caption {
+  max-width: 60ch;
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  text-align: center;
+}
+
+/* Setas laterais, fora do caminho da imagem. */
+.lightbox__nav {
+  position: absolute;
+  inset-block-start: 50%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  background-color: var(--c-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--c-text);
+  transform: translate3d(0, -50%, 0);
+  transition:
+    background-color var(--t) var(--ease),
+    border-color     var(--t) var(--ease);
+}
+
+.lightbox__nav:hover {
+  background-color: var(--c-surface-2);
+  border-color: var(--c-accent-line);
+}
+
+.lightbox__nav .icon {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.lightbox__nav--prev { inset-inline-start: clamp(0.5rem, 2vw, 1.5rem); }
+.lightbox__nav--next { inset-inline-end:   clamp(0.5rem, 2vw, 1.5rem); }
+
+/* Anima só a figura. Animar o <dialog> inteiro atrasaria a entrega do foco
+   ao diálogo — o ::backdrop já tem a transição própria do navegador. */
+.lightbox[open] .lightbox__figure {
+  animation: lightbox-in var(--t-slow) var(--ease-out) both;
+}
+
+@keyframes lightbox-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+
+/* ==========================================================================
+   25 · PREFERÊNCIAS DO USUÁRIO
+   ========================================================================== */
+
+/* ---------- MOVIMENTO REDUZIDO ----------
+   Regra do projeto: nada se move, mas nada desaparece. Os elementos com
+   [data-reveal] precisam ficar visíveis sem depender de transição, e os
+   deslocamentos de hover são zerados (a mudança de cor permanece). */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn:hover,
+  .btn:hover .icon,
+  .brand:hover .brand__mark,
+  .project-card:hover,
+  .project-card:focus-within,
+  .project-card:hover .media > img,
+  .project-card:focus-within .media > img,
+  .project-card:hover .project-card__cta .icon,
+  .project-card:focus-within .project-card__cta .icon,
+  .decision:hover,
+  .gallery__link:hover .media,
+  .gallery__link:focus-visible .media,
+  .gallery__link:hover .media > img,
+  .lightbox__close:hover {
+    transform: none;
+  }
+
+  /* O ponto do eyebrow deixa de pulsar e vira um ponto estático. */
+  .eyebrow__dot::after {
+    display: none;
+  }
+}
+
+/* ---------- CORES FORÇADAS / ALTO CONTRASTE ----------
+   O sistema substitui a paleta. Garantimos que nada dependa apenas de cor de
+   fundo para ter contorno, e removemos gradientes que somem nesse modo. */
+@media (forced-colors: active) {
+  .btn,
+  .chip,
+  .media,
+  .metric,
+  .decision,
+  .split__col,
+  .checklist__item,
+  .project-card,
+  .contact,
+  .nav-toggle,
+  .lang-switch,
+  .theme-toggle,
+  .lightbox__close,
+  .lightbox__nav {
+    border: 1px solid CanvasText;
+  }
+
+  .lang-switch__btn[aria-pressed="true"] {
+    forced-color-adjust: none;
+    background-color: Highlight;
+    color: HighlightText;
+  }
+
+  .header.is-scrolled {
+    background-color: Canvas;
+  }
+
+  body::before,
+  .contact,
+  .metric,
+  .brand__mark {
+    background-image: none;
+  }
+
+  /* O texto recortado em gradiente ficaria invisível: volta a ser texto. */
+  .hero__role {
+    background-image: none;
+    color: LinkText;
+  }
+}

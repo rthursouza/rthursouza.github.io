@@ -1,0 +1,1463 @@
+﻿<!DOCTYPE html>
+<!--
+  ============================================================================
+  ESTUDO DE CASO 03 — NASAJON · ROTEIRIZAÇÃO (PLATAFORMA DO GESTOR)
+  ----------------------------------------------------------------------------
+  Gerado a partir de projeto-template.html. A estrutura, as classes e os
+  ganchos de comportamento são idênticos ao template — só o conteúdo muda.
+
+  Para editar: o guia completo está no README (seção 7). Para trocar as
+  imagens: apague o <span class="media__label"> e descomente o <img> logo
+  abaixo dele. Nada mais precisa mudar.
+
+  IDIOMAS — mesma regra da home (documentada no topo de ../index.html):
+    • texto corrido  → elementos gêmeos <p lang="pt-BR"> / <p lang="en">
+    • títulos h1–h6  → spans gêmeos DENTRO do mesmo elemento
+    • atributos      → data-en-alt, data-en-aria-label, data-en-content…
+
+  CAMINHOS — este arquivo está em /projects/, então tudo da raiz usa "../".
+  ============================================================================
+-->
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap crítico — idêntico ao da home. Ver comentário em ../index.html -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.remove('no-js');
+      root.classList.add('js');
+
+      var lang = null;
+      var theme = null;
+
+      try {
+        lang = localStorage.getItem('portfolio-lang');
+        theme = localStorage.getItem('portfolio-theme');
+      } catch (err) { /* localStorage bloqueado: segue nos padrões */ }
+
+      if (lang === 'en') {
+        root.setAttribute('data-lang', 'en');
+        root.setAttribute('lang', 'en');
+      }
+
+      /* Sem escolha salva, vale a preferência do sistema. */
+      if (theme !== 'claro' && theme !== 'escuro') {
+        theme = window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches
+          ? 'claro'
+          : 'escuro';
+      }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- ==================== SEO ==================== -->
+  <title data-en="Route calculated, decision preserved — Case study · Arthur Souza">Rota calculada, decisão preservada — Estudo de caso · Arthur Souza</title>
+
+  <meta name="description"
+        content="Como desenhei a plataforma de roteirização de um ERP: cálculo automático de rota por veículo, peso e distância, com override manual do gestor e −40% no custo por rota."
+        data-en-content="How I designed the routing platform of an ERP: automatic route calculation by vehicle, weight and distance, with manual override for the manager and −40% cost per route.">
+
+  <meta name="author" content="Arthur Souza">
+  <meta name="robots" content="index, follow">
+  <!-- Valor do modo escuro (o padrão); o script.js reescreve ao trocar. -->
+  <meta name="theme-color" content="#20293A">
+
+  <!-- TROQUE O DOMÍNIO em todas as URLs absolutas abaixo -->
+  <link rel="canonical" href="https://SEU-DOMINIO.com/projects/projeto-03.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://SEU-DOMINIO.com/projects/projeto-03.html">
+  <meta property="og:site_name" content="Arthur Souza">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title"
+        content="Rota calculada, decisão preservada — Estudo de caso"
+        data-en-content="Route calculated, decision preserved — Case study">
+  <meta property="og:description"
+        content="Rota calculada automaticamente, decisão preservada com o gestor. Seções em vez de painel único, e 40% menos custo por rota."
+        data-en-content="Route calculated automatically, decision preserved with the manager. Sections instead of one dashboard, and 40% less cost per route.">
+  <!-- OG IMAGE — 1200×630px -->
+  <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-03.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+        content="Estudo de caso: rota calculada, decisão preservada, por Arthur Souza"
+        data-en-content="Case study: route calculated, decision preserved, by Arthur Souza">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+        content="Rota calculada, decisão preservada — Estudo de caso"
+        data-en-content="Route calculated, decision preserved — Case study">
+  <meta name="twitter:description"
+        content="Rota calculada automaticamente, decisão preservada com o gestor. Seções em vez de painel único, e 40% menos custo por rota."
+        data-en-content="Route calculated automatically, decision preserved with the manager. Sections instead of one dashboard, and 40% less cost per route.">
+  <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-03.jpg">
+
+  <!-- ==================== FAVICON ==================== -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2320293A'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23E08A63' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <!--
+  <link rel="icon" href="../assets/favicon/favicon.ico" sizes="32x32">
+  <link rel="icon" href="../assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../assets/favicon/site.webmanifest">
+  -->
+
+  <!-- ==================== TIPOGRAFIA ====================
+       Fontes locais em assets/fonts/, declaradas em @font-face no topo do
+       style.css. Nenhuma requisição a CDN. Ver a nota completa em
+       ../index.html. -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="../assets/fonts/inter-latin-400-normal.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="../assets/fonts/bricolage-grotesque-latin-800-normal.woff2">
+
+  <link rel="stylesheet" href="../style.css">
+  <script src="../script.js" defer></script>
+</head>
+
+<body class="page-case">
+
+  <a class="skip-link" href="#conteudo">
+    <span lang="pt-BR">Pular para o conteúdo</span><span lang="en">Skip to content</span>
+  </a>
+
+  <div class="nav-sentinel" data-nav-sentinel aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       SPRITE DE ÍCONES — idêntico ao da home (inline evita requisição e
+       funciona ao abrir o arquivo localmente, onde <use href="externo"> falha).
+       ========================================================================== -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+       aria-hidden="true" focusable="false">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M11 6l-6 6 6 6"/>
+    </symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17 17 7M8 7h9v9"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7h16M4 12h16M4 17h16"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 6 12 12M18 6 6 18"/>
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/>
+    </symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4z"/>
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 3v5h5"/><path d="M6 3h8l5 5v13H6z"/><path d="M9 13h6M9 17h6"/>
+    </symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 6-6 6 6 6"/>
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 6 6 6-6 6"/>
+    </symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3H3v6M15 21h6v-6M21 9V3h-6M3 15v6h6"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 12.5 5 5 11-11"/>
+    </symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+      <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a7.5 7.5 0 1 0 10.8 10.8Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ==========================================================================
+       HEADER — nas páginas de case, os links apontam para as âncoras da home
+       ========================================================================== -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+
+      <a class="brand" href="../index.html" aria-label="Arthur Souza — voltar ao início"
+         data-en-aria-label="Arthur Souza — back home">
+        <span class="brand__mark" aria-hidden="true">A</span>
+        <span class="brand__text">
+          <span class="brand__name">Arthur Souza</span>
+          <span class="brand__role">
+            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+          </span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav-principal" data-nav-panel
+           aria-label="Navegação principal" data-en-aria-label="Main navigation">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html#inicio">
+              <span lang="pt-BR">Início</span><span lang="en">Home</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html#sobre">
+              <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html#projetos" aria-current="true">
+              <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html#contato">
+              <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <div class="nav__prefs">
+            <!-- SELETOR DE IDIOMA -->
+            <div class="lang-switch" role="group"
+                 aria-label="Selecionar idioma" data-en-aria-label="Select language"
+                 data-lang-switch>
+              <svg class="icon lang-switch__icon" aria-hidden="true" focusable="false">
+                <use href="#i-globe"></use>
+              </svg>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="pt-BR" aria-pressed="true" lang="pt-BR">PT</button>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="en" aria-pressed="false" lang="en">EN</button>
+            </div>
+
+            <!-- ALTERNÂNCIA DE TEMA — rótulo fixo, aria-pressed como único
+                 dono do estado. Ver a nota completa em ../index.html. -->
+            <button class="theme-toggle" type="button"
+                    data-theme-toggle
+                    aria-pressed="false"
+                    aria-label="Modo claro" data-en-aria-label="Light mode">
+              <svg class="icon theme-toggle__moon" aria-hidden="true" focusable="false">
+                <use href="#i-moon"></use>
+              </svg>
+              <svg class="icon theme-toggle__sun" aria-hidden="true" focusable="false">
+                <use href="#i-sun"></use>
+              </svg>
+            </button>
+          </div>
+
+          <a class="btn btn--secondary btn--sm" href="../index.html#contato">
+            <span lang="pt-BR">Vamos conversar</span><span lang="en">Let's talk</span>
+          </a>
+        </div>
+      </nav>
+
+      <button class="nav-toggle" type="button"
+              data-nav-toggle
+              aria-controls="nav-principal"
+              aria-expanded="false"
+              aria-label="Abrir menu" data-en-aria-label="Open menu">
+        <svg class="icon nav-toggle__open" aria-hidden="true" focusable="false">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon nav-toggle__close" aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+
+  <main id="conteudo" class="main">
+
+    <article class="case">
+
+      <!-- ==================================================================== -->
+      <!-- 01 · HERO                                                            -->
+      <!-- ==================================================================== -->
+      <header class="case-hero section" aria-labelledby="case-titulo">
+        <div class="container">
+
+          <nav class="breadcrumb" aria-label="Você está aqui"
+               data-en-aria-label="Breadcrumb">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="../index.html">
+                  <span lang="pt-BR">Início</span><span lang="en">Home</span>
+                </a>
+              </li>
+              <li class="breadcrumb__item">
+                <a class="breadcrumb__link" href="../index.html#projetos">
+                  <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+                </a>
+              </li>
+              <li class="breadcrumb__item" aria-current="page">
+                <span lang="pt-BR">Roteirização</span><span lang="en">Route planning</span>
+              </li>
+            </ol>
+          </nav>
+
+          <p class="eyebrow" data-reveal>
+            <span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span>
+          </p>
+
+          <h1 class="case-hero__title" id="case-titulo" data-reveal>
+            <span lang="pt-BR">Rota calculada, decisão preservada: 40% menos custo por rota</span><span lang="en">Route calculated, decision preserved: 40% less cost per route</span>
+          </h1>
+
+          <p class="case-hero__lead" data-reveal lang="pt-BR">
+            O gestor montava o romaneio de cabeça e numa planilha, sem estimativa
+            de custo, sem previsão de horário e sem saber onde o veículo estava
+            depois que saía. A plataforma passou a calcular a sequência — e a
+            deixar que ele discordasse dela.
+          </p>
+          <p class="case-hero__lead" data-reveal lang="en">
+            The manager assembled the manifest in his head and in a spreadsheet,
+            with no cost estimate, no schedule forecast and no idea where the
+            vehicle was once it left. The platform started calculating the
+            sequence — and letting him disagree with it.
+          </p>
+
+          <!-- METADADOS DO PROJETO -->
+          <dl class="case-meta" data-reveal>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Empresa</span><span lang="en">Company</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">Nasajon · ERP</span><span lang="en">Nasajon · ERP</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Ano</span><span lang="en">Year</span>
+              </dt>
+              <dd class="case-meta__value">2025</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">Em paralelo ao app de logística</span><span lang="en">Alongside the logistics app</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Meu papel</span><span lang="en">My role</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">UX Designer (único designer do projeto)</span><span lang="en">UX Designer (sole designer on the project)</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Time</span><span lang="en">Team</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">1 Product Lead · 2 desenvolvedores (front e back)</span><span lang="en">1 Product Lead · 2 developers (front and back)</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
+                <span lang="pt-BR">Ferramentas</span><span lang="en">Tools</span>
+              </dt>
+              <dd class="case-meta__value">
+                <ul class="chips chips--sm">
+                  <li class="chip chip--sm">Figma</li>
+                  <li class="chip chip--sm">Moqups</li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="container container--wide" data-reveal>
+          <figure class="media media--21x9 media--framed">
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
+            </span>
+            <!--
+              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              Esta é a imagem LCP desta página: eager + fetchpriority="high".
+
+            <img src="../assets/images/projeto-03-hero.jpg"
+                 alt="Tela da plataforma de roteirização com a rota calculada e as seções de acompanhamento"
+                 data-en-alt="Routing platform screen with the calculated route and the tracking sections"
+                 width="2100" height="900"
+                 loading="eager" fetchpriority="high" decoding="async">
+            -->
+          </figure>
+        </div>
+      </header>
+
+      <!-- ==================================================================== -->
+      <!-- 02 · CONTEXTO                                                        -->
+      <!-- ==================================================================== -->
+      <section class="section" id="contexto" aria-labelledby="contexto-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">01 — Contexto</span><span lang="en">01 — Context</span>
+            </p>
+            <h2 class="section-head__title" id="contexto-titulo">
+              <span lang="pt-BR">O produto e o momento</span><span lang="en">The product and the moment</span>
+            </h2>
+          </header>
+
+          <div class="prose" data-reveal>
+            <p lang="pt-BR">
+              A Roteirização é a outra ponta do app de logística: onde o app
+              executa a entrega, a plataforma decide a ordem dela. Quem usa é o
+              gestor de logística. Ele insere as notas a serem entregues e o
+              sistema calcula a rota otimizada — considerando o veículo que vai
+              sair, o peso da carga, a capacidade suportada e a distância. Depois,
+              ele pode reordenar as paradas à mão, arrastando.
+            </p>
+            <p lang="en">
+              Roteirização is the other end of the logistics app: where the app
+              executes the delivery, this platform decides its order. Its user is
+              the logistics manager. He enters the invoices to be delivered and the
+              system calculates the optimised route — accounting for the vehicle
+              going out, the weight of the load, the capacity it supports and the
+              distance. He can then reorder the stops by hand, by dragging.
+            </p>
+            <p lang="pt-BR">
+              Antes, isso era papel e experiência de quem montava o romaneio. A
+              ordem das entregas saía do hábito, e a rota se resolvia no caminho —
+              o que transformava combustível e tempo em custo que ninguém media. Os
+              dois produtos foram desenhados em paralelo, e essa é a razão:
+              otimizar a sequência não serve para nada se ela não chegar organizada
+              na mão de quem executa, e a prova de entrega não fecha o ciclo se
+              ninguém do outro lado consegue ler.
+            </p>
+            <p lang="en">
+              Before, this was paper and the experience of whoever assembled the
+              manifest. The order of deliveries came out of habit, and the route
+              got sorted out along the way — which turned fuel and time into cost
+              nobody measured. The two products were designed in parallel, and
+              that's why: optimising the sequence is worthless if it doesn't reach
+              the person executing it in an organised form, and proof of delivery
+              doesn't close the loop if nobody on the other side can read it.
+            </p>
+          </div>
+          <!-- PESQUISA -->
+          <figure class="media media--16x9" data-reveal>
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">A rota otimizada e o override manual · 1600×900</span><span lang="en">The optimised route and the manual override · 1600×900</span>
+            </span>
+            <!--
+            <img src="../assets/images/projeto-03-contexto.png"
+                 alt="Tela da Roteirização com a rota calculada pelo sistema e as paradas reordenáveis por arraste"
+                 data-en-alt="Roteirização screen with the system-calculated route and stops reorderable by dragging"
+                 width="1600" height="900" loading="lazy" decoding="async">
+            -->
+            <figcaption class="media__caption">
+              <span lang="pt-BR">O sistema calcula a sequência a partir do veículo, do peso e da distância — e o gestor mantém a palavra final, reordenando por arraste.</span><span lang="en">The system calculates the sequence from the vehicle, the weight and the distance — and the manager keeps the final say, reordering by dragging.</span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 03 · DESAFIO / PROBLEMA                                              -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt" id="desafio" aria-labelledby="desafio-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">02 — Desafio</span><span lang="en">02 — Challenge</span>
+            </p>
+            <h2 class="section-head__title" id="desafio-titulo">
+              <span lang="pt-BR">O problema, dos dois lados</span><span lang="en">The problem, from both sides</span>
+            </h2>
+          </header>
+
+          <div class="split" data-reveal>
+
+            <div class="split__col">
+              <h3 class="split__title">
+                <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
+              </h3>
+              <div class="prose prose--sm">
+                <p lang="pt-BR">
+                  Montar o romaneio era caro em tempo e em erro. Não havia
+                  estimativa de custo, não havia previsão de horário e não havia
+                  acompanhamento: depois que o veículo saía, a operação virava
+                  caixa-preta até o entregador voltar. A perda era dupla —
+                  combustível gasto numa sequência pior do que a possível, e a
+                  impossibilidade de responder qualquer pergunta sobre uma entrega
+                  em andamento.
+                </p>
+                <p lang="en">
+                  Assembling the manifest was expensive in time and in error. There
+                  were no cost estimates, no schedule forecasts and no tracking:
+                  once the vehicle left, the operation became a black box until the
+                  driver came back. The loss was twofold — fuel spent on a worse
+                  sequence than the one available, and the impossibility of
+                  answering any question about a delivery in progress.
+                </p>
+              </div>
+            </div>
+
+            <div class="split__col">
+              <h3 class="split__title">
+                <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
+              </h3>
+              <div class="prose prose--sm">
+                <p lang="pt-BR">
+                  O gestor montava a sequência de cabeça, apoiado na experiência.
+                  Isso funciona até entrar uma nota de última hora, até o peso não
+                  fechar com o veículo, até o cliente ligar perguntando de uma
+                  entrega que ele não tem como localizar. Cada uma dessas situações
+                  era resolvida por telefone, e todas competiam com o resto do dia
+                  dele.
+                </p>
+                <p lang="en">
+                  The manager assembled the sequence in his head, leaning on
+                  experience. That works until a last-minute invoice arrives, until
+                  the weight doesn't fit the vehicle, until a client calls asking
+                  about a delivery he has no way to locate. Each of those was
+                  solved on the phone, and all of them competed with the rest of
+                  his day.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- INSIGHTS -->
+          <blockquote class="quote" data-reveal>
+            <p class="quote__text" lang="pt-BR">
+              “Eu não tinha expectativa de quanto o romaneio ia custar. Só sabia
+              depois.”
+            </p>
+            <p class="quote__text" lang="en">
+              “I had no expectation of what the manifest would cost. I only knew
+              afterwards.”
+            </p>
+            <footer class="quote__author">
+              <span lang="pt-BR">— Gestor de logística, durante as entrevistas</span><span lang="en">— Logistics manager, during the interviews</span>
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 04 · OBJETIVOS                                                       -->
+      <!-- ==================================================================== -->
+      <section class="section" id="objetivos" aria-labelledby="objetivos-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">03 — Objetivos</span><span lang="en">03 — Goals</span>
+            </p>
+            <h2 class="section-head__title" id="objetivos-titulo">
+              <span lang="pt-BR">O que precisávamos alcançar</span><span lang="en">What we needed to achieve</span>
+            </h2>
+          </header>
+
+          <ul class="checklist" data-reveal>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Calcular a sequência de entregas automaticamente, a partir do veículo, do peso, da capacidade suportada e da distância.</span><span lang="en">Calculate the delivery sequence automatically, from the vehicle, the weight, the supported capacity and the distance.</span>
+            </li>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Dar estimativa de custo e de horário antes de o veículo sair.</span><span lang="en">Provide cost and schedule estimates before the vehicle leaves.</span>
+            </li>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Permitir acompanhar a rota em andamento, sem depender de ligar para o entregador.</span><span lang="en">Allow tracking a route in progress, without having to call the driver.</span>
+            </li>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Manter o gestor com a palavra final: a rota calculada precisa ser reordenável à mão.</span><span lang="en">Keep the manager with the final say: the calculated route has to be reorderable by hand.</span>
+            </li>
+            <li class="checklist__item">
+              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                <use href="#i-check"></use>
+              </svg>
+              <span lang="pt-BR">Fechar o ciclo com o app do entregador — status, prova e comentários voltando sem redigitação.</span><span lang="en">Close the loop with the driver app — status, proof and comments returning with no retyping.</span>
+            </li>
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 05 · MEU PAPEL                                                       -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt" id="papel" aria-labelledby="papel-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">04 — Meu papel</span><span lang="en">04 — My role</span>
+            </p>
+            <h2 class="section-head__title" id="papel-titulo">
+              <span lang="pt-BR">O que foi meu</span><span lang="en">What was mine</span>
+            </h2>
+            <p class="section-head__lead" lang="pt-BR">
+              Único designer, mesmo papel e mesmo time do app de logística. A
+              diferença está na persona: em vez de desenhar para quem executa em
+              pé, na rua, desenhei para quem decide sentado, olhando muita
+              informação ao mesmo tempo. A otimização em si — o algoritmo que
+              calcula a rota — é do time de desenvolvimento. Meu trabalho foi
+              decidir o que ele mostra, em que ordem, e onde o gestor pode
+              discordar dele.
+            </p>
+            <p class="section-head__lead" lang="en">
+              Sole designer, same role and same team as the logistics app. The
+              difference is the persona: instead of designing for someone executing
+              on foot, out on the street, I designed for someone deciding while
+              seated, looking at a lot of information at once. The optimisation
+              itself — the algorithm that calculates the route — belongs to the
+              development team. My job was to decide what it shows, in what order,
+              and where the manager gets to disagree with it.
+            </p>
+          </header>
+
+          <ul class="chips chips--lg" data-reveal
+              aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
+            <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
+            <li class="chip"><span lang="pt-BR">Pesquisa de usuários</span><span lang="en">User research</span></li>
+            <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
+            <li class="chip"><span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span></li>
+            <li class="chip"><span lang="pt-BR">Definição</span><span lang="en">Definition</span></li>
+            <li class="chip"><span lang="pt-BR">Ideação</span><span lang="en">Ideation</span></li>
+            <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
+            <li class="chip"><span lang="pt-BR">Visualização de dados</span><span lang="en">Data visualisation</span></li>
+            <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
+            <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
+            <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
+            <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>          </ul>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 06 · PROCESSO                                                        -->
+      <!-- ==================================================================== -->
+      <section class="section" id="processo" aria-labelledby="processo-titulo">
+        <div class="container">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">05 — Processo</span><span lang="en">05 — Process</span>
+            </p>
+            <h2 class="section-head__title" id="processo-titulo">
+              <span lang="pt-BR">Como cheguei lá</span><span lang="en">How I got there</span>
+            </h2>
+            <p class="section-head__lead" lang="pt-BR">
+              Seis etapas, em paralelo ao app de logística. A segunda foi a mais
+              produtiva do projeto, e não custou nada: pedir a planilha que o
+              gestor já mantinha.
+            </p>
+            <p class="section-head__lead" lang="en">
+              Six stages, running alongside the logistics app. The second was the
+              most productive of the project, and cost nothing: asking for the
+              spreadsheet the manager already kept.
+            </p>
+          </header>
+
+          <ol class="timeline">
+
+            <!-- PESQUISA -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Entrevista com o gestor</span><span lang="en">Interviewing the manager</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Comecei pelo mesmo gestor de logística que eu já havia
+                  entrevistado para o app do entregador. Desenhar as duas pontas
+                  tinha essa vantagem: eu já sabia o que a operação não conseguia
+                  ver, e podia perguntar direto o que faltava para ele decidir.
+                </p>
+                <p class="timeline__text" lang="en">
+                  I started with the same logistics manager I had already
+                  interviewed for the driver app. Designing both ends had that
+                  advantage: I already knew what the operation couldn't see, and
+                  could ask directly what he was missing in order to decide.
+                </p>
+                <!-- PESQUISA -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Notas da entrevista com o gestor · 1200×675</span><span lang="en">Notes from the manager interview · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-pesquisa.png"
+                       alt="Notas da entrevista com o gestor de logística, organizadas por decisão que ele precisa tomar"
+                       data-en-alt="Notes from the logistics manager interview, organised by the decisions he needs to make"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- INSIGHTS -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">A planilha antiga</span><span lang="en">The old spreadsheet</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Pedi a planilha que ele usava para montar o romaneio. Documento
+                  que a pessoa mantém por conta própria é o melhor briefing que
+                  existe: mostra exatamente quais informações ela considera
+                  indispensáveis, quais ela recalcula à mão e onde ela não confia no
+                  sistema. Metade da arquitetura da tela saiu de lá.
+                </p>
+                <p class="timeline__text" lang="en">
+                  I asked for the spreadsheet he used to assemble the manifest. A
+                  document someone maintains on their own initiative is the best
+                  brief there is: it shows exactly which information they consider
+                  indispensable, which they recalculate by hand, and where they
+                  don't trust the system. Half the screen's architecture came out
+                  of it.
+                </p>
+                <!-- INSIGHTS -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">A planilha, anotada · 1200×675</span><span lang="en">The spreadsheet, annotated · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-insights.png"
+                       alt="A planilha antiga do gestor, anotada com o que virou requisito de tela"
+                       data-en-alt="The manager's old spreadsheet, annotated with what became a screen requirement"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- USER FLOW -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Definição: dividir a autoridade</span><span lang="en">Definition: splitting the authority</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  A decisão de produto foi dividir a autoridade entre o sistema e a
+                  pessoa. O sistema calcula a sequência a partir do veículo, do
+                  peso, da capacidade suportada e da distância; o gestor pode
+                  reordenar arrastando. Automatizar sem permitir discordância cria
+                  um produto que a pessoa contorna por fora — e o contorno
+                  disponível aqui era voltar para a planilha.
+                </p>
+                <p class="timeline__text" lang="en">
+                  The product decision was to split authority between the system
+                  and the person. The system calculates the sequence from the
+                  vehicle, the weight, the supported capacity and the distance; the
+                  manager can reorder by dragging. Automating without allowing
+                  disagreement creates a product people route around — and the
+                  workaround available here was going back to the spreadsheet.
+                </p>
+                <!-- USER FLOW -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Cálculo automático e override manual · 1200×675</span><span lang="en">Automatic calculation and manual override · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-fluxos.png"
+                       alt="Fluxo do cálculo automático da rota e do ponto em que o gestor pode reordenar à mão"
+                       data-en-alt="Flow of the automatic route calculation and the point where the manager can reorder by hand"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- ARQUITETURA -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  “Ele precisa ver tudo” era o requisito, e é a armadilha desse tipo
+                  de produto: tudo visível ao mesmo tempo é o mesmo que nada
+                  visível. Em vez de um painel único, dividi em seções com propósito
+                  próprio — andamento da rota, custo, comparativo entre entregas,
+                  histórico, comentários do entregador. Cada tela responde a uma
+                  pergunta, e o gestor escolhe qual pergunta está fazendo.
+                </p>
+                <p class="timeline__text" lang="en">
+                  “He needs to see everything” was the requirement, and it's the
+                  trap in this kind of product: everything visible at once is the
+                  same as nothing visible. Instead of a single dashboard, I split it
+                  into sections with distinct purposes — route progress, cost,
+                  comparison between deliveries, history, driver comments. Each
+                  screen answers one question, and the manager chooses which
+                  question he's asking.
+                </p>
+                <!-- ARQUITETURA -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">As seções da plataforma · 1200×675</span><span lang="en">The platform's sections · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-ia.png"
+                       alt="Mapa das seções da plataforma, cada uma respondendo a uma pergunta do gestor"
+                       data-en-alt="Map of the platform's sections, each answering one of the manager's questions"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- WIREFRAMES -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Estrutura em wireframe antes de qualquer decisão visual. O Moqups
+                  entrou em algumas funcionalidades justamente para ganhar
+                  velocidade onde o que importava era o arranjo, não o acabamento —
+                  ferramenta mais rápida resolve melhor a pergunta “isso cabe aqui?”
+                  do que uma mais capaz.
+                </p>
+                <p class="timeline__text" lang="en">
+                  Structure in wireframe before any visual decision. Moqups came in
+                  on some features precisely to gain speed where what mattered was
+                  the arrangement, not the finish — a faster tool answers “does this
+                  fit here?” better than a more capable one.
+                </p>
+                <!-- BAIXA FIDELIDADE -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Wireframes da plataforma · 1200×675</span><span lang="en">Platform wireframes · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-wireframes.png"
+                       alt="Wireframes das seções de roteirização e de acompanhamento"
+                       data-en-alt="Wireframes of the routing and tracking sections"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+            <!-- IMPLEMENTAÇÃO -->
+            <li class="timeline__step" data-reveal>
+              <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  <span lang="pt-BR">UI final, handoff e revisão</span><span lang="en">Final UI, handoff and review</span>
+                </h3>
+                <p class="timeline__text" lang="pt-BR">
+                  Mesmo formato do app de logística, com o mesmo time: arquivo
+                  estruturado no Figma e revisão junto com o desenvolvedor,
+                  comparando o construído com o prototipado. Em tela densa isso pesa
+                  mais: um alinhamento perdido ou uma coluna que quebra com dado
+                  real não estraga o visual, estraga a leitura.
+                </p>
+                <p class="timeline__text" lang="en">
+                  Same format as the logistics app, with the same team: a structured
+                  Figma file and review alongside the developer, comparing what was
+                  built with what was prototyped. On a dense screen this matters
+                  more: a lost alignment or a column that breaks with real data
+                  doesn't spoil the look, it spoils the reading.
+                </p>
+                <!-- IMPLEMENTAÇÃO -->
+                <figure class="media media--16x9 media--sm">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Revisão da implementação · 1200×675</span><span lang="en">Implementation review · 1200×675</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-handoff.png"
+                       alt="Comparação entre o protótipo e a tela implementada, com os ajustes de leitura apontados"
+                       data-en-alt="Comparison between the prototype and the implemented screen, with reading fixes noted"
+                       width="1200" height="675" loading="lazy" decoding="async">
+                  -->
+                </figure>
+              </div>
+            </li>
+
+          </ol>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 07 · SOLUÇÃO                                                         -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt" id="solucao" aria-labelledby="solucao-titulo">
+        <div class="container">
+
+          <header class="section-head container--prose" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">06 — Solução</span><span lang="en">06 — Solution</span>
+            </p>
+            <h2 class="section-head__title" id="solucao-titulo">
+              <span lang="pt-BR">Automatizar sem tirar o controle de quem responde</span><span lang="en">Automate without taking control from whoever is accountable</span>
+            </h2>
+          </header>
+
+          <!-- MOCKUP -->
+          <figure class="media media--16x9 media--framed" data-reveal>
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
+            </span>
+            <!--
+            <img src="../assets/images/projeto-03-solucao.png"
+                 alt="Tela da Roteirização com a rota calculada, a estimativa de custo e as seções de acompanhamento"
+                 data-en-alt="Roteirização screen with the calculated route, cost estimate and tracking sections"
+                 width="1600" height="900" loading="lazy" decoding="async">
+            -->
+          </figure>
+
+          <div class="decisions" data-reveal>
+
+            <article class="decision">
+              <h3 class="decision__title">
+                <span lang="pt-BR">O sistema calcula, o gestor decide</span><span lang="en">The system calculates, the manager decides</span>
+              </h3>
+              <p class="decision__text" lang="pt-BR">
+                A rota chega calculada a partir do veículo, do peso, da capacidade e
+                da distância — e continua editável por arraste. A automação assume o
+                trabalho que ela faz melhor, sem tirar de quem responde pelo
+                resultado o direito de discordar. Sem esse escape, o produto perde
+                para a planilha na primeira exceção.
+              </p>
+              <p class="decision__text" lang="en">
+                The route arrives calculated from the vehicle, the weight, the
+                capacity and the distance — and stays editable by dragging.
+                Automation takes on the work it does better, without stripping the
+                person accountable for the outcome of the right to disagree. Without
+                that escape hatch, the product loses to the spreadsheet at the first
+                exception.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3 class="decision__title">
+                <span lang="pt-BR">Seções, não um painel único</span><span lang="en">Sections, not one single dashboard</span>
+              </h3>
+              <p class="decision__text" lang="pt-BR">
+                O gestor precisa de rota, status, localização, custo, comparativo,
+                comentário e histórico — mas não ao mesmo tempo. Cada um ganhou sua
+                seção, com uma pergunta própria para responder. Amontoar tudo numa
+                tela parece completo e entrega o oposto: nada com peso suficiente
+                para ser lido primeiro.
+              </p>
+              <p class="decision__text" lang="en">
+                The manager needs route, status, location, cost, comparison,
+                comments and history — but not all at once. Each got its own
+                section, with its own question to answer. Piling everything onto one
+                screen looks thorough and delivers the opposite: nothing weighty
+                enough to be read first.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3 class="decision__title">
+                <span lang="pt-BR">Custo e horário antes de o veículo sair</span><span lang="en">Cost and schedule before the vehicle leaves</span>
+              </h3>
+              <p class="decision__text" lang="pt-BR">
+                A estimativa aparece na hora de montar, não no relatório do dia
+                seguinte. Informação de custo depois da decisão é auditoria; antes
+                da decisão é design. É o que permite ao gestor comparar duas
+                sequências enquanto ainda dá para escolher entre elas.
+              </p>
+              <p class="decision__text" lang="en">
+                The estimate shows up while the route is being assembled, not in the
+                next day's report. Cost information after the decision is auditing;
+                before the decision it's design. It's what lets the manager compare
+                two sequences while there's still a choice to make.
+              </p>
+            </article>
+
+            <article class="decision">
+              <h3 class="decision__title">
+                <span lang="pt-BR">O ciclo fecha com o app do entregador</span><span lang="en">The loop closes with the driver app</span>
+              </h3>
+              <p class="decision__text" lang="pt-BR">
+                Status, prova de entrega e comentários do entregador chegam aqui sem
+                ninguém redigitar nada. É o que torna os dois produtos um só
+                sistema: a sequência sai daqui organizada e volta com o que
+                aconteceu de fato na rua — incluindo o que o entregador escreveu, que
+                é a única parte do relato que não vem de sensor.
+              </p>
+              <p class="decision__text" lang="en">
+                Status, proof of delivery and the driver's comments arrive here with
+                nobody retyping anything. That's what makes the two products a
+                single system: the sequence leaves here organised and comes back
+                with what actually happened on the road — including what the driver
+                wrote, which is the only part of the account that doesn't come from
+                a sensor.
+              </p>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 08 · RESULTADOS                                                      -->
+      <!-- ==================================================================== -->
+      <section class="section" id="resultados" aria-labelledby="resultados-titulo">
+        <div class="container">
+
+          <header class="section-head container--prose" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">07 — Resultados</span><span lang="en">07 — Results</span>
+            </p>
+            <h2 class="section-head__title" id="resultados-titulo">
+              <span lang="pt-BR">O que mudou, medido</span><span lang="en">What changed, measured</span>
+            </h2>
+            <p class="section-head__lead" lang="pt-BR">
+              O objetivo declarado era custo, e é nele que existe número. Os
+              demais efeitos — acompanhamento, estimativa de horário, fim do
+              retrabalho de romaneio — mudaram a operação, mas não foram apurados
+              até o fechamento deste estudo.
+            </p>
+            <p class="section-head__lead" lang="en">
+              The stated goal was cost, and that's where a figure exists. The other
+              effects — tracking, schedule estimates, the end of manifest rework —
+              changed the operation, but weren't measured up to the closing of this
+              case study.
+            </p>
+          </header>
+
+          <!-- MÉTRICAS -->
+          <div class="metrics" data-reveal>
+
+            <div class="metric">
+              <p class="metric__value">−40%</p>
+              <h3 class="metric__label">
+                <span lang="pt-BR">Custo médio por rota</span><span lang="en">Average cost per route</span>
+              </h3>
+              <p class="metric__note">
+                <span lang="pt-BR">Comparativo entre a estimativa da plataforma e a rota anterior, confirmado por relato do cliente</span><span lang="en">Comparison between the platform's estimate and the previous route, confirmed by client report</span>
+              </p>
+            </div>
+
+          </div>
+          <!-- RESULTADOS -->
+          <figure class="media media--16x9 container--prose" data-reveal>
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Custo por rota, antes e depois · 1200×675</span><span lang="en">Cost per route, before and after · 1200×675</span>
+            </span>
+            <!--
+            <img src="../assets/images/projeto-03-resultados.png"
+                 alt="Comparação do custo médio por rota antes e depois da plataforma de roteirização"
+                 data-en-alt="Comparison of average cost per route before and after the routing platform"
+                 width="1200" height="675" loading="lazy" decoding="async">
+            -->
+            <figcaption class="media__caption">
+              <span lang="pt-BR">Custo médio por rota antes e depois da roteirização automática.</span><span lang="en">Average cost per route before and after automatic routing.</span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 09 · APRENDIZADOS                                                    -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt" id="aprendizados" aria-labelledby="aprendizados-titulo">
+        <div class="container container--prose">
+
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">08 — Aprendizados</span><span lang="en">08 — Learnings</span>
+            </p>
+            <h2 class="section-head__title" id="aprendizados-titulo">
+              <span lang="pt-BR">O que eu levaria para o próximo projeto</span><span lang="en">What I'd carry into the next project</span>
+            </h2>
+          </header>
+
+          <div class="prose" data-reveal>
+            <p lang="pt-BR">
+              <strong>Nem sempre o que o cliente pede é o que ele precisa.</strong>
+              O requisito que chegou era “o gestor precisa ver tudo”, e atendê-lo
+              literalmente teria produzido um painel em que nada tem peso suficiente
+              para ser lido primeiro. O que ele precisava não era ver tudo ao mesmo
+              tempo — era achar rápido a coisa certa quando a pergunta aparece.
+              Separar em seções contraria o pedido e atende a necessidade, e
+              defender essa diferença faz parte do trabalho.
+            </p>
+            <p lang="en">
+              <strong>What the client asks for isn't always what they need.</strong>
+              The requirement that arrived was “the manager needs to see
+              everything”, and taking it literally would have produced a dashboard
+              where nothing carries enough weight to be read first. What he needed
+              wasn't to see everything at once — it was to find the right thing
+              quickly when the question comes up. Splitting it into sections
+              contradicts the request and serves the need, and defending that
+              difference is part of the job.
+            </p>
+
+            <p lang="pt-BR">
+              <strong>E eu mesmo caí nessa.</strong> Parte dos gráficos e dashboards
+              que desenhei entrou porque o cliente pediu — e não é usada. Eu tinha
+              acabado de dividir a plataforma em seções justamente para não
+              empilhar informação, e ainda assim aceitei pedido de visualização sem
+              perguntar que decisão ela ajudaria a tomar. Aprender a lição e aplicá-la
+              de forma desigual no mesmo projeto é mais comum do que se admite.
+              Hoje, antes de desenhar qualquer gráfico, eu faço uma pergunta só: que
+              decisão essa pessoa toma olhando para isso? Sem resposta, o gráfico
+              não entra.
+            </p>
+            <p lang="en">
+              <strong>And I fell for it myself.</strong> Some of the charts and
+              dashboards I designed went in because the client asked for them — and
+              they go unused. I had just split the platform into sections precisely
+              to avoid piling up information, and still accepted a request for
+              visualisations without asking what decision they would help make.
+              Learning a lesson and applying it unevenly within the same project is
+              more common than people admit. Now, before designing any chart, I ask
+              one question: what decision does this person make by looking at it?
+              With no answer, the chart doesn't ship.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- 10 · GALERIA + LIGHTBOX                                              -->
+      <!-- ==================================================================== -->
+      <section class="section" id="galeria" aria-labelledby="galeria-titulo">
+        <div class="container">
+
+          <header class="section-head container--prose" data-reveal>
+            <p class="eyebrow">
+              <span lang="pt-BR">09 — Galeria</span><span lang="en">09 — Gallery</span>
+            </p>
+            <h2 class="section-head__title" id="galeria-titulo">
+              <span lang="pt-BR">Telas e artefatos</span><span lang="en">Screens and artefacts</span>
+            </h2>
+          </header>
+
+          <ul class="gallery" data-gallery data-reveal>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-03-galeria-01.jpg"
+                 data-caption="A rota calculada, com estimativa de custo e horário antes da saída"
+                 data-caption-en="The calculated route, with cost and schedule estimates before departure">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-galeria-01-thumb.jpg"
+                       alt="Tela da rota calculada, com a estimativa de custo e de horário"
+                       data-en-alt="Calculated route screen, with cost and schedule estimates"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: rota calculada</span><span lang="en">Enlarge: calculated route</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-03-galeria-02.jpg"
+                 data-caption="Reordenar paradas por arraste: onde o gestor discorda do sistema"
+                 data-caption-en="Reordering stops by dragging: where the manager disagrees with the system">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-galeria-02-thumb.jpg"
+                       alt="Interação de arraste para reordenar as paradas da rota"
+                       data-en-alt="Drag interaction for reordering the stops on a route"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: override manual da rota</span><span lang="en">Enlarge: manual route override</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-03-galeria-03.jpg"
+                 data-caption="Acompanhamento da rota em andamento, com a posição do entregador"
+                 data-caption-en="Tracking a route in progress, with the driver's position">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-galeria-03-thumb.jpg"
+                       alt="Seção de acompanhamento com status das paradas e localização do entregador"
+                       data-en-alt="Tracking section with stop status and the driver's location"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: acompanhamento da rota</span><span lang="en">Enlarge: route tracking</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-03-galeria-04.jpg"
+                 data-caption="Comparativo entre entregas e o histórico da operação"
+                 data-caption-en="Comparison between deliveries and the operation's history">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-galeria-04-thumb.jpg"
+                       alt="Seção de análise com comparativo entre entregas e histórico"
+                       data-en-alt="Analysis section with delivery comparison and history"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: comparativo e histórico</span><span lang="en">Enlarge: comparison and history</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-03-galeria-05.jpg"
+                 data-caption="Os comentários do entregador chegando na gestão, sem redigitação"
+                 data-caption-en="The driver's comments arriving in management, with no retyping">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-galeria-05-thumb.jpg"
+                       alt="Comentários registrados pelo entregador exibidos na plataforma do gestor"
+                       data-en-alt="Comments logged by the driver, displayed in the manager's platform"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: comentários do entregador</span><span lang="en">Enlarge: driver comments</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="gallery__item">
+              <a class="gallery__link" href="../assets/images/projeto-03-galeria-06.jpg"
+                 data-caption="A planilha antiga, anotada com o que virou requisito de tela"
+                 data-caption-en="The old spreadsheet, annotated with what became a screen requirement">
+                <figure class="media media--4x3">
+                  <span class="media__label" aria-hidden="true">
+                    <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
+                  </span>
+                  <!--
+                  <img src="../assets/images/projeto-03-galeria-06-thumb.jpg"
+                       alt="A planilha que o gestor mantinha, anotada durante a pesquisa"
+                       data-en-alt="The spreadsheet the manager kept, annotated during research"
+                       width="1200" height="900" loading="lazy" decoding="async">
+                  -->
+                  <span class="gallery__zoom" aria-hidden="true">
+                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                  </span>
+                </figure>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">Ampliar: a planilha antiga</span><span lang="en">Enlarge: the old spreadsheet</span>
+                </span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- CTA FINAL DO CASE                                                    -->
+      <!-- ==================================================================== -->
+      <section class="section section--alt case-cta" aria-labelledby="case-cta-titulo">
+        <div class="container container--prose">
+          <div class="contact" data-reveal>
+
+            <header class="section-head section-head--center">
+              <h2 class="section-head__title" id="case-cta-titulo">
+                <span lang="pt-BR">Quer conversar sobre este projeto?</span><span lang="en">Want to talk about this project?</span>
+              </h2>
+              <p class="section-head__lead" lang="pt-BR">
+                Tenho muito mais detalhe do que cabe numa página — inclusive o
+                que não funcionou.
+              </p>
+              <p class="section-head__lead" lang="en">
+                There's far more detail than fits on one page — including what
+                didn't work.
+              </p>
+            </header>
+
+            <div class="cluster cluster--center">
+              <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-mail"></use>
+                </svg>
+                <span lang="pt-BR">Entrar em contato</span><span lang="en">Get in touch</span>
+              </a>
+              <a class="btn btn--secondary btn--lg" href="projeto-01.html">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-arrow-right"></use>
+                </svg>
+                <span lang="pt-BR">Próximo caso: o PDV</span><span lang="en">Next case: the POS</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- ==========================================================================
+       LIGHTBOX — <dialog> nativo.
+       O elemento nativo entrega foco preso, Escape para fechar, fundo inerte e
+       ::backdrop sem nenhum JavaScript de acessibilidade. O script.js cuida
+       apenas de trocar a imagem, navegar e atualizar o contador.
+       ========================================================================== -->
+  <dialog class="lightbox" data-lightbox
+          aria-label="Visualizador de imagens" data-en-aria-label="Image viewer">
+
+    <div class="lightbox__bar">
+      <p class="lightbox__counter" data-lightbox-counter aria-live="polite">
+        <span class="visually-hidden">
+          <span lang="pt-BR">Imagem</span><span lang="en">Image</span>
+        </span>
+        1 / 6
+      </p>
+
+      <button class="lightbox__close" type="button" data-lightbox-close
+              aria-label="Fechar visualizador" data-en-aria-label="Close viewer">
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+    </div>
+
+    <figure class="lightbox__figure">
+      <img class="lightbox__image" data-lightbox-image decoding="async" alt=""
+           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+      <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
+    </figure>
+
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev
+            aria-label="Imagem anterior" data-en-aria-label="Previous image">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="#i-chevron-left"></use>
+      </svg>
+    </button>
+
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next
+            aria-label="Próxima imagem" data-en-aria-label="Next image">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="#i-chevron-right"></use>
+      </svg>
+    </button>
+
+  </dialog>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <p class="footer__copy">
+        <span lang="pt-BR">© <span data-year>2026</span> Arthur Souza. Desenhado e codificado à mão.</span><span lang="en">© <span data-year>2026</span> Arthur Souza. Designed and hand-coded.</span>
+      </p>
+
+      <ul class="footer__links">
+        <li>
+          <a class="footer__link" href="mailto:arthursouza_7@outlook.com">
+            <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="https://www.linkedin.com/in/arthursouza7/"
+             target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="../assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="../index.html">
+            <span lang="pt-BR">Voltar ao início</span><span lang="en">Back home</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </footer>
+
+</body>
+</html>
