@@ -24,8 +24,9 @@
    12 · SKIP LINK
    13 · HEADER · BRAND · NAV · LANG SWITCH · NAV TOGGLE
    14 · HERO (home)
-   15 · SOBRE (bio · fatos · habilidades)
-   16 · PROJETOS (cards)
+   15 · SOBRE (curto)
+   16 · PROJETOS (work-card · featured)
+   16b· PÁGINA DE PROJETOS (page-intro · page-toolbar · filter · work-grid)
    17 · CONTATO
    18 · FOOTER
    19 · CASE · BREADCRUMB E HERO
@@ -689,8 +690,11 @@ main[id] {
 .js .hero__content > [data-reveal]:nth-child(7) { transition-delay: 180ms; }
 .js .hero__content > [data-reveal]:last-child   { transition-delay: 220ms; }
 
-.js .projects > [data-reveal]:nth-child(2) { transition-delay:  80ms; }
-.js .projects > [data-reveal]:nth-child(3) { transition-delay: 160ms; }
+.js .featured > [data-reveal]:nth-child(2) { transition-delay:  80ms; }
+.js .featured > [data-reveal]:nth-child(3) { transition-delay: 160ms; }
+
+.js .work-grid > [data-reveal]:nth-child(3n + 2) { transition-delay:  80ms; }
+.js .work-grid > [data-reveal]:nth-child(3n + 3) { transition-delay: 160ms; }
 
 .js .timeline > [data-reveal]:nth-child(even) { transition-delay: 70ms; }
 
@@ -1983,6 +1987,130 @@ main[id] {
   }
 }
 
+/* ---------- SELO "DESTAQUE" ----------
+   Vem por último no DOM (o leitor de tela o ouve depois do título), mas é
+   desenhado sobre o canto da imagem. Accent sobre accent-ink: 5,5:1 no
+   escuro, 4,71:1 no claro. */
+.work-card__badge {
+  position: absolute;
+  inset-block-start: calc(var(--work-card-pad) + var(--sp-3));
+  inset-inline-start: calc(var(--work-card-pad) + var(--sp-3));
+  z-index: 1;
+  padding: 0.3125rem 0.625rem;
+  background-color: var(--c-accent);
+  border-radius: var(--radius-pill);
+  color: var(--c-accent-ink);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+}
+
+
+/* ==========================================================================
+   16b · PÁGINA DE PROJETOS (/projetos.html)
+   --------------------------------------------------------------------------
+   Introdução curta, barra com contador e filtro, grade uniforme. Os cards
+   são os mesmos .work-card da home, com imagem 4:3.
+   ========================================================================== */
+
+.page-intro {
+  padding-block-start: clamp(2rem, 5vw, 3.5rem);
+}
+
+.page-intro__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+}
+
+.page-intro__lead {
+  margin-block-start: var(--sp-4);
+  max-width: 54ch;
+  color: var(--c-text-muted);
+  font-size: var(--fs-md);
+  text-wrap: pretty;
+}
+
+/* ---------- BARRA DA LISTAGEM ---------- */
+.page-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-block: clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
+  padding-block-end: var(--sp-4);
+  border-block-end: 1px solid var(--c-border);
+}
+
+.page-toolbar__count {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- FILTRO POR ÁREA ----------
+   Botões de alternância de escolha única. Como no seletor de idioma, o
+   estado ativo é o próprio aria-pressed — uma fonte de verdade só.
+   Nasce com hidden; o script.js o revela a partir de 6 projetos. */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.filter__btn {
+  min-height: 2.75rem;   /* 44px de alvo de toque */
+  padding-inline: var(--sp-4);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition:
+    color            var(--t) var(--ease),
+    border-color     var(--t) var(--ease),
+    background-color var(--t) var(--ease);
+}
+
+.filter__btn:hover {
+  border-color: var(--c-border-strong);
+  color: var(--c-text);
+}
+
+.filter__btn[aria-pressed="true"] {
+  background-color: var(--c-accent-soft);
+  border-color: var(--c-accent-line);
+  color: var(--c-accent-text);
+}
+
+/* ---------- GRADE ----------
+   auto-fill com mínimo de ~320px: o número de colunas sai da largura, sem
+   media query. min() evita estouro em telas menores que o mínimo. */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  gap: var(--gap-card);
+}
+
+/* O <li> só carrega o filtro e a animação; o card ocupa a altura toda da
+   linha, para os cards vizinhos terminarem alinhados. */
+.work-grid__item {
+  display: grid;
+}
+
+.work-grid__empty {
+  padding-block: var(--sp-6);
+  color: var(--c-text-muted);
+  text-align: center;
+}
+
 
 /* ==========================================================================
    17 · CONTATO
@@ -2749,7 +2877,9 @@ main[id] {
   .decision,
   .split__col,
   .checklist__item,
-  .project-card,
+  .work-card,
+  .work-card__badge,
+  .filter__btn,
   .contact,
   .nav-toggle,
   .lang-switch,
@@ -2759,7 +2889,8 @@ main[id] {
     border: 1px solid CanvasText;
   }
 
-  .lang-switch__btn[aria-pressed="true"] {
+  .lang-switch__btn[aria-pressed="true"],
+  .filter__btn[aria-pressed="true"] {
     forced-color-adjust: none;
     background-color: Highlight;
     color: HighlightText;

@@ -1,0 +1,697 @@
+﻿<!DOCTYPE html>
+<!--
+  ============================================================================
+  PROJETOS — LISTAGEM DE ESTUDOS DE CASO
+  ----------------------------------------------------------------------------
+  Arquivo : projetos.html (raiz)
+  Header, footer, tokens e convenções são os mesmos da home.
+
+  IDIOMAS — mesma regra da home (documentada no topo de index.html):
+    • texto corrido  → elementos gêmeos <p lang="pt-BR"> / <p lang="en">
+    • títulos h1–h6  → spans gêmeos DENTRO do mesmo elemento
+    • atributos      → data-en-alt, data-en-aria-label, data-en-content…
+
+  Para adicionar um projeto: README, seção 7.
+  ============================================================================
+-->
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap crítico — idêntico ao da home. Ver comentário em index.html -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.remove('no-js');
+      root.classList.add('js');
+
+      var lang = null;
+      var theme = null;
+
+      try {
+        lang = localStorage.getItem('portfolio-lang');
+        theme = localStorage.getItem('portfolio-theme');
+      } catch (err) { /* localStorage bloqueado: segue nos padrões */ }
+
+      if (lang === 'en') {
+        root.setAttribute('data-lang', 'en');
+        root.setAttribute('lang', 'en');
+      }
+
+      /* Sem escolha salva, vale a preferência do sistema. */
+      if (theme !== 'claro' && theme !== 'escuro') {
+        theme = window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches
+          ? 'claro'
+          : 'escuro';
+      }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- ==================== SEO ==================== -->
+  <title data-en="Work — Arthur Souza · UX &amp; Product Designer">Projetos — Arthur Souza · UX &amp; Product Designer</title>
+
+  <meta name="description"
+        content="Estudos de caso de ERP, varejo e logística: do discovery ao resultado medido."
+        data-en-content="Case studies in ERP, retail and logistics: from discovery to measured results.">
+
+  <meta name="author" content="Arthur Souza">
+  <meta name="robots" content="index, follow">
+  <!-- Valor do modo escuro (o padrão). O script.js reescreve este content a
+       partir de --c-bg sempre que o tema muda. -->
+  <meta name="theme-color" content="#20293A">
+
+  <!--
+    ATENÇÃO — TROQUE O DOMÍNIO ANTES DE PUBLICAR.
+    Um canonical apontando para o domínio errado prejudica a indexação.
+    Substitua "https://SEU-DOMINIO.com" em todas as tags abaixo.
+  -->
+  <link rel="canonical" href="https://SEU-DOMINIO.com/projetos.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://SEU-DOMINIO.com/projetos.html">
+  <meta property="og:site_name" content="Arthur Souza">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title"
+        content="Projetos — Arthur Souza"
+        data-en-content="Work — Arthur Souza">
+  <meta property="og:description"
+        content="Estudos de caso de ERP, varejo e logística: do discovery ao resultado medido."
+        data-en-content="Case studies in ERP, retail and logistics: from discovery to measured results.">
+  <!-- OG IMAGE — 1200×630px. Crie e salve em assets/images/og-cover.jpg -->
+  <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+        content="Portfólio de Arthur Souza, UX &amp; Product Designer"
+        data-en-content="Arthur Souza's portfolio, UX &amp; Product Designer">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+        content="Projetos — Arthur Souza"
+        data-en-content="Work — Arthur Souza">
+  <meta name="twitter:description"
+        content="Estudos de caso de ERP, varejo e logística: do discovery ao resultado medido."
+        data-en-content="Case studies in ERP, retail and logistics: from discovery to measured results.">
+  <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg">
+
+  <!-- ==================== FAVICON ==================== -->
+  <!--
+    O favicon abaixo é um SVG embutido (data URI): zero requisições, zero 404.
+    Ao gerar os arquivos definitivos em assets/favicon/, apague esta linha
+    e descomente o bloco seguinte.
+  -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2320293A'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23E08A63' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <!--
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  -->
+
+  <!-- ==================== TIPOGRAFIA ====================
+       Fontes locais em assets/fonts/, declaradas em @font-face no topo do
+       style.css. Nenhuma requisição a CDN: o site abre offline e não entrega
+       o IP de quem visita para um terceiro.
+       O preload antecipa só as duas famílias da primeira dobra — o navegador
+       descobriria as outras ao casar o @font-face com o texto, tarde demais.
+       crossorigin é obrigatório em preload de fonte, inclusive na origem. -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="assets/fonts/inter-latin-400-normal.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="assets/fonts/bricolage-grotesque-latin-800-normal.woff2">
+
+  <!-- ==================== ESTILO ==================== -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ==================== COMPORTAMENTO ==================== -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       SKIP LINK — primeiro elemento focável da página
+       ========================================================================== -->
+  <a class="skip-link" href="#conteudo">
+    <span lang="pt-BR">Pular para o conteúdo</span><span lang="en">Skip to content</span>
+  </a>
+
+  <!--
+    SENTINELA DA NAVBAR
+    Elemento de 1px observado por IntersectionObserver. Quando sai do viewport,
+    o header ganha .is-scrolled. Substitui o listener de scroll.
+  -->
+  <div class="nav-sentinel" data-nav-sentinel aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       SPRITE DE ÍCONES — SVG inline, definido uma vez por página.
+       Uso: <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-right"></use>
+            </svg>
+       ========================================================================== -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+       aria-hidden="true" focusable="false">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </symbol>
+
+    <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M6 13l6 6 6-6"/>
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17 17 7M8 7h9v9"/>
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7h16M4 12h16M4 17h16"/>
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 6 12 12M18 6 6 18"/>
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/>
+    </symbol>
+
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4z"/>
+    </symbol>
+
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 3v5h5"/><path d="M6 3h8l5 5v13H6z"/><path d="M9 13h6M9 17h6"/>
+    </symbol>
+
+    <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 6-6 6 6 6"/>
+    </symbol>
+
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 6 6 6-6 6"/>
+    </symbol>
+
+    <symbol id="i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3H3v6M15 21h6v-6M21 9V3h-6M3 15v6h6"/>
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 12.5 5 5 11-11"/>
+    </symbol>
+
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+      <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/>
+    </symbol>
+
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+    </symbol>
+
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a7.5 7.5 0 1 0 10.8 10.8Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ==========================================================================
+       HEADER / NAVBAR FIXA
+       ========================================================================== -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+
+      <a class="brand" href="index.html" aria-label="Arthur Souza — voltar ao início"
+         data-en-aria-label="Arthur Souza — back to home">
+        <span class="brand__mark" aria-hidden="true">A</span>
+        <span class="brand__text">
+          <span class="brand__name">Arthur Souza</span>
+          <span class="brand__role">
+            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+          </span>
+        </span>
+      </a>
+
+      <!-- Navegação principal — o mesmo <ul> serve desktop e drawer mobile -->
+      <nav class="nav" id="nav-principal" data-nav-panel
+           aria-label="Navegação principal" data-en-aria-label="Main navigation">
+        <!-- Mesmo menu da home. Aqui "Projetos" é a página atual; Sobre e
+             Contato voltam para as âncoras da home. Sem data-scrollspy:
+             não há seções da home nesta página para acompanhar. -->
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link" href="projetos.html" aria-current="page">
+              <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="index.html#sobre">
+              <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="index.html#contato">
+              <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <div class="nav__prefs">
+            <!-- SELETOR DE IDIOMA -->
+            <div class="lang-switch" role="group"
+                 aria-label="Selecionar idioma" data-en-aria-label="Select language"
+                 data-lang-switch>
+              <svg class="icon lang-switch__icon" aria-hidden="true" focusable="false">
+                <use href="#i-globe"></use>
+              </svg>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="pt-BR" aria-pressed="true" lang="pt-BR">PT</button>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="en" aria-pressed="false" lang="en">EN</button>
+            </div>
+
+            <!--
+              ALTERNÂNCIA DE TEMA
+              O rótulo é fixo ("Modo claro") e quem carrega o estado é o
+              aria-pressed — mesmo contrato do botão do menu, que mantém
+              "Abrir menu" nos dois estados e deixa o aria-expanded falar.
+              Reescrever o rótulo criaria um segundo dono para a informação
+              e brigaria com a troca de idioma, que também escreve nele.
+            -->
+            <button class="theme-toggle" type="button"
+                    data-theme-toggle
+                    aria-pressed="false"
+                    aria-label="Modo claro" data-en-aria-label="Light mode">
+              <svg class="icon theme-toggle__moon" aria-hidden="true" focusable="false">
+                <use href="#i-moon"></use>
+              </svg>
+              <svg class="icon theme-toggle__sun" aria-hidden="true" focusable="false">
+                <use href="#i-sun"></use>
+              </svg>
+            </button>
+          </div>
+
+          <!--
+            CURRÍCULO — salve o PDF em assets/ com este nome exato.
+            Abre em nova aba (e não baixa): quem está avaliando dá uma olhada
+            rápida sem se comprometer a guardar arquivo. rel="noopener" basta
+            aqui, porque o PDF é do próprio domínio.
+          -->
+          <a class="btn btn--secondary btn--sm"
+             href="assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-file"></use>
+            </svg>
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(PDF, abre em nova aba)</span><span lang="en">(PDF, opens in a new tab)</span>
+            </span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Botão do menu mobile -->
+      <button class="nav-toggle" type="button"
+              data-nav-toggle
+              aria-controls="nav-principal"
+              aria-expanded="false"
+              aria-label="Abrir menu" data-en-aria-label="Open menu">
+        <svg class="icon nav-toggle__open" aria-hidden="true" focusable="false">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon nav-toggle__close" aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Camada de escurecimento atrás do drawer mobile -->
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+
+  <main id="conteudo" class="main">
+
+    <!-- ========================================================================
+         01 · LISTAGEM
+         ======================================================================== -->
+    <section class="section page-intro" aria-labelledby="projetos-titulo">
+      <div class="container">
+
+        <nav class="breadcrumb" aria-label="Você está aqui"
+             data-en-aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a class="breadcrumb__link" href="index.html">
+                <span lang="pt-BR">Início</span><span lang="en">Home</span>
+              </a>
+            </li>
+            <li class="breadcrumb__item" aria-current="page">
+              <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+            </li>
+          </ol>
+        </nav>
+
+        <header class="page-intro__head">
+          <h1 class="page-intro__title" id="projetos-titulo" data-reveal>
+            <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+          </h1>
+          <p class="page-intro__lead" data-reveal lang="pt-BR">
+            Estudos de caso de ERP, varejo e logística: do discovery ao
+            resultado medido.
+          </p>
+          <p class="page-intro__lead" data-reveal lang="en">
+            Case studies in ERP, retail and logistics: from discovery to
+            measured results.
+          </p>
+        </header>
+
+        <!--
+          BARRA DA LISTAGEM — contador à esquerda, filtro à direita.
+
+          CONTADOR: o número escrito aqui é o fallback sem JavaScript. Com JS,
+          o script.js conta os itens de [data-project-grid] e reescreve o
+          número (e o singular/plural) — inclusive a cada troca de filtro.
+
+          FILTRO: o markup já está pronto, mas nasce com o atributo hidden.
+          O script.js só o revela quando a grade tem pelo menos o número de
+          projetos de data-filter-min (6). Com 3 projetos, filtrar não ajuda
+          ninguém — só adiciona um controle para ler.
+          Sem JavaScript ele continua escondido: botão que não responde é
+          pior que botão ausente.
+
+          Cada item da grade declara suas áreas em data-project-area, separadas
+          por espaço, com os mesmos valores dos data-filter-value abaixo.
+        -->
+        <div class="page-toolbar" data-reveal>
+          <p class="page-toolbar__count" aria-live="polite">
+            <span lang="pt-BR"><span data-project-count>3</span> <span data-plural-one="projeto" data-plural-other="projetos">projetos</span></span><span lang="en"><span data-project-count>3</span> <span data-plural-one="project" data-plural-other="projects">projects</span></span>
+          </p>
+
+          <div class="filter" role="group" hidden
+               aria-label="Filtrar por área" data-en-aria-label="Filter by area"
+               data-project-filter data-filter-min="6">
+            <button class="filter__btn" type="button"
+                    data-filter-value="todos" aria-pressed="true">
+              <span lang="pt-BR">Todos</span><span lang="en">All</span>
+            </button>
+            <button class="filter__btn" type="button"
+                    data-filter-value="erp-varejo" aria-pressed="false">
+              <span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span>
+            </button>
+            <button class="filter__btn" type="button"
+                    data-filter-value="logistica" aria-pressed="false">
+              <span lang="pt-BR">Logística</span><span lang="en">Logistics</span>
+            </button>
+            <button class="filter__btn" type="button"
+                    data-filter-value="mobile" aria-pressed="false">
+              <span lang="pt-BR">Mobile</span><span lang="en">Mobile</span>
+            </button>
+            <button class="filter__btn" type="button"
+                    data-filter-value="gestao-dados" aria-pressed="false">
+              <span lang="pt-BR">Gestão &amp; Dados</span><span lang="en">Management &amp; Data</span>
+            </button>
+          </div>
+        </div>
+
+        <!--
+          GRADE — auto-fill com mínimo de 20rem (~320px): 3 colunas no desktop,
+          2 no tablet, 1 no celular, sem media query.
+          Para adicionar um projeto: duplique um <li> inteiro e troque o href,
+          o id do título (+ aria-labelledby), o conteúdo e data-project-area.
+          O selo "Destaque" só vai nos projetos que também estão na home.
+        -->
+        <ul class="work-grid" role="list" data-project-grid>
+
+          <!-- ---------------- PROJETO 01 ---------------- -->
+          <li class="work-grid__item" data-reveal data-project-area="erp-varejo mobile">
+            <article class="work-card" aria-labelledby="lista-01-titulo">
+
+              <figure class="media media--4x3 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa do PDV Nasajon · 4:3 · 1200×900</span><span lang="en">Nasajon POS cover · 4:3 · 1200×900</span>
+                </span>
+                <!--
+                <img src="assets/images/projeto-01-capa-4x3.jpg"
+                     alt=""
+                     width="1200" height="900" loading="lazy" decoding="async">
+                -->
+              </figure>
+
+              <div class="work-card__body">
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">2026</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span>
+                  </li>
+                </ul>
+
+                <h2 class="work-card__title" id="lista-01-titulo">
+                  <a class="work-card__link" href="projects/projeto-01.html">
+                    <span lang="pt-BR">Um PDV que sai do balcão</span><span lang="en">A POS that leaves the counter</span>
+                  </a>
+                </h2>
+
+                <p class="work-card__summary" lang="pt-BR">
+                  Redesenho mobile-first do ponto de venda para quem atende
+                  longe do caixa.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Mobile-first redesign of the point of sale for staff who
+                  serve away from the register.
+                </p>
+
+                <p class="work-card__metric">
+                  <span class="work-card__metric-value">−30%</span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">no tempo de fechamento de venda</span><span lang="en">in time to close a sale</span>
+                  </span>
+                </p>
+
+                <p class="work-card__badge">
+                  <span lang="pt-BR">Destaque</span><span lang="en">Featured</span>
+                </p>
+              </div>
+            </article>
+          </li>
+
+          <!-- ---------------- PROJETO 02 ---------------- -->
+          <li class="work-grid__item" data-reveal data-project-area="logistica mobile">
+            <article class="work-card" aria-labelledby="lista-02-titulo">
+
+              <figure class="media media--4x3 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa do app de logística · 4:3 · 1200×900</span><span lang="en">Logistics app cover · 4:3 · 1200×900</span>
+                </span>
+                <!--
+                <img src="assets/images/projeto-02-capa-4x3.jpg"
+                     alt=""
+                     width="1200" height="900" loading="lazy" decoding="async">
+                -->
+              </figure>
+
+              <div class="work-card__body">
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">2025</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span>
+                  </li>
+                </ul>
+
+                <h2 class="work-card__title" id="lista-02-titulo">
+                  <a class="work-card__link" href="projects/projeto-02.html">
+                    <span lang="pt-BR">A próxima parada, e a prova</span><span lang="en">The next stop, and the proof</span>
+                  </a>
+                </h2>
+
+                <p class="work-card__summary" lang="pt-BR">
+                  App de entrega com rota otimizada e prova digital no lugar do
+                  papel.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Delivery app with an optimised route and digital proof in
+                  place of paper.
+                </p>
+
+                <!-- PENDENTE (depende do Arthur): mesma métrica do card da
+                     home. Ao preencher, troque nos dois lugares. -->
+                <p class="work-card__metric work-card__metric--pending">
+                  <span class="work-card__metric-value">
+                    <span lang="pt-BR">[PENDENTE]</span><span lang="en">[PENDING]</span>
+                  </span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">[resultado do app de logística]</span><span lang="en">[logistics app result]</span>
+                  </span>
+                </p>
+
+                <p class="work-card__badge">
+                  <span lang="pt-BR">Destaque</span><span lang="en">Featured</span>
+                </p>
+              </div>
+            </article>
+          </li>
+
+          <!-- ---------------- PROJETO 03 ---------------- -->
+          <li class="work-grid__item" data-reveal data-project-area="logistica gestao-dados">
+            <article class="work-card" aria-labelledby="lista-03-titulo">
+
+              <figure class="media media--4x3 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa da Roteirização · 4:3 · 1200×900</span><span lang="en">Route planning cover · 4:3 · 1200×900</span>
+                </span>
+                <!--
+                <img src="assets/images/projeto-03-capa-4x3.jpg"
+                     alt=""
+                     width="1200" height="900" loading="lazy" decoding="async">
+                -->
+              </figure>
+
+              <div class="work-card__body">
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">2025</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span>
+                  </li>
+                </ul>
+
+                <h2 class="work-card__title" id="lista-03-titulo">
+                  <a class="work-card__link" href="projects/projeto-03.html">
+                    <span lang="pt-BR">Rota calculada, decisão preservada</span><span lang="en">Route calculated, decision preserved</span>
+                  </a>
+                </h2>
+
+                <p class="work-card__summary" lang="pt-BR">
+                  Roteirização automática por veículo, peso e distância, sem
+                  tirar a palavra final do gestor.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Automatic route planning by vehicle, weight and distance,
+                  without taking the final say away from the manager.
+                </p>
+
+                <p class="work-card__metric">
+                  <span class="work-card__metric-value">−40%</span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">no custo por rota</span><span lang="en">in cost per route</span>
+                  </span>
+                </p>
+
+                <p class="work-card__badge">
+                  <span lang="pt-BR">Destaque</span><span lang="en">Featured</span>
+                </p>
+              </div>
+            </article>
+          </li>
+
+        </ul>
+
+        <!-- Só aparece se um filtro não encontrar nenhum projeto. -->
+        <p class="work-grid__empty" hidden data-project-empty>
+          <span lang="pt-BR">Ainda não há projetos nesta área.</span><span lang="en">No projects in this area yet.</span>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         02 · CONTATO (curto)
+         ======================================================================== -->
+    <section class="section section--alt section--tight" id="contato" aria-labelledby="contato-titulo">
+      <div class="container">
+
+        <div class="contact contact--inline" data-reveal>
+
+          <div class="contact__text">
+            <h2 class="contact__title" id="contato-titulo">
+              <span lang="pt-BR">Quer ver algum projeto em detalhe numa conversa?</span><span lang="en">Want to walk through a project in a conversation?</span>
+            </h2>
+          </div>
+
+          <div class="contact__actions cluster">
+            <!-- E-MAIL — troque pelo seu endereço real -->
+            <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-mail"></use>
+              </svg>
+              <span>arthursouza_7@outlook.com</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <p class="footer__copy">
+        <span lang="pt-BR">© <span data-year>2026</span> Arthur Souza. Desenhado e codificado à mão.</span><span lang="en">© <span data-year>2026</span> Arthur Souza. Designed and hand-coded.</span>
+      </p>
+
+      <ul class="footer__links">
+        <li>
+          <a class="footer__link" href="projetos.html" aria-current="page">
+            <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="mailto:arthursouza_7@outlook.com">
+            <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="https://www.linkedin.com/in/arthursouza7/"
+             target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="#conteudo">
+            <span lang="pt-BR">Voltar ao topo</span><span lang="en">Back to top</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </footer>
+
+</body>
+</html>

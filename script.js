@@ -27,8 +27,9 @@
      data-theme     em <html>               tema em vigor: claro | escuro
 
    Além disso mantém corretos os atributos que o CSS lê diretamente:
-   aria-expanded em [data-nav-toggle] e aria-pressed em [data-lang-value] e
-   em [data-theme-toggle].
+   aria-expanded em [data-nav-toggle] e aria-pressed em [data-lang-value],
+   em [data-theme-toggle] e em [data-filter-value]. E escreve hidden em
+   [data-project-filter] e nos itens de [data-project-grid] (/projetos).
    Estado de acessibilidade e estado visual têm uma fonte de verdade só.
 
    REGRAS DE MARCAÇÃO (herdadas do HTML)
@@ -54,7 +55,8 @@
    07 · Menu mobile
    08 · Scrollspy
    09 · Lightbox
-   10 · Inicialização
+   10 · Filtro e contador de projetos
+   11 · Inicialização
    ========================================================================== */
 
 (function () {
@@ -730,7 +732,80 @@
 
 
   /* ==========================================================================
-     10 · INICIALIZAÇÃO
+     10 · FILTRO E CONTADOR DE PROJETOS (/projetos.html)
+     --------------------------------------------------------------------------
+     O contador é sempre recalculado a partir da grade: o número escrito no
+     HTML é só o fallback sem JavaScript, e quem adiciona um projeto não
+     precisa lembrar de atualizá-lo.
+
+     O filtro nasce com hidden no HTML e só é revelado quando a grade tem
+     pelo menos data-filter-min itens. Abaixo disso, continua escondido e
+     inerte. Filtrar esconde os <li> pelo atributo hidden — que o CSS já faz
+     vencer qualquer display — e reescreve o contador e o singular/plural.
+     ========================================================================== */
+
+  const FILTER_ALL = 'todos';
+
+  function initProjectFilter() {
+    const grid = $('[data-project-grid]');
+    if (!grid) return;
+
+    const items = $$('[data-project-area]', grid);
+    const counts = $$('[data-project-count]');
+    const nouns = $$('[data-plural-other]');
+    const empty = $('[data-project-empty]');
+    const filter = $('[data-project-filter]');
+
+    function renderCount(total) {
+      counts.forEach((element) => {
+        element.textContent = String(total);
+      });
+      nouns.forEach((element) => {
+        const key = total === 1 ? 'data-plural-one' : 'data-plural-other';
+        element.textContent = element.getAttribute(key) || element.textContent;
+      });
+      if (empty) empty.hidden = total > 0;
+    }
+
+    renderCount(items.length);
+
+    if (!filter) return;
+
+    const minimum = parseInt(filter.getAttribute('data-filter-min'), 10) || 0;
+    if (items.length < minimum) return;
+
+    const buttons = $$('[data-filter-value]', filter);
+    filter.hidden = false;
+
+    function apply(value) {
+      let shown = 0;
+
+      items.forEach((item) => {
+        const areas = (item.getAttribute('data-project-area') || '').split(/\s+/);
+        const match = value === FILTER_ALL || areas.indexOf(value) !== -1;
+        item.hidden = !match;
+        if (match) shown += 1;
+      });
+
+      buttons.forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.getAttribute('data-filter-value') === value));
+      });
+
+      renderCount(shown);
+    }
+
+    /* Delegação: um listener para o grupo inteiro. */
+    filter.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-filter-value]');
+      if (!button || !filter.contains(button)) return;
+      if (button.getAttribute('aria-pressed') === 'true') return;
+      apply(button.getAttribute('data-filter-value'));
+    });
+  }
+
+
+  /* ==========================================================================
+     11 · INICIALIZAÇÃO
      --------------------------------------------------------------------------
      Cada módulo verifica sozinho se os elementos de que precisa existem na
      página, então a mesma lista roda na home e nos estudos de caso — o
@@ -751,4 +826,5 @@
   initNav();
   initScrollSpy();
   initLightbox();
+  initProjectFilter();
 })();
