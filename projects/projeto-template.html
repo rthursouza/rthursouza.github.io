@@ -12,7 +12,15 @@
   2. Percorra os blocos marcados com  >> PREENCHER  e substitua o conteúdo.
   3. Troque os placeholders de mídia por imagens reais (instruções em cada um).
   4. Atualize o <head>: title, description, canonical, Open Graph.
-  5. Adicione o card correspondente em ../index.html.
+  5. Preencha "Em 30 segundos" (Problema · O que eu fiz · Resultado) só
+     com texto que já está no case, e o "Outros projetos" do fim com os
+     vizinhos deste case na ordem de ../projetos.html.
+  6. Adicione o card em ../projetos.html (e na home, se for destaque) e
+     atualize o "Outros projetos" dos cases vizinhos.
+
+  LEITURA: no máximo 2 parágrafos seguidos sem imagem. No desktop cada
+  seção tem o título à esquerda e o conteúdo à direita — é o
+  .case-section, que não precisa de nada além da estrutura já pronta.
 
   O texto visível aqui é EXEMPLO REAL, não lorem ipsum: ele mostra o nível de
   profundidade e especificidade que um Design Manager espera ler. Use-o como
@@ -246,7 +254,7 @@
             </a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="../index.html#projetos" aria-current="true">
+            <a class="nav__link" href="../projetos.html" aria-current="true">
               <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
             </a>
           </li>
@@ -335,7 +343,7 @@
                 </a>
               </li>
               <li class="breadcrumb__item">
-                <a class="breadcrumb__link" href="../index.html#projetos">
+                <a class="breadcrumb__link" href="../projetos.html">
                   <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
                 </a>
               </li>
@@ -345,49 +353,53 @@
             </ol>
           </nav>
 
+          <!-- Empresa e ano vivem no eyebrow; a ficha abaixo da imagem fica
+               só com Papel · Time · Duração · Ferramentas.
+               >> PREENCHER -->
           <p class="eyebrow" data-reveal>
-            <span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span>
+            <span lang="pt-BR">Estudo de caso · Loja Norte · 2025</span><span lang="en">Case study · Loja Norte · 2025</span>
           </p>
 
           <h1 class="case-hero__title" id="case-titulo" data-reveal>
             <span lang="pt-BR">De 5 etapas para 2: como reduzimos o abandono de carrinho em 23%</span><span lang="en">From 5 steps to 2: how we cut cart abandonment by 23%</span>
           </h1>
 
+          <!-- SUBTÍTULO — uma linha. O parágrafo de abertura que vivia aqui
+               passou para o cartão "Problema" do bloco Em 30 segundos.
+               >> PREENCHER -->
           <p class="case-hero__lead" data-reveal lang="pt-BR">
-            Um checkout que pedia cadastro antes de mostrar o frete estava
-            perdendo quase metade dos compradores na primeira etapa. Reescrevemos
-            a ordem das perguntas em vez de redesenhar a tela.
+            Reescrevemos a ordem das perguntas em vez de redesenhar a
+            tela.
           </p>
           <p class="case-hero__lead" data-reveal lang="en">
-            A checkout that required sign-up before showing shipping costs was
-            losing nearly half of its buyers at step one. We rewrote the order of
-            the questions instead of redesigning the screen.
+            We rewrote the order of the questions instead of redesigning
+            the screen.
           </p>
 
-          <!-- METADADOS DO PROJETO -->
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="container container--wide case-hero__media" data-reveal>
+          <figure class="media media--21x9 media--framed">
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
+            </span>
+            <!--
+              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              Esta é a imagem LCP desta página: eager + fetchpriority="high".
+
+            <img src="../assets/images/case-template-hero.jpg"
+                 alt="Telas finais do novo checkout em desktop e mobile"
+                 data-en-alt="Final screens of the new checkout on desktop and mobile"
+                 width="2100" height="900"
+                 loading="eager" fetchpriority="high" decoding="async">
+            -->
+          </figure>
+        </div>
+
+        <div class="container">
+          <!-- FICHA DO PROJETO — faixa horizontal logo abaixo da imagem -->
           <dl class="case-meta" data-reveal>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Empresa</span><span lang="en">Company</span>
-              </dt>
-              <dd class="case-meta__value">
-                <span lang="pt-BR">Loja Norte · E-commerce</span><span lang="en">Loja Norte · E-commerce</span>
-              </dd>
-            </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Ano</span><span lang="en">Year</span>
-              </dt>
-              <dd class="case-meta__value">2025</dd>
-            </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
-              </dt>
-              <dd class="case-meta__value">
-                <span lang="pt-BR">14 semanas</span><span lang="en">14 weeks</span>
-              </dd>
-            </div>
             <div class="case-meta__row">
               <dt class="case-meta__label">
                 <span lang="pt-BR">Meu papel</span><span lang="en">My role</span>
@@ -406,6 +418,14 @@
             </div>
             <div class="case-meta__row">
               <dt class="case-meta__label">
+                <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">14 semanas</span><span lang="en">14 weeks</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
                 <span lang="pt-BR">Ferramentas</span><span lang="en">Tools</span>
               </dt>
               <dd class="case-meta__value">
@@ -418,28 +438,90 @@
               </dd>
             </div>
           </dl>
-
-        </div>
-
-        <!-- HERO IMAGE -->
-        <div class="container container--wide" data-reveal>
-          <figure class="media media--21x9 media--framed">
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
-            </span>
-            <!--
-              SUBSTITUIR: apague o <span class="media__label"> e descomente.
-              Esta é a imagem LCP desta página: eager + fetchpriority="high".
-
-            <img src="../assets/images/case-template-hero.jpg"
-                 alt="Telas finais do novo checkout em desktop e mobile"
-                 data-en-alt="Final screens of the new checkout on desktop and mobile"
-                 width="2100" height="900"
-                 loading="eager" fetchpriority="high" decoding="async">
-            -->
-          </figure>
         </div>
       </header>
+
+      <!-- ==================================================================== -->
+      <!-- EM 30 SEGUNDOS + ÍNDICE                                              -->
+      <!-- Texto tirado do próprio case — nada escrito do zero. Problema: o     -->
+      <!-- antigo parágrafo de abertura. O que eu fiz: seção 04 (Meu papel).    -->
+      <!-- Resultado: a métrica principal da seção 07.                          -->
+      <!-- >> PREENCHER: os três cartões, com texto que já está no case.   -->
+      <!-- ==================================================================== -->
+      <section class="section case-summary" aria-labelledby="resumo-titulo">
+        <div class="container">
+
+          <h2 class="case-summary__title" id="resumo-titulo" data-reveal>
+            <span lang="pt-BR">Em 30 segundos</span><span lang="en">In 30 seconds</span>
+          </h2>
+
+          <div class="summary" data-reveal>
+
+            <div class="summary__card">
+              <h3 class="summary__label">
+                <span lang="pt-BR">Problema</span><span lang="en">Problem</span>
+              </h3>
+              <p class="summary__text" lang="pt-BR">
+                Um checkout que pedia cadastro antes de mostrar o frete
+                estava perdendo quase metade dos compradores na primeira
+                etapa.
+              </p>
+              <p class="summary__text" lang="en">
+                A checkout that required sign-up before showing shipping
+                costs was losing nearly half of its buyers at step one.
+              </p>
+            </div>
+
+            <div class="summary__card">
+              <h3 class="summary__label">
+                <span lang="pt-BR">O que eu fiz</span><span lang="en">What I did</span>
+              </h3>
+              <p class="summary__text" lang="pt-BR">
+                Fui o único designer do projeto. A estratégia de
+                precificação de frete e a implementação foram do PM e do
+                time de engenharia.
+              </p>
+              <p class="summary__text" lang="en">
+                I was the only designer on the project. Shipping pricing
+                strategy and implementation belonged to the PM and the
+                engineering team.
+              </p>
+            </div>
+
+            <div class="summary__card summary__card--result">
+              <h3 class="summary__label">
+                <span lang="pt-BR">Resultado</span><span lang="en">Result</span>
+              </h3>
+              <p class="summary__value">−23%</p>
+              <p class="summary__text">
+                <span lang="pt-BR">Abandono de carrinho</span><span lang="en">Cart abandonment</span>
+              </p>
+              <p class="summary__note">
+                <span lang="pt-BR">De 47% para 24% dos checkouts iniciados</span><span lang="en">From 47% to 24% of started checkouts</span>
+              </p>
+            </div>
+
+          </div>
+
+          <!-- ÍNDICE — o rótulo visível é aria-hidden porque o nome do <nav>
+               já diz a mesma coisa ao leitor de tela. -->
+          <nav class="case-toc" aria-label="Neste estudo de caso"
+               data-en-aria-label="In this case study" data-reveal>
+            <p class="case-toc__label" aria-hidden="true">
+              <span lang="pt-BR">Neste case:</span><span lang="en">In this case:</span>
+            </p>
+            <ul class="case-toc__list">
+              <li><a class="case-toc__link" href="#contexto"><span lang="pt-BR">Contexto</span><span lang="en">Context</span></a></li>
+              <li><a class="case-toc__link" href="#desafio"><span lang="pt-BR">Problema</span><span lang="en">Problem</span></a></li>
+              <li><a class="case-toc__link" href="#processo"><span lang="pt-BR">Processo</span><span lang="en">Process</span></a></li>
+              <li><a class="case-toc__link" href="#solucao"><span lang="pt-BR">Solução</span><span lang="en">Solution</span></a></li>
+              <li><a class="case-toc__link" href="#resultados"><span lang="pt-BR">Resultado</span><span lang="en">Results</span></a></li>
+              <li><a class="case-toc__link" href="#aprendizados"><span lang="pt-BR">Aprendizados</span><span lang="en">Learnings</span></a></li>
+            </ul>
+          </nav>
+
+        </div>
+      </section>
 
       <!-- ==================================================================== -->
       <!-- 02 · CONTEXTO                                          >> PREENCHER  -->
@@ -450,9 +532,9 @@
         um relatório. Evite jargão interno.
       -->
       <section class="section" id="contexto" aria-labelledby="contexto-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">01 — Contexto</span><span lang="en">01 — Context</span>
             </p>
@@ -461,53 +543,55 @@
             </h2>
           </header>
 
-          <div class="prose" data-reveal>
-            <p lang="pt-BR">
-              A Loja Norte é um e-commerce de materiais de construção que atende
-              tanto consumidor final quanto pequenas empreiteiras. São cerca de
-              40 mil pedidos por mês, com ticket médio alto e uma característica
-              incomum: o frete pode representar até 30% do valor total, porque
-              boa parte dos produtos é pesada.
-            </p>
-            <p lang="en">
-              Loja Norte is a construction-materials e-commerce serving both
-              consumers and small contractors. It handles around 40,000 orders a
-              month, with a high average order value and one unusual trait:
-              shipping can account for up to 30% of the total, because much of
-              the catalogue is heavy.
-            </p>
-            <p lang="pt-BR">
-              O checkout tinha cinco etapas e não havia sido revisado em quatro
-              anos. Cada nova regra de negócio virou mais um campo. A empresa
-              acabara de investir pesado em aquisição paga, e o custo por
-              conversão estava subindo mês a mês — o funil de topo crescia, mas
-              a receita não acompanhava.
-            </p>
-            <p lang="en">
-              The checkout had five steps and hadn't been revisited in four
-              years. Every new business rule became one more field. The company
-              had just invested heavily in paid acquisition, and cost per
-              conversion was climbing month over month — top-of-funnel traffic
-              was growing, but revenue wasn't following.
-            </p>
+          <div class="case-section__body">
+            <div class="prose" data-reveal>
+              <p lang="pt-BR">
+                A Loja Norte é um e-commerce de materiais de construção que atende
+                tanto consumidor final quanto pequenas empreiteiras. São cerca de
+                40 mil pedidos por mês, com ticket médio alto e uma característica
+                incomum: o frete pode representar até 30% do valor total, porque
+                boa parte dos produtos é pesada.
+              </p>
+              <p lang="en">
+                Loja Norte is a construction-materials e-commerce serving both
+                consumers and small contractors. It handles around 40,000 orders a
+                month, with a high average order value and one unusual trait:
+                shipping can account for up to 30% of the total, because much of
+                the catalogue is heavy.
+              </p>
+              <p lang="pt-BR">
+                O checkout tinha cinco etapas e não havia sido revisado em quatro
+                anos. Cada nova regra de negócio virou mais um campo. A empresa
+                acabara de investir pesado em aquisição paga, e o custo por
+                conversão estava subindo mês a mês — o funil de topo crescia, mas
+                a receita não acompanhava.
+              </p>
+              <p lang="en">
+                The checkout had five steps and hadn't been revisited in four
+                years. Every new business rule became one more field. The company
+                had just invested heavily in paid acquisition, and cost per
+                conversion was climbing month over month — top-of-funnel traffic
+                was growing, but revenue wasn't following.
+              </p>
+            </div>
+
+            <!-- PESQUISA -->
+            <figure class="media media--16x9" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Fluxo antigo do checkout, 5 etapas · 1600×900</span><span lang="en">Legacy 5-step checkout flow · 1600×900</span>
+              </span>
+              <!--
+              <img src="../assets/images/case-template-contexto.png"
+                   alt="Diagrama do fluxo antigo de checkout com cinco etapas sequenciais"
+                   data-en-alt="Diagram of the legacy checkout flow with five sequential steps"
+                   width="1600" height="900" loading="lazy" decoding="async">
+              -->
+              <figcaption class="media__caption">
+                <span lang="pt-BR">O fluxo original: cinco etapas, 23 campos obrigatórios, nenhuma informação de frete antes da etapa 4.</span><span lang="en">The original flow: five steps, 23 required fields, no shipping information before step 4.</span>
+              </figcaption>
+            </figure>
+
           </div>
-
-          <!-- PESQUISA -->
-          <figure class="media media--16x9" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Fluxo antigo do checkout, 5 etapas · 1600×900</span><span lang="en">Legacy 5-step checkout flow · 1600×900</span>
-            </span>
-            <!--
-            <img src="../assets/images/case-template-contexto.png"
-                 alt="Diagrama do fluxo antigo de checkout com cinco etapas sequenciais"
-                 data-en-alt="Diagram of the legacy checkout flow with five sequential steps"
-                 width="1600" height="900" loading="lazy" decoding="async">
-            -->
-            <figcaption class="media__caption">
-              <span lang="pt-BR">O fluxo original: cinco etapas, 23 campos obrigatórios, nenhuma informação de frete antes da etapa 4.</span><span lang="en">The original flow: five steps, 23 required fields, no shipping information before step 4.</span>
-            </figcaption>
-          </figure>
-
         </div>
       </section>
 
@@ -522,79 +606,81 @@
         não convence design.
       -->
       <section class="section section--alt" id="desafio" aria-labelledby="desafio-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
-              <span lang="pt-BR">02 — Desafio</span><span lang="en">02 — Challenge</span>
+              <span lang="pt-BR">02 — Problema</span><span lang="en">02 — Problem</span>
             </p>
             <h2 class="section-head__title" id="desafio-titulo">
               <span lang="pt-BR">O problema, dos dois lados</span><span lang="en">The problem, from both sides</span>
             </h2>
           </header>
 
-          <div class="split" data-reveal>
+          <div class="case-section__body">
+            <div class="split" data-reveal>
 
-            <div class="split__col">
-              <h3 class="split__title">
-                <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
-              </h3>
-              <div class="prose prose--sm">
-                <p lang="pt-BR">
-                  47% dos usuários que iniciavam o checkout não concluíam. A
-                  maior queda acontecia na primeira etapa — o cadastro
-                  obrigatório — antes mesmo de qualquer informação sobre entrega.
-                  Com o investimento em mídia paga em alta, cada ponto percentual
-                  de abandono passou a custar cerca de R$ 180 mil por trimestre.
-                </p>
-                <p lang="en">
-                  47% of users who started checkout never finished. The steepest
-                  drop happened at step one — mandatory sign-up — before any
-                  delivery information appeared. With paid media spend rising,
-                  every percentage point of abandonment was costing roughly
-                  R$180k per quarter.
-                </p>
+              <div class="split__col">
+                <h3 class="split__title">
+                  <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
+                </h3>
+                <div class="prose prose--sm">
+                  <p lang="pt-BR">
+                    47% dos usuários que iniciavam o checkout não concluíam. A
+                    maior queda acontecia na primeira etapa — o cadastro
+                    obrigatório — antes mesmo de qualquer informação sobre entrega.
+                    Com o investimento em mídia paga em alta, cada ponto percentual
+                    de abandono passou a custar cerca de R$ 180 mil por trimestre.
+                  </p>
+                  <p lang="en">
+                    47% of users who started checkout never finished. The steepest
+                    drop happened at step one — mandatory sign-up — before any
+                    delivery information appeared. With paid media spend rising,
+                    every percentage point of abandonment was costing roughly
+                    R$180k per quarter.
+                  </p>
+                </div>
               </div>
+
+              <div class="split__col">
+                <h3 class="split__title">
+                  <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
+                </h3>
+                <div class="prose prose--sm">
+                  <p lang="pt-BR">
+                    As entrevistas mostraram um padrão consistente: as pessoas não
+                    desistiam por causa do preço do frete, mas por não conseguirem
+                    descobri-lo. Criar conta para receber uma informação que pode
+                    inviabilizar a compra era percebido como troca injusta.
+                  </p>
+                  <p lang="en">
+                    Interviews revealed a consistent pattern: people weren't
+                    dropping off because of the shipping price, but because they
+                    couldn't find out what it was. Creating an account to unlock
+                    information that might kill the purchase felt like an unfair
+                    trade.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
-            <div class="split__col">
-              <h3 class="split__title">
-                <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
-              </h3>
-              <div class="prose prose--sm">
-                <p lang="pt-BR">
-                  As entrevistas mostraram um padrão consistente: as pessoas não
-                  desistiam por causa do preço do frete, mas por não conseguirem
-                  descobri-lo. Criar conta para receber uma informação que pode
-                  inviabilizar a compra era percebido como troca injusta.
-                </p>
-                <p lang="en">
-                  Interviews revealed a consistent pattern: people weren't
-                  dropping off because of the shipping price, but because they
-                  couldn't find out what it was. Creating an account to unlock
-                  information that might kill the purchase felt like an unfair
-                  trade.
-                </p>
-              </div>
-            </div>
+            <!-- INSIGHTS -->
+            <blockquote class="quote quote--lg" data-reveal>
+              <p class="quote__text" lang="pt-BR">
+                “Eu só quero saber quanto sai o frete pra Zona Norte. Por que eu
+                preciso criar uma senha pra isso?”
+              </p>
+              <p class="quote__text" lang="en">
+                “I just want to know what shipping costs to my neighbourhood. Why
+                do I need to create a password for that?”
+              </p>
+              <footer class="quote__author">
+                <span lang="pt-BR">— Participante 07, empreiteira, 41 anos</span><span lang="en">— Participant 07, contractor, 41</span>
+              </footer>
+            </blockquote>
 
           </div>
-
-          <!-- INSIGHTS -->
-          <blockquote class="quote" data-reveal>
-            <p class="quote__text" lang="pt-BR">
-              “Eu só quero saber quanto sai o frete pra Zona Norte. Por que eu
-              preciso criar uma senha pra isso?”
-            </p>
-            <p class="quote__text" lang="en">
-              “I just want to know what shipping costs to my neighbourhood. Why
-              do I need to create a password for that?”
-            </p>
-            <footer class="quote__author">
-              <span lang="pt-BR">— Participante 07, empreiteira, 41 anos</span><span lang="en">— Participant 07, contractor, 41</span>
-            </footer>
-          </blockquote>
-
         </div>
       </section>
 
@@ -606,9 +692,9 @@
         objetivo — é intenção. Escreva o que dá para medir depois.
       -->
       <section class="section" id="objetivos" aria-labelledby="objetivos-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">03 — Objetivos</span><span lang="en">03 — Goals</span>
             </p>
@@ -617,39 +703,41 @@
             </h2>
           </header>
 
-          <ul class="checklist" data-reveal>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Reduzir o abandono na primeira etapa em pelo menos 15 pontos percentuais.</span><span lang="en">Cut step-one abandonment by at least 15 percentage points.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Expor o custo de frete antes de qualquer campo obrigatório.</span><span lang="en">Surface shipping cost before any required field.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Permitir compra sem cadastro, sem perder o histórico de pedidos de quem já é cliente.</span><span lang="en">Allow guest purchase without losing order history for existing customers.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Manter conformidade com as regras fiscais de emissão de nota (restrição inegociável).</span><span lang="en">Stay compliant with tax invoicing rules (a non-negotiable constraint).</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Entregar em até 14 semanas, sem reescrever o back-end de pagamentos.</span><span lang="en">Ship within 14 weeks, without rewriting the payments back-end.</span>
-            </li>
-          </ul>
+          <div class="case-section__body">
+            <ul class="checklist" data-reveal>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Reduzir o abandono na primeira etapa em pelo menos 15 pontos percentuais.</span><span lang="en">Cut step-one abandonment by at least 15 percentage points.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Expor o custo de frete antes de qualquer campo obrigatório.</span><span lang="en">Surface shipping cost before any required field.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Permitir compra sem cadastro, sem perder o histórico de pedidos de quem já é cliente.</span><span lang="en">Allow guest purchase without losing order history for existing customers.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Manter conformidade com as regras fiscais de emissão de nota (restrição inegociável).</span><span lang="en">Stay compliant with tax invoicing rules (a non-negotiable constraint).</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Entregar em até 14 semanas, sem reescrever o back-end de pagamentos.</span><span lang="en">Ship within 14 weeks, without rewriting the payments back-end.</span>
+              </li>
+            </ul>
 
+          </div>
         </div>
       </section>
 
@@ -662,38 +750,40 @@
         inteiro quando a encontram.
       -->
       <section class="section section--alt" id="papel" aria-labelledby="papel-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">04 — Meu papel</span><span lang="en">04 — My role</span>
             </p>
             <h2 class="section-head__title" id="papel-titulo">
               <span lang="pt-BR">O que foi meu</span><span lang="en">What was mine</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               Fui o único designer do projeto. A estratégia de precificação de
               frete e a implementação foram do PM e do time de engenharia.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               I was the only designer on the project. Shipping pricing strategy
               and implementation belonged to the PM and the engineering team.
             </p>
-          </header>
+            <ul class="chips chips--lg" data-reveal
+                aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
+              <li class="chip"><span lang="pt-BR">UX Research</span><span lang="en">UX Research</span></li>
+              <li class="chip"><span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span></li>
+              <li class="chip"><span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span></li>
+              <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
+              <li class="chip"><span lang="pt-BR">Protótipos</span><span lang="en">Prototypes</span></li>
+              <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
+              <li class="chip"><span lang="pt-BR">Testes de usabilidade</span><span lang="en">Usability testing</span></li>
+              <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
+              <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>
+            </ul>
 
-          <ul class="chips chips--lg" data-reveal
-              aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
-            <li class="chip"><span lang="pt-BR">UX Research</span><span lang="en">UX Research</span></li>
-            <li class="chip"><span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span></li>
-            <li class="chip"><span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span></li>
-            <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
-            <li class="chip"><span lang="pt-BR">Protótipos</span><span lang="en">Prototypes</span></li>
-            <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
-            <li class="chip"><span lang="pt-BR">Testes de usabilidade</span><span lang="en">Usability testing</span></li>
-            <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
-            <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>
-          </ul>
-
+          </div>
         </div>
       </section>
 
@@ -710,400 +800,402 @@
         daquela etapa — o layout continua correto.
       -->
       <section class="section" id="processo" aria-labelledby="processo-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">05 — Processo</span><span lang="en">05 — Process</span>
             </p>
             <h2 class="section-head__title" id="processo-titulo">
               <span lang="pt-BR">Como cheguei lá</span><span lang="en">How I got there</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               Onze etapas ao longo de 14 semanas. Duas delas invalidaram
               hipóteses que eu tinha como certas.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               Eleven stages across 14 weeks. Two of them invalidated assumptions
               I was sure about.
             </p>
-          </header>
+            <ol class="timeline">
 
-          <ol class="timeline">
+              <!-- PESQUISA -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Pesquisa</span><span lang="en">Research</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Doze entrevistas em profundidade com compradores que abandonaram
+                    o carrinho nos últimos 30 dias, mais análise de 40 sessões
+                    gravadas. Comecei pelos dados quantitativos para saber onde
+                    olhar, e pelas entrevistas para entender por quê.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Twelve in-depth interviews with buyers who had abandoned their
+                    cart in the previous 30 days, plus analysis of 40 recorded
+                    sessions. I started with quantitative data to know where to
+                    look, and with interviews to understand why.
+                  </p>
+                  <!-- PESQUISA -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Quadro de pesquisa · 1200×675</span><span lang="en">Research board · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-pesquisa.png"
+                         alt="Quadro com trechos de entrevistas agrupados por tema"
+                         data-en-alt="Board with interview excerpts grouped by theme"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- PESQUISA -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Pesquisa</span><span lang="en">Research</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Doze entrevistas em profundidade com compradores que abandonaram
-                  o carrinho nos últimos 30 dias, mais análise de 40 sessões
-                  gravadas. Comecei pelos dados quantitativos para saber onde
-                  olhar, e pelas entrevistas para entender por quê.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Twelve in-depth interviews with buyers who had abandoned their
-                  cart in the previous 30 days, plus analysis of 40 recorded
-                  sessions. I started with quantitative data to know where to
-                  look, and with interviews to understand why.
-                </p>
-                <!-- PESQUISA -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Quadro de pesquisa · 1200×675</span><span lang="en">Research board · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-pesquisa.png"
-                       alt="Quadro com trechos de entrevistas agrupados por tema"
-                       data-en-alt="Board with interview excerpts grouped by theme"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- INSIGHTS -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Insights</span><span lang="en">Insights</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Agrupei 214 trechos em 9 temas. O achado que mudou o projeto:
+                    o problema não era o número de etapas, era a <em>ordem</em>
+                    delas. Ninguém reclamou de preencher formulário — reclamaram de
+                    preencher formulário sem saber se a compra faria sentido.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I clustered 214 excerpts into 9 themes. The finding that changed
+                    the project: the problem wasn't the number of steps, it was
+                    their <em>order</em>. Nobody complained about filling in forms —
+                    they complained about filling them in without knowing whether
+                    the purchase would make sense.
+                  </p>
+                  <!-- INSIGHTS -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Mapa de afinidades · 1200×675</span><span lang="en">Affinity map · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-insights.png"
+                         alt="Mapa de afinidades com nove temas identificados na pesquisa"
+                         data-en-alt="Affinity map showing nine themes identified in research"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- INSIGHTS -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Insights</span><span lang="en">Insights</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Agrupei 214 trechos em 9 temas. O achado que mudou o projeto:
-                  o problema não era o número de etapas, era a <em>ordem</em>
-                  delas. Ninguém reclamou de preencher formulário — reclamaram de
-                  preencher formulário sem saber se a compra faria sentido.
-                </p>
-                <p class="timeline__text" lang="en">
-                  I clustered 214 excerpts into 9 themes. The finding that changed
-                  the project: the problem wasn't the number of steps, it was
-                  their <em>order</em>. Nobody complained about filling in forms —
-                  they complained about filling them in without knowing whether
-                  the purchase would make sense.
-                </p>
-                <!-- INSIGHTS -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Mapa de afinidades · 1200×675</span><span lang="en">Affinity map · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-insights.png"
-                       alt="Mapa de afinidades com nove temas identificados na pesquisa"
-                       data-en-alt="Affinity map showing nine themes identified in research"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- PERSONA -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Personas</span><span lang="en">Personas</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Duas personas com comportamentos de compra opostos: a
+                    empreiteira que compra o mesmo item toda semana e o consumidor
+                    que compra uma vez por ano. Otimizar para uma prejudicava a
+                    outra — essa tensão guiou todas as decisões seguintes.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Two personas with opposite buying behaviour: the contractor who
+                    buys the same item weekly, and the consumer who buys once a
+                    year. Optimising for one hurt the other — that tension drove
+                    every decision that followed.
+                  </p>
+                  <!-- PERSONA -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Personas · 1200×675</span><span lang="en">Personas · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-personas.png"
+                         alt="Duas personas com objetivos, frustrações e comportamento de compra"
+                         data-en-alt="Two personas with goals, frustrations and buying behaviour"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- PERSONA -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Personas</span><span lang="en">Personas</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Duas personas com comportamentos de compra opostos: a
-                  empreiteira que compra o mesmo item toda semana e o consumidor
-                  que compra uma vez por ano. Otimizar para uma prejudicava a
-                  outra — essa tensão guiou todas as decisões seguintes.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Two personas with opposite buying behaviour: the contractor who
-                  buys the same item weekly, and the consumer who buys once a
-                  year. Optimising for one hurt the other — that tension drove
-                  every decision that followed.
-                </p>
-                <!-- PERSONA -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Personas · 1200×675</span><span lang="en">Personas · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-personas.png"
-                       alt="Duas personas com objetivos, frustrações e comportamento de compra"
-                       data-en-alt="Two personas with goals, frustrations and buying behaviour"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- USER JOURNEY -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">User Journey</span><span lang="en">User Journey</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Mapeei a jornada da busca no Google até o recebimento. Ficou
+                    visível que o pico de ansiedade acontecia fora do checkout —
+                    na dúvida sobre prazo de entrega, que só era respondida no fim.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I mapped the journey from Google search to delivery. It became
+                    clear the anxiety peak happened outside checkout — in the
+                    uncertainty about delivery time, which was only answered at
+                    the very end.
+                  </p>
+                  <!-- USER JOURNEY -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Mapa da jornada · 1200×675</span><span lang="en">Journey map · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-journey.png"
+                         alt="Mapa da jornada do usuário com curva emocional em cada etapa"
+                         data-en-alt="User journey map with an emotional curve at each stage"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- USER JOURNEY -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">User Journey</span><span lang="en">User Journey</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Mapeei a jornada da busca no Google até o recebimento. Ficou
-                  visível que o pico de ansiedade acontecia fora do checkout —
-                  na dúvida sobre prazo de entrega, que só era respondida no fim.
-                </p>
-                <p class="timeline__text" lang="en">
-                  I mapped the journey from Google search to delivery. It became
-                  clear the anxiety peak happened outside checkout — in the
-                  uncertainty about delivery time, which was only answered at
-                  the very end.
-                </p>
-                <!-- USER JOURNEY -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Mapa da jornada · 1200×675</span><span lang="en">Journey map · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-journey.png"
-                       alt="Mapa da jornada do usuário com curva emocional em cada etapa"
-                       data-en-alt="User journey map with an emotional curve at each stage"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- ARQUITETURA -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Reorganizei os 23 campos por <em>momento de necessidade</em>, e
+                    não por entidade de banco de dados. Onze campos foram
+                    eliminados; sete migraram para depois da confirmação do pedido.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I reorganised the 23 fields by <em>moment of need</em> rather
+                    than by database entity. Eleven fields were removed; seven moved
+                    to after order confirmation.
+                  </p>
+                  <!-- ARQUITETURA -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Nova arquitetura de informação · 1200×675</span><span lang="en">New information architecture · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-ia.png"
+                         alt="Diagrama comparando a arquitetura antiga e a nova"
+                         data-en-alt="Diagram comparing the old and new architecture"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- ARQUITETURA -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Reorganizei os 23 campos por <em>momento de necessidade</em>, e
-                  não por entidade de banco de dados. Onze campos foram
-                  eliminados; sete migraram para depois da confirmação do pedido.
-                </p>
-                <p class="timeline__text" lang="en">
-                  I reorganised the 23 fields by <em>moment of need</em> rather
-                  than by database entity. Eleven fields were removed; seven moved
-                  to after order confirmation.
-                </p>
-                <!-- ARQUITETURA -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Nova arquitetura de informação · 1200×675</span><span lang="en">New information architecture · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-ia.png"
-                       alt="Diagrama comparando a arquitetura antiga e a nova"
-                       data-en-alt="Diagram comparing the old and new architecture"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- USER FLOW -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Fluxos</span><span lang="en">User flows</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Desenhei três fluxos alternativos e levei os três para
+                    engenharia antes de detalhar qualquer tela. O caminho que eu
+                    preferia esbarrava numa limitação do gateway de pagamento —
+                    descobrir isso na semana 4, e não na 11, salvou o cronograma.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I drew three alternative flows and took all three to engineering
+                    before detailing any screen. The one I preferred hit a payment
+                    gateway limitation — finding that out in week 4 instead of week
+                    11 saved the timeline.
+                  </p>
+                  <!-- USER FLOW -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Fluxos alternativos · 1200×675</span><span lang="en">Alternative flows · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-fluxos.png"
+                         alt="Três fluxos alternativos de checkout comparados lado a lado"
+                         data-en-alt="Three alternative checkout flows compared side by side"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- USER FLOW -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Fluxos</span><span lang="en">User flows</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Desenhei três fluxos alternativos e levei os três para
-                  engenharia antes de detalhar qualquer tela. O caminho que eu
-                  preferia esbarrava numa limitação do gateway de pagamento —
-                  descobrir isso na semana 4, e não na 11, salvou o cronograma.
-                </p>
-                <p class="timeline__text" lang="en">
-                  I drew three alternative flows and took all three to engineering
-                  before detailing any screen. The one I preferred hit a payment
-                  gateway limitation — finding that out in week 4 instead of week
-                  11 saved the timeline.
-                </p>
-                <!-- USER FLOW -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Fluxos alternativos · 1200×675</span><span lang="en">Alternative flows · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-fluxos.png"
-                       alt="Três fluxos alternativos de checkout comparados lado a lado"
-                       data-en-alt="Three alternative checkout flows compared side by side"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- WIREFRAMES / BAIXA FIDELIDADE -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>07</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Baixa fidelidade, em papel e depois em Figma. Testei quatro
+                    variações da nova primeira etapa com cinco pessoas cada, ainda
+                    em preto e branco, para que o feedback fosse sobre a estrutura
+                    e não sobre a cor do botão.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Low fidelity, on paper first and then in Figma. I tested four
+                    variations of the new first step with five people each, still
+                    in black and white, so feedback would be about structure rather
+                    than button colour.
+                  </p>
+                  <!-- BAIXA FIDELIDADE -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Wireframes de baixa fidelidade · 1200×675</span><span lang="en">Low-fidelity wireframes · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-wireframes.png"
+                         alt="Wireframes em baixa fidelidade das quatro variações testadas"
+                         data-en-alt="Low-fidelity wireframes of the four tested variations"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- WIREFRAMES / BAIXA FIDELIDADE -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>07</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Baixa fidelidade, em papel e depois em Figma. Testei quatro
-                  variações da nova primeira etapa com cinco pessoas cada, ainda
-                  em preto e branco, para que o feedback fosse sobre a estrutura
-                  e não sobre a cor do botão.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Low fidelity, on paper first and then in Figma. I tested four
-                  variations of the new first step with five people each, still
-                  in black and white, so feedback would be about structure rather
-                  than button colour.
-                </p>
-                <!-- BAIXA FIDELIDADE -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Wireframes de baixa fidelidade · 1200×675</span><span lang="en">Low-fidelity wireframes · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-wireframes.png"
-                       alt="Wireframes em baixa fidelidade das quatro variações testadas"
-                       data-en-alt="Low-fidelity wireframes of the four tested variations"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- PROTÓTIPOS -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>08</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Protótipos</span><span lang="en">Prototypes</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Protótipo navegável em alta fidelidade, incluindo estados de
+                    erro, CEP fora da área de entrega e carrinho com item
+                    indisponível. Os casos de borda foram prototipados junto — são
+                    eles que quebram na produção.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    A clickable high-fidelity prototype, including error states,
+                    out-of-range postcodes and carts with unavailable items. Edge
+                    cases were prototyped alongside the happy path — they're what
+                    breaks in production.
+                  </p>
+                  <!-- ALTA FIDELIDADE -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Protótipo em alta fidelidade · 1200×675</span><span lang="en">High-fidelity prototype · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-prototipo.png"
+                         alt="Telas do protótipo em alta fidelidade com estados de erro"
+                         data-en-alt="High-fidelity prototype screens including error states"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- PROTÓTIPOS -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>08</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Protótipos</span><span lang="en">Prototypes</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Protótipo navegável em alta fidelidade, incluindo estados de
-                  erro, CEP fora da área de entrega e carrinho com item
-                  indisponível. Os casos de borda foram prototipados junto — são
-                  eles que quebram na produção.
-                </p>
-                <p class="timeline__text" lang="en">
-                  A clickable high-fidelity prototype, including error states,
-                  out-of-range postcodes and carts with unavailable items. Edge
-                  cases were prototyped alongside the happy path — they're what
-                  breaks in production.
-                </p>
-                <!-- ALTA FIDELIDADE -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Protótipo em alta fidelidade · 1200×675</span><span lang="en">High-fidelity prototype · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-prototipo.png"
-                       alt="Telas do protótipo em alta fidelidade com estados de erro"
-                       data-en-alt="High-fidelity prototype screens including error states"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- INTERFACE FINAL -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>09</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Interface final</span><span lang="en">Final interface</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    UI construída sobre o design system existente, com três
+                    componentes novos documentados e devolvidos à biblioteca.
+                    Contraste verificado em AA para todos os estados, incluindo
+                    mensagens de erro.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    UI built on the existing design system, with three new
+                    components documented and contributed back to the library.
+                    Contrast verified at AA for every state, error messages
+                    included.
+                  </p>
+                  <!-- MOCKUP -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Interface final · 1200×675</span><span lang="en">Final interface · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-ui.png"
+                         alt="Telas finais do checkout em alta fidelidade"
+                         data-en-alt="Final high-fidelity checkout screens"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- INTERFACE FINAL -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>09</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Interface final</span><span lang="en">Final interface</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  UI construída sobre o design system existente, com três
-                  componentes novos documentados e devolvidos à biblioteca.
-                  Contraste verificado em AA para todos os estados, incluindo
-                  mensagens de erro.
-                </p>
-                <p class="timeline__text" lang="en">
-                  UI built on the existing design system, with three new
-                  components documented and contributed back to the library.
-                  Contrast verified at AA for every state, error messages
-                  included.
-                </p>
-                <!-- MOCKUP -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Interface final · 1200×675</span><span lang="en">Final interface · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-ui.png"
-                       alt="Telas finais do checkout em alta fidelidade"
-                       data-en-alt="Final high-fidelity checkout screens"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- TESTES -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>10</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Testes</span><span lang="en">Testing</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Dez testes moderados de usabilidade e um teste não moderado com
+                    84 participantes no Maze. A taxa de sucesso na tarefa subiu de
+                    61% para 94%. Três problemas encontrados nos testes voltaram
+                    para o Figma antes de qualquer linha de código.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Ten moderated usability sessions and one unmoderated test with
+                    84 participants in Maze. Task success rose from 61% to 94%.
+                    Three problems surfaced in testing went back to Figma before a
+                    single line of code was written.
+                  </p>
+                  <!-- TESTES -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Resultados dos testes · 1200×675</span><span lang="en">Test results · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-testes.png"
+                         alt="Painel com taxa de sucesso, tempo de tarefa e mapa de calor"
+                         data-en-alt="Dashboard with success rate, task time and heatmap"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- TESTES -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>10</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Testes</span><span lang="en">Testing</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Dez testes moderados de usabilidade e um teste não moderado com
-                  84 participantes no Maze. A taxa de sucesso na tarefa subiu de
-                  61% para 94%. Três problemas encontrados nos testes voltaram
-                  para o Figma antes de qualquer linha de código.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Ten moderated usability sessions and one unmoderated test with
-                  84 participants in Maze. Task success rose from 61% to 94%.
-                  Three problems surfaced in testing went back to Figma before a
-                  single line of code was written.
-                </p>
-                <!-- TESTES -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Resultados dos testes · 1200×675</span><span lang="en">Test results · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-testes.png"
-                       alt="Painel com taxa de sucesso, tempo de tarefa e mapa de calor"
-                       data-en-alt="Dashboard with success rate, task time and heatmap"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- IMPLEMENTAÇÃO -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>11</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Implementação</span><span lang="en">Implementation</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Handoff com especificação de comportamento, não só de pixels:
+                    estados, validações, mensagens de erro e ordem de foco no
+                    teclado. Acompanhei o desenvolvimento em revisões semanais e
+                    fizemos rollout gradual em teste A/B com 10% do tráfego.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Handoff specified behaviour, not just pixels: states,
+                    validation, error copy and keyboard focus order. I joined weekly
+                    build reviews, and we rolled out gradually as an A/B test at 10%
+                    of traffic.
+                  </p>
+                  <!-- IMPLEMENTAÇÃO -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Documentação de handoff · 1200×675</span><span lang="en">Handoff documentation · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-handoff.png"
+                         alt="Documentação de handoff com especificação de estados e validações"
+                         data-en-alt="Handoff documentation specifying states and validation"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- IMPLEMENTAÇÃO -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>11</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Implementação</span><span lang="en">Implementation</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Handoff com especificação de comportamento, não só de pixels:
-                  estados, validações, mensagens de erro e ordem de foco no
-                  teclado. Acompanhei o desenvolvimento em revisões semanais e
-                  fizemos rollout gradual em teste A/B com 10% do tráfego.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Handoff specified behaviour, not just pixels: states,
-                  validation, error copy and keyboard focus order. I joined weekly
-                  build reviews, and we rolled out gradually as an A/B test at 10%
-                  of traffic.
-                </p>
-                <!-- IMPLEMENTAÇÃO -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Documentação de handoff · 1200×675</span><span lang="en">Handoff documentation · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/case-template-handoff.png"
-                       alt="Documentação de handoff com especificação de estados e validações"
-                       data-en-alt="Handoff documentation specifying states and validation"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
-
-          </ol>
+            </ol>
+          </div>
         </div>
       </section>
 
@@ -1115,9 +1207,9 @@
         bonita sem racional é portfólio de UI. Com racional, é product design.
       -->
       <section class="section section--alt" id="solucao" aria-labelledby="solucao-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">06 — Solução</span><span lang="en">06 — Solution</span>
             </p>
@@ -1126,86 +1218,88 @@
             </h2>
           </header>
 
-          <!-- MOCKUP -->
-          <figure class="media media--16x9 media--framed" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
-            </span>
-            <!--
-            <img src="../assets/images/case-template-solucao.png"
-                 alt="Novo checkout em duas etapas com cálculo de frete na primeira tela"
-                 data-en-alt="New two-step checkout with shipping calculated on the first screen"
-                 width="1600" height="900" loading="lazy" decoding="async">
-            -->
-          </figure>
+          <div class="case-section__body">
+            <!-- MOCKUP -->
+            <figure class="media media--16x9 media--framed" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
+              </span>
+              <!--
+              <img src="../assets/images/case-template-solucao.png"
+                   alt="Novo checkout em duas etapas com cálculo de frete na primeira tela"
+                   data-en-alt="New two-step checkout with shipping calculated on the first screen"
+                   width="1600" height="900" loading="lazy" decoding="async">
+              -->
+            </figure>
 
-          <div class="decisions" data-reveal>
+            <div class="decisions" data-reveal>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">CEP antes de tudo</span><span lang="en">Postcode first</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                O primeiro campo do checkout passou a ser o CEP, com cálculo de
-                frete e prazo imediatos. Responder a pergunta mais cara primeiro
-                elimina a incerteza que travava a decisão de compra.
-              </p>
-              <p class="decision__text" lang="en">
-                The first field is now the postcode, with instant shipping cost
-                and delivery estimate. Answering the most expensive question first
-                removes the uncertainty that was blocking the purchase decision.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">CEP antes de tudo</span><span lang="en">Postcode first</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  O primeiro campo do checkout passou a ser o CEP, com cálculo de
+                  frete e prazo imediatos. Responder a pergunta mais cara primeiro
+                  elimina a incerteza que travava a decisão de compra.
+                </p>
+                <p class="decision__text" lang="en">
+                  The first field is now the postcode, with instant shipping cost
+                  and delivery estimate. Answering the most expensive question first
+                  removes the uncertainty that was blocking the purchase decision.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">Conta opcional, criada no fim</span><span lang="en">Optional account, created at the end</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                A conta deixou de ser porta de entrada e virou oferta na tela de
-                confirmação: “salvar estes dados para a próxima compra?”. Mesmo
-                benefício, custo psicológico zero — 38% aceitam.
-              </p>
-              <p class="decision__text" lang="en">
-                The account stopped being a gate and became an offer on the
-                confirmation screen: “save these details for next time?”. Same
-                benefit, zero psychological cost — 38% accept.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">Conta opcional, criada no fim</span><span lang="en">Optional account, created at the end</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  A conta deixou de ser porta de entrada e virou oferta na tela de
+                  confirmação: “salvar estes dados para a próxima compra?”. Mesmo
+                  benefício, custo psicológico zero — 38% aceitam.
+                </p>
+                <p class="decision__text" lang="en">
+                  The account stopped being a gate and became an offer on the
+                  confirmation screen: “save these details for next time?”. Same
+                  benefit, zero psychological cost — 38% accept.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">Resumo sempre visível</span><span lang="en">Always-visible summary</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                O resumo do pedido ficou fixo na lateral em desktop e recolhível
-                no topo em mobile, atualizando em tempo real. Nos testes, isso
-                eliminou completamente o comportamento de voltar para conferir o
-                carrinho.
-              </p>
-              <p class="decision__text" lang="en">
-                The order summary is pinned to the side on desktop and collapsible
-                at the top on mobile, updating in real time. In testing it
-                eliminated the back-and-forth to re-check the cart entirely.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">Resumo sempre visível</span><span lang="en">Always-visible summary</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  O resumo do pedido ficou fixo na lateral em desktop e recolhível
+                  no topo em mobile, atualizando em tempo real. Nos testes, isso
+                  eliminou completamente o comportamento de voltar para conferir o
+                  carrinho.
+                </p>
+                <p class="decision__text" lang="en">
+                  The order summary is pinned to the side on desktop and collapsible
+                  at the top on mobile, updating in real time. In testing it
+                  eliminated the back-and-forth to re-check the cart entirely.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">Erros que dizem o que fazer</span><span lang="en">Errors that say what to do</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                Reescrevi as 19 mensagens de erro do fluxo. Cada uma descreve o
-                problema e a ação seguinte, é anunciada por leitores de tela via
-                região viva e move o foco para o campo com problema.
-              </p>
-              <p class="decision__text" lang="en">
-                I rewrote all 19 error messages in the flow. Each states the
-                problem and the next action, is announced to screen readers via a
-                live region, and moves focus to the offending field.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">Erros que dizem o que fazer</span><span lang="en">Errors that say what to do</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  Reescrevi as 19 mensagens de erro do fluxo. Cada uma descreve o
+                  problema e a ação seguinte, é anunciada por leitores de tela via
+                  região viva e move o foco para o campo com problema.
+                </p>
+                <p class="decision__text" lang="en">
+                  I rewrote all 19 error messages in the flow. Each states the
+                  problem and the next action, is announced to screen readers via a
+                  live region, and moves focus to the offending field.
+                </p>
+              </article>
 
+            </div>
           </div>
         </div>
       </section>
@@ -1221,89 +1315,91 @@
         redondo sem fonte.
       -->
       <section class="section" id="resultados" aria-labelledby="resultados-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">07 — Resultados</span><span lang="en">07 — Results</span>
             </p>
             <h2 class="section-head__title" id="resultados-titulo">
               <span lang="pt-BR">O que mudou, medido</span><span lang="en">What changed, measured</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               Teste A/B com 10% do tráfego por 6 semanas, seguido de rollout
               completo. Números comparam os 90 dias após o lançamento com os 90
               dias anteriores.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               A/B test at 10% of traffic for 6 weeks, followed by full rollout.
               Figures compare the 90 days after launch with the 90 days before.
             </p>
-          </header>
+            <!-- MÉTRICAS -->
+            <div class="metrics" data-reveal>
 
-          <!-- MÉTRICAS -->
-          <div class="metrics" data-reveal>
+              <div class="metric">
+                <p class="metric__value">−23%</p>
+                <h3 class="metric__label">
+                  <span lang="pt-BR">Abandono de carrinho</span><span lang="en">Cart abandonment</span>
+                </h3>
+                <p class="metric__note">
+                  <span lang="pt-BR">De 47% para 24% dos checkouts iniciados</span><span lang="en">From 47% to 24% of started checkouts</span>
+                </p>
+              </div>
 
-            <div class="metric">
-              <p class="metric__value">−23%</p>
-              <h3 class="metric__label">
-                <span lang="pt-BR">Abandono de carrinho</span><span lang="en">Cart abandonment</span>
-              </h3>
-              <p class="metric__note">
-                <span lang="pt-BR">De 47% para 24% dos checkouts iniciados</span><span lang="en">From 47% to 24% of started checkouts</span>
-              </p>
+              <div class="metric">
+                <p class="metric__value">+18%</p>
+                <h3 class="metric__label">
+                  <span lang="pt-BR">Conversão geral</span><span lang="en">Overall conversion</span>
+                </h3>
+                <p class="metric__note">
+                  <span lang="pt-BR">Sem alteração no investimento em mídia</span><span lang="en">With no change in media spend</span>
+                </p>
+              </div>
+
+              <div class="metric">
+                <p class="metric__value">
+                  <span lang="pt-BR">3min 40s</span><span lang="en">3m 40s</span>
+                </p>
+                <h3 class="metric__label">
+                  <span lang="pt-BR">Tempo médio de checkout</span><span lang="en">Average checkout time</span>
+                </h3>
+                <p class="metric__note">
+                  <span lang="pt-BR">Antes: 8min 10s</span><span lang="en">Before: 8m 10s</span>
+                </p>
+              </div>
+
+              <div class="metric">
+                <p class="metric__value">94%</p>
+                <h3 class="metric__label">
+                  <span lang="pt-BR">Sucesso na tarefa</span><span lang="en">Task success rate</span>
+                </h3>
+                <p class="metric__note">
+                  <span lang="pt-BR">Antes: 61% (teste não moderado, n=84)</span><span lang="en">Before: 61% (unmoderated test, n=84)</span>
+                </p>
+              </div>
+
             </div>
 
-            <div class="metric">
-              <p class="metric__value">+18%</p>
-              <h3 class="metric__label">
-                <span lang="pt-BR">Conversão geral</span><span lang="en">Overall conversion</span>
-              </h3>
-              <p class="metric__note">
-                <span lang="pt-BR">Sem alteração no investimento em mídia</span><span lang="en">With no change in media spend</span>
-              </p>
-            </div>
-
-            <div class="metric">
-              <p class="metric__value">
-                <span lang="pt-BR">3min 40s</span><span lang="en">3m 40s</span>
-              </p>
-              <h3 class="metric__label">
-                <span lang="pt-BR">Tempo médio de checkout</span><span lang="en">Average checkout time</span>
-              </h3>
-              <p class="metric__note">
-                <span lang="pt-BR">Antes: 8min 10s</span><span lang="en">Before: 8m 10s</span>
-              </p>
-            </div>
-
-            <div class="metric">
-              <p class="metric__value">94%</p>
-              <h3 class="metric__label">
-                <span lang="pt-BR">Sucesso na tarefa</span><span lang="en">Task success rate</span>
-              </h3>
-              <p class="metric__note">
-                <span lang="pt-BR">Antes: 61% (teste não moderado, n=84)</span><span lang="en">Before: 61% (unmoderated test, n=84)</span>
-              </p>
-            </div>
+            <!-- RESULTADOS -->
+            <figure class="media media--16x9" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Gráfico de conversão antes e depois · 1200×675</span><span lang="en">Before/after conversion chart · 1200×675</span>
+              </span>
+              <!--
+              <img src="../assets/images/case-template-resultados.png"
+                   alt="Gráfico de linha comparando a taxa de conversão antes e depois do lançamento"
+                   data-en-alt="Line chart comparing conversion rate before and after launch"
+                   width="1200" height="675" loading="lazy" decoding="async">
+              -->
+              <figcaption class="media__caption">
+                <span lang="pt-BR">Conversão semanal nos 90 dias anteriores e posteriores ao rollout completo.</span><span lang="en">Weekly conversion across the 90 days before and after full rollout.</span>
+              </figcaption>
+            </figure>
 
           </div>
-
-          <!-- RESULTADOS -->
-          <figure class="media media--16x9 container--prose" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Gráfico de conversão antes e depois · 1200×675</span><span lang="en">Before/after conversion chart · 1200×675</span>
-            </span>
-            <!--
-            <img src="../assets/images/case-template-resultados.png"
-                 alt="Gráfico de linha comparando a taxa de conversão antes e depois do lançamento"
-                 data-en-alt="Line chart comparing conversion rate before and after launch"
-                 width="1200" height="675" loading="lazy" decoding="async">
-            -->
-            <figcaption class="media__caption">
-              <span lang="pt-BR">Conversão semanal nos 90 dias anteriores e posteriores ao rollout completo.</span><span lang="en">Weekly conversion across the 90 days before and after full rollout.</span>
-            </figcaption>
-          </figure>
-
         </div>
       </section>
 
@@ -1315,9 +1411,9 @@
         um aprendizado que envolva um erro seu. Case sem erro parece ficção.
       -->
       <section class="section section--alt" id="aprendizados" aria-labelledby="aprendizados-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">08 — Aprendizados</span><span lang="en">08 — Learnings</span>
             </p>
@@ -1326,53 +1422,74 @@
             </h2>
           </header>
 
-          <div class="prose" data-reveal>
-            <p lang="pt-BR">
-              <strong>Ordem vence quantidade.</strong> Entrei no projeto
-              convencido de que precisava reduzir etapas. A pesquisa mostrou que
-              reduzir etapas era secundário: reordenar as perguntas resolveu mais
-              do que eliminá-las. Hoje começo perguntando “em que ordem a pessoa
-              precisa saber as coisas?” antes de “quantas telas isso tem?”.
-            </p>
-            <p lang="en">
-              <strong>Order beats quantity.</strong> I entered the project
-              convinced I had to reduce the number of steps. Research showed that
-              was secondary: reordering the questions solved more than removing
-              them. Now I start by asking “in what order does this person need to
-              know things?” before “how many screens is this?”.
-            </p>
+          <div class="case-section__body">
+            <div class="prose" data-reveal>
+              <p lang="pt-BR">
+                <strong>Ordem vence quantidade.</strong> Entrei no projeto
+                convencido de que precisava reduzir etapas. A pesquisa mostrou que
+                reduzir etapas era secundário: reordenar as perguntas resolveu mais
+                do que eliminá-las. Hoje começo perguntando “em que ordem a pessoa
+                precisa saber as coisas?” antes de “quantas telas isso tem?”.
+              </p>
+              <p lang="en">
+                <strong>Order beats quantity.</strong> I entered the project
+                convinced I had to reduce the number of steps. Research showed that
+                was secondary: reordering the questions solved more than removing
+                them. Now I start by asking “in what order does this person need to
+                know things?” before “how many screens is this?”.
+              </p>
 
-            <p lang="pt-BR">
-              <strong>Levar engenharia ao rascunho, não ao entregável.</strong>
-              Mostrar três fluxos crus na semana 4 evitou seis semanas de
-              retrabalho. Eu costumava esperar o Figma estar apresentável — era
-              vaidade cara.
-            </p>
-            <p lang="en">
-              <strong>Bring engineering to the sketch, not the deliverable.</strong>
-              Showing three rough flows in week 4 avoided six weeks of rework. I
-              used to wait until Figma looked presentable — that vanity was
-              expensive.
-            </p>
+              <p lang="pt-BR">
+                <strong>Levar engenharia ao rascunho, não ao entregável.</strong>
+                Mostrar três fluxos crus na semana 4 evitou seis semanas de
+                retrabalho. Eu costumava esperar o Figma estar apresentável — era
+                vaidade cara.
+              </p>
+              <p lang="en">
+                <strong>Bring engineering to the sketch, not the deliverable.</strong>
+                Showing three rough flows in week 4 avoided six weeks of rework. I
+                used to wait until Figma looked presentable — that vanity was
+                expensive.
+              </p>
+            </div>
 
-            <p lang="pt-BR">
-              <strong>O que eu erraria de novo, se não tivesse cuidado.</strong>
-              Priorizei a persona empreiteira nas primeiras versões porque ela
-              gerava mais receita, e quase entreguei um fluxo que confundia o
-              comprador ocasional — que é a maioria em volume. Só percebi no
-              oitavo teste moderado. Hoje defino explicitamente, antes de
-              desenhar, qual persona é primária em cada tela.
-            </p>
-            <p lang="en">
-              <strong>What I'd get wrong again if I weren't careful.</strong>
-              I prioritised the contractor persona in early versions because she
-              drove more revenue, and nearly shipped a flow that confused the
-              occasional buyer — who is the majority by volume. I only caught it
-              in the eighth moderated session. Now I explicitly define which
-              persona is primary for each screen before designing it.
-            </p>
+            <!--
+              >> RITMO: no máximo 2 parágrafos seguidos sem imagem, em todo o
+              case. Com um terceiro aprendizado, intercale uma imagem (como
+              aqui) ou fique com os dois mais fortes.
+            -->
+            <figure class="media media--16x9" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">O fluxo que confundia o comprador ocasional · 1600×900</span><span lang="en">The flow that confused the occasional buyer · 1600×900</span>
+              </span>
+              <!--
+              <img src="../assets/images/case-template-aprendizado.png"
+                   alt="Versão inicial do fluxo, priorizando a persona empreiteira"
+                   data-en-alt="Early version of the flow, prioritising the contractor persona"
+                   width="1600" height="900" loading="lazy" decoding="async">
+              -->
+            </figure>
+
+            <div class="prose" data-reveal>
+              <p lang="pt-BR">
+                <strong>O que eu erraria de novo, se não tivesse cuidado.</strong>
+                Priorizei a persona empreiteira nas primeiras versões porque ela
+                gerava mais receita, e quase entreguei um fluxo que confundia o
+                comprador ocasional — que é a maioria em volume. Só percebi no
+                oitavo teste moderado. Hoje defino explicitamente, antes de
+                desenhar, qual persona é primária em cada tela.
+              </p>
+              <p lang="en">
+                <strong>What I'd get wrong again if I weren't careful.</strong>
+                I prioritised the contractor persona in early versions because she
+                drove more revenue, and nearly shipped a flow that confused the
+                occasional buyer — who is the majority by volume. I only caught it
+                in the eighth moderated session. Now I explicitly define which
+                persona is primary for each screen before designing it.
+              </p>
+            </div>
+
           </div>
-
         </div>
       </section>
 
@@ -1388,9 +1505,9 @@
         data-caption-en = mesma legenda em inglês
       -->
       <section class="section" id="galeria" aria-labelledby="galeria-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">09 — Galeria</span><span lang="en">09 — Gallery</span>
             </p>
@@ -1399,153 +1516,155 @@
             </h2>
           </header>
 
-          <ul class="gallery" data-gallery data-reveal>
+          <div class="case-section__body">
+            <ul class="gallery" data-gallery data-reveal>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/case-template-galeria-01.jpg"
-                 data-caption="Etapa 1: CEP, frete e prazo na primeira dobra"
-                 data-caption-en="Step 1: postcode, shipping and delivery estimate above the fold">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/case-template-galeria-01.jpg"
+                   data-caption="Etapa 1: CEP, frete e prazo na primeira dobra"
+                   data-caption-en="Step 1: postcode, shipping and delivery estimate above the fold">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-galeria-01-thumb.jpg"
+                         alt="Primeira etapa do checkout mostrando cálculo de frete"
+                         data-en-alt="Checkout step one showing the shipping calculation"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: Etapa 1 do checkout</span><span lang="en">Enlarge: checkout step one</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/case-template-galeria-01-thumb.jpg"
-                       alt="Primeira etapa do checkout mostrando cálculo de frete"
-                       data-en-alt="Checkout step one showing the shipping calculation"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: Etapa 1 do checkout</span><span lang="en">Enlarge: checkout step one</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/case-template-galeria-02.jpg"
-                 data-caption="Etapa 2: pagamento com resumo fixo na lateral"
-                 data-caption-en="Step 2: payment with the summary pinned to the side">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/case-template-galeria-02.jpg"
+                   data-caption="Etapa 2: pagamento com resumo fixo na lateral"
+                   data-caption-en="Step 2: payment with the summary pinned to the side">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-galeria-02-thumb.jpg"
+                         alt="Segunda etapa do checkout com resumo do pedido fixo"
+                         data-en-alt="Checkout step two with pinned order summary"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: Etapa 2 do checkout</span><span lang="en">Enlarge: checkout step two</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/case-template-galeria-02-thumb.jpg"
-                       alt="Segunda etapa do checkout com resumo do pedido fixo"
-                       data-en-alt="Checkout step two with pinned order summary"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: Etapa 2 do checkout</span><span lang="en">Enlarge: checkout step two</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/case-template-galeria-03.jpg"
-                 data-caption="Versão mobile com resumo recolhível"
-                 data-caption-en="Mobile version with a collapsible summary">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/case-template-galeria-03.jpg"
+                   data-caption="Versão mobile com resumo recolhível"
+                   data-caption-en="Mobile version with a collapsible summary">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-galeria-03-thumb.jpg"
+                         alt="Checkout em telas de celular"
+                         data-en-alt="Checkout on mobile screens"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: versão mobile</span><span lang="en">Enlarge: mobile version</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/case-template-galeria-03-thumb.jpg"
-                       alt="Checkout em telas de celular"
-                       data-en-alt="Checkout on mobile screens"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: versão mobile</span><span lang="en">Enlarge: mobile version</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/case-template-galeria-04.jpg"
-                 data-caption="Estados de erro e validação em tempo real"
-                 data-caption-en="Error states and real-time validation">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/case-template-galeria-04.jpg"
+                   data-caption="Estados de erro e validação em tempo real"
+                   data-caption-en="Error states and real-time validation">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-galeria-04-thumb.jpg"
+                         alt="Conjunto de estados de erro do formulário"
+                         data-en-alt="Set of form error states"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: estados de erro</span><span lang="en">Enlarge: error states</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/case-template-galeria-04-thumb.jpg"
-                       alt="Conjunto de estados de erro do formulário"
-                       data-en-alt="Set of form error states"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: estados de erro</span><span lang="en">Enlarge: error states</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/case-template-galeria-05.jpg"
-                 data-caption="Componentes novos devolvidos ao design system"
-                 data-caption-en="New components contributed back to the design system">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/case-template-galeria-05.jpg"
+                   data-caption="Componentes novos devolvidos ao design system"
+                   data-caption-en="New components contributed back to the design system">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-galeria-05-thumb.jpg"
+                         alt="Documentação dos três componentes criados"
+                         data-en-alt="Documentation of the three new components"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: componentes do design system</span><span lang="en">Enlarge: design system components</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/case-template-galeria-05-thumb.jpg"
-                       alt="Documentação dos três componentes criados"
-                       data-en-alt="Documentation of the three new components"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: componentes do design system</span><span lang="en">Enlarge: design system components</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/case-template-galeria-06.jpg"
-                 data-caption="Sessão de teste moderado com participante"
-                 data-caption-en="Moderated testing session with a participant">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/case-template-galeria-06.jpg"
+                   data-caption="Sessão de teste moderado com participante"
+                   data-caption-en="Moderated testing session with a participant">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/case-template-galeria-06-thumb.jpg"
+                         alt="Registro de uma sessão de teste de usabilidade"
+                         data-en-alt="Record of a usability testing session"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: sessão de teste</span><span lang="en">Enlarge: testing session</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/case-template-galeria-06-thumb.jpg"
-                       alt="Registro de uma sessão de teste de usabilidade"
-                       data-en-alt="Record of a usability testing session"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: sessão de teste</span><span lang="en">Enlarge: testing session</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-          </ul>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -1577,13 +1696,126 @@
                 </svg>
                 <span lang="pt-BR">Entrar em contato</span><span lang="en">Get in touch</span>
               </a>
-              <a class="btn btn--secondary btn--lg" href="../index.html#projetos">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="#i-arrow-left"></use>
-                </svg>
-                <span lang="pt-BR">Ver outros projetos</span><span lang="en">See other work</span>
-              </a>
             </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- ==================================================================== -->
+      <!-- OUTROS PROJETOS — anterior e próximo, em ciclo (01 → 02 → 03 → 01). -->
+      <!-- Os textos são os mesmos dos cards da home e de /projetos.            -->
+      <!-- >> PREENCHER: aponte para os vizinhos deste case na ordem de     -->
+      <!--    ../projetos.html.                                             -->
+      <!-- ==================================================================== -->
+      <section class="section case-more" aria-labelledby="outros-titulo">
+        <div class="container">
+
+          <header class="section-bar" data-reveal>
+            <h2 class="section-bar__title" id="outros-titulo">
+              <span lang="pt-BR">Outros projetos</span><span lang="en">More work</span>
+            </h2>
+            <a class="text-link" href="../projetos.html">
+              <span lang="pt-BR">Ver todos</span><span lang="en">View all</span>
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </a>
+          </header>
+
+          <div class="work-pair">
+
+            <!-- ANTERIOR -->
+            <article class="work-card" data-reveal aria-labelledby="anterior-titulo">
+              <figure class="media media--21x9 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa da Roteirização · 21:9 · 1680×720</span><span lang="en">Route planning cover · 21:9 · 1680×720</span>
+                </span>
+                <!--
+                <img src="../assets/images/projeto-03-capa.jpg"
+                     alt=""
+                     width="1680" height="720" loading="lazy" decoding="async">
+                -->
+              </figure>
+              <div class="work-card__body">
+                <p class="work-card__direction">
+                  <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="#i-arrow-left"></use></svg>
+                  <span lang="pt-BR">Anterior</span><span lang="en">Previous</span>
+                </p>
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">Nasajon</li>
+                  <li class="meta-inline__item">2025</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span>
+                  </li>
+                </ul>
+                <h3 class="work-card__title" id="anterior-titulo">
+                  <a class="work-card__link" href="projeto-03.html">
+                    <span lang="pt-BR">Rota calculada, decisão preservada</span><span lang="en">Route calculated, decision preserved</span>
+                  </a>
+                </h3>
+                <p class="work-card__summary" lang="pt-BR">
+                  Roteirização automática por veículo, peso e distância,
+                  sem tirar a palavra final do gestor.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Automatic route planning by vehicle, weight and
+                  distance, without taking the final say away from the
+                  manager.
+                </p>
+                <p class="work-card__metric">
+                  <span class="work-card__metric-value">−40%</span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">no custo por rota</span><span lang="en">in cost per route</span>
+                  </span>
+                </p>
+              </div>
+            </article>
+
+            <!-- PRÓXIMO -->
+            <article class="work-card" data-reveal aria-labelledby="proximo-titulo">
+              <figure class="media media--21x9 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa do PDV Nasajon · 21:9 · 1680×720</span><span lang="en">Nasajon POS cover · 21:9 · 1680×720</span>
+                </span>
+                <!--
+                <img src="../assets/images/projeto-01-capa-21x9.jpg"
+                     alt=""
+                     width="1680" height="720" loading="lazy" decoding="async">
+                -->
+              </figure>
+              <div class="work-card__body">
+                <p class="work-card__direction">
+                  <span lang="pt-BR">Próximo</span><span lang="en">Next</span>
+                  <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+                </p>
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">Nasajon</li>
+                  <li class="meta-inline__item">2026</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span>
+                  </li>
+                </ul>
+                <h3 class="work-card__title" id="proximo-titulo">
+                  <a class="work-card__link" href="projeto-01.html">
+                    <span lang="pt-BR">Um PDV que sai do balcão</span><span lang="en">A POS that leaves the counter</span>
+                  </a>
+                </h3>
+                <p class="work-card__summary" lang="pt-BR">
+                  Redesenho mobile-first do ponto de venda para quem
+                  atende longe do caixa.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Mobile-first redesign of the point of sale for staff
+                  who serve away from the register.
+                </p>
+                <p class="work-card__metric">
+                  <span class="work-card__metric-value">−30%</span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">no tempo de fechamento de venda</span><span lang="en">in time to close a sale</span>
+                  </span>
+                </p>
+              </div>
+            </article>
 
           </div>
         </div>

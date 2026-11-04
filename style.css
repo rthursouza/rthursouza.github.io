@@ -17,17 +17,20 @@
    06 · UTILITÁRIOS (visually-hidden · cluster · icon · sprite · sentinela)
    07 · ANIMAÇÕES DE ENTRADA (reveal)
    08 · MÍDIA E PLACEHOLDERS
-   09 · TIPOGRAFIA DE CONTEÚDO (eyebrow · section-head · prose · quote)
+   09 · TIPOGRAFIA DE CONTEÚDO (eyebrow · section-head · section-bar ·
+        text-link · prose · quote)
    10 · CHIPS
    11 · BOTÕES
    12 · SKIP LINK
    13 · HEADER · BRAND · NAV · LANG SWITCH · NAV TOGGLE
    14 · HERO (home)
-   15 · SOBRE (bio · fatos · habilidades)
-   16 · PROJETOS (cards)
+   15 · SOBRE (curto)
+   16 · PROJETOS (work-card · featured)
+   16b· PÁGINA DE PROJETOS (page-intro · page-toolbar · filter · work-grid)
    17 · CONTATO
    18 · FOOTER
-   19 · CASE · BREADCRUMB E HERO
+   19 · CASE · BREADCRUMB, HERO, FICHA, EM 30 SEGUNDOS, ÍNDICE, DUAS
+        COLUNAS E OUTROS PROJETOS
    20 · CASE · SPLIT E CHECKLIST
    21 · CASE · TIMELINE
    22 · CASE · DECISÕES E MÉTRICAS
@@ -43,7 +46,8 @@
    • Breakpoints:
        40rem (640px)  — grades de 2 colunas e ajustes de proporção
        56rem (896px)  — troca do menu mobile para a navegação desktop
-       72rem (1152px) — layout editorial dos cards de projeto
+                        e card grande de projeto na horizontal
+       64rem (1024px) — seções do case em duas colunas (título | conteúdo)
    • Animações usam somente transform e opacity: nunca geram reflow.
 
    CAMADAS (z-index) — uma lista curta e explícita evita a guerra de números
@@ -571,6 +575,11 @@ em {
   border-block: 1px solid var(--c-border);
 }
 
+/* Seção de fechamento (contato da home): menos ar, porque o bloco é baixo. */
+.section--tight {
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+
 /* Duas seções alternadas em sequência (aprendizados + CTA, no case) não
    devem exibir duas linhas coladas. */
 .section--alt + .section--alt {
@@ -683,8 +692,11 @@ main[id] {
 .js .hero__content > [data-reveal]:nth-child(7) { transition-delay: 180ms; }
 .js .hero__content > [data-reveal]:last-child   { transition-delay: 220ms; }
 
-.js .projects > [data-reveal]:nth-child(2) { transition-delay:  80ms; }
-.js .projects > [data-reveal]:nth-child(3) { transition-delay: 160ms; }
+.js .featured > [data-reveal]:nth-child(2) { transition-delay:  80ms; }
+.js .featured > [data-reveal]:nth-child(3) { transition-delay: 160ms; }
+
+.js .work-grid > [data-reveal]:nth-child(3n + 2) { transition-delay:  80ms; }
+.js .work-grid > [data-reveal]:nth-child(3n + 3) { transition-delay: 160ms; }
 
 .js .timeline > [data-reveal]:nth-child(even) { transition-delay: 70ms; }
 
@@ -723,6 +735,7 @@ main[id] {
 .media--16x9 { --ratio: 16 / 9; }
 .media--4x3  { --ratio: 4 / 3; }
 .media--4x5  { --ratio: 4 / 5; }
+.media--1x1  { --ratio: 1 / 1; }
 
 /* Em telas estreitas 21:9 vira uma faixa ilegível. */
 @media (max-width: 39.999rem) {
@@ -893,6 +906,70 @@ main[id] {
   margin-inline: auto;
 }
 
+/* ---------- BARRA DE SEÇÃO ----------
+   Cabeçalho de uma linha só: título à esquerda, link de "ver tudo" à
+   direita. Em tela estreita o link desce para baixo do título. */
+.section-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 var(--sp-5);
+  margin-block-end: clamp(1.25rem, 3vw, 2rem);
+}
+
+.section-bar__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+}
+
+/* ---------- LINK DE TEXTO ----------
+   Link solto com seta ("Ver todos →", "LinkedIn ↗"). A altura mínima
+   garante 44px de alvo de toque sem mudar a aparência de texto. */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 2.75rem;
+  color: var(--c-accent-text);   /* texto miúdo: precisa do accent escurecido */
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+}
+
+.text-link:hover {
+  text-decoration-line: underline;
+}
+
+.text-link .icon {
+  transition: transform var(--t) var(--ease);
+}
+
+.text-link:hover .icon {
+  transform: translate3d(3px, 0, 0);
+}
+
+/* Links lado a lado, separados por ponto médio decorativo (não é lido). */
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--sp-3);
+}
+
+.link-row > li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.link-row > li:not(:first-child)::before {
+  content: "·";
+  color: var(--c-border-strong);
+}
+
 /* ---------- PROSA ----------
    O espaço entre parágrafos vem do gap do bloco, nunca de margin no <p>:
    sem colapso de margens e sem exceções de :first-child/:last-child. */
@@ -935,6 +1012,21 @@ main[id] {
   color: var(--c-text-subtle);
   font-size: var(--fs-sm);
   font-weight: 500;
+}
+
+/* Fala de usuário em destaque (seção Problema dos cases): o mesmo filete,
+   sobre uma superfície, com o texto um degrau acima. */
+.quote--lg {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background-color: var(--c-surface);
+  border-inline-start-width: 3px;
+  border-start-end-radius: var(--radius-lg);
+  border-end-end-radius: var(--radius-lg);
+}
+
+.quote--lg .quote__text {
+  font-size: var(--fs-xl);
+  line-height: var(--lh-heading);
 }
 
 
@@ -1155,6 +1247,7 @@ main[id] {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-3);
+  min-height: 2.75rem;   /* 44px de alvo de toque */
   margin-inline-end: auto;
   border-radius: var(--radius);
 }
@@ -1276,6 +1369,7 @@ main[id] {
 
 .nav__actions .btn {
   width: 100%;
+  min-height: 2.75rem;   /* no drawer, o .btn--sm também ganha 44px */
 }
 
 /* ---------- PREFERÊNCIAS (idioma + tema) ----------
@@ -1305,7 +1399,11 @@ main[id] {
   color: var(--c-text-subtle);
 }
 
+/* 44×44 de alvo de toque na base. O desktop com mouse volta ao compacto
+   (ver "ALVOS DE TOQUE" ao fim do bloco do header). */
 .lang-switch__btn {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
   padding: 0.3125rem 0.625rem;
   border-radius: var(--radius-pill);
   color: var(--c-text-subtle);
@@ -1337,8 +1435,8 @@ main[id] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.375rem;
-  height: 2.375rem;
+  width: 2.75rem;
+  height: 2.75rem;
   flex: none;
   background-color: var(--c-surface);
   border: 1px solid var(--c-border);
@@ -1513,6 +1611,9 @@ main[id] {
   }
 
   .nav__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;   /* 44px: vale também para tablet deitado */
     padding: var(--sp-2) var(--sp-3);
     font-size: var(--fs-sm);
   }
@@ -1559,20 +1660,45 @@ main[id] {
   }
 }
 
+/* ---------- ALVOS DE TOQUE ----------
+   A base (mobile, tablet e qualquer tela com toque) garante 44×44 em todo
+   controle. Só no desktop com mouse — pointer: fine, que exclui tablet
+   deitado e notebook com tela de toque — os controles do header voltam ao
+   tamanho compacto, que é o que cabe na barra sem pesar. */
+@media (min-width: 56rem) and (pointer: fine) {
+  .lang-switch__btn {
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .theme-toggle {
+    width: 2.375rem;
+    height: 2.375rem;
+  }
+
+  .nav__actions .btn {
+    min-height: 2.375rem;
+  }
+}
+
 
 /* ==========================================================================
    14 · HERO (home)
+   --------------------------------------------------------------------------
+   Curto de propósito: nome, papel, uma frase e duas ações. Os projetos
+   precisam aparecer cedo — no desktop, o topo do primeiro card já espia
+   acima da dobra.
    ========================================================================== */
 
 .hero {
   /* O padding-block-start do .main já afasta do header. */
-  padding-block-start: clamp(2.5rem, 6vw, 5rem);
-  padding-block-end: clamp(3.5rem, 8vw, 7rem);
+  padding-block-start: clamp(2.5rem, 6vw, 4.5rem);
+  padding-block-end: clamp(3rem, 7vw, 5.5rem);
 }
 
 .hero__inner {
   display: grid;
-  gap: clamp(2.5rem, 6vw, 4rem);
+  gap: clamp(2.5rem, 6vw, 5rem);
 }
 
 .hero__content {
@@ -1601,138 +1727,124 @@ main[id] {
 
 .hero__lead {
   margin-block-start: var(--sp-5);
-  max-width: 34ch;
+  max-width: 42ch;
+  color: var(--c-text-muted);
   font-size: var(--fs-lg);
   line-height: var(--lh-snug);
   letter-spacing: var(--tracking-tight);
   text-wrap: pretty;
 }
 
-.hero__support {
-  margin-block-start: var(--sp-4);
-  max-width: 48ch;
-  color: var(--c-text-muted);
-}
-
 .hero__actions {
-  margin-block-start: clamp(2rem, 4vw, 2.75rem);
+  margin-block-start: clamp(1.75rem, 3.5vw, 2.5rem);
 }
 
+/* Foto 1:1, pequena: ela confirma quem está falando, não disputa com o
+   texto. No mobile vem depois do texto — que é a ordem do HTML. */
 .hero__media {
   width: 100%;
-  max-width: 24rem;
+  max-width: 15rem;
 }
 
-/* No mobile a foto vem depois do texto — que é a ordem do HTML. A partir de
-   56rem ela ocupa a coluna da direita, sem reordenar o DOM. */
+/* A partir de 56rem a foto ocupa uma coluna fixa de ~280px à direita, sem
+   reordenar o DOM. */
 @media (min-width: 56rem) {
   .hero__inner {
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    grid-template-columns: minmax(0, 1fr) 17.5rem;
     align-items: center;
   }
 
   .hero__media {
     max-width: none;
-    justify-self: end;
   }
 }
 
 
 /* ==========================================================================
-   15 · SOBRE
+   15 · SOBRE (curto)
+   --------------------------------------------------------------------------
+   Duas colunas: eyebrow e título à esquerda, um parágrafo e dois links à
+   direita. No mobile, empilha na mesma ordem.
    ========================================================================== */
 
 .about {
   display: grid;
-  gap: clamp(2.5rem, 5vw, 4rem);
+  gap: var(--sp-5) clamp(2.5rem, 6vw, 5rem);
 }
 
-/* A coluna do grid já limita a medida: a prosa não precisa da sua. */
-.about__bio {
-  max-width: none;
+/* O título herda o estilo de .section-head__title; só o recuo do eyebrow
+   precisa vir do container. */
+.about__head .eyebrow {
+  margin-block-end: var(--sp-4);
 }
 
-/* ---------- FATOS DE CARREIRA ----------
-   <dl> em grade. Cada fato tem filete superior: leitura de tabela sem o
-   peso visual de uma tabela. */
-.about__facts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-  gap: var(--sp-5) var(--sp-4);
-  align-content: start;
-}
-
-.fact {
-  padding-block-start: var(--sp-3);
-  border-block-start: 1px solid var(--c-border);
-}
-
-.fact__label {
-  color: var(--c-text-subtle);
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-
-.fact__value {
-  margin-block-start: var(--sp-2);
+.about__text {
+  max-width: var(--w-prose);
+  color: var(--c-text-muted);
+  font-family: var(--font-serif);   /* a serifa é o texto para ser lido */
   font-size: var(--fs-md);
-  font-weight: 550;
-  line-height: var(--lh-snug);
-  letter-spacing: var(--tracking-tight);
-  font-variant-numeric: tabular-nums;
+  text-wrap: pretty;
 }
 
-/* ---------- HABILIDADES ---------- */
-.skills {
-  margin-block-start: clamp(2.5rem, 5vw, 4rem);
-  padding-block-start: clamp(2rem, 4vw, 3rem);
-  border-block-start: 1px solid var(--c-border);
-}
-
-.skills__title {
-  margin-block-end: var(--sp-5);
-  color: var(--c-text-subtle);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
+.about__body .link-row {
+  margin-block-start: var(--sp-4);
 }
 
 @media (min-width: 56rem) {
   .about {
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
   }
 
-  .about__facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--sp-6) var(--sp-5);
+  /* Alinha a primeira linha do parágrafo com o título, não com o eyebrow. */
+  .about__body {
+    padding-block-start: calc(var(--fs-xs) + var(--sp-4));
   }
 }
 
 
 /* ==========================================================================
-   16 · PROJETOS
+   16 · PROJETOS (cards)
    --------------------------------------------------------------------------
-   Cada card é um <article>. O link real está no título; o ::after dele se
-   estica por todo o card, então clicar em qualquer ponto abre o case sem
-   duplicar links na navegação por teclado.
-   :focus-within espelha o hover para quem navega por Tab.
+   Cada card é um <article> com UM link, no título. O ::after desse link se
+   estica pelo card inteiro: clicar em qualquer ponto abre o case, a Tab
+   para uma vez por card e o nome acessível do link é só o título.
+   O anel de foco é desenhado no card (via :has), não no título.
+
+   A imagem fica recuada dentro do card, com raio próprio. É isso que
+   permite ao card grande manter o 16:9 exato ao lado de um texto mais alto
+   que ela: a sobra vira respiro, não distorção da imagem.
+
+   .work-card        → imagem em cima (21:9 na home, 4:3 em /projetos)
+   .work-card--lead  → horizontal, imagem 16:9 à esquerda (a partir de 56rem)
    ========================================================================== */
 
-.projects {
+.featured {
   display: grid;
-  gap: clamp(1.75rem, 4vw, 3rem);
+  gap: var(--gap-card);
 }
 
-.project-card {
+@media (min-width: 40rem) {
+  .featured {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .featured > .work-card--lead {
+    grid-column: 1 / -1;
+  }
+}
+
+.work-card {
+  --work-card-pad: clamp(0.75rem, 1.5vw, 1rem);
+
   position: relative;   /* contêiner do link esticado */
   display: grid;
+  align-content: start;
+  gap: var(--sp-5);
+  padding: var(--work-card-pad);
   background-color: var(--c-surface);
   border: 1px solid var(--c-border);
   border-radius: var(--radius-xl);
-  overflow: hidden;     /* recorta a imagem nos cantos do card */
   transition:
     background-color var(--t-slow) var(--ease),
     border-color     var(--t-slow) var(--ease),
@@ -1740,45 +1852,38 @@ main[id] {
     transform        var(--t-slow) var(--ease);
 }
 
-.project-card:hover,
-.project-card:focus-within {
+.work-card:hover,
+.work-card:focus-within {
   background-color: var(--c-surface-2);
   border-color: var(--c-border-strong);
   box-shadow: var(--shadow);
   transform: translate3d(0, -4px, 0);
 }
 
-.project-card__media-link {
-  display: block;
-  overflow: hidden;
-}
-
-/* Dentro do card a mídia é uma superfície contínua: quem recorta é o card. */
-.project-card .media {
+.work-card__media {
   background-color: var(--c-bg-alt);
-  border: 0;
-  border-radius: 0;
+  border-radius: var(--radius-lg);
 }
 
-.project-card .media > img {
+.work-card__media > img {
   transition: transform var(--t-slow) var(--ease);
 }
 
-.project-card:hover .media > img,
-.project-card:focus-within .media > img {
+.work-card:hover .work-card__media > img,
+.work-card:focus-within .work-card__media > img {
   transform: scale(1.035);
 }
 
-.project-card__body {
+.work-card__body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--sp-4);
-  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  gap: var(--sp-3);
+  padding: 0 var(--sp-3) var(--sp-3);
 }
 
 /* ---------- METADADOS EM LINHA ----------
-   Empresa · Ano · Categoria. O ponto médio é gerado em CSS porque é
+   Empresa · Ano · Área. O ponto médio é gerado em CSS porque é
    decoração — não deve ser lido em voz alta. */
 .meta-inline {
   display: flex;
@@ -1797,33 +1902,91 @@ main[id] {
   color: var(--c-border-strong);
 }
 
-.project-card__title {
-  font-size: var(--fs-xl);
+.work-card__title {
+  font-size: var(--fs-lg);
 }
 
-.project-card__link {
+.work-card__link {
   color: var(--c-text);
   transition: color var(--t) var(--ease);
 }
 
-.project-card__link::after {
+.work-card__link::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 2;
+  border-radius: inherit;
 }
 
-.project-card:hover .project-card__link,
-.project-card:focus-within .project-card__link {
+.work-card:hover .work-card__link,
+.work-card:focus-within .work-card__link {
   color: var(--c-accent);
 }
 
-.project-card__summary {
-  max-width: 52ch;
-  color: var(--c-text-muted);
+/* Foco visível no card inteiro. Onde :has não existe, vale a regra global
+   de :focus-visible no próprio título — o foco nunca fica invisível. */
+@supports selector(:has(*)) {
+  .work-card__link:focus-visible {
+    outline: none;
+  }
+
+  .work-card:has(.work-card__link:focus-visible) {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+  }
 }
 
-.project-card__cta {
+.work-card__summary {
+  max-width: 52ch;
+  color: var(--c-text-muted);
+  text-wrap: pretty;
+}
+
+/* ---------- MÉTRICA DO CARD ----------
+   O resultado faz o trabalho que o parágrafo fazia. Número em display (um
+   dos lugares onde ela é permitida), rótulo em sans logo ao lado. */
+.work-card__metric {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-1) var(--sp-3);
+  width: 100%;
+  margin-block-start: var(--sp-1);
+  padding-block-start: var(--sp-4);
+  border-block-start: 1px solid var(--c-border);
+}
+
+.work-card__metric-value {
+  color: var(--c-accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.work-card__metric-label {
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+}
+
+/* Métrica que ainda não existe: placeholder visível, sem fingir número. */
+.work-card__metric--pending .work-card__metric-value {
+  color: var(--c-text-subtle);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--tracking-wide);
+}
+
+.work-card__metric--pending .work-card__metric-label {
+  color: var(--c-text-subtle);
+}
+
+.work-card__cta {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
@@ -1833,30 +1996,166 @@ main[id] {
   font-weight: 600;
 }
 
-.project-card__cta .icon {
+.work-card__cta .icon {
   transition: transform var(--t) var(--ease);
 }
 
-.project-card:hover .project-card__cta .icon,
-.project-card:focus-within .project-card__cta .icon {
+.work-card:hover .work-card__cta .icon,
+.work-card:focus-within .work-card__cta .icon {
   transform: translate3d(4px, 0, 0);
 }
 
-/* Layout editorial: mídia e texto lado a lado, alternando o lado a cada
-   card para criar ritmo durante a rolagem. */
-@media (min-width: 72rem) {
-  .project-card {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+/* ---------- CARD GRANDE ----------
+   No mobile é um card comum (imagem em cima). A partir de 56rem vira
+   horizontal. A proporção 1.32fr : 1fr segura a imagem em ~600px de largura
+   no container máximo — ou seja, 16:9 com ~340px de altura. */
+.work-card--lead .work-card__title {
+  font-size: var(--fs-xl);
+}
+
+.work-card--lead .work-card__metric-value {
+  font-size: var(--fs-2xl);
+}
+
+@media (min-width: 56rem) {
+  .work-card--lead {
+    grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
     align-items: center;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
-  .project-card:nth-child(even) .project-card__media-link {
-    order: 2;
+  .work-card--lead .work-card__media {
+    max-height: 21.25rem;
   }
 
-  .project-card__body {
-    padding: clamp(2rem, 3vw, 3rem);
+  .work-card--lead .work-card__body {
+    gap: var(--sp-4);
+    padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
   }
+}
+
+/* ---------- SELO "DESTAQUE" ----------
+   Vem por último no DOM (o leitor de tela o ouve depois do título), mas é
+   desenhado sobre o canto da imagem. Accent sobre accent-ink: 5,5:1 no
+   escuro, 4,71:1 no claro. */
+.work-card__badge {
+  position: absolute;
+  inset-block-start: calc(var(--work-card-pad) + var(--sp-3));
+  inset-inline-start: calc(var(--work-card-pad) + var(--sp-3));
+  z-index: 1;
+  padding: 0.3125rem 0.625rem;
+  background-color: var(--c-accent);
+  border-radius: var(--radius-pill);
+  color: var(--c-accent-ink);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+}
+
+
+/* ==========================================================================
+   16b · PÁGINA DE PROJETOS (/projetos.html)
+   --------------------------------------------------------------------------
+   Introdução curta, barra com contador e filtro, grade uniforme. Os cards
+   são os mesmos .work-card da home, com imagem 4:3.
+   ========================================================================== */
+
+.page-intro {
+  padding-block-start: clamp(2rem, 5vw, 3.5rem);
+}
+
+.page-intro__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+}
+
+.page-intro__lead {
+  margin-block-start: var(--sp-4);
+  max-width: 54ch;
+  color: var(--c-text-muted);
+  font-size: var(--fs-md);
+  text-wrap: pretty;
+}
+
+/* ---------- BARRA DA LISTAGEM ---------- */
+.page-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-block: clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
+  padding-block-end: var(--sp-4);
+  border-block-end: 1px solid var(--c-border);
+}
+
+.page-toolbar__count {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- FILTRO POR ÁREA ----------
+   Botões de alternância de escolha única. Como no seletor de idioma, o
+   estado ativo é o próprio aria-pressed — uma fonte de verdade só.
+   Nasce com hidden; o script.js o revela a partir de 6 projetos. */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.filter__btn {
+  min-height: 2.75rem;   /* 44px de alvo de toque */
+  padding-inline: var(--sp-4);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition:
+    color            var(--t) var(--ease),
+    border-color     var(--t) var(--ease),
+    background-color var(--t) var(--ease);
+}
+
+.filter__btn:hover {
+  border-color: var(--c-border-strong);
+  color: var(--c-text);
+}
+
+.filter__btn[aria-pressed="true"] {
+  background-color: var(--c-accent-soft);
+  border-color: var(--c-accent-line);
+  color: var(--c-accent-text);
+}
+
+/* ---------- GRADE ----------
+   auto-fill com mínimo de ~320px: o número de colunas sai da largura, sem
+   media query. min() evita estouro em telas menores que o mínimo. */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  gap: var(--gap-card);
+}
+
+/* O <li> só carrega o filtro e a animação; o card ocupa a altura toda da
+   linha, para os cards vizinhos terminarem alinhados. */
+.work-grid__item {
+  display: grid;
+}
+
+.work-grid__empty {
+  padding-block: var(--sp-6);
+  color: var(--c-text-muted);
+  text-align: center;
 }
 
 
@@ -1880,6 +2179,44 @@ main[id] {
 
 .contact .section-head {
   margin-block-end: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+/* ---------- CONTATO EM LINHA (home) ----------
+   Bloco único e baixo: título e prazo de resposta de um lado, botões do
+   outro. Empilha abaixo de 56rem. */
+.contact--inline {
+  display: grid;
+  gap: var(--sp-5);
+  align-items: center;
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.5rem, 4vw, 3rem);
+  background-image: radial-gradient(
+    70% 140% at 0% 0%,
+    var(--c-accent-soft),
+    transparent 70%
+  );
+  text-align: start;
+}
+
+.contact__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+}
+
+.contact__lead {
+  margin-block-start: var(--sp-2);
+  color: var(--c-text-muted);
+}
+
+@media (min-width: 56rem) {
+  .contact--inline {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--sp-6);
+  }
+
+  .contact--inline .contact__actions {
+    justify-content: flex-end;
+  }
 }
 
 /* O botão principal traz o endereço de e-mail inteiro como rótulo — é o que
@@ -1923,14 +2260,21 @@ main[id] {
   font-size: var(--fs-sm);
 }
 
+/* Sem gap vertical: cada link já tem 44px de altura, e é ela que separa as
+   linhas quando a lista quebra no celular. */
 .footer__links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--sp-2) var(--sp-5);
+  column-gap: var(--sp-5);
 }
 
 .footer__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;    /* 44×44 de alvo de toque */
+  min-height: 2.75rem;
   color: var(--c-text-muted);
   font-size: var(--fs-sm);
   font-weight: 500;
@@ -1960,8 +2304,10 @@ main[id] {
 }
 
 /* ---------- BREADCRUMB ---------- */
+/* Os links têm 44px de altura (alvo de toque); a margem desconta a
+   folga vertical que isso cria em volta do texto. */
 .breadcrumb {
-  margin-block-end: clamp(1.75rem, 4vw, 2.5rem);
+  margin-block: calc(var(--sp-3) * -1) clamp(1rem, 3vw, 1.75rem);
 }
 
 .breadcrumb__list {
@@ -1985,7 +2331,21 @@ main[id] {
 }
 
 .breadcrumb__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;   /* 44px de alvo de toque */
   transition: color var(--t) var(--ease);
+}
+
+/* Largura mínima de 44px sem mexer no texto: num link estreito ("Início"),
+   uma área invisível se estende igualmente para os dois lados; num link
+   largo, min() dá 0 e nada muda. A % de inset é a largura do próprio link. */
+.breadcrumb__link::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline: min(0px, calc((100% - 2.75rem) / 2));
 }
 
 .breadcrumb__link:hover {
@@ -2005,28 +2365,54 @@ main[id] {
   line-height: var(--lh-tight);
 }
 
+/* Subtítulo de uma linha no desktop: a medida acomoda ~75 caracteres. */
 .case-hero__lead {
   margin-block-start: var(--sp-5);
-  max-width: 54ch;
+  max-width: 68ch;
   color: var(--c-text-muted);
   font-size: var(--fs-md);
   text-wrap: pretty;
 }
 
-/* ---------- METADADOS DO PROJETO ----------
-   Grade de fatos com filetes: densa e escaneável, e cada linha continua
-   sendo um par <dt>/<dd> legítimo para leitores de tela. */
+/* Imagem hero: vem logo depois do subtítulo, antes da ficha. */
+.case-hero__media {
+  margin-block-start: clamp(2rem, 4vw, 3rem);
+}
+
+/* ---------- FICHA DO PROJETO ----------
+   Papel · Time · Duração · Ferramentas, numa faixa logo abaixo da imagem.
+   No mobile cada fato é uma linha com filete; a partir de 56rem viram
+   colunas lado a lado, separadas por filete vertical. grid-auto-flow
+   column aceita qualquer número de fatos sem mudar o CSS.
+   Cada fato continua sendo um par <dt>/<dd> legítimo. */
 .case-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  margin-block: clamp(2.5rem, 5vw, 3.5rem);
+  margin-block-start: clamp(1.5rem, 3vw, 2rem);
   border-block-start: 1px solid var(--c-border);
 }
 
 .case-meta__row {
   padding-block: var(--sp-4);
-  padding-inline-end: var(--sp-5);
   border-block-end: 1px solid var(--c-border);
+}
+
+@media (min-width: 56rem) {
+  .case-meta {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    border-block-end: 1px solid var(--c-border);
+  }
+
+  .case-meta__row {
+    padding-inline: var(--sp-5);
+    border-block-end: 0;
+    border-inline-start: 1px solid var(--c-border);
+  }
+
+  .case-meta__row:first-child {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
 }
 
 .case-meta__label {
@@ -2042,6 +2428,189 @@ main[id] {
   font-size: var(--fs-sm);
   font-weight: 500;
   line-height: var(--lh-snug);
+}
+
+/* ---------- EM 30 SEGUNDOS ----------
+   Problema · O que eu fiz · Resultado. Quem só tem meio minuto lê isto e
+   sai sabendo do case; o resto da página é para quem quer o porquê.
+   O cartão de resultado é o único com o número em display e accent. */
+.case-summary {
+  padding-block-end: 0;
+}
+
+.case-summary__title {
+  margin-block-end: var(--sp-5);
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.summary {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+.summary__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+}
+
+.summary__label {
+  color: var(--c-accent-text);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.summary__text {
+  color: var(--c-text-muted);
+  line-height: var(--lh-snug);
+  text-wrap: pretty;
+}
+
+.summary__card--result {
+  background-image: linear-gradient(160deg, var(--c-accent-soft), transparent 65%);
+  border-color: var(--c-accent-line);
+}
+
+.summary__value {
+  color: var(--c-accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary__card--result .summary__text {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.summary__note {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+}
+
+@media (min-width: 56rem) {
+  .summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---------- ÍNDICE DO CASE ----------
+   Chips com âncora para as seções. 44px de alvo de toque. */
+.case-toc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3) var(--sp-4);
+  margin-block-start: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.case-toc__label {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.case-toc__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.case-toc__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: var(--sp-4);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition:
+    color        var(--t) var(--ease),
+    border-color var(--t) var(--ease);
+}
+
+.case-toc__link:hover {
+  border-color: var(--c-accent-line);
+  color: var(--c-text);
+}
+
+/* ---------- SEÇÕES EM DUAS COLUNAS ----------
+   Mobile e tablet: empilhado, como sempre. A partir de 64rem, eyebrow e
+   título ficam numa coluna estreita à esquerda — presos no topo enquanto
+   a seção rola — e todo o conteúdo à direita.
+   O espaço entre os blocos do corpo vem do gap; as margens próprias dos
+   componentes (quote, metrics, decisions…) são zeradas aqui para não
+   somarem. */
+.case-section__body {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+  min-width: 0;
+}
+
+/* Inclui o .section-head__lead, que saiu do cabeçalho para o corpo: os
+   gêmeos de idioma escondidos não ocupam célula, então o gap basta. */
+.case-section__body > * {
+  margin-block: 0;
+}
+
+@media (min-width: 64rem) {
+  .case-section {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    column-gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .case-section__head {
+    position: sticky;
+    inset-block-start: calc(var(--header-h) + var(--sp-5));
+    margin-block-end: 0;
+  }
+
+  .case-section__head .section-head__title {
+    font-size: var(--fs-xl);
+  }
+}
+
+/* ---------- OUTROS PROJETOS ----------
+   Fim da página: anterior e próximo, com os mesmos .work-card da home. */
+.work-pair {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+@media (min-width: 40rem) {
+  .work-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.work-card__direction {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--c-accent-text);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 
 
@@ -2555,12 +3124,13 @@ main[id] {
   .btn:hover,
   .btn:hover .icon,
   .brand:hover .brand__mark,
-  .project-card:hover,
-  .project-card:focus-within,
-  .project-card:hover .media > img,
-  .project-card:focus-within .media > img,
-  .project-card:hover .project-card__cta .icon,
-  .project-card:focus-within .project-card__cta .icon,
+  .text-link:hover .icon,
+  .work-card:hover,
+  .work-card:focus-within,
+  .work-card:hover .work-card__media > img,
+  .work-card:focus-within .work-card__media > img,
+  .work-card:hover .work-card__cta .icon,
+  .work-card:focus-within .work-card__cta .icon,
   .decision:hover,
   .gallery__link:hover .media,
   .gallery__link:focus-visible .media,
@@ -2586,7 +3156,9 @@ main[id] {
   .decision,
   .split__col,
   .checklist__item,
-  .project-card,
+  .work-card,
+  .work-card__badge,
+  .filter__btn,
   .contact,
   .nav-toggle,
   .lang-switch,
@@ -2596,7 +3168,8 @@ main[id] {
     border: 1px solid CanvasText;
   }
 
-  .lang-switch__btn[aria-pressed="true"] {
+  .lang-switch__btn[aria-pressed="true"],
+  .filter__btn[aria-pressed="true"] {
     forced-color-adjust: none;
     background-color: Highlight;
     color: HighlightText;

@@ -227,7 +227,7 @@
             </a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="../index.html#projetos" aria-current="true">
+            <a class="nav__link" href="../projetos.html" aria-current="true">
               <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
             </a>
           </li>
@@ -311,7 +311,7 @@
                 </a>
               </li>
               <li class="breadcrumb__item">
-                <a class="breadcrumb__link" href="../index.html#projetos">
+                <a class="breadcrumb__link" href="../projetos.html">
                   <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
                 </a>
               </li>
@@ -321,51 +321,51 @@
             </ol>
           </nav>
 
+          <!-- Empresa e ano vivem no eyebrow; a ficha abaixo da imagem fica
+               só com Papel · Time · Duração · Ferramentas. -->
           <p class="eyebrow" data-reveal>
-            <span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span>
+            <span lang="pt-BR">Estudo de caso · Nasajon · 2025</span><span lang="en">Case study · Nasajon · 2025</span>
           </p>
 
           <h1 class="case-hero__title" id="case-titulo" data-reveal>
             <span lang="pt-BR">Rota calculada, decisão preservada: 40% menos custo por rota</span><span lang="en">Route calculated, decision preserved: 40% less cost per route</span>
           </h1>
 
+          <!-- SUBTÍTULO — uma linha. O parágrafo de abertura que vivia aqui
+               passou para o cartão "Problema" do bloco Em 30 segundos. -->
           <p class="case-hero__lead" data-reveal lang="pt-BR">
-            O gestor montava o romaneio de cabeça e numa planilha, sem estimativa
-            de custo, sem previsão de horário e sem saber onde o veículo estava
-            depois que saía. A plataforma passou a calcular a sequência — e a
-            deixar que ele discordasse dela.
+            Roteirização automática por veículo, peso e distância, sem
+            tirar a palavra final do gestor.
           </p>
           <p class="case-hero__lead" data-reveal lang="en">
-            The manager assembled the manifest in his head and in a spreadsheet,
-            with no cost estimate, no schedule forecast and no idea where the
-            vehicle was once it left. The platform started calculating the
-            sequence — and letting him disagree with it.
+            Automatic route planning by vehicle, weight and distance,
+            without taking the final say away from the manager.
           </p>
 
-          <!-- METADADOS DO PROJETO -->
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="container container--wide case-hero__media" data-reveal>
+          <figure class="media media--21x9 media--framed">
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
+            </span>
+            <!--
+              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              Esta é a imagem LCP desta página: eager + fetchpriority="high".
+
+            <img src="../assets/images/projeto-03-hero.jpg"
+                 alt="Tela da plataforma de roteirização com a rota calculada e as seções de acompanhamento"
+                 data-en-alt="Routing platform screen with the calculated route and the tracking sections"
+                 width="2100" height="900"
+                 loading="eager" fetchpriority="high" decoding="async">
+            -->
+          </figure>
+        </div>
+
+        <div class="container">
+          <!-- FICHA DO PROJETO — faixa horizontal logo abaixo da imagem -->
           <dl class="case-meta" data-reveal>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Empresa</span><span lang="en">Company</span>
-              </dt>
-              <dd class="case-meta__value">
-                <span lang="pt-BR">Nasajon · ERP</span><span lang="en">Nasajon · ERP</span>
-              </dd>
-            </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Ano</span><span lang="en">Year</span>
-              </dt>
-              <dd class="case-meta__value">2025</dd>
-            </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
-              </dt>
-              <dd class="case-meta__value">
-                <span lang="pt-BR">Em paralelo ao app de logística</span><span lang="en">Alongside the logistics app</span>
-              </dd>
-            </div>
             <div class="case-meta__row">
               <dt class="case-meta__label">
                 <span lang="pt-BR">Meu papel</span><span lang="en">My role</span>
@@ -384,6 +384,14 @@
             </div>
             <div class="case-meta__row">
               <dt class="case-meta__label">
+                <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">Em paralelo ao app de logística</span><span lang="en">Alongside the logistics app</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
                 <span lang="pt-BR">Ferramentas</span><span lang="en">Tools</span>
               </dt>
               <dd class="case-meta__value">
@@ -394,36 +402,100 @@
               </dd>
             </div>
           </dl>
-
-        </div>
-
-        <!-- HERO IMAGE -->
-        <div class="container container--wide" data-reveal>
-          <figure class="media media--21x9 media--framed">
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
-            </span>
-            <!--
-              SUBSTITUIR: apague o <span class="media__label"> e descomente.
-              Esta é a imagem LCP desta página: eager + fetchpriority="high".
-
-            <img src="../assets/images/projeto-03-hero.jpg"
-                 alt="Tela da plataforma de roteirização com a rota calculada e as seções de acompanhamento"
-                 data-en-alt="Routing platform screen with the calculated route and the tracking sections"
-                 width="2100" height="900"
-                 loading="eager" fetchpriority="high" decoding="async">
-            -->
-          </figure>
         </div>
       </header>
+
+      <!-- ==================================================================== -->
+      <!-- EM 30 SEGUNDOS + ÍNDICE                                              -->
+      <!-- Texto tirado do próprio case — nada escrito do zero. Problema: o     -->
+      <!-- antigo parágrafo de abertura. O que eu fiz: seção 04 (Meu papel).    -->
+      <!-- Resultado: a métrica da seção 07.                                    -->
+      <!-- ==================================================================== -->
+      <section class="section case-summary" aria-labelledby="resumo-titulo">
+        <div class="container">
+
+          <h2 class="case-summary__title" id="resumo-titulo" data-reveal>
+            <span lang="pt-BR">Em 30 segundos</span><span lang="en">In 30 seconds</span>
+          </h2>
+
+          <div class="summary" data-reveal>
+
+            <div class="summary__card">
+              <h3 class="summary__label">
+                <span lang="pt-BR">Problema</span><span lang="en">Problem</span>
+              </h3>
+              <p class="summary__text" lang="pt-BR">
+                O gestor montava o romaneio de cabeça e numa planilha,
+                sem estimativa de custo, sem previsão de horário e sem
+                saber onde o veículo estava depois que saía.
+              </p>
+              <p class="summary__text" lang="en">
+                The manager assembled the manifest in his head and in a
+                spreadsheet, with no cost estimate, no schedule forecast
+                and no idea where the vehicle was once it left.
+              </p>
+            </div>
+
+            <div class="summary__card">
+              <h3 class="summary__label">
+                <span lang="pt-BR">O que eu fiz</span><span lang="en">What I did</span>
+              </h3>
+              <p class="summary__text" lang="pt-BR">
+                A plataforma passou a calcular a sequência — e a deixar
+                que o gestor discordasse dela. O algoritmo é do time de
+                desenvolvimento; meu trabalho foi decidir o que ele
+                mostra e em que ordem.
+              </p>
+              <p class="summary__text" lang="en">
+                The platform started calculating the sequence — and
+                letting the manager disagree with it. The algorithm
+                belongs to the development team; my job was to decide
+                what it shows and in what order.
+              </p>
+            </div>
+
+            <div class="summary__card summary__card--result">
+              <h3 class="summary__label">
+                <span lang="pt-BR">Resultado</span><span lang="en">Result</span>
+              </h3>
+              <p class="summary__value">−40%</p>
+              <p class="summary__text">
+                <span lang="pt-BR">Custo médio por rota</span><span lang="en">Average cost per route</span>
+              </p>
+              <p class="summary__note">
+                <span lang="pt-BR">Comparativo entre a estimativa da plataforma e a rota anterior, confirmado por relato do cliente</span><span lang="en">Comparison between the platform's estimate and the previous route, confirmed by client report</span>
+              </p>
+            </div>
+
+          </div>
+
+          <!-- ÍNDICE — o rótulo visível é aria-hidden porque o nome do <nav>
+               já diz a mesma coisa ao leitor de tela. -->
+          <nav class="case-toc" aria-label="Neste estudo de caso"
+               data-en-aria-label="In this case study" data-reveal>
+            <p class="case-toc__label" aria-hidden="true">
+              <span lang="pt-BR">Neste case:</span><span lang="en">In this case:</span>
+            </p>
+            <ul class="case-toc__list">
+              <li><a class="case-toc__link" href="#contexto"><span lang="pt-BR">Contexto</span><span lang="en">Context</span></a></li>
+              <li><a class="case-toc__link" href="#desafio"><span lang="pt-BR">Problema</span><span lang="en">Problem</span></a></li>
+              <li><a class="case-toc__link" href="#processo"><span lang="pt-BR">Processo</span><span lang="en">Process</span></a></li>
+              <li><a class="case-toc__link" href="#solucao"><span lang="pt-BR">Solução</span><span lang="en">Solution</span></a></li>
+              <li><a class="case-toc__link" href="#resultados"><span lang="pt-BR">Resultado</span><span lang="en">Results</span></a></li>
+              <li><a class="case-toc__link" href="#aprendizados"><span lang="pt-BR">Aprendizados</span><span lang="en">Learnings</span></a></li>
+            </ul>
+          </nav>
+
+        </div>
+      </section>
 
       <!-- ==================================================================== -->
       <!-- 02 · CONTEXTO                                                        -->
       <!-- ==================================================================== -->
       <section class="section" id="contexto" aria-labelledby="contexto-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">01 — Contexto</span><span lang="en">01 — Context</span>
             </p>
@@ -432,58 +504,60 @@
             </h2>
           </header>
 
-          <div class="prose" data-reveal>
-            <p lang="pt-BR">
-              A Roteirização é a outra ponta do app de logística: onde o app
-              executa a entrega, a plataforma decide a ordem dela. Quem usa é o
-              gestor de logística. Ele insere as notas a serem entregues e o
-              sistema calcula a rota otimizada — considerando o veículo que vai
-              sair, o peso da carga, a capacidade suportada e a distância. Depois,
-              ele pode reordenar as paradas à mão, arrastando.
-            </p>
-            <p lang="en">
-              Roteirização is the other end of the logistics app: where the app
-              executes the delivery, this platform decides its order. Its user is
-              the logistics manager. He enters the invoices to be delivered and the
-              system calculates the optimised route — accounting for the vehicle
-              going out, the weight of the load, the capacity it supports and the
-              distance. He can then reorder the stops by hand, by dragging.
-            </p>
-            <p lang="pt-BR">
-              Antes, isso era papel e experiência de quem montava o romaneio. A
-              ordem das entregas saía do hábito, e a rota se resolvia no caminho —
-              o que transformava combustível e tempo em custo que ninguém media. Os
-              dois produtos foram desenhados em paralelo, e essa é a razão:
-              otimizar a sequência não serve para nada se ela não chegar organizada
-              na mão de quem executa, e a prova de entrega não fecha o ciclo se
-              ninguém do outro lado consegue ler.
-            </p>
-            <p lang="en">
-              Before, this was paper and the experience of whoever assembled the
-              manifest. The order of deliveries came out of habit, and the route
-              got sorted out along the way — which turned fuel and time into cost
-              nobody measured. The two products were designed in parallel, and
-              that's why: optimising the sequence is worthless if it doesn't reach
-              the person executing it in an organised form, and proof of delivery
-              doesn't close the loop if nobody on the other side can read it.
-            </p>
-          </div>
-          <!-- PESQUISA -->
-          <figure class="media media--16x9" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">A rota otimizada e o override manual · 1600×900</span><span lang="en">The optimised route and the manual override · 1600×900</span>
-            </span>
-            <!--
-            <img src="../assets/images/projeto-03-contexto.png"
-                 alt="Tela da Roteirização com a rota calculada pelo sistema e as paradas reordenáveis por arraste"
-                 data-en-alt="Roteirização screen with the system-calculated route and stops reorderable by dragging"
-                 width="1600" height="900" loading="lazy" decoding="async">
-            -->
-            <figcaption class="media__caption">
-              <span lang="pt-BR">O sistema calcula a sequência a partir do veículo, do peso e da distância — e o gestor mantém a palavra final, reordenando por arraste.</span><span lang="en">The system calculates the sequence from the vehicle, the weight and the distance — and the manager keeps the final say, reordering by dragging.</span>
-            </figcaption>
-          </figure>
+          <div class="case-section__body">
+            <div class="prose" data-reveal>
+              <p lang="pt-BR">
+                A Roteirização é a outra ponta do app de logística: onde o app
+                executa a entrega, a plataforma decide a ordem dela. Quem usa é o
+                gestor de logística. Ele insere as notas a serem entregues e o
+                sistema calcula a rota otimizada — considerando o veículo que vai
+                sair, o peso da carga, a capacidade suportada e a distância. Depois,
+                ele pode reordenar as paradas à mão, arrastando.
+              </p>
+              <p lang="en">
+                Roteirização is the other end of the logistics app: where the app
+                executes the delivery, this platform decides its order. Its user is
+                the logistics manager. He enters the invoices to be delivered and the
+                system calculates the optimised route — accounting for the vehicle
+                going out, the weight of the load, the capacity it supports and the
+                distance. He can then reorder the stops by hand, by dragging.
+              </p>
+              <p lang="pt-BR">
+                Antes, isso era papel e experiência de quem montava o romaneio. A
+                ordem das entregas saía do hábito, e a rota se resolvia no caminho —
+                o que transformava combustível e tempo em custo que ninguém media. Os
+                dois produtos foram desenhados em paralelo, e essa é a razão:
+                otimizar a sequência não serve para nada se ela não chegar organizada
+                na mão de quem executa, e a prova de entrega não fecha o ciclo se
+                ninguém do outro lado consegue ler.
+              </p>
+              <p lang="en">
+                Before, this was paper and the experience of whoever assembled the
+                manifest. The order of deliveries came out of habit, and the route
+                got sorted out along the way — which turned fuel and time into cost
+                nobody measured. The two products were designed in parallel, and
+                that's why: optimising the sequence is worthless if it doesn't reach
+                the person executing it in an organised form, and proof of delivery
+                doesn't close the loop if nobody on the other side can read it.
+              </p>
+            </div>
+            <!-- PESQUISA -->
+            <figure class="media media--16x9" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">A rota otimizada e o override manual · 1600×900</span><span lang="en">The optimised route and the manual override · 1600×900</span>
+              </span>
+              <!--
+              <img src="../assets/images/projeto-03-contexto.png"
+                   alt="Tela da Roteirização com a rota calculada pelo sistema e as paradas reordenáveis por arraste"
+                   data-en-alt="Roteirização screen with the system-calculated route and stops reorderable by dragging"
+                   width="1600" height="900" loading="lazy" decoding="async">
+              -->
+              <figcaption class="media__caption">
+                <span lang="pt-BR">O sistema calcula a sequência a partir do veículo, do peso e da distância — e o gestor mantém a palavra final, reordenando por arraste.</span><span lang="en">The system calculates the sequence from the vehicle, the weight and the distance — and the manager keeps the final say, reordering by dragging.</span>
+              </figcaption>
+            </figure>
 
+          </div>
         </div>
       </section>
 
@@ -491,84 +565,86 @@
       <!-- 03 · DESAFIO / PROBLEMA                                              -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="desafio" aria-labelledby="desafio-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
-              <span lang="pt-BR">02 — Desafio</span><span lang="en">02 — Challenge</span>
+              <span lang="pt-BR">02 — Problema</span><span lang="en">02 — Problem</span>
             </p>
             <h2 class="section-head__title" id="desafio-titulo">
               <span lang="pt-BR">O problema, dos dois lados</span><span lang="en">The problem, from both sides</span>
             </h2>
           </header>
 
-          <div class="split" data-reveal>
+          <div class="case-section__body">
+            <div class="split" data-reveal>
 
-            <div class="split__col">
-              <h3 class="split__title">
-                <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
-              </h3>
-              <div class="prose prose--sm">
-                <p lang="pt-BR">
-                  Montar o romaneio era caro em tempo e em erro. Não havia
-                  estimativa de custo, não havia previsão de horário e não havia
-                  acompanhamento: depois que o veículo saía, a operação virava
-                  caixa-preta até o entregador voltar. A perda era dupla —
-                  combustível gasto numa sequência pior do que a possível, e a
-                  impossibilidade de responder qualquer pergunta sobre uma entrega
-                  em andamento.
-                </p>
-                <p lang="en">
-                  Assembling the manifest was expensive in time and in error. There
-                  were no cost estimates, no schedule forecasts and no tracking:
-                  once the vehicle left, the operation became a black box until the
-                  driver came back. The loss was twofold — fuel spent on a worse
-                  sequence than the one available, and the impossibility of
-                  answering any question about a delivery in progress.
-                </p>
+              <div class="split__col">
+                <h3 class="split__title">
+                  <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
+                </h3>
+                <div class="prose prose--sm">
+                  <p lang="pt-BR">
+                    Montar o romaneio era caro em tempo e em erro. Não havia
+                    estimativa de custo, não havia previsão de horário e não havia
+                    acompanhamento: depois que o veículo saía, a operação virava
+                    caixa-preta até o entregador voltar. A perda era dupla —
+                    combustível gasto numa sequência pior do que a possível, e a
+                    impossibilidade de responder qualquer pergunta sobre uma entrega
+                    em andamento.
+                  </p>
+                  <p lang="en">
+                    Assembling the manifest was expensive in time and in error. There
+                    were no cost estimates, no schedule forecasts and no tracking:
+                    once the vehicle left, the operation became a black box until the
+                    driver came back. The loss was twofold — fuel spent on a worse
+                    sequence than the one available, and the impossibility of
+                    answering any question about a delivery in progress.
+                  </p>
+                </div>
               </div>
+
+              <div class="split__col">
+                <h3 class="split__title">
+                  <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
+                </h3>
+                <div class="prose prose--sm">
+                  <p lang="pt-BR">
+                    O gestor montava a sequência de cabeça, apoiado na experiência.
+                    Isso funciona até entrar uma nota de última hora, até o peso não
+                    fechar com o veículo, até o cliente ligar perguntando de uma
+                    entrega que ele não tem como localizar. Cada uma dessas situações
+                    era resolvida por telefone, e todas competiam com o resto do dia
+                    dele.
+                  </p>
+                  <p lang="en">
+                    The manager assembled the sequence in his head, leaning on
+                    experience. That works until a last-minute invoice arrives, until
+                    the weight doesn't fit the vehicle, until a client calls asking
+                    about a delivery he has no way to locate. Each of those was
+                    solved on the phone, and all of them competed with the rest of
+                    his day.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
-            <div class="split__col">
-              <h3 class="split__title">
-                <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
-              </h3>
-              <div class="prose prose--sm">
-                <p lang="pt-BR">
-                  O gestor montava a sequência de cabeça, apoiado na experiência.
-                  Isso funciona até entrar uma nota de última hora, até o peso não
-                  fechar com o veículo, até o cliente ligar perguntando de uma
-                  entrega que ele não tem como localizar. Cada uma dessas situações
-                  era resolvida por telefone, e todas competiam com o resto do dia
-                  dele.
-                </p>
-                <p lang="en">
-                  The manager assembled the sequence in his head, leaning on
-                  experience. That works until a last-minute invoice arrives, until
-                  the weight doesn't fit the vehicle, until a client calls asking
-                  about a delivery he has no way to locate. Each of those was
-                  solved on the phone, and all of them competed with the rest of
-                  his day.
-                </p>
-              </div>
-            </div>
-
+            <!-- INSIGHTS -->
+            <blockquote class="quote quote--lg" data-reveal>
+              <p class="quote__text" lang="pt-BR">
+                “Eu não tinha expectativa de quanto o romaneio ia custar. Só sabia
+                depois.”
+              </p>
+              <p class="quote__text" lang="en">
+                “I had no expectation of what the manifest would cost. I only knew
+                afterwards.”
+              </p>
+              <footer class="quote__author">
+                <span lang="pt-BR">— Gestor de logística, durante as entrevistas</span><span lang="en">— Logistics manager, during the interviews</span>
+              </footer>
+            </blockquote>
           </div>
-
-          <!-- INSIGHTS -->
-          <blockquote class="quote" data-reveal>
-            <p class="quote__text" lang="pt-BR">
-              “Eu não tinha expectativa de quanto o romaneio ia custar. Só sabia
-              depois.”
-            </p>
-            <p class="quote__text" lang="en">
-              “I had no expectation of what the manifest would cost. I only knew
-              afterwards.”
-            </p>
-            <footer class="quote__author">
-              <span lang="pt-BR">— Gestor de logística, durante as entrevistas</span><span lang="en">— Logistics manager, during the interviews</span>
-            </footer>
-          </blockquote>
         </div>
       </section>
 
@@ -576,9 +652,9 @@
       <!-- 04 · OBJETIVOS                                                       -->
       <!-- ==================================================================== -->
       <section class="section" id="objetivos" aria-labelledby="objetivos-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">03 — Objetivos</span><span lang="en">03 — Goals</span>
             </p>
@@ -587,39 +663,41 @@
             </h2>
           </header>
 
-          <ul class="checklist" data-reveal>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Calcular a sequência de entregas automaticamente, a partir do veículo, do peso, da capacidade suportada e da distância.</span><span lang="en">Calculate the delivery sequence automatically, from the vehicle, the weight, the supported capacity and the distance.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Dar estimativa de custo e de horário antes de o veículo sair.</span><span lang="en">Provide cost and schedule estimates before the vehicle leaves.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Permitir acompanhar a rota em andamento, sem depender de ligar para o entregador.</span><span lang="en">Allow tracking a route in progress, without having to call the driver.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Manter o gestor com a palavra final: a rota calculada precisa ser reordenável à mão.</span><span lang="en">Keep the manager with the final say: the calculated route has to be reorderable by hand.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Fechar o ciclo com o app do entregador — status, prova e comentários voltando sem redigitação.</span><span lang="en">Close the loop with the driver app — status, proof and comments returning with no retyping.</span>
-            </li>
-          </ul>
+          <div class="case-section__body">
+            <ul class="checklist" data-reveal>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Calcular a sequência de entregas automaticamente, a partir do veículo, do peso, da capacidade suportada e da distância.</span><span lang="en">Calculate the delivery sequence automatically, from the vehicle, the weight, the supported capacity and the distance.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Dar estimativa de custo e de horário antes de o veículo sair.</span><span lang="en">Provide cost and schedule estimates before the vehicle leaves.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Permitir acompanhar a rota em andamento, sem depender de ligar para o entregador.</span><span lang="en">Allow tracking a route in progress, without having to call the driver.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Manter o gestor com a palavra final: a rota calculada precisa ser reordenável à mão.</span><span lang="en">Keep the manager with the final say: the calculated route has to be reorderable by hand.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Fechar o ciclo com o app do entregador — status, prova e comentários voltando sem redigitação.</span><span lang="en">Close the loop with the driver app — status, proof and comments returning with no retyping.</span>
+              </li>
+            </ul>
 
+          </div>
         </div>
       </section>
 
@@ -627,16 +705,19 @@
       <!-- 05 · MEU PAPEL                                                       -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="papel" aria-labelledby="papel-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">04 — Meu papel</span><span lang="en">04 — My role</span>
             </p>
             <h2 class="section-head__title" id="papel-titulo">
               <span lang="pt-BR">O que foi meu</span><span lang="en">What was mine</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               Único designer, mesmo papel e mesmo time do app de logística. A
               diferença está na persona: em vez de desenhar para quem executa em
               pé, na rua, desenhei para quem decide sentado, olhando muita
@@ -645,7 +726,7 @@
               decidir o que ele mostra, em que ordem, e onde o gestor pode
               discordar dele.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               Sole designer, same role and same team as the logistics app. The
               difference is the persona: instead of designing for someone executing
               on foot, out on the street, I designed for someone deciding while
@@ -654,23 +735,22 @@
               development team. My job was to decide what it shows, in what order,
               and where the manager gets to disagree with it.
             </p>
-          </header>
+            <ul class="chips chips--lg" data-reveal
+                aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
+              <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
+              <li class="chip"><span lang="pt-BR">Pesquisa de usuários</span><span lang="en">User research</span></li>
+              <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
+              <li class="chip"><span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span></li>
+              <li class="chip"><span lang="pt-BR">Definição</span><span lang="en">Definition</span></li>
+              <li class="chip"><span lang="pt-BR">Ideação</span><span lang="en">Ideation</span></li>
+              <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
+              <li class="chip"><span lang="pt-BR">Visualização de dados</span><span lang="en">Data visualisation</span></li>
+              <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
+              <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
+              <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
+              <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>          </ul>
 
-          <ul class="chips chips--lg" data-reveal
-              aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
-            <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
-            <li class="chip"><span lang="pt-BR">Pesquisa de usuários</span><span lang="en">User research</span></li>
-            <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
-            <li class="chip"><span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span></li>
-            <li class="chip"><span lang="pt-BR">Definição</span><span lang="en">Definition</span></li>
-            <li class="chip"><span lang="pt-BR">Ideação</span><span lang="en">Ideation</span></li>
-            <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
-            <li class="chip"><span lang="pt-BR">Visualização de dados</span><span lang="en">Data visualisation</span></li>
-            <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
-            <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
-            <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
-            <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>          </ul>
-
+          </div>
         </div>
       </section>
 
@@ -678,249 +758,251 @@
       <!-- 06 · PROCESSO                                                        -->
       <!-- ==================================================================== -->
       <section class="section" id="processo" aria-labelledby="processo-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">05 — Processo</span><span lang="en">05 — Process</span>
             </p>
             <h2 class="section-head__title" id="processo-titulo">
               <span lang="pt-BR">Como cheguei lá</span><span lang="en">How I got there</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               Seis etapas, em paralelo ao app de logística. A segunda foi a mais
               produtiva do projeto, e não custou nada: pedir a planilha que o
               gestor já mantinha.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               Six stages, running alongside the logistics app. The second was the
               most productive of the project, and cost nothing: asking for the
               spreadsheet the manager already kept.
             </p>
-          </header>
+            <ol class="timeline">
 
-          <ol class="timeline">
+              <!-- PESQUISA -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Entrevista com o gestor</span><span lang="en">Interviewing the manager</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Comecei pelo mesmo gestor de logística que eu já havia
+                    entrevistado para o app do entregador. Desenhar as duas pontas
+                    tinha essa vantagem: eu já sabia o que a operação não conseguia
+                    ver, e podia perguntar direto o que faltava para ele decidir.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I started with the same logistics manager I had already
+                    interviewed for the driver app. Designing both ends had that
+                    advantage: I already knew what the operation couldn't see, and
+                    could ask directly what he was missing in order to decide.
+                  </p>
+                  <!-- PESQUISA -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Notas da entrevista com o gestor · 1200×675</span><span lang="en">Notes from the manager interview · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-pesquisa.png"
+                         alt="Notas da entrevista com o gestor de logística, organizadas por decisão que ele precisa tomar"
+                         data-en-alt="Notes from the logistics manager interview, organised by the decisions he needs to make"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- PESQUISA -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Entrevista com o gestor</span><span lang="en">Interviewing the manager</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Comecei pelo mesmo gestor de logística que eu já havia
-                  entrevistado para o app do entregador. Desenhar as duas pontas
-                  tinha essa vantagem: eu já sabia o que a operação não conseguia
-                  ver, e podia perguntar direto o que faltava para ele decidir.
-                </p>
-                <p class="timeline__text" lang="en">
-                  I started with the same logistics manager I had already
-                  interviewed for the driver app. Designing both ends had that
-                  advantage: I already knew what the operation couldn't see, and
-                  could ask directly what he was missing in order to decide.
-                </p>
-                <!-- PESQUISA -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Notas da entrevista com o gestor · 1200×675</span><span lang="en">Notes from the manager interview · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-pesquisa.png"
-                       alt="Notas da entrevista com o gestor de logística, organizadas por decisão que ele precisa tomar"
-                       data-en-alt="Notes from the logistics manager interview, organised by the decisions he needs to make"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- INSIGHTS -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">A planilha antiga</span><span lang="en">The old spreadsheet</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Pedi a planilha que ele usava para montar o romaneio. Documento
+                    que a pessoa mantém por conta própria é o melhor briefing que
+                    existe: mostra exatamente quais informações ela considera
+                    indispensáveis, quais ela recalcula à mão e onde ela não confia no
+                    sistema. Metade da arquitetura da tela saiu de lá.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I asked for the spreadsheet he used to assemble the manifest. A
+                    document someone maintains on their own initiative is the best
+                    brief there is: it shows exactly which information they consider
+                    indispensable, which they recalculate by hand, and where they
+                    don't trust the system. Half the screen's architecture came out
+                    of it.
+                  </p>
+                  <!-- INSIGHTS -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">A planilha, anotada · 1200×675</span><span lang="en">The spreadsheet, annotated · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-insights.png"
+                         alt="A planilha antiga do gestor, anotada com o que virou requisito de tela"
+                         data-en-alt="The manager's old spreadsheet, annotated with what became a screen requirement"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- INSIGHTS -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">A planilha antiga</span><span lang="en">The old spreadsheet</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Pedi a planilha que ele usava para montar o romaneio. Documento
-                  que a pessoa mantém por conta própria é o melhor briefing que
-                  existe: mostra exatamente quais informações ela considera
-                  indispensáveis, quais ela recalcula à mão e onde ela não confia no
-                  sistema. Metade da arquitetura da tela saiu de lá.
-                </p>
-                <p class="timeline__text" lang="en">
-                  I asked for the spreadsheet he used to assemble the manifest. A
-                  document someone maintains on their own initiative is the best
-                  brief there is: it shows exactly which information they consider
-                  indispensable, which they recalculate by hand, and where they
-                  don't trust the system. Half the screen's architecture came out
-                  of it.
-                </p>
-                <!-- INSIGHTS -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">A planilha, anotada · 1200×675</span><span lang="en">The spreadsheet, annotated · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-insights.png"
-                       alt="A planilha antiga do gestor, anotada com o que virou requisito de tela"
-                       data-en-alt="The manager's old spreadsheet, annotated with what became a screen requirement"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- USER FLOW -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Definição: dividir a autoridade</span><span lang="en">Definition: splitting the authority</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    A decisão de produto foi dividir a autoridade entre o sistema e a
+                    pessoa. O sistema calcula a sequência a partir do veículo, do
+                    peso, da capacidade suportada e da distância; o gestor pode
+                    reordenar arrastando. Automatizar sem permitir discordância cria
+                    um produto que a pessoa contorna por fora — e o contorno
+                    disponível aqui era voltar para a planilha.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    The product decision was to split authority between the system
+                    and the person. The system calculates the sequence from the
+                    vehicle, the weight, the supported capacity and the distance; the
+                    manager can reorder by dragging. Automating without allowing
+                    disagreement creates a product people route around — and the
+                    workaround available here was going back to the spreadsheet.
+                  </p>
+                  <!-- USER FLOW -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Cálculo automático e override manual · 1200×675</span><span lang="en">Automatic calculation and manual override · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-fluxos.png"
+                         alt="Fluxo do cálculo automático da rota e do ponto em que o gestor pode reordenar à mão"
+                         data-en-alt="Flow of the automatic route calculation and the point where the manager can reorder by hand"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- USER FLOW -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Definição: dividir a autoridade</span><span lang="en">Definition: splitting the authority</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  A decisão de produto foi dividir a autoridade entre o sistema e a
-                  pessoa. O sistema calcula a sequência a partir do veículo, do
-                  peso, da capacidade suportada e da distância; o gestor pode
-                  reordenar arrastando. Automatizar sem permitir discordância cria
-                  um produto que a pessoa contorna por fora — e o contorno
-                  disponível aqui era voltar para a planilha.
-                </p>
-                <p class="timeline__text" lang="en">
-                  The product decision was to split authority between the system
-                  and the person. The system calculates the sequence from the
-                  vehicle, the weight, the supported capacity and the distance; the
-                  manager can reorder by dragging. Automating without allowing
-                  disagreement creates a product people route around — and the
-                  workaround available here was going back to the spreadsheet.
-                </p>
-                <!-- USER FLOW -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Cálculo automático e override manual · 1200×675</span><span lang="en">Automatic calculation and manual override · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-fluxos.png"
-                       alt="Fluxo do cálculo automático da rota e do ponto em que o gestor pode reordenar à mão"
-                       data-en-alt="Flow of the automatic route calculation and the point where the manager can reorder by hand"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- ARQUITETURA -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    “Ele precisa ver tudo” era o requisito, e é a armadilha desse tipo
+                    de produto: tudo visível ao mesmo tempo é o mesmo que nada
+                    visível. Em vez de um painel único, dividi em seções com propósito
+                    próprio — andamento da rota, custo, comparativo entre entregas,
+                    histórico, comentários do entregador. Cada tela responde a uma
+                    pergunta, e o gestor escolhe qual pergunta está fazendo.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    “He needs to see everything” was the requirement, and it's the
+                    trap in this kind of product: everything visible at once is the
+                    same as nothing visible. Instead of a single dashboard, I split it
+                    into sections with distinct purposes — route progress, cost,
+                    comparison between deliveries, history, driver comments. Each
+                    screen answers one question, and the manager chooses which
+                    question he's asking.
+                  </p>
+                  <!-- ARQUITETURA -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">As seções da plataforma · 1200×675</span><span lang="en">The platform's sections · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-ia.png"
+                         alt="Mapa das seções da plataforma, cada uma respondendo a uma pergunta do gestor"
+                         data-en-alt="Map of the platform's sections, each answering one of the manager's questions"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- ARQUITETURA -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  “Ele precisa ver tudo” era o requisito, e é a armadilha desse tipo
-                  de produto: tudo visível ao mesmo tempo é o mesmo que nada
-                  visível. Em vez de um painel único, dividi em seções com propósito
-                  próprio — andamento da rota, custo, comparativo entre entregas,
-                  histórico, comentários do entregador. Cada tela responde a uma
-                  pergunta, e o gestor escolhe qual pergunta está fazendo.
-                </p>
-                <p class="timeline__text" lang="en">
-                  “He needs to see everything” was the requirement, and it's the
-                  trap in this kind of product: everything visible at once is the
-                  same as nothing visible. Instead of a single dashboard, I split it
-                  into sections with distinct purposes — route progress, cost,
-                  comparison between deliveries, history, driver comments. Each
-                  screen answers one question, and the manager chooses which
-                  question he's asking.
-                </p>
-                <!-- ARQUITETURA -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">As seções da plataforma · 1200×675</span><span lang="en">The platform's sections · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-ia.png"
-                       alt="Mapa das seções da plataforma, cada uma respondendo a uma pergunta do gestor"
-                       data-en-alt="Map of the platform's sections, each answering one of the manager's questions"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- WIREFRAMES -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Estrutura em wireframe antes de qualquer decisão visual. O Moqups
+                    entrou em algumas funcionalidades justamente para ganhar
+                    velocidade onde o que importava era o arranjo, não o acabamento —
+                    ferramenta mais rápida resolve melhor a pergunta “isso cabe aqui?”
+                    do que uma mais capaz.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Structure in wireframe before any visual decision. Moqups came in
+                    on some features precisely to gain speed where what mattered was
+                    the arrangement, not the finish — a faster tool answers “does this
+                    fit here?” better than a more capable one.
+                  </p>
+                  <!-- BAIXA FIDELIDADE -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Wireframes da plataforma · 1200×675</span><span lang="en">Platform wireframes · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-wireframes.png"
+                         alt="Wireframes das seções de roteirização e de acompanhamento"
+                         data-en-alt="Wireframes of the routing and tracking sections"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- WIREFRAMES -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Estrutura em wireframe antes de qualquer decisão visual. O Moqups
-                  entrou em algumas funcionalidades justamente para ganhar
-                  velocidade onde o que importava era o arranjo, não o acabamento —
-                  ferramenta mais rápida resolve melhor a pergunta “isso cabe aqui?”
-                  do que uma mais capaz.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Structure in wireframe before any visual decision. Moqups came in
-                  on some features precisely to gain speed where what mattered was
-                  the arrangement, not the finish — a faster tool answers “does this
-                  fit here?” better than a more capable one.
-                </p>
-                <!-- BAIXA FIDELIDADE -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Wireframes da plataforma · 1200×675</span><span lang="en">Platform wireframes · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-wireframes.png"
-                       alt="Wireframes das seções de roteirização e de acompanhamento"
-                       data-en-alt="Wireframes of the routing and tracking sections"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- IMPLEMENTAÇÃO -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">UI final, handoff e revisão</span><span lang="en">Final UI, handoff and review</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Mesmo formato do app de logística, com o mesmo time: arquivo
+                    estruturado no Figma e revisão junto com o desenvolvedor,
+                    comparando o construído com o prototipado. Em tela densa isso pesa
+                    mais: um alinhamento perdido ou uma coluna que quebra com dado
+                    real não estraga o visual, estraga a leitura.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Same format as the logistics app, with the same team: a structured
+                    Figma file and review alongside the developer, comparing what was
+                    built with what was prototyped. On a dense screen this matters
+                    more: a lost alignment or a column that breaks with real data
+                    doesn't spoil the look, it spoils the reading.
+                  </p>
+                  <!-- IMPLEMENTAÇÃO -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Revisão da implementação · 1200×675</span><span lang="en">Implementation review · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-handoff.png"
+                         alt="Comparação entre o protótipo e a tela implementada, com os ajustes de leitura apontados"
+                         data-en-alt="Comparison between the prototype and the implemented screen, with reading fixes noted"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- IMPLEMENTAÇÃO -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">UI final, handoff e revisão</span><span lang="en">Final UI, handoff and review</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Mesmo formato do app de logística, com o mesmo time: arquivo
-                  estruturado no Figma e revisão junto com o desenvolvedor,
-                  comparando o construído com o prototipado. Em tela densa isso pesa
-                  mais: um alinhamento perdido ou uma coluna que quebra com dado
-                  real não estraga o visual, estraga a leitura.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Same format as the logistics app, with the same team: a structured
-                  Figma file and review alongside the developer, comparing what was
-                  built with what was prototyped. On a dense screen this matters
-                  more: a lost alignment or a column that breaks with real data
-                  doesn't spoil the look, it spoils the reading.
-                </p>
-                <!-- IMPLEMENTAÇÃO -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Revisão da implementação · 1200×675</span><span lang="en">Implementation review · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-handoff.png"
-                       alt="Comparação entre o protótipo e a tela implementada, com os ajustes de leitura apontados"
-                       data-en-alt="Comparison between the prototype and the implemented screen, with reading fixes noted"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
-
-          </ol>
+            </ol>
+          </div>
         </div>
       </section>
 
@@ -928,9 +1010,9 @@
       <!-- 07 · SOLUÇÃO                                                         -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="solucao" aria-labelledby="solucao-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">06 — Solução</span><span lang="en">06 — Solution</span>
             </p>
@@ -939,101 +1021,103 @@
             </h2>
           </header>
 
-          <!-- MOCKUP -->
-          <figure class="media media--16x9 media--framed" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
-            </span>
-            <!--
-            <img src="../assets/images/projeto-03-solucao.png"
-                 alt="Tela da Roteirização com a rota calculada, a estimativa de custo e as seções de acompanhamento"
-                 data-en-alt="Roteirização screen with the calculated route, cost estimate and tracking sections"
-                 width="1600" height="900" loading="lazy" decoding="async">
-            -->
-          </figure>
+          <div class="case-section__body">
+            <!-- MOCKUP -->
+            <figure class="media media--16x9 media--framed" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
+              </span>
+              <!--
+              <img src="../assets/images/projeto-03-solucao.png"
+                   alt="Tela da Roteirização com a rota calculada, a estimativa de custo e as seções de acompanhamento"
+                   data-en-alt="Roteirização screen with the calculated route, cost estimate and tracking sections"
+                   width="1600" height="900" loading="lazy" decoding="async">
+              -->
+            </figure>
 
-          <div class="decisions" data-reveal>
+            <div class="decisions" data-reveal>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">O sistema calcula, o gestor decide</span><span lang="en">The system calculates, the manager decides</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                A rota chega calculada a partir do veículo, do peso, da capacidade e
-                da distância — e continua editável por arraste. A automação assume o
-                trabalho que ela faz melhor, sem tirar de quem responde pelo
-                resultado o direito de discordar. Sem esse escape, o produto perde
-                para a planilha na primeira exceção.
-              </p>
-              <p class="decision__text" lang="en">
-                The route arrives calculated from the vehicle, the weight, the
-                capacity and the distance — and stays editable by dragging.
-                Automation takes on the work it does better, without stripping the
-                person accountable for the outcome of the right to disagree. Without
-                that escape hatch, the product loses to the spreadsheet at the first
-                exception.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">O sistema calcula, o gestor decide</span><span lang="en">The system calculates, the manager decides</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  A rota chega calculada a partir do veículo, do peso, da capacidade e
+                  da distância — e continua editável por arraste. A automação assume o
+                  trabalho que ela faz melhor, sem tirar de quem responde pelo
+                  resultado o direito de discordar. Sem esse escape, o produto perde
+                  para a planilha na primeira exceção.
+                </p>
+                <p class="decision__text" lang="en">
+                  The route arrives calculated from the vehicle, the weight, the
+                  capacity and the distance — and stays editable by dragging.
+                  Automation takes on the work it does better, without stripping the
+                  person accountable for the outcome of the right to disagree. Without
+                  that escape hatch, the product loses to the spreadsheet at the first
+                  exception.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">Seções, não um painel único</span><span lang="en">Sections, not one single dashboard</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                O gestor precisa de rota, status, localização, custo, comparativo,
-                comentário e histórico — mas não ao mesmo tempo. Cada um ganhou sua
-                seção, com uma pergunta própria para responder. Amontoar tudo numa
-                tela parece completo e entrega o oposto: nada com peso suficiente
-                para ser lido primeiro.
-              </p>
-              <p class="decision__text" lang="en">
-                The manager needs route, status, location, cost, comparison,
-                comments and history — but not all at once. Each got its own
-                section, with its own question to answer. Piling everything onto one
-                screen looks thorough and delivers the opposite: nothing weighty
-                enough to be read first.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">Seções, não um painel único</span><span lang="en">Sections, not one single dashboard</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  O gestor precisa de rota, status, localização, custo, comparativo,
+                  comentário e histórico — mas não ao mesmo tempo. Cada um ganhou sua
+                  seção, com uma pergunta própria para responder. Amontoar tudo numa
+                  tela parece completo e entrega o oposto: nada com peso suficiente
+                  para ser lido primeiro.
+                </p>
+                <p class="decision__text" lang="en">
+                  The manager needs route, status, location, cost, comparison,
+                  comments and history — but not all at once. Each got its own
+                  section, with its own question to answer. Piling everything onto one
+                  screen looks thorough and delivers the opposite: nothing weighty
+                  enough to be read first.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">Custo e horário antes de o veículo sair</span><span lang="en">Cost and schedule before the vehicle leaves</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                A estimativa aparece na hora de montar, não no relatório do dia
-                seguinte. Informação de custo depois da decisão é auditoria; antes
-                da decisão é design. É o que permite ao gestor comparar duas
-                sequências enquanto ainda dá para escolher entre elas.
-              </p>
-              <p class="decision__text" lang="en">
-                The estimate shows up while the route is being assembled, not in the
-                next day's report. Cost information after the decision is auditing;
-                before the decision it's design. It's what lets the manager compare
-                two sequences while there's still a choice to make.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">Custo e horário antes de o veículo sair</span><span lang="en">Cost and schedule before the vehicle leaves</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  A estimativa aparece na hora de montar, não no relatório do dia
+                  seguinte. Informação de custo depois da decisão é auditoria; antes
+                  da decisão é design. É o que permite ao gestor comparar duas
+                  sequências enquanto ainda dá para escolher entre elas.
+                </p>
+                <p class="decision__text" lang="en">
+                  The estimate shows up while the route is being assembled, not in the
+                  next day's report. Cost information after the decision is auditing;
+                  before the decision it's design. It's what lets the manager compare
+                  two sequences while there's still a choice to make.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">O ciclo fecha com o app do entregador</span><span lang="en">The loop closes with the driver app</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                Status, prova de entrega e comentários do entregador chegam aqui sem
-                ninguém redigitar nada. É o que torna os dois produtos um só
-                sistema: a sequência sai daqui organizada e volta com o que
-                aconteceu de fato na rua — incluindo o que o entregador escreveu, que
-                é a única parte do relato que não vem de sensor.
-              </p>
-              <p class="decision__text" lang="en">
-                Status, proof of delivery and the driver's comments arrive here with
-                nobody retyping anything. That's what makes the two products a
-                single system: the sequence leaves here organised and comes back
-                with what actually happened on the road — including what the driver
-                wrote, which is the only part of the account that doesn't come from
-                a sensor.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">O ciclo fecha com o app do entregador</span><span lang="en">The loop closes with the driver app</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  Status, prova de entrega e comentários do entregador chegam aqui sem
+                  ninguém redigitar nada. É o que torna os dois produtos um só
+                  sistema: a sequência sai daqui organizada e volta com o que
+                  aconteceu de fato na rua — incluindo o que o entregador escreveu, que
+                  é a única parte do relato que não vem de sensor.
+                </p>
+                <p class="decision__text" lang="en">
+                  Status, proof of delivery and the driver's comments arrive here with
+                  nobody retyping anything. That's what makes the two products a
+                  single system: the sequence leaves here organised and comes back
+                  with what actually happened on the road — including what the driver
+                  wrote, which is the only part of the account that doesn't come from
+                  a sensor.
+                </p>
+              </article>
 
+            </div>
           </div>
         </div>
       </section>
@@ -1042,59 +1126,61 @@
       <!-- 08 · RESULTADOS                                                      -->
       <!-- ==================================================================== -->
       <section class="section" id="resultados" aria-labelledby="resultados-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">07 — Resultados</span><span lang="en">07 — Results</span>
             </p>
             <h2 class="section-head__title" id="resultados-titulo">
               <span lang="pt-BR">O que mudou, medido</span><span lang="en">What changed, measured</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               O objetivo declarado era custo, e é nele que existe número. Os
               demais efeitos — acompanhamento, estimativa de horário, fim do
               retrabalho de romaneio — mudaram a operação, mas não foram apurados
               até o fechamento deste estudo.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               The stated goal was cost, and that's where a figure exists. The other
               effects — tracking, schedule estimates, the end of manifest rework —
               changed the operation, but weren't measured up to the closing of this
               case study.
             </p>
-          </header>
+            <!-- MÉTRICAS -->
+            <div class="metrics" data-reveal>
 
-          <!-- MÉTRICAS -->
-          <div class="metrics" data-reveal>
+              <div class="metric">
+                <p class="metric__value">−40%</p>
+                <h3 class="metric__label">
+                  <span lang="pt-BR">Custo médio por rota</span><span lang="en">Average cost per route</span>
+                </h3>
+                <p class="metric__note">
+                  <span lang="pt-BR">Comparativo entre a estimativa da plataforma e a rota anterior, confirmado por relato do cliente</span><span lang="en">Comparison between the platform's estimate and the previous route, confirmed by client report</span>
+                </p>
+              </div>
 
-            <div class="metric">
-              <p class="metric__value">−40%</p>
-              <h3 class="metric__label">
-                <span lang="pt-BR">Custo médio por rota</span><span lang="en">Average cost per route</span>
-              </h3>
-              <p class="metric__note">
-                <span lang="pt-BR">Comparativo entre a estimativa da plataforma e a rota anterior, confirmado por relato do cliente</span><span lang="en">Comparison between the platform's estimate and the previous route, confirmed by client report</span>
-              </p>
             </div>
+            <!-- RESULTADOS -->
+            <figure class="media media--16x9" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Custo por rota, antes e depois · 1200×675</span><span lang="en">Cost per route, before and after · 1200×675</span>
+              </span>
+              <!--
+              <img src="../assets/images/projeto-03-resultados.png"
+                   alt="Comparação do custo médio por rota antes e depois da plataforma de roteirização"
+                   data-en-alt="Comparison of average cost per route before and after the routing platform"
+                   width="1200" height="675" loading="lazy" decoding="async">
+              -->
+              <figcaption class="media__caption">
+                <span lang="pt-BR">Custo médio por rota antes e depois da roteirização automática.</span><span lang="en">Average cost per route before and after automatic routing.</span>
+              </figcaption>
+            </figure>
 
           </div>
-          <!-- RESULTADOS -->
-          <figure class="media media--16x9 container--prose" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Custo por rota, antes e depois · 1200×675</span><span lang="en">Cost per route, before and after · 1200×675</span>
-            </span>
-            <!--
-            <img src="../assets/images/projeto-03-resultados.png"
-                 alt="Comparação do custo médio por rota antes e depois da plataforma de roteirização"
-                 data-en-alt="Comparison of average cost per route before and after the routing platform"
-                 width="1200" height="675" loading="lazy" decoding="async">
-            -->
-            <figcaption class="media__caption">
-              <span lang="pt-BR">Custo médio por rota antes e depois da roteirização automática.</span><span lang="en">Average cost per route before and after automatic routing.</span>
-            </figcaption>
-          </figure>
-
         </div>
       </section>
 
@@ -1102,9 +1188,9 @@
       <!-- 09 · APRENDIZADOS                                                    -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="aprendizados" aria-labelledby="aprendizados-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">08 — Aprendizados</span><span lang="en">08 — Learnings</span>
             </p>
@@ -1113,49 +1199,51 @@
             </h2>
           </header>
 
-          <div class="prose" data-reveal>
-            <p lang="pt-BR">
-              <strong>Nem sempre o que o cliente pede é o que ele precisa.</strong>
-              O requisito que chegou era “o gestor precisa ver tudo”, e atendê-lo
-              literalmente teria produzido um painel em que nada tem peso suficiente
-              para ser lido primeiro. O que ele precisava não era ver tudo ao mesmo
-              tempo — era achar rápido a coisa certa quando a pergunta aparece.
-              Separar em seções contraria o pedido e atende a necessidade, e
-              defender essa diferença faz parte do trabalho.
-            </p>
-            <p lang="en">
-              <strong>What the client asks for isn't always what they need.</strong>
-              The requirement that arrived was “the manager needs to see
-              everything”, and taking it literally would have produced a dashboard
-              where nothing carries enough weight to be read first. What he needed
-              wasn't to see everything at once — it was to find the right thing
-              quickly when the question comes up. Splitting it into sections
-              contradicts the request and serves the need, and defending that
-              difference is part of the job.
-            </p>
+          <div class="case-section__body">
+            <div class="prose" data-reveal>
+              <p lang="pt-BR">
+                <strong>Nem sempre o que o cliente pede é o que ele precisa.</strong>
+                O requisito que chegou era “o gestor precisa ver tudo”, e atendê-lo
+                literalmente teria produzido um painel em que nada tem peso suficiente
+                para ser lido primeiro. O que ele precisava não era ver tudo ao mesmo
+                tempo — era achar rápido a coisa certa quando a pergunta aparece.
+                Separar em seções contraria o pedido e atende a necessidade, e
+                defender essa diferença faz parte do trabalho.
+              </p>
+              <p lang="en">
+                <strong>What the client asks for isn't always what they need.</strong>
+                The requirement that arrived was “the manager needs to see
+                everything”, and taking it literally would have produced a dashboard
+                where nothing carries enough weight to be read first. What he needed
+                wasn't to see everything at once — it was to find the right thing
+                quickly when the question comes up. Splitting it into sections
+                contradicts the request and serves the need, and defending that
+                difference is part of the job.
+              </p>
 
-            <p lang="pt-BR">
-              <strong>E eu mesmo caí nessa.</strong> Parte dos gráficos e dashboards
-              que desenhei entrou porque o cliente pediu — e não é usada. Eu tinha
-              acabado de dividir a plataforma em seções justamente para não
-              empilhar informação, e ainda assim aceitei pedido de visualização sem
-              perguntar que decisão ela ajudaria a tomar. Aprender a lição e aplicá-la
-              de forma desigual no mesmo projeto é mais comum do que se admite.
-              Hoje, antes de desenhar qualquer gráfico, eu faço uma pergunta só: que
-              decisão essa pessoa toma olhando para isso? Sem resposta, o gráfico
-              não entra.
-            </p>
-            <p lang="en">
-              <strong>And I fell for it myself.</strong> Some of the charts and
-              dashboards I designed went in because the client asked for them — and
-              they go unused. I had just split the platform into sections precisely
-              to avoid piling up information, and still accepted a request for
-              visualisations without asking what decision they would help make.
-              Learning a lesson and applying it unevenly within the same project is
-              more common than people admit. Now, before designing any chart, I ask
-              one question: what decision does this person make by looking at it?
-              With no answer, the chart doesn't ship.
-            </p>
+              <p lang="pt-BR">
+                <strong>E eu mesmo caí nessa.</strong> Parte dos gráficos e dashboards
+                que desenhei entrou porque o cliente pediu — e não é usada. Eu tinha
+                acabado de dividir a plataforma em seções justamente para não
+                empilhar informação, e ainda assim aceitei pedido de visualização sem
+                perguntar que decisão ela ajudaria a tomar. Aprender a lição e aplicá-la
+                de forma desigual no mesmo projeto é mais comum do que se admite.
+                Hoje, antes de desenhar qualquer gráfico, eu faço uma pergunta só: que
+                decisão essa pessoa toma olhando para isso? Sem resposta, o gráfico
+                não entra.
+              </p>
+              <p lang="en">
+                <strong>And I fell for it myself.</strong> Some of the charts and
+                dashboards I designed went in because the client asked for them — and
+                they go unused. I had just split the platform into sections precisely
+                to avoid piling up information, and still accepted a request for
+                visualisations without asking what decision they would help make.
+                Learning a lesson and applying it unevenly within the same project is
+                more common than people admit. Now, before designing any chart, I ask
+                one question: what decision does this person make by looking at it?
+                With no answer, the chart doesn't ship.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1164,9 +1252,9 @@
       <!-- 10 · GALERIA + LIGHTBOX                                              -->
       <!-- ==================================================================== -->
       <section class="section" id="galeria" aria-labelledby="galeria-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">09 — Galeria</span><span lang="en">09 — Gallery</span>
             </p>
@@ -1175,153 +1263,155 @@
             </h2>
           </header>
 
-          <ul class="gallery" data-gallery data-reveal>
+          <div class="case-section__body">
+            <ul class="gallery" data-gallery data-reveal>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-03-galeria-01.jpg"
-                 data-caption="A rota calculada, com estimativa de custo e horário antes da saída"
-                 data-caption-en="The calculated route, with cost and schedule estimates before departure">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-03-galeria-01.jpg"
+                   data-caption="A rota calculada, com estimativa de custo e horário antes da saída"
+                   data-caption-en="The calculated route, with cost and schedule estimates before departure">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-galeria-01-thumb.jpg"
+                         alt="Tela da rota calculada, com a estimativa de custo e de horário"
+                         data-en-alt="Calculated route screen, with cost and schedule estimates"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: rota calculada</span><span lang="en">Enlarge: calculated route</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-galeria-01-thumb.jpg"
-                       alt="Tela da rota calculada, com a estimativa de custo e de horário"
-                       data-en-alt="Calculated route screen, with cost and schedule estimates"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: rota calculada</span><span lang="en">Enlarge: calculated route</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-03-galeria-02.jpg"
-                 data-caption="Reordenar paradas por arraste: onde o gestor discorda do sistema"
-                 data-caption-en="Reordering stops by dragging: where the manager disagrees with the system">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-03-galeria-02.jpg"
+                   data-caption="Reordenar paradas por arraste: onde o gestor discorda do sistema"
+                   data-caption-en="Reordering stops by dragging: where the manager disagrees with the system">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-galeria-02-thumb.jpg"
+                         alt="Interação de arraste para reordenar as paradas da rota"
+                         data-en-alt="Drag interaction for reordering the stops on a route"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: override manual da rota</span><span lang="en">Enlarge: manual route override</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-galeria-02-thumb.jpg"
-                       alt="Interação de arraste para reordenar as paradas da rota"
-                       data-en-alt="Drag interaction for reordering the stops on a route"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: override manual da rota</span><span lang="en">Enlarge: manual route override</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-03-galeria-03.jpg"
-                 data-caption="Acompanhamento da rota em andamento, com a posição do entregador"
-                 data-caption-en="Tracking a route in progress, with the driver's position">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-03-galeria-03.jpg"
+                   data-caption="Acompanhamento da rota em andamento, com a posição do entregador"
+                   data-caption-en="Tracking a route in progress, with the driver's position">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-galeria-03-thumb.jpg"
+                         alt="Seção de acompanhamento com status das paradas e localização do entregador"
+                         data-en-alt="Tracking section with stop status and the driver's location"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: acompanhamento da rota</span><span lang="en">Enlarge: route tracking</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-galeria-03-thumb.jpg"
-                       alt="Seção de acompanhamento com status das paradas e localização do entregador"
-                       data-en-alt="Tracking section with stop status and the driver's location"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: acompanhamento da rota</span><span lang="en">Enlarge: route tracking</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-03-galeria-04.jpg"
-                 data-caption="Comparativo entre entregas e o histórico da operação"
-                 data-caption-en="Comparison between deliveries and the operation's history">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-03-galeria-04.jpg"
+                   data-caption="Comparativo entre entregas e o histórico da operação"
+                   data-caption-en="Comparison between deliveries and the operation's history">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-galeria-04-thumb.jpg"
+                         alt="Seção de análise com comparativo entre entregas e histórico"
+                         data-en-alt="Analysis section with delivery comparison and history"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: comparativo e histórico</span><span lang="en">Enlarge: comparison and history</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-galeria-04-thumb.jpg"
-                       alt="Seção de análise com comparativo entre entregas e histórico"
-                       data-en-alt="Analysis section with delivery comparison and history"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: comparativo e histórico</span><span lang="en">Enlarge: comparison and history</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-03-galeria-05.jpg"
-                 data-caption="Os comentários do entregador chegando na gestão, sem redigitação"
-                 data-caption-en="The driver's comments arriving in management, with no retyping">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-03-galeria-05.jpg"
+                   data-caption="Os comentários do entregador chegando na gestão, sem redigitação"
+                   data-caption-en="The driver's comments arriving in management, with no retyping">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-galeria-05-thumb.jpg"
+                         alt="Comentários registrados pelo entregador exibidos na plataforma do gestor"
+                         data-en-alt="Comments logged by the driver, displayed in the manager's platform"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: comentários do entregador</span><span lang="en">Enlarge: driver comments</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-galeria-05-thumb.jpg"
-                       alt="Comentários registrados pelo entregador exibidos na plataforma do gestor"
-                       data-en-alt="Comments logged by the driver, displayed in the manager's platform"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: comentários do entregador</span><span lang="en">Enlarge: driver comments</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-03-galeria-06.jpg"
-                 data-caption="A planilha antiga, anotada com o que virou requisito de tela"
-                 data-caption-en="The old spreadsheet, annotated with what became a screen requirement">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-03-galeria-06.jpg"
+                   data-caption="A planilha antiga, anotada com o que virou requisito de tela"
+                   data-caption-en="The old spreadsheet, annotated with what became a screen requirement">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-03-galeria-06-thumb.jpg"
+                         alt="A planilha que o gestor mantinha, anotada durante a pesquisa"
+                         data-en-alt="The spreadsheet the manager kept, annotated during research"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: a planilha antiga</span><span lang="en">Enlarge: the old spreadsheet</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-03-galeria-06-thumb.jpg"
-                       alt="A planilha que o gestor mantinha, anotada durante a pesquisa"
-                       data-en-alt="The spreadsheet the manager kept, annotated during research"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: a planilha antiga</span><span lang="en">Enlarge: the old spreadsheet</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-          </ul>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -1353,13 +1443,127 @@
                 </svg>
                 <span lang="pt-BR">Entrar em contato</span><span lang="en">Get in touch</span>
               </a>
-              <a class="btn btn--secondary btn--lg" href="projeto-01.html">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="#i-arrow-right"></use>
-                </svg>
-                <span lang="pt-BR">Próximo caso: o PDV</span><span lang="en">Next case: the POS</span>
-              </a>
             </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- ==================================================================== -->
+      <!-- OUTROS PROJETOS — anterior e próximo, em ciclo (01 → 02 → 03 → 01). -->
+      <!-- Os textos são os mesmos dos cards da home e de /projetos.            -->
+      <!-- ==================================================================== -->
+      <section class="section case-more" aria-labelledby="outros-titulo">
+        <div class="container">
+
+          <header class="section-bar" data-reveal>
+            <h2 class="section-bar__title" id="outros-titulo">
+              <span lang="pt-BR">Outros projetos</span><span lang="en">More work</span>
+            </h2>
+            <a class="text-link" href="../projetos.html">
+              <span lang="pt-BR">Ver todos</span><span lang="en">View all</span>
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </a>
+          </header>
+
+          <div class="work-pair">
+
+            <!-- ANTERIOR -->
+            <article class="work-card" data-reveal aria-labelledby="anterior-titulo">
+              <figure class="media media--21x9 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa do app de logística · 21:9 · 1680×720</span><span lang="en">Logistics app cover · 21:9 · 1680×720</span>
+                </span>
+                <!--
+                <img src="../assets/images/projeto-02-capa.jpg"
+                     alt=""
+                     width="1680" height="720" loading="lazy" decoding="async">
+                -->
+              </figure>
+              <div class="work-card__body">
+                <p class="work-card__direction">
+                  <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="#i-arrow-left"></use></svg>
+                  <span lang="pt-BR">Anterior</span><span lang="en">Previous</span>
+                </p>
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">Nasajon</li>
+                  <li class="meta-inline__item">2025</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span>
+                  </li>
+                </ul>
+                <h3 class="work-card__title" id="anterior-titulo">
+                  <a class="work-card__link" href="projeto-02.html">
+                    <span lang="pt-BR">A próxima parada, e a prova</span><span lang="en">The next stop, and the proof</span>
+                  </a>
+                </h3>
+                <p class="work-card__summary" lang="pt-BR">
+                  App de entrega com rota otimizada e prova digital no
+                  lugar do papel.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Delivery app with an optimised route and digital proof
+                  in place of paper.
+                </p>
+                <!-- PENDENTE (depende do Arthur): mesma métrica da home e de
+                     /projetos. Ao preencher, troque em todos os lugares. -->
+                <p class="work-card__metric work-card__metric--pending">
+                  <span class="work-card__metric-value">
+                    <span lang="pt-BR">[PENDENTE]</span><span lang="en">[PENDING]</span>
+                  </span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">[resultado do app de logística]</span><span lang="en">[logistics app result]</span>
+                  </span>
+                </p>
+              </div>
+            </article>
+
+            <!-- PRÓXIMO -->
+            <article class="work-card" data-reveal aria-labelledby="proximo-titulo">
+              <figure class="media media--21x9 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa do PDV Nasajon · 21:9 · 1680×720</span><span lang="en">Nasajon POS cover · 21:9 · 1680×720</span>
+                </span>
+                <!--
+                <img src="../assets/images/projeto-01-capa-21x9.jpg"
+                     alt=""
+                     width="1680" height="720" loading="lazy" decoding="async">
+                -->
+              </figure>
+              <div class="work-card__body">
+                <p class="work-card__direction">
+                  <span lang="pt-BR">Próximo</span><span lang="en">Next</span>
+                  <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+                </p>
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">Nasajon</li>
+                  <li class="meta-inline__item">2026</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span>
+                  </li>
+                </ul>
+                <h3 class="work-card__title" id="proximo-titulo">
+                  <a class="work-card__link" href="projeto-01.html">
+                    <span lang="pt-BR">Um PDV que sai do balcão</span><span lang="en">A POS that leaves the counter</span>
+                  </a>
+                </h3>
+                <p class="work-card__summary" lang="pt-BR">
+                  Redesenho mobile-first do ponto de venda para quem
+                  atende longe do caixa.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Mobile-first redesign of the point of sale for staff
+                  who serve away from the register.
+                </p>
+                <p class="work-card__metric">
+                  <span class="work-card__metric-value">−30%</span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">no tempo de fechamento de venda</span><span lang="en">in time to close a sale</span>
+                  </span>
+                </p>
+              </div>
+            </article>
 
           </div>
         </div>

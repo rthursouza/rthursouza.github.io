@@ -188,9 +188,10 @@ LinkedIn faz cache agressivo, e o Post Inspector força a releitura.
 
 ```
 portfolio/
-├── index.html                      Home: hero, sobre, projetos, contato
-├── style.css                       Toda a folha de estilo (25 seções numeradas)
-├── script.js                       Todo o comportamento (8 módulos)
+├── index.html                      Home: hero, projetos em destaque, sobre, contato
+├── projetos.html                   Listagem de todos os projetos (grade + filtro)
+├── style.css                       Toda a folha de estilo (seções numeradas)
+├── script.js                       Todo o comportamento (10 módulos)
 ├── README.md                       Este arquivo
 │
 ├── assets/
@@ -382,7 +383,8 @@ mkdir -p assets/{images,icons,illustrations,favicon}
 
 ## 7. Como adicionar um novo projeto
 
-São duas etapas: criar a página do case e criar o card que aponta para ela.
+São até três etapas: criar a página do case, criar o card em `projetos.html`
+e — só se o projeto for um dos destaques — criar o card na home.
 
 ### 7.1 · A página do case
 
@@ -394,9 +396,19 @@ Abra o arquivo novo e percorra os blocos marcados com **`>> PREENCHER`**.
 Eles estão na ordem da narrativa, que é fixa e não deve ser reordenada:
 
 ```
-Hero → Contexto → Desafio → Objetivos → Meu Papel → Processo →
-Solução → Resultados → Aprendizados → Galeria
+Hero (título · subtítulo · imagem 21:9 · ficha) → Em 30 segundos + índice →
+Contexto → Problema → Objetivos → Meu Papel → Processo → Solução →
+Resultados → Aprendizados → Galeria → Contato → Outros projetos
 ```
+
+Três regras de leitura valem para todo case:
+
+- **Em 30 segundos** (Problema · O que eu fiz · Resultado) usa só texto que
+  já está no case — nada escrito do zero para o resumo.
+- **No máximo 2 parágrafos seguidos sem imagem.**
+- **Outros projetos** aponta para o anterior e o próximo na ordem de
+  `projetos.html`, em ciclo. Ao adicionar um case, atualize também os
+  vizinhos dele.
 
 Não esqueça do `<head>`: `title`, `description`, `canonical`, Open Graph e
 Twitter Card são por página.
@@ -410,41 +422,55 @@ referência de tom e troque pelo seu conteúdo.
 > "projeto conceitual — métricas de usabilidade em protótipo". Honestidade
 > convence mais do que número redondo sem fonte.
 
-### 7.2 · O card na home
+### 7.2 · O card em `projetos.html`
 
-Em `index.html`, dentro de `<div class="projects">`, duplique um
-`<article class="project-card">` inteiro e troque:
+Todo projeto entra aqui. Dentro de `<ul class="work-grid">`, duplique um
+`<li class="work-grid__item">` inteiro e troque:
 
-- o `href` dos **dois** links (a imagem e o título);
+- o `href` do link do título (é o **único** link do card — o `::after` dele
+  cobre o card inteiro, então não há link na imagem);
 - o `id` do título e o `aria-labelledby` do `<article>` — precisam ser únicos
-  na página (`proj-04-titulo`);
-- empresa, ano, categoria, título, resumo e ferramentas;
-- o placeholder da capa.
+  na página (`lista-04-titulo`);
+- ano, área, título, a linha de resumo e a métrica;
+- `data-project-area`: as áreas do filtro, separadas por espaço
+  (`erp-varejo`, `logistica`, `mobile`, `gestao-dados`);
+- o placeholder da capa (4:3);
+- o selo `work-card__badge` ("Destaque"): mantenha só se o projeto também
+  estiver na home; senão, apague o `<p>` inteiro.
 
 ```html
-<article class="project-card" data-reveal aria-labelledby="proj-04-titulo">
-  <a class="project-card__media-link" href="projects/projeto-04.html"
-     tabindex="-1" aria-hidden="true">
-    ...
-  </a>
-  <div class="project-card__body">
-    ...
-    <h3 class="project-card__title" id="proj-04-titulo">
-      <a class="project-card__link" href="projects/projeto-04.html">
-        <span lang="pt-BR">Título em português</span><span lang="en">Title in English</span>
-      </a>
-    </h3>
-    ...
-  </div>
-</article>
+<li class="work-grid__item" data-reveal data-project-area="logistica mobile">
+  <article class="work-card" aria-labelledby="lista-04-titulo">
+    <figure class="media media--4x3 work-card__media">...</figure>
+    <div class="work-card__body">
+      <ul class="meta-inline">...</ul>
+      <h2 class="work-card__title" id="lista-04-titulo">
+        <a class="work-card__link" href="projects/projeto-04.html">
+          <span lang="pt-BR">Título em português</span><span lang="en">Title in English</span>
+        </a>
+      </h2>
+      ...
+      <p class="work-card__metric">...</p>
+    </div>
+  </article>
+</li>
 ```
 
-O `tabindex="-1"` e o `aria-hidden="true"` no link da imagem são intencionais:
-sem eles, cada card apareceria duas vezes na navegação por teclado, apontando
-para o mesmo lugar.
+O contador ("3 projetos") se atualiza sozinho com JavaScript — o número no
+HTML é só o fallback. O filtro por área já está no markup, escondido; o
+`script.js` o mostra automaticamente quando a grade chega a **6 projetos**
+(o limite é o `data-filter-min` do filtro).
 
-A partir do quarto card, o layout alterna o lado da imagem sozinho — não há
-nada a configurar.
+### 7.3 · O card na home (só destaques)
+
+A home mostra três projetos: um card grande (`work-card work-card--lead`,
+imagem 16:9) e dois menores (`work-card`, imagem 21:9). Para trocar um
+destaque, edite o `<article>` correspondente em `<div class="featured">`,
+com as mesmas regras do card acima (um link só, `id` único). Os títulos
+aqui são `h3`, porque ficam abaixo do `h2` "Projetos em destaque".
+
+Sem métrica real, não invente: deixe o placeholder `[PENDENTE]` com o
+modificador `work-card__metric--pending` até ter o número.
 
 ---
 
