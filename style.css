@@ -4,7 +4,8 @@
    ----------------------------------------------------------------------------
    Arquivo : style.css
    Stack   : CSS3 puro · Mobile First · Tema claro e escuro (escuro é o padrão)
-   Consome : index.html · projects/projeto-template.html (e as cópias 01–03)
+   Consome : index.html · projetos.html · sobre.html ·
+             projects/projeto-template.html (e as cópias 01–03)
 
    ÍNDICE
    ------
@@ -27,6 +28,8 @@
    15 · SOBRE (curto)
    16 · PROJETOS (project-card · featured)
    16b· PÁGINA DE PROJETOS (page-intro · page-toolbar · filter · project-grid)
+   16c· PÁGINA SOBRE (about-intro · experience · method · term-list ·
+        education)
    17 · CONTATO
    18 · FOOTER
    19 · CASE · BREADCRUMB, HERO, FICHA, EM 30 SEGUNDOS, ÍNDICE, DUAS
@@ -44,7 +47,9 @@
    • class="…" → estilo.  data-* → comportamento (JS).  .is-* → estado.
    • Tema: data-theme="escuro" (padrão) | "claro" em <html>, escrito pelo JS.
    • Breakpoints:
+       30rem (480px)  — amostras de trabalho em 3 colunas (sobre.html)
        40rem (640px)  — grades de 2 colunas e ajustes de proporção
+       48rem (768px)  — card de experiência em duas colunas (sobre.html)
        56rem (896px)  — troca do menu mobile para a navegação desktop
                         e card grande de projeto na horizontal
        64rem (1024px) — seções do case em duas colunas (título | conteúdo)
@@ -1790,6 +1795,51 @@ main[id] {
   margin-block-start: var(--sp-4);
 }
 
+/* ---------- RESUMO DA TRAJETÓRIA ----------
+   Duas linhas: cargo · empresa à esquerda, período à direita, com filete
+   entre elas. O ponto médio é decoração gerada em CSS — não é lido em voz
+   alta, como no .meta-list. Em tela estreita o período desce para baixo
+   do cargo. A trajetória completa vive em sobre.html (seção 16c). */
+.career-list {
+  margin-block-start: var(--sp-5);
+  max-width: var(--w-prose);
+}
+
+.career-list__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-1) var(--sp-4);
+  padding-block: var(--sp-3);
+}
+
+.career-list__item + .career-list__item {
+  border-block-start: 1px solid var(--color-border);
+}
+
+.career-list__role {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.career-list__org {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.career-list__org::before {
+  content: "·";
+  margin-inline: var(--sp-2);
+  color: var(--color-border-strong);
+}
+
+.career-list__period {
+  color: var(--color-text-subtle);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+}
+
 @media (min-width: 56rem) {
   .about {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
@@ -2156,6 +2206,291 @@ main[id] {
   padding-block: var(--sp-6);
   color: var(--color-text-muted);
   text-align: center;
+}
+
+
+/* ==========================================================================
+   16c · PÁGINA SOBRE (/sobre.html)
+   --------------------------------------------------------------------------
+   Abertura em duas colunas, experiência, como eu trabalho, competências e
+   formação. Reaproveita page-intro, breadcrumb, eyebrow, prose, media,
+   heading-row, text-link, chips, two-col, meta-list e contact — os blocos
+   abaixo são só o que a página tem de próprio.
+   ========================================================================== */
+
+/* ---------- ABERTURA ----------
+   Texto à esquerda, foto 4:5 à direita. No mobile a foto vem depois do
+   texto, que é a ordem do HTML — como no hero da home. */
+.about-intro {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.about-intro__title {
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+}
+
+.about-intro__text {
+  margin-block-start: var(--sp-5);
+}
+
+.about-intro__media {
+  width: 100%;
+  max-width: 15rem;
+}
+
+@media (min-width: 56rem) {
+  .about-intro {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    align-items: start;
+  }
+
+  .about-intro__media {
+    max-width: none;
+  }
+}
+
+/* ---------- EXPERIÊNCIA ----------
+   <ol> com um card por experiência, da mais recente para a mais antiga.
+
+   .experience__meta        período, local e selo "Atual" (coluna esquerda)
+   .experience__body        cargo, empresa, resumo, destaques, amostras, chips
+   .experience__highlights  um resultado por linha, cada um com "Ver case →"
+   .experience__samples     grade de amostras 4:3 (trabalho sem case)
+
+   A partir de 48rem o card vira duas colunas: meta à esquerda, conteúdo à
+   direita. Abaixo disso, a meta é uma linha só acima do cargo. */
+.experience {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+.experience__item {
+  display: grid;
+  gap: var(--sp-4);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.experience__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: start;
+  gap: var(--sp-2) var(--sp-3);
+}
+
+.experience__period {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.experience__place {
+  color: var(--color-text-subtle);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+}
+
+.experience__badge {
+  padding: 0.1875rem 0.625rem;
+  background-color: var(--color-accent-soft);
+  border: 1px solid var(--color-accent-line);
+  border-radius: var(--radius-pill);
+  color: var(--color-accent-text);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.experience__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+
+.experience__role {
+  font-size: var(--fs-lg);
+}
+
+/* Cola na linha do cargo: os dois juntos são o "título" do card. */
+.experience__org {
+  margin-block-start: calc(var(--sp-2) * -1);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.experience__summary {
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+/* Destaques: resultado à esquerda, link à direita, filete entre as linhas.
+   Em tela estreita o link desce para baixo do resultado. */
+.experience__highlights {
+  width: 100%;
+  margin-block-start: var(--sp-1);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.experience__highlight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 var(--sp-4);
+  padding-block: var(--sp-2);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.experience__highlight-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-1) var(--sp-3);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+}
+
+/* Número em display, como a métrica do .project-card. */
+.experience__metric {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Resultado que ainda não existe: o mesmo tratamento de
+   .project-card__metric--pending — placeholder visível, sem fingir número. */
+.experience__highlight--pending .experience__metric {
+  color: var(--color-text-subtle);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  letter-spacing: var(--tracking-wide);
+}
+
+.experience__highlight--pending .experience__highlight-text {
+  color: var(--color-text-subtle);
+}
+
+.experience__body .chips {
+  margin-block-start: var(--sp-2);
+}
+
+/* Amostras: uma coluna no celular, três a partir de 30rem. */
+.experience__samples {
+  display: grid;
+  gap: var(--sp-3);
+  width: 100%;
+  margin-block-start: var(--sp-1);
+}
+
+.experience__samples .media {
+  border-radius: var(--radius);
+}
+
+@media (min-width: 30rem) {
+  .experience__samples {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 48rem) {
+  .experience__item {
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .experience__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- COMO EU TRABALHO ----------
+   Três cartões numerados. O número é decorativo (aria-hidden): a <ol> já
+   anuncia a ordem ao leitor de tela. */
+.method {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+.method__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.method__number {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.method__title {
+  font-size: var(--fs-md);
+}
+
+.method__text {
+  color: var(--color-text-muted);
+  line-height: var(--lh-snug);
+}
+
+@media (min-width: 56rem) {
+  .method {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---------- COMPETÊNCIAS ----------
+   <dl> em texto corrido, sem chips: aqui a lista é de referência. */
+.term-list {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.term-list__term {
+  color: var(--color-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.term-list__desc {
+  margin-block-start: var(--sp-1);
+  color: var(--color-text-muted);
+  line-height: var(--lh-snug);
+}
+
+/* ---------- FORMAÇÃO ---------- */
+.education__course {
+  margin-block-end: var(--sp-2);
+  font-size: var(--fs-md);
+  font-weight: 600;
 }
 
 
@@ -3159,6 +3494,9 @@ main[id] {
   .project-card,
   .project-card__badge,
   .filter__btn,
+  .experience__item,
+  .experience__badge,
+  .method__item,
   .contact,
   .nav-toggle,
   .lang-switch,

@@ -17,14 +17,15 @@ que vai para o ar.
 5. [Como editar textos](#5-como-editar-textos)
 6. [Como trocar imagens](#6-como-trocar-imagens)
 7. [Como adicionar um novo projeto](#7-como-adicionar-um-novo-projeto)
-8. [Como mudar a identidade visual](#8-como-mudar-a-identidade-visual)
-9. [Como o CSS e o JavaScript conversam](#9-como-o-css-e-o-javascript-conversam)
-10. [Acessibilidade](#10-acessibilidade)
-11. [Performance](#11-performance)
-12. [Publicando no GitHub Pages](#12-publicando-no-github-pages)
-13. [Publicando na Vercel](#13-publicando-na-vercel)
-14. [Publicando na Netlify](#14-publicando-na-netlify)
-15. [Manutenção — o que não quebrar](#15-manutenção--o-que-não-quebrar)
+8. [Como adicionar uma experiência](#8-como-adicionar-uma-experiência)
+9. [Como mudar a identidade visual](#9-como-mudar-a-identidade-visual)
+10. [Como o CSS e o JavaScript conversam](#10-como-o-css-e-o-javascript-conversam)
+11. [Acessibilidade](#11-acessibilidade)
+12. [Performance](#12-performance)
+13. [Publicando no GitHub Pages](#13-publicando-no-github-pages)
+14. [Publicando na Vercel](#14-publicando-na-vercel)
+15. [Publicando na Netlify](#15-publicando-na-netlify)
+16. [Manutenção — o que não quebrar](#16-manutenção--o-que-não-quebrar)
 
 ---
 
@@ -127,7 +128,7 @@ Nenhum resultado = pronto para publicar.
 - [ ] Substituir os placeholders de imagem (veja `IMAGENS.md`)
 - [ ] Gerar as 4 imagens de Open Graph (1200×630)
 - [ ] Gerar o favicon definitivo, se quiser substituir o SVG embutido
-- [ ] Rodar o Lighthouse ([seção 11](#11-performance))
+- [ ] Rodar o Lighthouse ([seção 12](#12-performance))
 
 ### Os três cases
 
@@ -193,6 +194,7 @@ LinkedIn faz cache agressivo, e o Post Inspector força a releitura.
 portfolio/
 ├── index.html                      Home: hero, projetos em destaque, sobre, contato
 ├── projetos.html                   Listagem de todos os projetos (grade + filtro)
+├── sobre.html                      Trajetória: experiência, como eu trabalho, formação
 ├── style.css                       Toda a folha de estilo (seções numeradas)
 ├── script.js                       Todo o comportamento (10 módulos)
 ├── README.md                       Este arquivo
@@ -477,7 +479,75 @@ modificador `project-card__metric--pending` até ter o número.
 
 ---
 
-## 8. Como mudar a identidade visual
+## 8. Como adicionar uma experiência
+
+A trajetória completa vive em `sobre.html`, na seção **Experiência**: uma
+`<ol class="experience">` com um card por experiência, da mais recente para a
+mais antiga. Para adicionar uma, duplique um `<li class="experience__item">`
+inteiro e troque o conteúdo:
+
+```html
+<li class="experience__item" data-reveal>
+
+  <!-- Coluna da esquerda: período, local e (só na atual) o selo. -->
+  <div class="experience__meta">
+    <p class="experience__period">
+      <span lang="pt-BR">2021 — 2023</span><span lang="en">2021 — 2023</span>
+    </p>
+    <p class="experience__place">
+      <span lang="pt-BR">Cidade · Remoto</span><span lang="en">City · Remote</span>
+    </p>
+    <!-- Selo "Atual": só na experiência em andamento. -->
+    <!-- <p class="experience__badge"><span lang="pt-BR">Atual</span><span lang="en">Current</span></p> -->
+  </div>
+
+  <div class="experience__body">
+    <h3 class="experience__role">
+      <span lang="pt-BR">Cargo</span><span lang="en">Role</span>
+    </h3>
+    <p class="experience__org">
+      <span lang="pt-BR">Empresa · área</span><span lang="en">Company · area</span>
+    </p>
+    <p class="experience__summary" lang="pt-BR">Uma linha sobre o que você fazia.</p>
+    <p class="experience__summary" lang="en">One line about what you did.</p>
+
+    <!-- Destaques (opcional): um resultado por linha, com link para o case.
+         Sem número real, use o modificador --pending e um placeholder. -->
+    <ul class="experience__highlights">
+      <li class="experience__highlight">
+        <p class="experience__highlight-text">
+          <span class="experience__metric">−00%</span>
+          <span lang="pt-BR">no que mudou</span><span lang="en">in what changed</span>
+        </p>
+        <a class="text-link" href="projects/projeto-04.html">
+          <span lang="pt-BR">Ver case</span><span lang="en">View case</span>
+          <span class="visually-hidden"><span lang="pt-BR">(nome do case)</span><span lang="en">(case name)</span></span>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Amostras (opcional): para trabalho que não tem case. 3 peças 4:3. -->
+    <!-- <ul class="experience__samples" aria-label="Amostras de peças" data-en-aria-label="Work samples">…</ul> -->
+
+    <ul class="chips chips--sm" aria-label="Competências usadas" data-en-aria-label="Skills used">
+      <li class="chip chip--sm"><span lang="pt-BR">Competência</span><span lang="en">Skill</span></li>
+    </ul>
+  </div>
+</li>
+```
+
+- **Destaques ou amostras.** Destaques apontam para cases; amostras mostram
+  peças de trabalho que não viraram case.
+- **O texto oculto do "Ver case"** diz qual é o case. Sem ele, o leitor de
+  tela anuncia vários links iguais ("Ver case", "Ver case"…) sem contexto.
+- **Atualize também o resumo da home.** A seção Sobre do `index.html` tem uma
+  `<ul class="career-list">` com uma linha por experiência principal (cargo ·
+  empresa e período). A lista completa fica em `sobre.html`.
+
+---
+
+## 9. Como mudar a identidade visual
 
 Toda a linguagem visual está no bloco **02 · TOKENS** do `style.css`. Fora dele
 não existe cor, raio, sombra ou duração escrita à mão.
@@ -565,7 +635,7 @@ cuida do clique, do `aria-pressed` e da `<meta name="theme-color">`.
 
 ---
 
-## 9. Como o CSS e o JavaScript conversam
+## 10. Como o CSS e o JavaScript conversam
 
 Uma convenção de três linhas que vale para o projeto inteiro:
 
@@ -601,7 +671,7 @@ Não existe um único listener de `scroll` no projeto.
 
 ---
 
-## 10. Acessibilidade
+## 11. Acessibilidade
 
 O que já está implementado:
 
@@ -629,7 +699,7 @@ Escape. Se você conseguir chegar em tudo e sempre enxergar onde está, está bo
 
 ---
 
-## 11. Performance
+## 12. Performance
 
 Metas do projeto no Lighthouse: **≥ 95** em Performance, Acessibilidade,
 Boas Práticas e SEO.
@@ -663,7 +733,7 @@ site publicado, nunca contra `file://`.
 
 ---
 
-## 12. Publicando no GitHub Pages
+## 13. Publicando no GitHub Pages
 
 Gratuito, e não exige nenhum build.
 
@@ -719,7 +789,7 @@ certificado for emitido (leva alguns minutos).
 
 ---
 
-## 13. Publicando na Vercel
+## 14. Publicando na Vercel
 
 Deploy mais rápido e *preview* automático a cada branch.
 
@@ -753,7 +823,7 @@ Depois, atualize o `canonical` e as tags Open Graph para o domínio final.
 
 ---
 
-## 14. Publicando na Netlify
+## 15. Publicando na Netlify
 
 A opção mais simples se você não quiser usar Git.
 
@@ -782,7 +852,7 @@ certificado Let's Encrypt automaticamente.
 
 ---
 
-## 15. Manutenção — o que não quebrar
+## 16. Manutenção — o que não quebrar
 
 **Um valor está duplicado de propósito.** O breakpoint de **56rem** (896px),
 onde o menu mobile vira navegação desktop, existe no `style.css` e no

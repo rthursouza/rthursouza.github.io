@@ -1,0 +1,880 @@
+﻿<!DOCTYPE html>
+<!--
+  ============================================================================
+  SOBRE — TRAJETÓRIA PROFISSIONAL
+  ----------------------------------------------------------------------------
+  Arquivo : sobre.html (raiz)
+  Header, footer, tokens e convenções são os mesmos da home.
+
+  IDIOMAS — mesma regra da home (documentada no topo de index.html):
+    • texto corrido  → elementos gêmeos <p lang="pt-BR"> / <p lang="en">
+    • títulos h1–h6  → spans gêmeos DENTRO do mesmo elemento
+    • atributos      → data-en-alt, data-en-aria-label, data-en-content…
+
+  Para adicionar uma experiência: README, seção 8.
+  ============================================================================
+-->
+<html lang="pt-BR" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap crítico — idêntico ao da home. Ver comentário em index.html -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.remove('no-js');
+      root.classList.add('js');
+
+      var lang = null;
+      var theme = null;
+
+      try {
+        lang = localStorage.getItem('portfolio-lang');
+        theme = localStorage.getItem('portfolio-theme');
+      } catch (err) { /* localStorage bloqueado: segue nos padrões */ }
+
+      if (lang === 'en') {
+        root.setAttribute('data-lang', 'en');
+        root.setAttribute('lang', 'en');
+      }
+
+      /* Sem escolha salva, vale a preferência do sistema. */
+      if (theme !== 'claro' && theme !== 'escuro') {
+        theme = window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: light)').matches
+          ? 'claro'
+          : 'escuro';
+      }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- ==================== SEO ==================== -->
+  <title data-en="About — Arthur Souza · UX &amp; Product Designer">Sobre — Arthur Souza · UX &amp; Product Designer</title>
+
+  <meta name="description"
+        content="A trajetória de Arthur Souza: de capa de DVD a UX Designer de ERP e produtos B2B, e como ele trabalha antes da primeira tela."
+        data-en-content="Arthur Souza's path: from DVD covers to UX Designer for ERP and B2B products, and how he works before the first screen.">
+
+  <meta name="author" content="Arthur Souza">
+  <meta name="robots" content="index, follow">
+  <!-- Valor do modo escuro (o padrão). O script.js reescreve este content a
+       partir de --color-bg sempre que o tema muda. -->
+  <meta name="theme-color" content="#20293A">
+
+  <!--
+    URLS ABSOLUTAS — DESATIVADAS ATÉ O SITE SER HOSPEDADO.
+    As tags marcadas "PUBLICAR:" (canonical, og:url, og:image, twitter:image)
+    estão comentadas porque apontariam para um domínio que não existe.
+    Ao publicar: troque "https://SEU-DOMINIO.com" pelo endereço real e
+    tire o comentário em volta de cada uma (há um script pronto no README,
+    seção 2).
+  -->
+  <!-- PUBLICAR: <link rel="canonical" href="https://SEU-DOMINIO.com/sobre.html"> -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <!-- PUBLICAR: <meta property="og:url" content="https://SEU-DOMINIO.com/sobre.html"> -->
+  <meta property="og:site_name" content="Arthur Souza">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title"
+        content="Sobre — Arthur Souza"
+        data-en-content="About — Arthur Souza">
+  <meta property="og:description"
+        content="A trajetória de Arthur Souza: de capa de DVD a UX Designer de ERP e produtos B2B, e como ele trabalha antes da primeira tela."
+        data-en-content="Arthur Souza's path: from DVD covers to UX Designer for ERP and B2B products, and how he works before the first screen.">
+  <!-- OG IMAGE — 1200×630px. Crie e salve em assets/images/og-cover.jpg -->
+  <!-- PUBLICAR: <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg"> -->
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+        content="Portfólio de Arthur Souza, UX &amp; Product Designer"
+        data-en-content="Arthur Souza's portfolio, UX &amp; Product Designer">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+        content="Sobre — Arthur Souza"
+        data-en-content="About — Arthur Souza">
+  <meta name="twitter:description"
+        content="A trajetória de Arthur Souza: de capa de DVD a UX Designer de ERP e produtos B2B, e como ele trabalha antes da primeira tela."
+        data-en-content="Arthur Souza's path: from DVD covers to UX Designer for ERP and B2B products, and how he works before the first screen.">
+  <!-- PUBLICAR: <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg"> -->
+
+  <!-- ==================== FAVICON ==================== -->
+  <!--
+    O favicon abaixo é um SVG embutido (data URI): zero requisições, zero 404.
+    Ao gerar os arquivos definitivos em assets/favicon/, apague esta linha
+    e descomente o bloco seguinte.
+  -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2320293A'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23E08A63' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <!--
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  -->
+
+  <!-- ==================== TIPOGRAFIA ====================
+       Fontes locais em assets/fonts/, declaradas em @font-face no topo do
+       style.css. Nenhuma requisição a CDN: o site abre offline e não entrega
+       o IP de quem visita para um terceiro.
+       O preload antecipa só as duas famílias da primeira dobra — o navegador
+       descobriria as outras ao casar o @font-face com o texto, tarde demais.
+       crossorigin é obrigatório em preload de fonte, inclusive na origem. -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="assets/fonts/inter-latin-400-normal.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="assets/fonts/bricolage-grotesque-latin-800-normal.woff2">
+
+  <!-- ==================== ESTILO ==================== -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ==================== COMPORTAMENTO ==================== -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       SKIP LINK — primeiro elemento focável da página
+       ========================================================================== -->
+  <a class="skip-link" href="#conteudo">
+    <span lang="pt-BR">Pular para o conteúdo</span><span lang="en">Skip to content</span>
+  </a>
+
+  <!--
+    SENTINELA DA NAVBAR
+    Elemento de 1px observado por IntersectionObserver. Quando sai do viewport,
+    o header ganha .is-scrolled. Substitui o listener de scroll.
+  -->
+  <div class="nav-sentinel" data-nav-sentinel aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       SPRITE DE ÍCONES — SVG inline, definido uma vez por página.
+       Uso: <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-right"></use>
+            </svg>
+       ========================================================================== -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0"
+       aria-hidden="true" focusable="false">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </symbol>
+
+    <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M6 13l6 6 6-6"/>
+    </symbol>
+
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17 17 7M8 7h9v9"/>
+    </symbol>
+
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7h16M4 12h16M4 17h16"/>
+    </symbol>
+
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 6 12 12M18 6 6 18"/>
+    </symbol>
+
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/>
+    </symbol>
+
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4z"/>
+    </symbol>
+
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 3v5h5"/><path d="M6 3h8l5 5v13H6z"/><path d="M9 13h6M9 17h6"/>
+    </symbol>
+
+    <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 6-6 6 6 6"/>
+    </symbol>
+
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 6 6 6-6 6"/>
+    </symbol>
+
+    <symbol id="i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 3H3v6M15 21h6v-6M21 9V3h-6M3 15v6h6"/>
+    </symbol>
+
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 12.5 5 5 11-11"/>
+    </symbol>
+
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>
+      <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18Z"/>
+    </symbol>
+
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+    </symbol>
+
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a7.5 7.5 0 1 0 10.8 10.8Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ==========================================================================
+       HEADER / NAVBAR FIXA
+       ========================================================================== -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+
+      <a class="brand" href="index.html" aria-label="Arthur Souza — voltar ao início"
+         data-en-aria-label="Arthur Souza — back to home">
+        <span class="brand__mark" aria-hidden="true">A</span>
+        <span class="brand__text">
+          <span class="brand__name">Arthur Souza</span>
+          <span class="brand__role">
+            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+          </span>
+        </span>
+      </a>
+
+      <!-- Navegação principal — o mesmo <ul> serve desktop e drawer mobile -->
+      <nav class="nav" id="nav-principal" data-nav-panel
+           aria-label="Navegação principal" data-en-aria-label="Main navigation">
+        <!-- Mesmo menu da home. Aqui "Sobre" é a página atual; Contato volta
+             para a âncora da home. Sem data-scrollspy: não há seções da home
+             nesta página para acompanhar. -->
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link" href="projetos.html">
+              <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="sobre.html" aria-current="page">
+              <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="index.html#contato">
+              <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav__actions">
+          <div class="nav__prefs">
+            <!-- SELETOR DE IDIOMA -->
+            <div class="lang-switch" role="group"
+                 aria-label="Selecionar idioma" data-en-aria-label="Select language"
+                 data-lang-switch>
+              <svg class="icon lang-switch__icon" aria-hidden="true" focusable="false">
+                <use href="#i-globe"></use>
+              </svg>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="pt-BR" aria-pressed="true" lang="pt-BR">PT</button>
+              <button class="lang-switch__btn" type="button"
+                      data-lang-value="en" aria-pressed="false" lang="en">EN</button>
+            </div>
+
+            <!--
+              ALTERNÂNCIA DE TEMA
+              O rótulo é fixo ("Modo claro") e quem carrega o estado é o
+              aria-pressed — mesmo contrato do botão do menu, que mantém
+              "Abrir menu" nos dois estados e deixa o aria-expanded falar.
+              Reescrever o rótulo criaria um segundo dono para a informação
+              e brigaria com a troca de idioma, que também escreve nele.
+            -->
+            <button class="theme-toggle" type="button"
+                    data-theme-toggle
+                    aria-pressed="false"
+                    aria-label="Modo claro" data-en-aria-label="Light mode">
+              <svg class="icon theme-toggle__moon" aria-hidden="true" focusable="false">
+                <use href="#i-moon"></use>
+              </svg>
+              <svg class="icon theme-toggle__sun" aria-hidden="true" focusable="false">
+                <use href="#i-sun"></use>
+              </svg>
+            </button>
+          </div>
+
+          <!--
+            CURRÍCULO — salve o PDF em assets/ com este nome exato.
+            Abre em nova aba (e não baixa): quem está avaliando dá uma olhada
+            rápida sem se comprometer a guardar arquivo. rel="noopener" basta
+            aqui, porque o PDF é do próprio domínio.
+          -->
+          <a class="btn btn--secondary btn--sm"
+             href="assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-file"></use>
+            </svg>
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(PDF, abre em nova aba)</span><span lang="en">(PDF, opens in a new tab)</span>
+            </span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Botão do menu mobile -->
+      <button class="nav-toggle" type="button"
+              data-nav-toggle
+              aria-controls="nav-principal"
+              aria-expanded="false"
+              aria-label="Abrir menu" data-en-aria-label="Open menu">
+        <svg class="icon nav-toggle__open" aria-hidden="true" focusable="false">
+          <use href="#i-menu"></use>
+        </svg>
+        <svg class="icon nav-toggle__close" aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Camada de escurecimento atrás do drawer mobile -->
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+
+  <main id="conteudo" class="main">
+
+    <!-- ========================================================================
+         01 · ABERTURA
+         ------------------------------------------------------------------------
+         Texto em duas colunas, foto 4:5 à direita. No mobile a foto vem
+         depois do texto — que é a ordem do HTML.
+         Os dois parágrafos são o texto original do Sobre da home, de antes da
+         reestruturação: a história e o momento atual.
+         ======================================================================== -->
+    <section class="section page-intro" aria-labelledby="sobre-titulo">
+      <div class="container">
+
+        <nav class="breadcrumb" aria-label="Você está aqui"
+             data-en-aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a class="breadcrumb__link" href="index.html">
+                <span lang="pt-BR">Início</span><span lang="en">Home</span>
+              </a>
+            </li>
+            <li class="breadcrumb__item" aria-current="page">
+              <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="about-intro">
+
+          <div class="about-intro__content">
+            <p class="eyebrow" data-reveal>
+              <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+            </p>
+
+            <h1 class="about-intro__title" id="sobre-titulo" data-reveal>
+              <span lang="pt-BR">Design é decidir o que não construir</span><span lang="en">Design is deciding what not to build</span>
+            </h1>
+
+            <div class="prose about-intro__text" data-reveal>
+              <p lang="pt-BR">
+                Comecei a desenhar antes de saber que aquilo tinha nome: edição
+                de foto, logo, capa e, mais tarde, capa e menu de DVD. Achei que
+                meu caminho seria computação, entrei na faculdade e fui parar num
+                estágio que eu jurava ser de web design — no meio dele descobri
+                que era de UI/UX. Nunca mais saí.
+              </p>
+              <p lang="en">
+                I started designing before I knew it had a name: photo editing,
+                logos, covers and, later, DVD covers and menus. I assumed my path
+                would be computing, started university, and landed an internship
+                I was certain was web design — halfway through, I found out it
+                was UI/UX. I never left.
+              </p>
+
+              <p lang="pt-BR">
+                Hoje trabalho com ERP e produtos B2B, onde a complexidade não é
+                escolha: quem está do outro lado depende daquela tela para fechar
+                o mês.
+              </p>
+              <p lang="en">
+                Today I work on ERP and B2B products, where complexity isn't a
+                choice: the person on the other side depends on that screen to
+                close the month.
+              </p>
+            </div>
+          </div>
+
+          <!-- FOTO · 4:5 -->
+          <div class="about-intro__media" data-reveal>
+            <figure class="media media--4x5 media--framed">
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Foto · 4:5 · 800×1000</span><span lang="en">Photo · 4:5 · 800×1000</span>
+              </span>
+              <!--
+                SUBSTITUIR: apague o <span class="media__label"> acima e descomente.
+                É a maior imagem do primeiro scroll desta página (LCP):
+                eager + fetchpriority="high" — nunca lazy.
+
+              <img src="assets/images/sobre-retrato.jpg"
+                   alt="Retrato de Arthur Souza"
+                   data-en-alt="Portrait of Arthur Souza"
+                   width="800" height="1000"
+                   loading="eager" fetchpriority="high" decoding="async">
+              -->
+            </figure>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         02 · EXPERIÊNCIA
+         ------------------------------------------------------------------------
+         Uma <ol> com um card por experiência, da mais recente para a mais
+         antiga. Período e local à esquerda, conteúdo à direita (empilha
+         abaixo de 48rem). Para adicionar uma: README, seção 8.
+         ======================================================================== -->
+    <section class="section section--alt" id="experiencia" aria-labelledby="experiencia-titulo">
+      <div class="container">
+
+        <header class="heading-row" data-reveal>
+          <h2 class="heading-row__title" id="experiencia-titulo">
+            <span lang="pt-BR">Experiência</span><span lang="en">Experience</span>
+          </h2>
+          <a class="text-link" href="assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <span lang="pt-BR">Currículo completo (PDF)</span><span lang="en">Full résumé (PDF)</span>
+            <svg class="icon icon--xs" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-up-right"></use>
+            </svg>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </header>
+
+        <ol class="experience">
+
+          <!-- ---------------- NASAJON ---------------- -->
+          <li class="experience__item" data-reveal>
+
+            <div class="experience__meta">
+              <!-- PENDENTE: ano de entrada e modalidade de trabalho. -->
+              <p class="experience__period">
+                <span lang="pt-BR">[AAAA] — hoje</span><span lang="en">[YYYY] — present</span>
+              </p>
+              <p class="experience__place">
+                <span lang="pt-BR">Rio de Janeiro · [Presencial / Remoto]</span><span lang="en">Rio de Janeiro · [On-site / Remote]</span>
+              </p>
+              <p class="experience__badge">
+                <span lang="pt-BR">Atual</span><span lang="en">Current</span>
+              </p>
+            </div>
+
+            <div class="experience__body">
+              <h3 class="experience__role">
+                <span lang="pt-BR">UX Designer</span><span lang="en">UX Designer</span>
+              </h3>
+              <p class="experience__org">
+                <span lang="pt-BR">Nasajon · ERP e produtos B2B</span><span lang="en">Nasajon · ERP and B2B products</span>
+              </p>
+
+              <p class="experience__summary" lang="pt-BR">
+                Único designer nos projetos, do discovery ao handoff, em sistemas
+                usados por mais de 100 empresas.
+              </p>
+              <p class="experience__summary" lang="en">
+                Sole designer on the projects, from discovery to handoff, on
+                systems used by more than 100 companies.
+              </p>
+
+              <!-- DESTAQUES — um por case, com o mesmo número dos cards. -->
+              <ul class="experience__highlights">
+                <li class="experience__highlight">
+                  <p class="experience__highlight-text">
+                    <span class="experience__metric">−30%</span>
+                    <span lang="pt-BR">no tempo de venda com o PDV mobile-first</span><span lang="en">in time per sale with the mobile-first POS</span>
+                  </p>
+                  <a class="text-link" href="projects/projeto-01.html">
+                    <span lang="pt-BR">Ver case</span><span lang="en">View case</span>
+                    <span class="visually-hidden">
+                      <span lang="pt-BR">(PDV mobile-first)</span><span lang="en">(mobile-first POS)</span>
+                    </span>
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                      <use href="#i-arrow-right"></use>
+                    </svg>
+                  </a>
+                </li>
+                <!-- PENDENTE (depende do Arthur): mesma métrica do card do app
+                     de logística na home, em /projetos e nos cases. Ao
+                     preencher, troque o texto e remova o modificador --pending. -->
+                <li class="experience__highlight experience__highlight--pending">
+                  <p class="experience__highlight-text">
+                    <span class="experience__metric">
+                      <span lang="pt-BR">[Resultado]</span><span lang="en">[Result]</span>
+                    </span>
+                    <span lang="pt-BR">no app de entrega de campo</span><span lang="en">in the field delivery app</span>
+                  </p>
+                  <a class="text-link" href="projects/projeto-02.html">
+                    <span lang="pt-BR">Ver case</span><span lang="en">View case</span>
+                    <span class="visually-hidden">
+                      <span lang="pt-BR">(app de entrega)</span><span lang="en">(delivery app)</span>
+                    </span>
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                      <use href="#i-arrow-right"></use>
+                    </svg>
+                  </a>
+                </li>
+                <li class="experience__highlight">
+                  <p class="experience__highlight-text">
+                    <span class="experience__metric">−40%</span>
+                    <span lang="pt-BR">no custo por rota com a roteirização automática</span><span lang="en">in cost per route with automatic route planning</span>
+                  </p>
+                  <a class="text-link" href="projects/projeto-03.html">
+                    <span lang="pt-BR">Ver case</span><span lang="en">View case</span>
+                    <span class="visually-hidden">
+                      <span lang="pt-BR">(roteirização)</span><span lang="en">(route planning)</span>
+                    </span>
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                      <use href="#i-arrow-right"></use>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="chips chips--sm" aria-label="Competências usadas"
+                  data-en-aria-label="Skills used">
+                <li class="chip chip--sm"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
+                <li class="chip chip--sm"><span lang="pt-BR">Pesquisa</span><span lang="en">Research</span></li>
+                <li class="chip chip--sm"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
+                <li class="chip chip--sm"><span lang="pt-BR">Design system</span><span lang="en">Design system</span></li>
+                <li class="chip chip--sm"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- ---------------- FREELANCER ---------------- -->
+          <li class="experience__item" data-reveal>
+
+            <div class="experience__meta">
+              <!-- PENDENTE: anos de início e fim. -->
+              <p class="experience__period">
+                <span lang="pt-BR">[AAAA] — [AAAA]</span><span lang="en">[YYYY] — [YYYY]</span>
+              </p>
+              <p class="experience__place">
+                <span lang="pt-BR">Autônomo · Remoto</span><span lang="en">Self-employed · Remote</span>
+              </p>
+            </div>
+
+            <div class="experience__body">
+              <h3 class="experience__role">
+                <span lang="pt-BR">Designer gráfico freelancer</span><span lang="en">Freelance graphic designer</span>
+              </h3>
+              <p class="experience__org">
+                <span lang="pt-BR">Identidade visual, editorial e redes sociais</span><span lang="en">Visual identity, editorial and social media</span>
+              </p>
+
+              <!-- PENDENTE: uma linha dizendo para quem e que tipo de peça. -->
+              <p class="experience__summary" lang="pt-BR">
+                [Uma linha: para quem eu fazia e que tipo de peça]
+              </p>
+              <p class="experience__summary" lang="en">
+                [One line: who I worked for and what kind of pieces]
+              </p>
+
+              <!--
+                AMOSTRAS — 3 peças em 4:3 (1200×900). Para cada uma: apague o
+                <span class="media__label"> e descomente o <img>. Escreva o alt
+                dizendo o que a peça é e para quem foi — é o único lugar em que
+                quem usa leitor de tela "vê" o trabalho.
+              -->
+              <ul class="experience__samples" aria-label="Amostras de peças"
+                  data-en-aria-label="Work samples">
+                <li>
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Amostra · identidade visual · 1200×900</span><span lang="en">Sample · visual identity · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="assets/images/sobre-amostra-01.jpg"
+                         alt="[Identidade visual para (cliente): logotipo e aplicações]"
+                         data-en-alt="[Visual identity for (client): logo and applications]"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </li>
+                <li>
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Amostra · editorial · 1200×900</span><span lang="en">Sample · editorial · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="assets/images/sobre-amostra-02.jpg"
+                         alt="[Peça editorial para (cliente): capa ou página dupla]"
+                         data-en-alt="[Editorial piece for (client): cover or spread]"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </li>
+                <li>
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Amostra · redes sociais · 1200×900</span><span lang="en">Sample · social media · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="assets/images/sobre-amostra-03.jpg"
+                         alt="[Posts para redes sociais de (cliente)]"
+                         data-en-alt="[Social media posts for (client)]"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </li>
+              </ul>
+
+              <ul class="chips chips--sm" aria-label="Competências usadas"
+                  data-en-aria-label="Skills used">
+                <li class="chip chip--sm"><span lang="pt-BR">Identidade visual</span><span lang="en">Visual identity</span></li>
+                <li class="chip chip--sm"><span lang="pt-BR">Tipografia</span><span lang="en">Typography</span></li>
+                <li class="chip chip--sm"><span lang="pt-BR">Composição</span><span lang="en">Composition</span></li>
+                <li class="chip chip--sm"><span lang="pt-BR">Edição de imagem</span><span lang="en">Image editing</span></li>
+              </ul>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         03 · COMO EU TRABALHO
+         ------------------------------------------------------------------------
+         Três passos, na ordem em que acontecem. O número é decorativo
+         (aria-hidden): a <ol> já anuncia a ordem ao leitor de tela.
+         ======================================================================== -->
+    <section class="section" id="como-trabalho" aria-labelledby="como-trabalho-titulo">
+      <div class="container">
+
+        <header class="heading-row" data-reveal>
+          <h2 class="heading-row__title" id="como-trabalho-titulo">
+            <span lang="pt-BR">Como eu trabalho</span><span lang="en">How I work</span>
+          </h2>
+        </header>
+
+        <ol class="method" data-reveal>
+          <li class="method__item">
+            <span class="method__number" aria-hidden="true">01</span>
+            <h3 class="method__title">
+              <span lang="pt-BR">Converso com o suporte</span><span lang="en">I talk to support</span>
+            </h3>
+            <p class="method__text">
+              <span lang="pt-BR">Para saber o que está quebrando de verdade.</span><span lang="en">To learn what is actually breaking.</span>
+            </p>
+          </li>
+          <li class="method__item">
+            <span class="method__number" aria-hidden="true">02</span>
+            <h3 class="method__title">
+              <span lang="pt-BR">Converso com a engenharia</span><span lang="en">I talk to engineering</span>
+            </h3>
+            <p class="method__text">
+              <span lang="pt-BR">Para saber o limite do que dá para construir.</span><span lang="en">To learn the limits of what can be built.</span>
+            </p>
+          </li>
+          <li class="method__item">
+            <span class="method__number" aria-hidden="true">03</span>
+            <h3 class="method__title">
+              <span lang="pt-BR">Fecho o discovery num documento curto</span><span lang="en">I close discovery in a short document</span>
+            </h3>
+            <p class="method__text">
+              <span lang="pt-BR">Com uma matriz de esforço e impacto, antes da primeira tela.</span><span lang="en">With an effort–impact matrix, before the first screen.</span>
+            </p>
+          </li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         04 · COMPETÊNCIAS E FORMAÇÃO
+         ------------------------------------------------------------------------
+         Duas colunas com o .two-col dos cases. Competências em texto corrido,
+         sem chips: aqui a lista é de referência, não de destaque.
+         ======================================================================== -->
+    <div class="section section--alt">
+      <div class="container">
+        <div class="two-col" data-reveal>
+
+          <section class="two-col__col" aria-labelledby="competencias-titulo">
+            <h2 class="two-col__title" id="competencias-titulo">
+              <span lang="pt-BR">Competências</span><span lang="en">Skills</span>
+            </h2>
+            <dl class="term-list">
+              <div class="term-list__row">
+                <dt class="term-list__term">
+                  <span lang="pt-BR">Pesquisa</span><span lang="en">Research</span>
+                </dt>
+                <dd class="term-list__desc">
+                  <span lang="pt-BR">Entrevistas, observação, benchmark, testes de usabilidade</span><span lang="en">Interviews, observation, benchmarking, usability testing</span>
+                </dd>
+              </div>
+              <div class="term-list__row">
+                <dt class="term-list__term">
+                  <span lang="pt-BR">Design</span><span lang="en">Design</span>
+                </dt>
+                <dd class="term-list__desc">
+                  <span lang="pt-BR">Fluxos, wireframes, prototipação, design system, acessibilidade</span><span lang="en">Flows, wireframes, prototyping, design systems, accessibility</span>
+                </dd>
+              </div>
+              <div class="term-list__row">
+                <dt class="term-list__term">
+                  <span lang="pt-BR">Ferramentas</span><span lang="en">Tools</span>
+                </dt>
+                <dd class="term-list__desc">
+                  <span lang="pt-BR">Figma, Miro, HTML, CSS, JavaScript</span><span lang="en">Figma, Miro, HTML, CSS, JavaScript</span>
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="two-col__col" aria-labelledby="formacao-titulo">
+            <h2 class="two-col__title" id="formacao-titulo">
+              <span lang="pt-BR">Formação</span><span lang="en">Education</span>
+            </h2>
+            <!-- PENDENTE: curso, instituição e ano de conclusão. -->
+            <p class="education__course">
+              <span lang="pt-BR">[Curso]</span><span lang="en">[Course]</span>
+            </p>
+            <ul class="meta-list">
+              <li class="meta-list__item">
+                <span lang="pt-BR">[Instituição]</span><span lang="en">[Institution]</span>
+              </li>
+              <li class="meta-list__item">
+                <span lang="pt-BR">[AAAA]</span><span lang="en">[YYYY]</span>
+              </li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         05 · CONTATO — o mesmo bloco da home.
+         ======================================================================== -->
+    <section class="section section--tight" id="contato" aria-labelledby="contato-titulo">
+      <div class="container">
+
+        <div class="contact contact--inline" data-reveal>
+
+          <div class="contact__text">
+            <h2 class="contact__title" id="contato-titulo">
+              <span lang="pt-BR">Tem um problema difícil? Vamos conversar.</span><span lang="en">Got a hard problem? Let's talk.</span>
+            </h2>
+            <p class="contact__lead" lang="pt-BR">Respondo todos os e-mails em até 48 horas.</p>
+            <p class="contact__lead" lang="en">I reply to every email within 48 hours.</p>
+          </div>
+
+          <div class="contact__actions cluster">
+            <!-- E-MAIL — troque pelo seu endereço real -->
+            <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-mail"></use>
+              </svg>
+              <span>arthursouza_7@outlook.com</span>
+            </a>
+
+            <a class="btn btn--secondary btn--lg"
+               href="https://www.linkedin.com/in/arthursouza7/"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-linkedin"></use>
+              </svg>
+              <span>LinkedIn</span>
+              <svg class="icon icon--xs" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up-right"></use>
+              </svg>
+              <span class="visually-hidden">
+                <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+              </span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <p class="footer__copy">
+        <span lang="pt-BR">© <span data-year>2026</span> Arthur Souza. Desenhado e codificado à mão.</span><span lang="en">© <span data-year>2026</span> Arthur Souza. Designed and hand-coded.</span>
+      </p>
+
+      <ul class="footer__links">
+        <li>
+          <a class="footer__link" href="projetos.html">
+            <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="sobre.html" aria-current="page">
+            <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="mailto:arthursouza_7@outlook.com">
+            <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="https://www.linkedin.com/in/arthursouza7/"
+             target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="footer__link" href="#conteudo">
+            <span lang="pt-BR">Voltar ao topo</span><span lang="en">Back to top</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </footer>
+
+</body>
+</html>
