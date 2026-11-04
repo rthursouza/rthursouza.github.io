@@ -199,6 +199,11 @@
       <path d="M5 12h14M13 6l6 6-6 6"/>
     </symbol>
 
+    <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M6 13l6 6 6-6"/>
+    </symbol>
+
     <symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
       <path d="M7 17 17 7M8 7h9v9"/>
@@ -286,14 +291,12 @@
       <!-- Navegação principal — o mesmo <ul> serve desktop e drawer mobile -->
       <nav class="nav" id="nav-principal" data-nav-panel
            aria-label="Navegação principal" data-en-aria-label="Main navigation">
+        <!-- "Início" saiu de propósito: o logo já leva ao topo.
+             "Projetos" aponta para a página de listagem, não para uma âncora,
+             e por isso o scrollspy (que só observa links com #) o ignora. -->
         <ul class="nav__list" data-scrollspy>
           <li class="nav__item">
-            <a class="nav__link" href="#inicio">
-              <span lang="pt-BR">Início</span><span lang="en">Home</span>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a class="nav__link" href="#projetos">
+            <a class="nav__link" href="projetos.html">
               <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
             </a>
           </li>
@@ -345,8 +348,22 @@
             </button>
           </div>
 
-          <a class="btn btn--secondary btn--sm" href="#contato">
-            <span lang="pt-BR">Vamos conversar</span><span lang="en">Let's talk</span>
+          <!--
+            CURRÍCULO — salve o PDF em assets/ com este nome exato.
+            Abre em nova aba (e não baixa): quem está avaliando dá uma olhada
+            rápida sem se comprometer a guardar arquivo. rel="noopener" basta
+            aqui, porque o PDF é do próprio domínio.
+          -->
+          <a class="btn btn--secondary btn--sm"
+             href="assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-file"></use>
+            </svg>
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(PDF, abre em nova aba)</span><span lang="en">(PDF, opens in a new tab)</span>
+            </span>
           </a>
         </div>
       </nav>
@@ -375,6 +392,10 @@
 
     <!-- ========================================================================
          01 · HERO
+         ------------------------------------------------------------------------
+         Uma frase só. A história do DVD mora no Sobre, e a faixa de números
+         (experiência, foco, clientes, base) foi removida de propósito: tudo
+         isso já está dito no texto.
          ======================================================================== -->
     <section class="section hero" id="inicio" aria-labelledby="hero-titulo">
       <div class="container hero__inner">
@@ -383,7 +404,7 @@
 
           <p class="eyebrow" data-reveal>
             <span class="eyebrow__dot" aria-hidden="true"></span>
-            <span lang="pt-BR">Disponível para novas oportunidades</span><span lang="en">Available for new opportunities</span>
+            <span lang="pt-BR">Disponível para novas oportunidades · Rio de Janeiro / Remoto</span><span lang="en">Available for new opportunities · Rio de Janeiro / Remote</span>
           </p>
 
           <h1 class="hero__title" id="hero-titulo" data-reveal>
@@ -391,95 +412,47 @@
           </h1>
 
           <p class="hero__role" data-reveal>
-            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+            <span lang="pt-BR">UX &amp; Product Designer · ERP e B2B</span><span lang="en">UX &amp; Product Designer · ERP &amp; B2B</span>
           </p>
 
           <p class="hero__lead" data-reveal lang="pt-BR">
-            Comecei fazendo capa de DVD. Hoje desenho os sistemas em que 100
-            empresas trabalham todo dia.
+            Seis anos desenhando o tipo de tela que ninguém escolhe abrir, mas
+            que alguém usa por oito horas.
           </p>
           <p class="hero__lead" data-reveal lang="en">
-            I started making DVD covers. Today I design the systems 100
-            companies work in every day.
+            Six years designing the kind of screen nobody chooses to open, but
+            that someone uses for eight hours.
           </p>
 
-          <p class="hero__support" data-reveal lang="pt-BR">
-            Seis anos em ERP e produtos B2B: o tipo de tela que ninguém escolhe
-            abrir, mas que alguém precisa usar por oito horas.
-          </p>
-          <p class="hero__support" data-reveal lang="en">
-            Six years in ERP and B2B products: the kind of screen nobody chooses
-            to open, but that someone has to use for eight hours.
-          </p>
-
-          <!-- BOTÕES PRINCIPAIS -->
           <div class="hero__actions cluster" data-reveal>
-
             <a class="btn btn--primary" href="#projetos">
               <span lang="pt-BR">Ver projetos</span><span lang="en">View work</span>
               <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="#i-arrow-right"></use>
+                <use href="#i-arrow-down"></use>
               </svg>
             </a>
 
-            <!--
-              CURRÍCULO — salve o PDF em assets/ com este nome exato.
-              Abre em nova aba (e não baixa): quem está avaliando dá uma olhada
-              rápida sem se comprometer a guardar arquivo. rel="noopener" basta
-              aqui, porque o PDF é do próprio domínio — noreferrer só faria
-              sentido para link externo.
-            -->
-            <a class="btn btn--ghost btn--sm"
-               href="assets/curriculo-arthursouza-ux.pdf"
-               target="_blank" rel="noopener">
-              <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="#i-file"></use>
-              </svg>
-              <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
-              <span class="visually-hidden">
-                <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
-              </span>
+            <a class="btn btn--secondary" href="#contato">
+              <span lang="pt-BR">Vamos conversar</span><span lang="en">Let's talk</span>
             </a>
-
-            <!-- LINKEDIN — troque pela sua URL real -->
-            <a class="btn btn--ghost btn--sm"
-               href="https://www.linkedin.com/in/arthursouza7/"
-               target="_blank" rel="noopener noreferrer">
-              <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="#i-linkedin"></use>
-              </svg>
-              <span>LinkedIn</span>
-              <span class="visually-hidden">
-                <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
-              </span>
-            </a>
-
-            <!-- E-MAIL — troque pelo seu endereço real -->
-            <a class="btn btn--ghost btn--sm" href="mailto:arthursouza_7@outlook.com">
-              <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="#i-mail"></use>
-              </svg>
-              <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
-            </a>
-
           </div>
         </div>
 
-        <!-- FOTO PERFIL -->
+        <!-- FOTO PERFIL · 1:1, no máximo ~280px -->
         <div class="hero__media" data-reveal>
-          <figure class="media media--4x5 media--framed">
+          <figure class="media media--1x1 media--framed">
             <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Foto de perfil · 800×1000</span><span lang="en">Profile photo · 800×1000</span>
+              <span lang="pt-BR">Foto de perfil · 800×800</span><span lang="en">Profile photo · 800×800</span>
             </span>
             <!--
               SUBSTITUIR: apague o <span class="media__label"> acima e descomente.
-              Esta é a maior imagem visível no primeiro scroll (LCP):
+              Continua sendo a maior imagem do primeiro scroll no mobile (LCP):
               use eager + fetchpriority="high" — nunca lazy.
 
             <img src="assets/images/perfil.jpg"
                  alt="Retrato de Arthur Souza"
                  data-en-alt="Portrait of Arthur Souza"
-                 width="800" height="1000"
+                 width="800" height="800"
                  loading="eager" fetchpriority="high" decoding="async">
             -->
           </figure>
@@ -489,214 +462,256 @@
     </section>
 
     <!-- ========================================================================
-         02 · SOBRE
+         02 · PROJETOS EM DESTAQUE
+         ------------------------------------------------------------------------
+         Os cards são HTML estático — não são gerados por JavaScript.
+         Isso mantém o conteúdo indexável e funcional sem JS.
+
+         Cada card tem UM link só, no título. O ::after dele se estica pelo
+         card inteiro, então clicar em qualquer ponto abre o case, a Tab para
+         uma vez por card e o nome acessível do link é o título — não o card
+         todo lido de uma vez. O anel de foco é desenhado no card.
+
+         Card grande (.work-card--lead): imagem 16:9 à esquerda, texto à
+         direita. Cards menores: imagem 21:9 em cima. Sem tags de ferramenta:
+         elas aparecem dentro dos cases.
          ======================================================================== -->
     <section class="section section--alt" id="projetos" aria-labelledby="projetos-titulo">
       <div class="container">
 
-        <header class="section-head" data-reveal>
-          <p class="eyebrow">
-            <span lang="pt-BR">Projetos</span><span lang="en">Selected work</span>
-          </p>
-          <h2 class="section-head__title" id="projetos-titulo">
-            <span lang="pt-BR">Três problemas e o que aprendi resolvendo cada um</span><span lang="en">Three problems, and what I learned solving each</span>
+        <header class="section-bar" data-reveal>
+          <h2 class="section-bar__title" id="projetos-titulo">
+            <span lang="pt-BR">Projetos em destaque</span><span lang="en">Featured work</span>
           </h2>
-          <p class="section-head__lead" lang="pt-BR">
-            Cada estudo de caso mostra o processo completo: o contexto, as
-            decisões que tomei, o que deu errado no caminho e o resultado medido.
-          </p>
-          <p class="section-head__lead" lang="en">
-            Every case study shows the full process: the context, the decisions I
-            made, what went wrong along the way, and the measured outcome.
-          </p>
+          <a class="text-link" href="projetos.html">
+            <span lang="pt-BR">Ver todos os projetos</span><span lang="en">View all work</span>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-right"></use>
+            </svg>
+          </a>
         </header>
 
-        <div class="projects">
+        <div class="featured">
 
-          <!-- ---------------- PROJETO 01 ---------------- -->
-          <article class="project-card" data-reveal aria-labelledby="proj-01-titulo">
+          <!-- ---------------- PROJETO 01 · DESTAQUE ---------------- -->
+          <article class="work-card work-card--lead" data-reveal aria-labelledby="proj-01-titulo">
 
-            <a class="project-card__media-link" href="projects/projeto-01.html" tabindex="-1"
-               aria-hidden="true">
-              <!-- MOCKUP -->
-              <figure class="media media--16x9">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do PDV Nasajon · 1600×900</span><span lang="en">Nasajon POS cover · 1600×900</span>
-                </span>
-                <!--
-                <img src="assets/images/projeto-01-capa.jpg"
-                     alt=""
-                     width="1600" height="900" loading="lazy" decoding="async">
-                -->
-              </figure>
-            </a>
+            <figure class="media media--16x9 work-card__media">
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Capa do PDV Nasajon · 16:9 · 1600×900</span><span lang="en">Nasajon POS cover · 16:9 · 1600×900</span>
+              </span>
+              <!--
+              <img src="assets/images/projeto-01-capa.jpg"
+                   alt=""
+                   width="1600" height="900" loading="lazy" decoding="async">
+              -->
+            </figure>
 
-            <div class="project-card__body">
-
+            <div class="work-card__body">
               <ul class="meta-inline">
                 <li class="meta-inline__item">Nasajon</li>
                 <li class="meta-inline__item">2026</li>
                 <li class="meta-inline__item">
-                  <span lang="pt-BR">UX Design · ERP &amp; Varejo</span><span lang="en">UX Design · ERP &amp; Retail</span>
+                  <span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span>
                 </li>
               </ul>
 
-              <h3 class="project-card__title" id="proj-01-titulo">
-                <a class="project-card__link" href="projects/projeto-01.html">
+              <h3 class="work-card__title" id="proj-01-titulo">
+                <a class="work-card__link" href="projects/projeto-01.html">
                   <span lang="pt-BR">Um PDV que sai do balcão</span><span lang="en">A POS that leaves the counter</span>
                 </a>
               </h3>
 
-              <p class="project-card__summary" lang="pt-BR">
-                O operador atendia longe do balcão e mandava o pedido no papel
-                para o caixa, onde alguém o procurava venda a venda. A pesquisa
-                derrubou 45% do projeto já desenhado para desktop — e o redesenho
-                mobile-first cortou 30% do tempo de fechamento de venda.
+              <p class="work-card__summary" lang="pt-BR">
+                Redesenho mobile-first do ponto de venda para quem atende longe
+                do caixa.
               </p>
-              <p class="project-card__summary" lang="en">
-                The operator served customers away from the counter and sent the
-                order to the register on paper, where someone hunted for it sale
-                by sale. Research knocked down 45% of a project already designed
-                for desktop — and the mobile-first redesign cut time to close a
-                sale by 30%.
+              <p class="work-card__summary" lang="en">
+                Mobile-first redesign of the point of sale for staff who serve
+                away from the register.
               </p>
 
-              <ul class="chips chips--sm" aria-label="Ferramentas utilizadas"
-                  data-en-aria-label="Tools used">
-                <li class="chip chip--sm">Figma</li>
-                <li class="chip chip--sm">Miro</li>
-                <li class="chip chip--sm">NotebookLM</li>
-                <li class="chip chip--sm">Claude Code</li>
-              </ul>
+              <p class="work-card__metric">
+                <span class="work-card__metric-value">−30%</span>
+                <span class="work-card__metric-label">
+                  <span lang="pt-BR">no tempo de fechamento de venda</span><span lang="en">in time to close a sale</span>
+                </span>
+              </p>
 
-              <p class="project-card__cta" aria-hidden="true">
+              <p class="work-card__cta" aria-hidden="true">
                 <span lang="pt-BR">Ver estudo de caso</span><span lang="en">View case study</span>
                 <svg class="icon" focusable="false"><use href="#i-arrow-right"></use></svg>
               </p>
-
             </div>
           </article>
 
           <!-- ---------------- PROJETO 02 ---------------- -->
-          <article class="project-card" data-reveal aria-labelledby="proj-02-titulo">
+          <article class="work-card" data-reveal aria-labelledby="proj-02-titulo">
 
-            <a class="project-card__media-link" href="projects/projeto-02.html" tabindex="-1"
-               aria-hidden="true">
-              <!-- MOCKUP -->
-              <figure class="media media--16x9">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do app de logística · 1600×900</span><span lang="en">Logistics app cover · 1600×900</span>
-                </span>
-                <!--
-                <img src="assets/images/projeto-02-capa.jpg"
-                     alt=""
-                     width="1600" height="900" loading="lazy" decoding="async">
-                -->
-              </figure>
-            </a>
+            <!-- 21:9 corta um celular em pé até ele ficar minúsculo: use 2 ou
+                 3 telas lado a lado ou um recorte de detalhe. -->
+            <figure class="media media--21x9 work-card__media">
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Capa do app de logística · 21:9 · 1680×720</span><span lang="en">Logistics app cover · 21:9 · 1680×720</span>
+              </span>
+              <!--
+              <img src="assets/images/projeto-02-capa.jpg"
+                   alt=""
+                   width="1680" height="720" loading="lazy" decoding="async">
+              -->
+            </figure>
 
-            <div class="project-card__body">
-
+            <div class="work-card__body">
               <ul class="meta-inline">
                 <li class="meta-inline__item">Nasajon</li>
                 <li class="meta-inline__item">2025</li>
                 <li class="meta-inline__item">
-                  <span lang="pt-BR">UX Design · Logística &amp; Campo</span><span lang="en">UX Design · Logistics &amp; Field</span>
+                  <span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span>
                 </li>
               </ul>
 
-              <h3 class="project-card__title" id="proj-02-titulo">
-                <a class="project-card__link" href="projects/projeto-02.html">
+              <h3 class="work-card__title" id="proj-02-titulo">
+                <a class="work-card__link" href="projects/projeto-02.html">
                   <span lang="pt-BR">A próxima parada, e a prova</span><span lang="en">The next stop, and the proof</span>
                 </a>
               </h3>
 
-              <p class="project-card__summary" lang="pt-BR">
-                A entrega era gerida no papel: sem ordem definida de paradas, sem
-                rota planejada e com a prova reduzida a uma assinatura que se
-                perde. Projetei o app de campo e a plataforma que otimiza a
-                sequência — as duas pontas da mesma operação.
+              <p class="work-card__summary" lang="pt-BR">
+                App de entrega com rota otimizada e prova digital no lugar do
+                papel.
               </p>
-              <p class="project-card__summary" lang="en">
-                Delivery was managed on paper: no defined order of stops, no
-                planned route, and proof reduced to a signature that gets lost. I
-                designed the field app and the platform that optimises the
-                sequence — both ends of the same operation.
+              <p class="work-card__summary" lang="en">
+                Delivery app with an optimised route and digital proof in place
+                of paper.
               </p>
 
-              <ul class="chips chips--sm" aria-label="Ferramentas utilizadas"
-                  data-en-aria-label="Tools used">
-                <li class="chip chip--sm">Figma</li>
-              </ul>
-
-              <p class="project-card__cta" aria-hidden="true">
-                <span lang="pt-BR">Ver estudo de caso</span><span lang="en">View case study</span>
-                <svg class="icon" focusable="false"><use href="#i-arrow-right"></use></svg>
+              <!-- PENDENTE (depende do Arthur): métrica do app de logística, ou
+                   um resultado qualitativo forte no lugar. Ao preencher, troque
+                   o texto e remova o modificador --pending. -->
+              <p class="work-card__metric work-card__metric--pending">
+                <span class="work-card__metric-value">
+                  <span lang="pt-BR">[PENDENTE]</span><span lang="en">[PENDING]</span>
+                </span>
+                <span class="work-card__metric-label">
+                  <span lang="pt-BR">[resultado do app de logística]</span><span lang="en">[logistics app result]</span>
+                </span>
               </p>
-
             </div>
           </article>
 
           <!-- ---------------- PROJETO 03 ---------------- -->
-          <article class="project-card" data-reveal aria-labelledby="proj-03-titulo">
+          <article class="work-card" data-reveal aria-labelledby="proj-03-titulo">
 
-            <a class="project-card__media-link" href="projects/projeto-03.html" tabindex="-1"
-               aria-hidden="true">
-              <!-- MOCKUP -->
-              <figure class="media media--16x9">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa da Roteirização · 1600×900</span><span lang="en">Route planning cover · 1600×900</span>
-                </span>
-                <!--
-                <img src="assets/images/projeto-03-capa.jpg"
-                     alt=""
-                     width="1600" height="900" loading="lazy" decoding="async">
-                -->
-              </figure>
-            </a>
+            <figure class="media media--21x9 work-card__media">
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Capa da Roteirização · 21:9 · 1680×720</span><span lang="en">Route planning cover · 21:9 · 1680×720</span>
+              </span>
+              <!--
+              <img src="assets/images/projeto-03-capa.jpg"
+                   alt=""
+                   width="1680" height="720" loading="lazy" decoding="async">
+              -->
+            </figure>
 
-            <div class="project-card__body">
-
+            <div class="work-card__body">
               <ul class="meta-inline">
                 <li class="meta-inline__item">Nasajon</li>
                 <li class="meta-inline__item">2025</li>
                 <li class="meta-inline__item">
-                  <span lang="pt-BR">UX Design · Gestão &amp; Análise</span><span lang="en">UX Design · Management &amp; Analytics</span>
+                  <span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span>
                 </li>
               </ul>
 
-              <h3 class="project-card__title" id="proj-03-titulo">
-                <a class="project-card__link" href="projects/projeto-03.html">
+              <h3 class="work-card__title" id="proj-03-titulo">
+                <a class="work-card__link" href="projects/projeto-03.html">
                   <span lang="pt-BR">Rota calculada, decisão preservada</span><span lang="en">Route calculated, decision preserved</span>
                 </a>
               </h3>
 
-              <p class="project-card__summary" lang="pt-BR">
-                O romaneio era montado de cabeça, sem estimativa de custo e sem
-                acompanhamento. A plataforma passou a calcular a sequência por
-                veículo, peso e distância — mantendo o gestor com a palavra final.
-                O custo por rota caiu 40%.
+              <p class="work-card__summary" lang="pt-BR">
+                Roteirização automática por veículo, peso e distância, sem tirar
+                a palavra final do gestor.
               </p>
-              <p class="project-card__summary" lang="en">
-                Manifests were assembled from memory, with no cost estimate and no
-                tracking. The platform began calculating the sequence by vehicle,
-                weight and distance — while keeping the manager''s final say. Cost
-                per route fell 40%.
+              <p class="work-card__summary" lang="en">
+                Automatic route planning by vehicle, weight and distance, without
+                taking the final say away from the manager.
               </p>
 
-              <ul class="chips chips--sm" aria-label="Ferramentas utilizadas"
-                  data-en-aria-label="Tools used">
-                <li class="chip chip--sm">Figma</li>
-                <li class="chip chip--sm">Moqups</li>
-              </ul>
-
-              <p class="project-card__cta" aria-hidden="true">
-                <span lang="pt-BR">Ver estudo de caso</span><span lang="en">View case study</span>
-                <svg class="icon" focusable="false"><use href="#i-arrow-right"></use></svg>
+              <p class="work-card__metric">
+                <span class="work-card__metric-value">−40%</span>
+                <span class="work-card__metric-label">
+                  <span lang="pt-BR">no custo por rota</span><span lang="en">in cost per route</span>
+                </span>
               </p>
-
             </div>
           </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         03 · SOBRE (curto)
+         ------------------------------------------------------------------------
+         Um parágrafo só. A seção de Habilidades (os chips) e a grade de fatos
+         saíram da home: as habilidades passam a aparecer dentro dos cases,
+         onde vêm com o contexto em que foram usadas.
+         ======================================================================== -->
+    <section class="section" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="container">
+        <div class="about" data-reveal>
+
+          <header class="about__head">
+            <p class="eyebrow">
+              <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+            </p>
+            <h2 class="section-head__title" id="sobre-titulo">
+              <span lang="pt-BR">Design é decidir o que não construir</span><span lang="en">Design is deciding what not to build</span>
+            </h2>
+          </header>
+
+          <div class="about__body">
+            <p class="about__text" lang="pt-BR">
+              Comecei fazendo capa de DVD. Hoje desenho os sistemas em que mais
+              de 100 empresas trabalham todo dia. Antes da primeira tela,
+              converso com o suporte para saber o que está quebrando e com a
+              engenharia para saber o que dá para construir.
+            </p>
+            <p class="about__text" lang="en">
+              I started making DVD covers. Today I design the systems more than
+              100 companies work in every day. Before the first screen, I talk
+              to support to learn what's breaking and to engineering to learn
+              what can be built.
+            </p>
+
+            <ul class="link-row">
+              <li>
+                <a class="text-link" href="assets/curriculo-arthursouza-ux.pdf"
+                   target="_blank" rel="noopener">
+                  <span lang="pt-BR">Baixar currículo (PDF)</span><span lang="en">Download résumé (PDF)</span>
+                  <svg class="icon icon--xs" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-up-right"></use>
+                  </svg>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <!-- LINKEDIN — troque pela sua URL real -->
+                <a class="text-link" href="https://www.linkedin.com/in/arthursouza7/"
+                   target="_blank" rel="noopener noreferrer">
+                  <span>LinkedIn</span>
+                  <svg class="icon icon--xs" aria-hidden="true" focusable="false">
+                    <use href="#i-arrow-up-right"></use>
+                  </svg>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
 
         </div>
       </div>
@@ -704,190 +719,26 @@
 
     <!-- ========================================================================
          04 · CONTATO
-         ======================================================================== -->
-    <section class="section" id="sobre" aria-labelledby="sobre-titulo">
-      <div class="container">
-
-        <header class="section-head" data-reveal>
-          <p class="eyebrow">
-            <span lang="pt-BR">Sobre</span><span lang="en">About</span>
-          </p>
-          <h2 class="section-head__title" id="sobre-titulo">
-            <span lang="pt-BR">Design é decidir o que não construir</span><span lang="en">Design is deciding what not to build</span>
-          </h2>
-        </header>
-
-        <div class="about">
-
-          <div class="about__bio prose" data-reveal>
-            <p lang="pt-BR">
-              Comecei a desenhar antes de saber que aquilo tinha nome. Ainda
-              criança, fazia edição de foto, capa, logo e arte para rede social;
-              mais tarde, capa e menu de DVD. Achei que meu caminho seria
-              computação, entrei na faculdade e fui parar num estágio que eu
-              jurava ser de web design — no meio dele descobri que era de UI/UX.
-              Nunca mais saí.
-            </p>
-            <p lang="en">
-              I started designing before I knew it had a name. As a kid I was
-              editing photos and making covers, logos and social media artwork;
-              later, DVD covers and menus. I assumed my path would be computing,
-              started university, and landed an internship I was certain was web
-              design — halfway through, I found out it was UI/UX. I never left.
-            </p>
-
-            <p lang="pt-BR">
-              Hoje trabalho com ERP e produtos B2B, onde a complexidade não é
-              escolha: quem está do outro lado depende daquela tela para fechar o
-              mês. O que me move é projeto novo — problema que ainda não tem
-              forma e onde dá para melhorar concretamente o dia de quem vai usar.
-            </p>
-            <p lang="en">
-              Today I work on ERP and B2B products, where complexity isn't a
-              choice: the person on the other side depends on that screen to close
-              the month. What moves me is a new project — a problem that doesn't
-              have a shape yet, and where there's a concrete chance to improve
-              someone's day.
-            </p>
-
-            <p lang="pt-BR">
-              Meu processo passa por duas conversas que muita gente pula: com o
-              suporte, para saber o que está quebrando de verdade, e com a
-              engenharia, para saber o limite do que dá para construir. Com as
-              duas na mão, monto uma matriz de esforço e impacto e fecho o
-              discovery num documento curto — tudo isso antes de desenhar a
-              primeira tela.
-            </p>
-            <p lang="en">
-              My process runs through two conversations most people skip: with
-              support, to learn what is actually breaking, and with engineering,
-              to learn the limits of what can be built. With both in hand, I map
-              effort against impact and close discovery in a short document — all
-              before drawing the first screen.
-            </p>
-          </div>
-
-          <!-- MÉTRICAS DE CARREIRA -->
-          <dl class="about__facts" data-reveal>
-            <div class="fact">
-              <dt class="fact__label">
-                <span lang="pt-BR">Experiência</span><span lang="en">Experience</span>
-              </dt>
-              <dd class="fact__value">
-                <span lang="pt-BR">6 anos</span><span lang="en">6 years</span>
-              </dd>
-            </div>
-            <div class="fact">
-              <dt class="fact__label">
-                <span lang="pt-BR">Foco</span><span lang="en">Focus</span>
-              </dt>
-              <dd class="fact__value">
-                <span lang="pt-BR">ERP, B2B &amp; SaaS</span><span lang="en">ERP, B2B &amp; SaaS</span>
-              </dd>
-            </div>
-            <div class="fact">
-              <dt class="fact__label">
-                <span lang="pt-BR">Clientes impactados</span><span lang="en">Clients impacted</span>
-              </dt>
-              <dd class="fact__value">+100</dd>
-            </div>
-            <div class="fact">
-              <dt class="fact__label">
-                <span lang="pt-BR">Base</span><span lang="en">Based in</span>
-              </dt>
-              <dd class="fact__value">
-                <span lang="pt-BR">Rio de Janeiro · Remoto</span><span lang="en">Rio de Janeiro · Remote</span>
-              </dd>
-            </div>
-          </dl>
-
-        </div>
-
-        <!-- HABILIDADES (chips) -->
-        <div class="skills" data-reveal>
-          <h3 class="skills__title" id="skills-titulo">
-            <span lang="pt-BR">Habilidades</span><span lang="en">Skills</span>
-          </h3>
-
-          <!--
-            ORDEM DOS CHIPS — não é aleatória nem alfabética.
-            Segue o arco do processo: descoberta → definição → design →
-            validação → entrega → domínio e ferramentas. Com 22 itens, a ordem
-            é o que impede a lista de virar nuvem de palavra-chave; ela faz o
-            trabalho que títulos de grupo fariam, sem criar componente novo.
-            Ao adicionar um chip, insira no grupo certo — não no fim.
-          -->
-          <ul class="chips" aria-labelledby="skills-titulo">
-            <!-- Descoberta -->
-            <li class="chip"><span lang="pt-BR">UX Research</span><span lang="en">UX Research</span></li>
-            <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
-            <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
-            <li class="chip"><span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span></li>
-
-            <!-- Definição e estratégia -->
-            <li class="chip"><span lang="pt-BR">Design Thinking</span><span lang="en">Design Thinking</span></li>
-            <li class="chip"><span lang="pt-BR">Product Thinking</span><span lang="en">Product Thinking</span></li>
-            <li class="chip"><span lang="pt-BR">Design Sprint</span><span lang="en">Design Sprint</span></li>
-            <li class="chip"><span lang="pt-BR">User Journey</span><span lang="en">User Journey</span></li>
-            <li class="chip"><span lang="pt-BR">User Flow</span><span lang="en">User Flow</span></li>
-
-            <!-- Design -->
-            <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
-            <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
-            <li class="chip"><span lang="pt-BR">Design de Interação</span><span lang="en">Interaction Design</span></li>
-            <li class="chip"><span lang="pt-BR">Design Systems</span><span lang="en">Design Systems</span></li>
-            <li class="chip"><span lang="pt-BR">Acessibilidade</span><span lang="en">Accessibility</span></li>
-
-            <!-- Validação -->
-            <li class="chip"><span lang="pt-BR">Testes de Usabilidade</span><span lang="en">Usability Testing</span></li>
-
-            <!-- Entrega -->
-            <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>
-            <li class="chip"><span lang="pt-BR">Método Ágil</span><span lang="en">Agile</span></li>
-
-            <!-- Domínio e ferramentas -->
-            <li class="chip"><span lang="pt-BR">ERP &amp; B2B</span><span lang="en">ERP &amp; B2B</span></li>
-            <li class="chip"><span lang="pt-BR">Figma</span><span lang="en">Figma</span></li>
-            <li class="chip"><span lang="pt-BR">HTML</span><span lang="en">HTML</span></li>
-            <li class="chip"><span lang="pt-BR">CSS</span><span lang="en">CSS</span></li>
-            <li class="chip"><span lang="pt-BR">JavaScript</span><span lang="en">JavaScript</span></li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         03 · PROJETOS
          ------------------------------------------------------------------------
-         Os cards são HTML estático — não são gerados por JavaScript.
-         Isso mantém o conteúdo indexável e funcional sem JS.
-         Para adicionar um projeto: duplique um <article class="project-card">
-         inteiro e troque o conteúdo. O README documenta o passo a passo.
+         Bloco único e baixo: no desktop, texto à esquerda e botões à direita.
+         O .contact base continua servindo ao CTA final dos cases; a home usa
+         o modificador --inline.
          ======================================================================== -->
-    <section class="section section--alt" id="contato" aria-labelledby="contato-titulo">
+    <section class="section section--alt section--tight" id="contato" aria-labelledby="contato-titulo">
       <div class="container">
 
-        <div class="contact" data-reveal>
+        <div class="contact contact--inline" data-reveal>
 
-          <header class="section-head section-head--center">
-            <p class="eyebrow">
-              <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
-            </p>
-            <h2 class="section-head__title" id="contato-titulo">
+          <div class="contact__text">
+            <h2 class="contact__title" id="contato-titulo">
               <span lang="pt-BR">Tem um problema difícil? Vamos conversar.</span><span lang="en">Got a hard problem? Let's talk.</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
-              Estou aberto a oportunidades de Product Design em produtos com
-              complexidade real. Respondo todos os e-mails em até 48 horas.
-            </p>
-            <p class="section-head__lead" lang="en">
-              I'm open to Product Design roles on genuinely complex products.
-              I reply to every email within 48 hours.
-            </p>
-          </header>
+            <p class="contact__lead" lang="pt-BR">Respondo todos os e-mails em até 48 horas.</p>
+            <p class="contact__lead" lang="en">I reply to every email within 48 hours.</p>
+          </div>
 
-          <div class="contact__actions cluster cluster--center">
+          <div class="contact__actions cluster">
+            <!-- E-MAIL — troque pelo seu endereço real -->
             <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
               <svg class="icon" aria-hidden="true" focusable="false">
                 <use href="#i-mail"></use>
@@ -928,6 +779,11 @@
       </p>
 
       <ul class="footer__links">
+        <li>
+          <a class="footer__link" href="projetos.html">
+            <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
+          </a>
+        </li>
         <li>
           <a class="footer__link" href="mailto:arthursouza_7@outlook.com">
             <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
