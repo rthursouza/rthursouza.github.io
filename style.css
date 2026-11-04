@@ -17,7 +17,7 @@
    06 · UTILITÁRIOS (visually-hidden · cluster · icon · sprite · sentinela)
    07 · ANIMAÇÕES DE ENTRADA (reveal)
    08 · MÍDIA E PLACEHOLDERS
-   09 · TIPOGRAFIA DE CONTEÚDO (eyebrow · section-head · section-bar ·
+   09 · TIPOGRAFIA DE CONTEÚDO (eyebrow · section-head · heading-row ·
         text-link · prose · quote)
    10 · CHIPS
    11 · BOTÕES
@@ -25,8 +25,8 @@
    13 · HEADER · BRAND · NAV · LANG SWITCH · NAV TOGGLE
    14 · HERO (home)
    15 · SOBRE (curto)
-   16 · PROJETOS (work-card · featured)
-   16b· PÁGINA DE PROJETOS (page-intro · page-toolbar · filter · work-grid)
+   16 · PROJETOS (project-card · featured)
+   16b· PÁGINA DE PROJETOS (page-intro · page-toolbar · filter · project-grid)
    17 · CONTATO
    18 · FOOTER
    19 · CASE · BREADCRUMB, HERO, FICHA, EM 30 SEGUNDOS, ÍNDICE, DUAS
@@ -213,62 +213,62 @@ p, h1, h2, h3, li, dd, figcaption {
   color-scheme: dark;
 
   /* ---------- COR · MODO ESCURO (padrão) ----------
-     Paleta "Papel & Tinta": a mesma papelaria vista à luz de um abajur.
+     Paleta quente: terracota como cor de ação sobre azul-escuro e creme.
      Nada de preto #000 nem branco #FFF puros como texto ou fundo dominante.
 
-     Contrastes medidos sobre --c-bg:
-       --c-text        12,5:1    --c-text-muted   7,75:1
-       --c-accent       5,55:1   --c-text-subtle  3,89:1 (só decorativo/meta)
-     Texto sobre o botão primário usa --c-accent-ink (5,5:1), nunca branco:
+     Contrastes medidos sobre --color-bg:
+       --color-text        12,5:1    --color-text-muted   7,75:1
+       --color-accent       5,55:1   --color-text-subtle  3,89:1 (só decorativo/meta)
+     Texto sobre o botão primário usa --color-on-accent (5,5:1), nunca branco:
      branco sobre #E08A63 daria 2,2:1 e reprovaria em AA. */
-  --c-bg:            #20293A;   /* tinta da noite           */
-  --c-bg-alt:        #242E41;   /* um passo acima do bg     */
-  --c-surface:       #2A3549;   /* cards                    */
-  --c-surface-2:     #33405A;   /* superfície de apoio      */
-  --c-text:          #F2EDE3;   /* papel claro              */
-  --c-text-muted:    #B7BDCB;
-  --c-text-subtle:   #A7ADBC;   /* rótulo, legenda, meta — 4,76:1 */
-  --c-accent:        #E08A63;   /* terracota: a cor de ação */
-  --c-accent-hover:  #E89B79;
-  --c-accent-ink:    #20293A;   /* texto SOBRE o accent     */
-  --c-border:        rgba(242, 237, 227, .10);
-  --c-border-strong: rgba(242, 237, 227, .20);
-  --c-accent-soft:   rgba(224, 138, 99, .14);
-  --c-accent-line:   rgba(224, 138, 99, .36);
-  --c-glass:         rgba(32, 41, 58, .74);
-  --c-overlay:       rgba(14, 18, 27, .88);
+  --color-bg:            #20293A;   /* fundo da página          */
+  --color-bg-alt:        #242E41;   /* um passo acima do bg     */
+  --color-surface:       #2A3549;   /* cards                    */
+  --color-surface-2:     #33405A;   /* superfície de apoio      */
+  --color-text:          #F2EDE3;   /* texto principal          */
+  --color-text-muted:    #B7BDCB;
+  --color-text-subtle:   #A7ADBC;   /* rótulo, legenda, meta — 4,76:1 */
+  --color-accent:        #E08A63;   /* terracota: a cor de ação */
+  --color-accent-hover:  #E89B79;
+  --color-on-accent:    #20293A;   /* texto SOBRE o accent     */
+  --color-border:        rgba(242, 237, 227, .10);
+  --color-border-strong: rgba(242, 237, 227, .20);
+  --color-accent-soft:   rgba(224, 138, 99, .14);
+  --color-accent-line:   rgba(224, 138, 99, .36);
+  --color-glass:         rgba(32, 41, 58, .74);
+  --color-overlay:       rgba(14, 18, 27, .88);
 
   /* O accent escrito em corpo de texto miúdo (eyebrow, CTA de card, link de
      rodapé). No escuro é o próprio accent — 5,55:1, passa AA. No claro ele
      precisa escurecer: #C1502E alcança 4,34:1, que vale para texto grande e
      para componentes de interface, mas não para texto corrido. */
-  --c-accent-text:   #E08A63;
+  --color-accent-text:   #E08A63;
 
   /* Lavagens do accent para o brilho de fundo e as texturas. Nunca um
      gradiente que chame atenção para si mesmo. */
-  --c-glow:          rgba(224, 138, 99, .15);
-  --c-glow-faint:    rgba(224, 138, 99, .07);
-  --c-sheen:         rgba(242, 237, 227, .10);    /* filete interno da mídia */
-  --c-hatch:         rgba(242, 237, 227, .028);   /* hachura do placeholder  */
+  --color-glow:          rgba(224, 138, 99, .15);
+  --color-glow-faint:    rgba(224, 138, 99, .07);
+  --color-sheen:         rgba(242, 237, 227, .10);    /* filete interno da mídia */
+  --color-hatch:         rgba(242, 237, 227, .028);   /* hachura do placeholder  */
 
   /* ---------- ESTADOS ----------
-     Reservados para feedback de formulário. Sobre --c-bg:
+     Reservados para feedback de formulário. Sobre --color-bg:
      positive 7,22:1 · danger 5,53:1 · warning 7,37:1. */
-  --c-positive:      #A9BCA0;
-  --c-danger:        #E3867A;
-  --c-warning:       #D9B36A;
+  --color-positive:      #A9BCA0;
+  --color-danger:        #E3867A;
+  --color-warning:       #D9B36A;
 
-  /* ---------- TINTA FIXA ----------
+  /* ---------- LIGHTBOX (cor fixa) ----------
      O lightbox é imersivo: a imagem precisa de um entorno escuro e neutro
-     nos DOIS temas — uma captura clara sobre papel claro perde os limites.
+     nos DOIS temas — uma captura clara sobre fundo claro perde os limites.
      Por isso estes valores não acompanham a troca de modo. */
-  --c-ink-bg:        #2A3549;
-  --c-ink-bg-2:      #33405A;
-  --c-ink-text:      #F2EDE3;
-  --c-ink-muted:     #B7BDCB;
-  --c-ink-border:    rgba(242, 237, 227, .20);
-  --c-ink-glass:     rgba(32, 41, 58, .74);
-  --c-ink-overlay:   rgba(14, 18, 27, .92);
+  --color-lightbox-bg:        #2A3549;
+  --color-lightbox-bg-2:      #33405A;
+  --color-lightbox-text:      #F2EDE3;
+  --color-lightbox-muted:     #B7BDCB;
+  --color-lightbox-border:    rgba(242, 237, 227, .20);
+  --color-lightbox-glass:     rgba(32, 41, 58, .74);
+  --color-lightbox-overlay:   rgba(14, 18, 27, .92);
 
   /* ---------- TIPOGRAFIA ----------
      Três papéis, nunca misturados dentro do mesmo bloco de texto:
@@ -327,7 +327,7 @@ p, h1, h2, h3, li, dd, figcaption {
   --radius-xl:   1.75rem;
   --radius-pill: 999px;
 
-  /* Sombras reencaixadas na tinta da noite — não no preto puro. */
+  /* Sombras tingidas do azul do fundo — não no preto puro. */
   --shadow:    0 12px 32px -12px rgba(10, 14, 22, .65);
   --shadow-lg: 0 32px 64px -24px rgba(10, 14, 22, .80);
 
@@ -344,7 +344,7 @@ p, h1, h2, h3, li, dd, figcaption {
 }
 
 /* --------------------------------------------------------------------------
-   MODO CLARO — "papel de dia"
+   MODO CLARO
    --------------------------------------------------------------------------
    Só os valores de cor mudam: tipografia, espaço, medida e movimento são os
    mesmos nos dois temas.
@@ -354,41 +354,41 @@ p, h1, h2, h3, li, dd, figcaption {
    flash de tema errado. Sem JavaScript nada é escrito e o modo escuro, que é
    o padrão do portfólio, aparece.
 
-   Contrastes medidos sobre --c-bg:
-     --c-text 11,26:1 · --c-text-muted 5,77:1 · --c-text-subtle 2,83:1
-     --c-accent 4,34:1 — serve a texto grande e a interface, NÃO a texto
-     corrido; para isso --c-accent-text escurece para #A8431F (5,54:1).
+   Contrastes medidos sobre --color-bg:
+     --color-text 11,26:1 · --color-text-muted 5,77:1 · --color-text-subtle 2,83:1
+     --color-accent 4,34:1 — serve a texto grande e a interface, NÃO a texto
+     corrido; para isso --color-accent-text escurece para #A8431F (5,54:1).
    -------------------------------------------------------------------------- */
 
 :root[data-theme="claro"] {
   color-scheme: light;
 
-  --c-bg:            #FAF5EB;   /* papel-fibra                        */
-  --c-bg-alt:        #F4EEDF;
-  --c-surface:       #FFFFFF;   /* a folha: branco puro só como card  */
-  --c-surface-2:     #EFE8D8;
-  --c-text:          #27364B;   /* azul-tinta                         */
-  --c-text-muted:    #56607A;
-  --c-text-subtle:   #616774;   /* rótulo, legenda, meta              */
-  --c-accent:        #C1502E;
-  --c-accent-hover:  #A8431F;
-  --c-accent-ink:    #FFFFFF;   /* 4,71:1 sobre o accent              */
-  --c-accent-text:   #A8431F;   /* accent em texto miúdo: 5,54:1      */
-  --c-border:        #E4DCCB;
-  --c-border-strong: #D5CBB4;
-  --c-accent-soft:   rgba(193, 80, 46, .10);
-  --c-accent-line:   rgba(193, 80, 46, .34);
-  --c-glass:         rgba(250, 245, 235, .78);
-  --c-overlay:       rgba(39, 54, 75, .45);
+  --color-bg:            #FAF5EB;   /* fundo da página                    */
+  --color-bg-alt:        #F4EEDF;
+  --color-surface:       #FFFFFF;   /* a folha: branco puro só como card  */
+  --color-surface-2:     #EFE8D8;
+  --color-text:          #27364B;   /* texto principal                    */
+  --color-text-muted:    #56607A;
+  --color-text-subtle:   #616774;   /* rótulo, legenda, meta              */
+  --color-accent:        #C1502E;
+  --color-accent-hover:  #A8431F;
+  --color-on-accent:    #FFFFFF;   /* 4,71:1 sobre o accent              */
+  --color-accent-text:   #A8431F;   /* accent em texto miúdo: 5,54:1      */
+  --color-border:        #E4DCCB;
+  --color-border-strong: #D5CBB4;
+  --color-accent-soft:   rgba(193, 80, 46, .10);
+  --color-accent-line:   rgba(193, 80, 46, .34);
+  --color-glass:         rgba(250, 245, 235, .78);
+  --color-overlay:       rgba(39, 54, 75, .45);
 
-  --c-glow:          rgba(193, 80, 46, .08);
-  --c-glow-faint:    rgba(193, 80, 46, .05);
-  --c-sheen:         rgba(39, 54, 75, .08);
-  --c-hatch:         rgba(39, 54, 75, .035);
+  --color-glow:          rgba(193, 80, 46, .08);
+  --color-glow-faint:    rgba(193, 80, 46, .05);
+  --color-sheen:         rgba(39, 54, 75, .08);
+  --color-hatch:         rgba(39, 54, 75, .035);
 
-  --c-positive:      #2F4A3C;
-  --c-danger:        #A33025;
-  --c-warning:       #7E5A14;
+  --color-positive:      #2F4A3C;
+  --color-danger:        #A33025;
+  --color-warning:       #7E5A14;
 
   --shadow:    0 2px 8px rgba(39, 54, 75, .08);
   --shadow-lg: 0 12px 32px -12px rgba(39, 54, 75, .18);
@@ -415,7 +415,7 @@ html {
   scroll-padding-block-start: calc(var(--header-h) + var(--sp-5));
 
   /* Barra de rolagem discreta e alinhada ao tema. */
-  scrollbar-color: var(--c-border-strong) transparent;
+  scrollbar-color: var(--color-border-strong) transparent;
   scrollbar-width: thin;
 }
 
@@ -427,8 +427,8 @@ html.is-nav-open {
 body {
   position: relative;          /* âncora do brilho em body::before */
   min-height: 100vh;
-  background-color: var(--c-bg);
-  color: var(--c-text);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-sans);
   font-size: var(--fs-base);
   font-weight: 400;
@@ -452,8 +452,8 @@ body::before {
   z-index: 0;
   height: min(72vh, 44rem);
   background-image:
-    radial-gradient(70% 60% at 50% -10%, var(--c-glow), transparent 70%),
-    radial-gradient(40% 40% at 85%   0%, var(--c-glow-faint), transparent 70%);
+    radial-gradient(70% 60% at 50% -10%, var(--color-glow), transparent 70%),
+    radial-gradient(40% 40% at 85%   0%, var(--color-glow-faint), transparent 70%);
   pointer-events: none;
 }
 
@@ -476,7 +476,7 @@ h1, h2, h3 {
 
 strong {
   font-weight: 600;
-  color: var(--c-text);
+  color: var(--color-text);
 }
 
 em {
@@ -484,14 +484,14 @@ em {
 }
 
 ::selection {
-  background-color: var(--c-accent);
-  color: var(--c-accent-ink);
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
 }
 
 /* Regra de foco única para o projeto inteiro: aparece no teclado, some no
    clique de mouse, e o offset garante contraste contra qualquer superfície. */
 :focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -502,12 +502,12 @@ em {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--c-bg);
+  background-color: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--c-border-strong);
-  border: 3px solid var(--c-bg);
+  background-color: var(--color-border-strong);
+  border: 3px solid var(--color-bg);
   border-radius: var(--radius-pill);
 }
 
@@ -571,8 +571,8 @@ em {
 }
 
 .section--alt {
-  background-color: var(--c-bg-alt);
-  border-block: 1px solid var(--c-border);
+  background-color: var(--color-bg-alt);
+  border-block: 1px solid var(--color-border);
 }
 
 /* Seção de fechamento (contato da home): menos ar, porque o bloco é baixo. */
@@ -692,11 +692,11 @@ main[id] {
 .js .hero__content > [data-reveal]:nth-child(7) { transition-delay: 180ms; }
 .js .hero__content > [data-reveal]:last-child   { transition-delay: 220ms; }
 
-.js .featured > [data-reveal]:nth-child(2) { transition-delay:  80ms; }
-.js .featured > [data-reveal]:nth-child(3) { transition-delay: 160ms; }
+.js .featured-projects > [data-reveal]:nth-child(2) { transition-delay:  80ms; }
+.js .featured-projects > [data-reveal]:nth-child(3) { transition-delay: 160ms; }
 
-.js .work-grid > [data-reveal]:nth-child(3n + 2) { transition-delay:  80ms; }
-.js .work-grid > [data-reveal]:nth-child(3n + 3) { transition-delay: 160ms; }
+.js .project-grid > [data-reveal]:nth-child(3n + 2) { transition-delay:  80ms; }
+.js .project-grid > [data-reveal]:nth-child(3n + 3) { transition-delay: 160ms; }
 
 .js .timeline > [data-reveal]:nth-child(even) { transition-delay: 70ms; }
 
@@ -715,8 +715,8 @@ main[id] {
 
   position: relative;
   aspect-ratio: var(--ratio);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -752,7 +752,7 @@ main[id] {
 /* Mídia de destaque (hero, capa, solução): sombra + filete interno que
    sugere a borda de um dispositivo. */
 .media--framed {
-  border-color: var(--c-border-strong);
+  border-color: var(--color-border-strong);
   box-shadow: var(--shadow-lg);
 }
 
@@ -761,7 +761,7 @@ main[id] {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: inset 0 1px 0 var(--c-sheen);
+  box-shadow: inset 0 1px 0 var(--color-sheen);
   pointer-events: none;
 }
 
@@ -775,17 +775,17 @@ main[id] {
   display: grid;
   place-items: center;
   padding: var(--sp-4);
-  border: 1px dashed var(--c-border-strong);
+  border: 1px dashed var(--color-border-strong);
   border-radius: inherit;
   background-image: linear-gradient(
     135deg,
-    var(--c-hatch) 0 25%,
+    var(--color-hatch) 0 25%,
     transparent 25% 50%,
-    var(--c-hatch) 50% 75%,
+    var(--color-hatch) 50% 75%,
     transparent 75% 100%
   );
   background-size: 14px 14px;
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-xs);
   font-weight: 500;
   line-height: var(--lh-snug);
@@ -796,7 +796,7 @@ main[id] {
 
 .media__caption {
   padding-block-start: var(--sp-3);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   line-height: var(--lh-snug);
 }
@@ -824,7 +824,7 @@ main[id] {
 }
 
 .media:has(> .media__caption) > img {
-  border: 1px solid var(--c-border);
+  border: 1px solid var(--color-border);
 }
 
 
@@ -839,7 +839,7 @@ main[id] {
   align-items: center;
   gap: var(--sp-2);
   margin-block-end: var(--sp-4);
-  color: var(--c-accent-text);   /* texto miúdo: precisa do accent escurecido */
+  color: var(--color-accent-text);   /* texto miúdo: precisa do accent escurecido */
   font-size: var(--fs-xs);
   font-weight: 600;
   line-height: 1;
@@ -853,7 +853,7 @@ main[id] {
   width: 0.5rem;
   height: 0.5rem;
   flex: none;
-  background-color: var(--c-accent);
+  background-color: var(--color-accent);
   border-radius: var(--radius-pill);
 }
 
@@ -861,7 +861,7 @@ main[id] {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: var(--c-accent);
+  background-color: var(--color-accent);
   border-radius: inherit;
   animation: pulse 2.4s var(--ease-out) infinite;
 }
@@ -898,7 +898,7 @@ main[id] {
 .section-head__lead {
   margin-block-start: var(--sp-4);
   max-width: 40rem;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-md);
 }
 
@@ -909,7 +909,7 @@ main[id] {
 /* ---------- BARRA DE SEÇÃO ----------
    Cabeçalho de uma linha só: título à esquerda, link de "ver tudo" à
    direita. Em tela estreita o link desce para baixo do título. */
-.section-bar {
+.heading-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -918,7 +918,7 @@ main[id] {
   margin-block-end: clamp(1.25rem, 3vw, 2rem);
 }
 
-.section-bar__title {
+.heading-row__title {
   font-family: var(--font-display);
   font-size: var(--fs-xl);
   font-weight: 600;
@@ -932,7 +932,7 @@ main[id] {
   align-items: center;
   gap: var(--sp-2);
   min-height: 2.75rem;
-  color: var(--c-accent-text);   /* texto miúdo: precisa do accent escurecido */
+  color: var(--color-accent-text);   /* texto miúdo: precisa do accent escurecido */
   font-size: var(--fs-sm);
   font-weight: 600;
   text-underline-offset: 0.3em;
@@ -967,7 +967,7 @@ main[id] {
 
 .link-row > li:not(:first-child)::before {
   content: "·";
-  color: var(--c-border-strong);
+  color: var(--color-border-strong);
 }
 
 /* ---------- PROSA ----------
@@ -978,7 +978,7 @@ main[id] {
   flex-direction: column;
   gap: var(--sp-5);
   max-width: var(--w-prose);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-family: var(--font-serif);   /* a serifa é o texto para ser lido */
   font-size: var(--fs-md);
 }
@@ -994,11 +994,11 @@ main[id] {
 .quote {
   margin-block-start: clamp(2rem, 4vw, 3rem);
   padding-inline-start: clamp(1.25rem, 3vw, 2rem);
-  border-inline-start: 2px solid var(--c-accent);
+  border-inline-start: 2px solid var(--color-accent);
 }
 
 .quote__text {
-  color: var(--c-text);
+  color: var(--color-text);
   font-family: var(--font-serif);
   font-size: var(--fs-lg);
   font-style: italic;
@@ -1009,7 +1009,7 @@ main[id] {
 
 .quote__author {
   margin-block-start: var(--sp-4);
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-sm);
   font-weight: 500;
 }
@@ -1018,7 +1018,7 @@ main[id] {
    sobre uma superfície, com o texto um degrau acima. */
 .quote--lg {
   padding: clamp(1.5rem, 4vw, 2.5rem);
-  background-color: var(--c-surface);
+  background-color: var(--color-surface);
   border-inline-start-width: 3px;
   border-start-end-radius: var(--radius-lg);
   border-end-end-radius: var(--radius-lg);
@@ -1045,10 +1045,10 @@ main[id] {
   display: inline-flex;
   align-items: center;
   padding: 0.4375rem 0.8125rem;
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   font-weight: 500;
   line-height: 1.2;
@@ -1061,9 +1061,9 @@ main[id] {
 
 /* Os chips não são interativos; o hover apenas dá vida à lista ao passar. */
 .chip:hover {
-  background-color: var(--c-surface-2);
-  border-color: var(--c-border-strong);
-  color: var(--c-text);
+  background-color: var(--color-surface-2);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
 }
 
 .chips--sm {
@@ -1129,13 +1129,13 @@ main[id] {
 }
 
 .btn--primary {
-  background-color: var(--c-accent);
-  color: var(--c-accent-ink);
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
   box-shadow: var(--shadow-accent);
 }
 
 .btn--primary:hover {
-  background-color: var(--c-accent-hover);
+  background-color: var(--color-accent-hover);
   box-shadow: var(--shadow-accent-hover);
 }
 
@@ -1145,24 +1145,24 @@ main[id] {
 }
 
 .btn--secondary {
-  background-color: var(--c-surface);
-  border-color: var(--c-border-strong);
-  color: var(--c-text);
+  background-color: var(--color-surface);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
 }
 
 .btn--secondary:hover {
-  background-color: var(--c-surface-2);
-  border-color: var(--c-accent-line);
+  background-color: var(--color-surface-2);
+  border-color: var(--color-accent-line);
 }
 
 .btn--ghost {
   background-color: transparent;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
 }
 
 .btn--ghost:hover {
-  background-color: var(--c-surface);
-  color: var(--c-text);
+  background-color: var(--color-surface);
+  color: var(--color-text);
 }
 
 .btn--sm {
@@ -1189,9 +1189,9 @@ main[id] {
   inset-inline-start: var(--sp-3);
   z-index: 300;
   padding: 0.75rem 1.125rem;
-  background-color: var(--c-accent);
+  background-color: var(--color-accent);
   border-radius: var(--radius);
-  color: var(--c-accent-ink);
+  color: var(--color-on-accent);
   font-size: var(--fs-sm);
   font-weight: 600;
   box-shadow: var(--shadow);
@@ -1223,15 +1223,15 @@ main[id] {
 /* Escrito pelo JS quando a .nav-sentinel sai do viewport. No topo da página
    o header é invisível; ao rolar, ganha vidro fosco e filete. */
 .header.is-scrolled {
-  background-color: var(--c-glass);
-  border-block-end-color: var(--c-border);
+  background-color: var(--color-glass);
+  border-block-end-color: var(--color-border);
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .header.is-scrolled {
-    background-color: var(--c-bg);
+    background-color: var(--color-bg);
   }
 }
 
@@ -1260,9 +1260,9 @@ main[id] {
   width: 2.25rem;
   height: 2.25rem;
   flex: none;
-  background-image: linear-gradient(145deg, var(--c-accent-hover), var(--c-accent));
+  background-image: linear-gradient(145deg, var(--color-accent-hover), var(--color-accent));
   border-radius: 0.6875rem;
-  color: var(--c-accent-ink);
+  color: var(--color-on-accent);
   font-family: var(--font-display);
   font-size: var(--fs-base);
   font-weight: 800;
@@ -1288,7 +1288,7 @@ main[id] {
 }
 
 .brand__role {
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-xs);
   font-weight: 500;
 }
@@ -1307,8 +1307,8 @@ main[id] {
   padding: calc(var(--header-h) + var(--sp-5)) var(--sp-5) var(--sp-6);
   overflow-y: auto;
   overscroll-behavior: contain;
-  background-color: var(--c-bg-alt);
-  border-inline-start: 1px solid var(--c-border);
+  background-color: var(--color-bg-alt);
+  border-inline-start: 1px solid var(--color-border);
   box-shadow: var(--shadow-lg);
   visibility: hidden;
   opacity: 0;
@@ -1337,7 +1337,7 @@ main[id] {
   display: block;
   padding: var(--sp-3) var(--sp-2);
   border-radius: var(--radius-sm);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-md);
   font-weight: 500;
   transition:
@@ -1346,15 +1346,15 @@ main[id] {
 }
 
 .nav__link:hover {
-  background-color: var(--c-surface);
-  color: var(--c-text);
+  background-color: var(--color-surface);
+  color: var(--color-text);
 }
 
 /* Seção atual: .is-current vem do scrollspy (home) e aria-current vem do
    HTML estático (páginas de case). Mesmo tratamento visual. */
 .nav__link.is-current,
 .nav__link[aria-current] {
-  color: var(--c-text);
+  color: var(--color-text);
 }
 
 .nav__actions {
@@ -1364,7 +1364,7 @@ main[id] {
   gap: var(--sp-4);
   margin-block-start: auto;   /* ancora as ações no rodapé do drawer */
   padding-block-start: var(--sp-5);
-  border-block-start: 1px solid var(--c-border);
+  border-block-start: 1px solid var(--color-border);
 }
 
 .nav__actions .btn {
@@ -1387,8 +1387,8 @@ main[id] {
   align-items: center;
   gap: 0.125rem;
   padding: 0.25rem 0.25rem 0.25rem 0.5rem;
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
 }
 
@@ -1396,7 +1396,7 @@ main[id] {
   width: 1rem;
   height: 1rem;
   margin-inline-end: 0.25rem;
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
 }
 
 /* 44×44 de alvo de toque na base. O desktop com mouse volta ao compacto
@@ -1406,7 +1406,7 @@ main[id] {
   min-height: 2.75rem;
   padding: 0.3125rem 0.625rem;
   border-radius: var(--radius-pill);
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1416,14 +1416,14 @@ main[id] {
 }
 
 .lang-switch__btn:hover {
-  color: var(--c-text);
+  color: var(--color-text);
 }
 
 /* O estado ativo é o próprio aria-pressed: uma fonte de verdade só,
    compartilhada entre leitor de tela e pintura. */
 .lang-switch__btn[aria-pressed="true"] {
-  background-color: var(--c-accent-soft);
-  color: var(--c-accent-text);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-text);
 }
 
 /* ---------- ALTERNÂNCIA DE TEMA ----------
@@ -1438,12 +1438,12 @@ main[id] {
   width: 2.75rem;
   height: 2.75rem;
   flex: none;
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   /* Muted, e não subtle: aqui o ícone é o conteúdo inteiro do botão — ele
      precisa dos 3:1 de componente gráfico com folga, nos dois temas. */
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   transition:
     background-color var(--t) var(--ease),
     border-color     var(--t) var(--ease),
@@ -1451,9 +1451,9 @@ main[id] {
 }
 
 .theme-toggle:hover {
-  background-color: var(--c-surface-2);
-  border-color: var(--c-border-strong);
-  color: var(--c-text);
+  background-color: var(--color-surface-2);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
 }
 
 .theme-toggle .icon {
@@ -1484,18 +1484,18 @@ main[id] {
   width: 2.75rem;
   height: 2.75rem;
   flex: none;
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  color: var(--c-text);
+  color: var(--color-text);
   transition:
     background-color var(--t) var(--ease),
     border-color     var(--t) var(--ease);
 }
 
 .nav-toggle:hover {
-  background-color: var(--c-surface-2);
-  border-color: var(--c-border-strong);
+  background-color: var(--color-surface-2);
+  border-color: var(--color-border-strong);
 }
 
 .nav-toggle .icon {
@@ -1519,7 +1519,7 @@ main[id] {
   position: fixed;
   inset: 0;
   z-index: 205;
-  background-color: var(--c-overlay);
+  background-color: var(--color-overlay);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
@@ -1630,7 +1630,7 @@ main[id] {
     inset-block-end: 0.125rem;
     inset-inline: var(--sp-3);
     height: 1px;
-    background-color: var(--c-accent);
+    background-color: var(--color-accent);
     transform: scaleX(0);
     transition: transform var(--t) var(--ease);
   }
@@ -1716,7 +1716,7 @@ main[id] {
 
 .hero__role {
   margin-block-start: var(--sp-3);
-  background-image: linear-gradient(100deg, var(--c-accent-hover), var(--c-accent));
+  background-image: linear-gradient(100deg, var(--color-accent-hover), var(--color-accent));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1728,7 +1728,7 @@ main[id] {
 .hero__lead {
   margin-block-start: var(--sp-5);
   max-width: 42ch;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-lg);
   line-height: var(--lh-snug);
   letter-spacing: var(--tracking-tight);
@@ -1780,7 +1780,7 @@ main[id] {
 
 .about__text {
   max-width: var(--w-prose);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-family: var(--font-serif);   /* a serifa é o texto para ser lido */
   font-size: var(--fs-md);
   text-wrap: pretty;
@@ -1815,35 +1815,35 @@ main[id] {
    permite ao card grande manter o 16:9 exato ao lado de um texto mais alto
    que ela: a sobra vira respiro, não distorção da imagem.
 
-   .work-card        → imagem em cima (21:9 na home, 4:3 em /projetos)
-   .work-card--lead  → horizontal, imagem 16:9 à esquerda (a partir de 56rem)
+   .project-card        → imagem em cima (21:9 na home, 4:3 em /projetos)
+   .project-card--featured  → horizontal, imagem 16:9 à esquerda (a partir de 56rem)
    ========================================================================== */
 
-.featured {
+.featured-projects {
   display: grid;
   gap: var(--gap-card);
 }
 
 @media (min-width: 40rem) {
-  .featured {
+  .featured-projects {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .featured > .work-card--lead {
+  .featured-projects > .project-card--featured {
     grid-column: 1 / -1;
   }
 }
 
-.work-card {
-  --work-card-pad: clamp(0.75rem, 1.5vw, 1rem);
+.project-card {
+  --project-card-pad: clamp(0.75rem, 1.5vw, 1rem);
 
   position: relative;   /* contêiner do link esticado */
   display: grid;
   align-content: start;
   gap: var(--sp-5);
-  padding: var(--work-card-pad);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  padding: var(--project-card-pad);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   transition:
     background-color var(--t-slow) var(--ease),
@@ -1852,29 +1852,29 @@ main[id] {
     transform        var(--t-slow) var(--ease);
 }
 
-.work-card:hover,
-.work-card:focus-within {
-  background-color: var(--c-surface-2);
-  border-color: var(--c-border-strong);
+.project-card:hover,
+.project-card:focus-within {
+  background-color: var(--color-surface-2);
+  border-color: var(--color-border-strong);
   box-shadow: var(--shadow);
   transform: translate3d(0, -4px, 0);
 }
 
-.work-card__media {
-  background-color: var(--c-bg-alt);
+.project-card__media {
+  background-color: var(--color-bg-alt);
   border-radius: var(--radius-lg);
 }
 
-.work-card__media > img {
+.project-card__media > img {
   transition: transform var(--t-slow) var(--ease);
 }
 
-.work-card:hover .work-card__media > img,
-.work-card:focus-within .work-card__media > img {
+.project-card:hover .project-card__media > img,
+.project-card:focus-within .project-card__media > img {
   transform: scale(1.035);
 }
 
-.work-card__body {
+.project-card__body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1885,33 +1885,33 @@ main[id] {
 /* ---------- METADADOS EM LINHA ----------
    Empresa · Ano · Área. O ponto médio é gerado em CSS porque é
    decoração — não deve ser lido em voz alta. */
-.meta-inline {
+.meta-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-xs);
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
-.meta-inline__item:not(:first-child)::before {
+.meta-list__item:not(:first-child)::before {
   content: "·";
   margin-inline: 0.5rem;
-  color: var(--c-border-strong);
+  color: var(--color-border-strong);
 }
 
-.work-card__title {
+.project-card__title {
   font-size: var(--fs-lg);
 }
 
-.work-card__link {
-  color: var(--c-text);
+.project-card__link {
+  color: var(--color-text);
   transition: color var(--t) var(--ease);
 }
 
-.work-card__link::after {
+.project-card__link::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -1919,34 +1919,34 @@ main[id] {
   border-radius: inherit;
 }
 
-.work-card:hover .work-card__link,
-.work-card:focus-within .work-card__link {
-  color: var(--c-accent);
+.project-card:hover .project-card__link,
+.project-card:focus-within .project-card__link {
+  color: var(--color-accent);
 }
 
 /* Foco visível no card inteiro. Onde :has não existe, vale a regra global
    de :focus-visible no próprio título — o foco nunca fica invisível. */
 @supports selector(:has(*)) {
-  .work-card__link:focus-visible {
+  .project-card__link:focus-visible {
     outline: none;
   }
 
-  .work-card:has(.work-card__link:focus-visible) {
-    outline: 2px solid var(--c-accent);
+  .project-card:has(.project-card__link:focus-visible) {
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
   }
 }
 
-.work-card__summary {
+.project-card__summary {
   max-width: 52ch;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   text-wrap: pretty;
 }
 
 /* ---------- MÉTRICA DO CARD ----------
    O resultado faz o trabalho que o parágrafo fazia. Número em display (um
    dos lugares onde ela é permitida), rótulo em sans logo ao lado. */
-.work-card__metric {
+.project-card__metric {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -1954,11 +1954,11 @@ main[id] {
   width: 100%;
   margin-block-start: var(--sp-1);
   padding-block-start: var(--sp-4);
-  border-block-start: 1px solid var(--c-border);
+  border-block-start: 1px solid var(--color-border);
 }
 
-.work-card__metric-value {
-  color: var(--c-accent);
+.project-card__metric-value {
+  color: var(--color-accent);
   font-family: var(--font-display);
   font-size: var(--fs-xl);
   font-weight: 600;
@@ -1967,41 +1967,41 @@ main[id] {
   font-variant-numeric: tabular-nums;
 }
 
-.work-card__metric-label {
-  color: var(--c-text-muted);
+.project-card__metric-label {
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   font-weight: 500;
   line-height: var(--lh-snug);
 }
 
 /* Métrica que ainda não existe: placeholder visível, sem fingir número. */
-.work-card__metric--pending .work-card__metric-value {
-  color: var(--c-text-subtle);
+.project-card__metric--pending .project-card__metric-value {
+  color: var(--color-text-subtle);
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   letter-spacing: var(--tracking-wide);
 }
 
-.work-card__metric--pending .work-card__metric-label {
-  color: var(--c-text-subtle);
+.project-card__metric--pending .project-card__metric-label {
+  color: var(--color-text-subtle);
 }
 
-.work-card__cta {
+.project-card__cta {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
   margin-block-start: var(--sp-1);
-  color: var(--c-accent-text);
+  color: var(--color-accent-text);
   font-size: var(--fs-sm);
   font-weight: 600;
 }
 
-.work-card__cta .icon {
+.project-card__cta .icon {
   transition: transform var(--t) var(--ease);
 }
 
-.work-card:hover .work-card__cta .icon,
-.work-card:focus-within .work-card__cta .icon {
+.project-card:hover .project-card__cta .icon,
+.project-card:focus-within .project-card__cta .icon {
   transform: translate3d(4px, 0, 0);
 }
 
@@ -2009,26 +2009,26 @@ main[id] {
    No mobile é um card comum (imagem em cima). A partir de 56rem vira
    horizontal. A proporção 1.32fr : 1fr segura a imagem em ~600px de largura
    no container máximo — ou seja, 16:9 com ~340px de altura. */
-.work-card--lead .work-card__title {
+.project-card--featured .project-card__title {
   font-size: var(--fs-xl);
 }
 
-.work-card--lead .work-card__metric-value {
+.project-card--featured .project-card__metric-value {
   font-size: var(--fs-2xl);
 }
 
 @media (min-width: 56rem) {
-  .work-card--lead {
+  .project-card--featured {
     grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
     align-items: center;
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
-  .work-card--lead .work-card__media {
+  .project-card--featured .project-card__media {
     max-height: 21.25rem;
   }
 
-  .work-card--lead .work-card__body {
+  .project-card--featured .project-card__body {
     gap: var(--sp-4);
     padding: var(--sp-4) var(--sp-5) var(--sp-4) 0;
   }
@@ -2038,15 +2038,15 @@ main[id] {
    Vem por último no DOM (o leitor de tela o ouve depois do título), mas é
    desenhado sobre o canto da imagem. Accent sobre accent-ink: 5,5:1 no
    escuro, 4,71:1 no claro. */
-.work-card__badge {
+.project-card__badge {
   position: absolute;
-  inset-block-start: calc(var(--work-card-pad) + var(--sp-3));
-  inset-inline-start: calc(var(--work-card-pad) + var(--sp-3));
+  inset-block-start: calc(var(--project-card-pad) + var(--sp-3));
+  inset-inline-start: calc(var(--project-card-pad) + var(--sp-3));
   z-index: 1;
   padding: 0.3125rem 0.625rem;
-  background-color: var(--c-accent);
+  background-color: var(--color-accent);
   border-radius: var(--radius-pill);
-  color: var(--c-accent-ink);
+  color: var(--color-on-accent);
   font-size: var(--fs-xs);
   font-weight: 600;
   line-height: 1.2;
@@ -2060,7 +2060,7 @@ main[id] {
    16b · PÁGINA DE PROJETOS (/projetos.html)
    --------------------------------------------------------------------------
    Introdução curta, barra com contador e filtro, grade uniforme. Os cards
-   são os mesmos .work-card da home, com imagem 4:3.
+   são os mesmos .project-card da home, com imagem 4:3.
    ========================================================================== */
 
 .page-intro {
@@ -2077,7 +2077,7 @@ main[id] {
 .page-intro__lead {
   margin-block-start: var(--sp-4);
   max-width: 54ch;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-md);
   text-wrap: pretty;
 }
@@ -2091,11 +2091,11 @@ main[id] {
   gap: var(--sp-4);
   margin-block: clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
   padding-block-end: var(--sp-4);
-  border-block-end: 1px solid var(--c-border);
+  border-block-end: 1px solid var(--color-border);
 }
 
 .page-toolbar__count {
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-sm);
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -2114,10 +2114,10 @@ main[id] {
 .filter__btn {
   min-height: 2.75rem;   /* 44px de alvo de toque */
   padding-inline: var(--sp-4);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   font-weight: 500;
   transition:
@@ -2127,20 +2127,20 @@ main[id] {
 }
 
 .filter__btn:hover {
-  border-color: var(--c-border-strong);
-  color: var(--c-text);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
 }
 
 .filter__btn[aria-pressed="true"] {
-  background-color: var(--c-accent-soft);
-  border-color: var(--c-accent-line);
-  color: var(--c-accent-text);
+  background-color: var(--color-accent-soft);
+  border-color: var(--color-accent-line);
+  color: var(--color-accent-text);
 }
 
 /* ---------- GRADE ----------
    auto-fill com mínimo de ~320px: o número de colunas sai da largura, sem
    media query. min() evita estouro em telas menores que o mínimo. */
-.work-grid {
+.project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
   gap: var(--gap-card);
@@ -2148,13 +2148,13 @@ main[id] {
 
 /* O <li> só carrega o filtro e a animação; o card ocupa a altura toda da
    linha, para os cards vizinhos terminarem alinhados. */
-.work-grid__item {
+.project-grid__item {
   display: grid;
 }
 
-.work-grid__empty {
+.project-grid__empty {
   padding-block: var(--sp-6);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   text-align: center;
 }
 
@@ -2166,13 +2166,13 @@ main[id] {
 
 .contact {
   padding: clamp(2.25rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
-  background-color: var(--c-surface);
+  background-color: var(--color-surface);
   background-image: radial-gradient(
     80% 120% at 50% 0%,
-    var(--c-accent-soft),
+    var(--color-accent-soft),
     transparent 70%
   );
-  border: 1px solid var(--c-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   text-align: center;
 }
@@ -2191,7 +2191,7 @@ main[id] {
   padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.5rem, 4vw, 3rem);
   background-image: radial-gradient(
     70% 140% at 0% 0%,
-    var(--c-accent-soft),
+    var(--color-accent-soft),
     transparent 70%
   );
   text-align: start;
@@ -2205,7 +2205,7 @@ main[id] {
 
 .contact__lead {
   margin-block-start: var(--sp-2);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
 }
 
 @media (min-width: 56rem) {
@@ -2244,7 +2244,7 @@ main[id] {
   position: relative;
   z-index: 1;   /* em páginas curtas, acima do brilho de body::before */
   padding-block: clamp(2rem, 4vw, 3rem);
-  border-block-start: 1px solid var(--c-border);
+  border-block-start: 1px solid var(--color-border);
 }
 
 .footer__inner {
@@ -2256,7 +2256,7 @@ main[id] {
 }
 
 .footer__copy {
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-sm);
 }
 
@@ -2275,14 +2275,14 @@ main[id] {
   justify-content: center;
   min-width: 2.75rem;    /* 44×44 de alvo de toque */
   min-height: 2.75rem;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   font-weight: 500;
   transition: color var(--t) var(--ease);
 }
 
 .footer__link:hover {
-  color: var(--c-accent-text);
+  color: var(--color-accent-text);
 }
 
 @media (min-width: 40rem) {
@@ -2314,7 +2314,7 @@ main[id] {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-sm);
 }
 
@@ -2327,7 +2327,7 @@ main[id] {
 .breadcrumb__item:not(:first-child)::before {
   content: "/";
   margin-inline: 0.5rem;
-  color: var(--c-border-strong);
+  color: var(--color-border-strong);
 }
 
 .breadcrumb__link {
@@ -2349,11 +2349,11 @@ main[id] {
 }
 
 .breadcrumb__link:hover {
-  color: var(--c-text);
+  color: var(--color-text);
 }
 
 .breadcrumb__item[aria-current] {
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
 }
 
 /* ---------- TÍTULO E RESUMO ---------- */
@@ -2369,7 +2369,7 @@ main[id] {
 .case-hero__lead {
   margin-block-start: var(--sp-5);
   max-width: 68ch;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-md);
   text-wrap: pretty;
 }
@@ -2385,45 +2385,45 @@ main[id] {
    colunas lado a lado, separadas por filete vertical. grid-auto-flow
    column aceita qualquer número de fatos sem mudar o CSS.
    Cada fato continua sendo um par <dt>/<dd> legítimo. */
-.case-meta {
+.case-facts {
   display: grid;
   margin-block-start: clamp(1.5rem, 3vw, 2rem);
-  border-block-start: 1px solid var(--c-border);
+  border-block-start: 1px solid var(--color-border);
 }
 
-.case-meta__row {
+.case-facts__row {
   padding-block: var(--sp-4);
-  border-block-end: 1px solid var(--c-border);
+  border-block-end: 1px solid var(--color-border);
 }
 
 @media (min-width: 56rem) {
-  .case-meta {
+  .case-facts {
     grid-auto-flow: column;
     grid-auto-columns: minmax(0, 1fr);
-    border-block-end: 1px solid var(--c-border);
+    border-block-end: 1px solid var(--color-border);
   }
 
-  .case-meta__row {
+  .case-facts__row {
     padding-inline: var(--sp-5);
     border-block-end: 0;
-    border-inline-start: 1px solid var(--c-border);
+    border-inline-start: 1px solid var(--color-border);
   }
 
-  .case-meta__row:first-child {
+  .case-facts__row:first-child {
     padding-inline-start: 0;
     border-inline-start: 0;
   }
 }
 
-.case-meta__label {
-  color: var(--c-text-subtle);
+.case-facts__label {
+  color: var(--color-text-subtle);
   font-size: var(--fs-xs);
   font-weight: 500;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
 
-.case-meta__value {
+.case-facts__value {
   margin-block-start: var(--sp-2);
   font-size: var(--fs-sm);
   font-weight: 500;
@@ -2434,55 +2434,55 @@ main[id] {
    Problema · O que eu fiz · Resultado. Quem só tem meio minuto lê isto e
    sai sabendo do case; o resto da página é para quem quer o porquê.
    O cartão de resultado é o único com o número em display e accent. */
-.case-summary {
+.case-tldr {
   padding-block-end: 0;
 }
 
-.case-summary__title {
+.case-tldr__title {
   margin-block-end: var(--sp-5);
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
 
-.summary {
+.tldr {
   display: grid;
   gap: var(--gap-card);
 }
 
-.summary__card {
+.tldr__card {
   display: flex;
   flex-direction: column;
   gap: var(--sp-3);
   padding: clamp(1.25rem, 3vw, 1.75rem);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
 }
 
-.summary__label {
-  color: var(--c-accent-text);
+.tldr__label {
+  color: var(--color-accent-text);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
 
-.summary__text {
-  color: var(--c-text-muted);
+.tldr__text {
+  color: var(--color-text-muted);
   line-height: var(--lh-snug);
   text-wrap: pretty;
 }
 
-.summary__card--result {
-  background-image: linear-gradient(160deg, var(--c-accent-soft), transparent 65%);
-  border-color: var(--c-accent-line);
+.tldr__card--result {
+  background-image: linear-gradient(160deg, var(--color-accent-soft), transparent 65%);
+  border-color: var(--color-accent-line);
 }
 
-.summary__value {
-  color: var(--c-accent);
+.tldr__value {
+  color: var(--color-accent);
   font-family: var(--font-display);
   font-size: var(--fs-3xl);
   font-weight: 600;
@@ -2491,19 +2491,19 @@ main[id] {
   font-variant-numeric: tabular-nums;
 }
 
-.summary__card--result .summary__text {
-  color: var(--c-text);
+.tldr__card--result .tldr__text {
+  color: var(--color-text);
   font-weight: 600;
 }
 
-.summary__note {
-  color: var(--c-text-subtle);
+.tldr__note {
+  color: var(--color-text-subtle);
   font-size: var(--fs-xs);
   line-height: var(--lh-snug);
 }
 
 @media (min-width: 56rem) {
-  .summary {
+  .tldr {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -2519,7 +2519,7 @@ main[id] {
 }
 
 .case-toc__label {
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-sm);
   font-weight: 500;
 }
@@ -2535,10 +2535,10 @@ main[id] {
   align-items: center;
   min-height: 2.75rem;
   padding-inline: var(--sp-4);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   font-weight: 500;
   transition:
@@ -2547,8 +2547,8 @@ main[id] {
 }
 
 .case-toc__link:hover {
-  border-color: var(--c-accent-line);
-  color: var(--c-text);
+  border-color: var(--color-accent-line);
+  color: var(--color-text);
 }
 
 /* ---------- SEÇÕES EM DUAS COLUNAS ----------
@@ -2590,23 +2590,23 @@ main[id] {
 }
 
 /* ---------- OUTROS PROJETOS ----------
-   Fim da página: anterior e próximo, com os mesmos .work-card da home. */
-.work-pair {
+   Fim da página: anterior e próximo, com os mesmos .project-card da home. */
+.project-pair {
   display: grid;
   gap: var(--gap-card);
 }
 
 @media (min-width: 40rem) {
-  .work-pair {
+  .project-pair {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.work-card__direction {
+.project-card__direction {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
-  color: var(--c-accent-text);
+  color: var(--color-accent-text);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
@@ -2620,33 +2620,33 @@ main[id] {
 
 /* ---------- SPLIT ----------
    Problema de negócio vs. dor do usuário, sempre em pé de igualdade. */
-.split {
+.two-col {
   display: grid;
   gap: var(--gap-card);
 }
 
-.split__col {
+.two-col__col {
   padding: clamp(1.25rem, 3vw, 1.75rem);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
 }
 
-.split__title {
+.two-col__title {
   margin-block-end: var(--sp-4);
   padding-block-end: var(--sp-3);
-  border-block-end: 1px solid var(--c-border);
+  border-block-end: 1px solid var(--color-border);
   font-size: var(--fs-base);
   font-weight: 600;
 }
 
 /* A prosa dentro da coluna não deve impor a própria largura máxima. */
-.split__col .prose {
+.two-col__col .prose {
   max-width: none;
 }
 
 @media (min-width: 40rem) {
-  .split {
+  .two-col {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -2663,16 +2663,16 @@ main[id] {
   align-items: start;
   gap: var(--sp-3);
   padding: var(--sp-4);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   line-height: var(--lh-snug);
   transition: border-color var(--t) var(--ease);
 }
 
 .checklist__item:hover {
-  border-color: var(--c-accent-line);
+  border-color: var(--color-accent-line);
 }
 
 .checklist__icon {
@@ -2680,9 +2680,9 @@ main[id] {
   height: 1.375rem;
   /* Alinha o ícone à primeira linha do texto, não ao topo da caixa. */
   margin-block-start: 0.125rem;
-  background-color: var(--c-accent-soft);
+  background-color: var(--color-accent-soft);
   border-radius: var(--radius-pill);
-  color: var(--c-accent);
+  color: var(--color-accent);
 }
 
 
@@ -2718,8 +2718,8 @@ main[id] {
   width: 1px;
   background-image: linear-gradient(
     to bottom,
-    var(--c-border-strong),
-    var(--c-border)
+    var(--color-border-strong),
+    var(--color-border)
   );
 }
 
@@ -2728,10 +2728,10 @@ main[id] {
   place-items: center;
   width: var(--timeline-marker);
   height: var(--timeline-marker);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border-strong);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-pill);
-  color: var(--c-accent-text);
+  color: var(--color-accent-text);
   font-size: var(--fs-xs);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -2744,7 +2744,7 @@ main[id] {
 
 .timeline__text {
   max-width: 62ch;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
 }
 
 @media (min-width: 56rem) {
@@ -2771,8 +2771,8 @@ main[id] {
 
 .decision {
   padding: clamp(1.375rem, 3vw, 2rem);
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition:
     border-color var(--t) var(--ease),
@@ -2780,7 +2780,7 @@ main[id] {
 }
 
 .decision:hover {
-  border-color: var(--c-accent-line);
+  border-color: var(--color-accent-line);
   transform: translate3d(0, -2px, 0);
 }
 
@@ -2790,7 +2790,7 @@ main[id] {
 }
 
 .decision__text {
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
 }
 
 @media (min-width: 40rem) {
@@ -2816,16 +2816,16 @@ main[id] {
   flex: 1 1 13rem;
   max-width: 22rem;
   padding: clamp(1.25rem, 3vw, 1.75rem);
-  background-color: var(--c-surface);
-  background-image: linear-gradient(160deg, var(--c-accent-soft), transparent 60%);
-  border: 1px solid var(--c-border);
+  background-color: var(--color-surface);
+  background-image: linear-gradient(160deg, var(--color-accent-soft), transparent 60%);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
 }
 
 /* Número grande: o terceiro e último lugar onde a display aparece. Em texto
    deste corpo o accent já conta como "texto grande" e passa AA. */
 .metric__value {
-  color: var(--c-accent);
+  color: var(--color-accent);
   font-family: var(--font-display);
   font-size: var(--fs-2xl);
   font-weight: 600;
@@ -2843,7 +2843,7 @@ main[id] {
 
 .metric__note {
   margin-block-start: var(--sp-2);
-  color: var(--c-text-subtle);
+  color: var(--color-text-subtle);
   font-size: var(--fs-xs);
   line-height: var(--lh-snug);
 }
@@ -2875,7 +2875,7 @@ main[id] {
 
 .gallery__link:hover .media,
 .gallery__link:focus-visible .media {
-  border-color: var(--c-accent-line);
+  border-color: var(--color-accent-line);
   box-shadow: var(--shadow);
   transform: translate3d(0, -3px, 0);
 }
@@ -2898,12 +2898,12 @@ main[id] {
   place-items: center;
   width: 2.25rem;
   height: 2.25rem;
-  background-color: var(--c-glass);
+  background-color: var(--color-glass);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--c-border-strong);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-pill);
-  color: var(--c-text);
+  color: var(--color-text);
   opacity: 0;
   transform: translate3d(0, 0.375rem, 0) scale(0.94);
   transition:
@@ -2934,19 +2934,19 @@ main[id] {
    navegador (autor sempre vence UA) e o diálogo apareceria fechado.
 
    O visualizador não acompanha o tema. Ele reaponta os tokens que usa para a
-   TINTA FIXA do bloco 02: uma captura de tela clara sobre papel claro perde
+   cor fixa do lightbox (bloco 02): uma captura de tela clara sobre fundo claro perde
    os próprios limites, e a moldura escura é o que devolve a borda da imagem.
    Reapontar tokens (em vez de reescrever cada regra) mantém a folha com uma
    fonte de cor só.
    ========================================================================== */
 
 .lightbox {
-  --c-text:          var(--c-ink-text);
-  --c-text-muted:    var(--c-ink-muted);
-  --c-surface:       var(--c-ink-bg);
-  --c-surface-2:     var(--c-ink-bg-2);
-  --c-border-strong: var(--c-ink-border);
-  --c-glass:         var(--c-ink-glass);
+  --color-text:          var(--color-lightbox-text);
+  --color-text-muted:    var(--color-lightbox-muted);
+  --color-surface:       var(--color-lightbox-bg);
+  --color-surface-2:     var(--color-lightbox-bg-2);
+  --color-border-strong: var(--color-lightbox-border);
+  --color-glass:         var(--color-lightbox-glass);
 
   position: fixed;
   inset: 0;
@@ -2960,7 +2960,7 @@ main[id] {
   overflow: hidden;
   background-color: transparent;
   border: 0;
-  color: var(--c-text);
+  color: var(--color-text);
 }
 
 .lightbox[open] {
@@ -2971,7 +2971,7 @@ main[id] {
 /* O ::backdrop lê o token direto da raiz: a herança a partir do elemento de
    origem é recente demais para se confiar nela aqui. */
 .lightbox::backdrop {
-  background-color: var(--c-ink-overlay);
+  background-color: var(--color-lightbox-overlay);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -2985,7 +2985,7 @@ main[id] {
 }
 
 .lightbox__counter {
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -2998,17 +2998,17 @@ main[id] {
   width: 2.75rem;
   height: 2.75rem;
   flex: none;
-  background-color: var(--c-surface);
-  border: 1px solid var(--c-border-strong);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-pill);
-  color: var(--c-text);
+  color: var(--color-text);
   transition:
     background-color var(--t) var(--ease),
     transform        var(--t) var(--ease);
 }
 
 .lightbox__close:hover {
-  background-color: var(--c-surface-2);
+  background-color: var(--color-surface-2);
   transform: rotate(90deg);
 }
 
@@ -3034,14 +3034,14 @@ main[id] {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  background-color: var(--c-surface);
+  background-color: var(--color-surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
 }
 
 .lightbox__caption {
   max-width: 60ch;
-  color: var(--c-text-muted);
+  color: var(--color-text-muted);
   font-size: var(--fs-sm);
   line-height: var(--lh-snug);
   text-align: center;
@@ -3056,12 +3056,12 @@ main[id] {
   place-items: center;
   width: 2.75rem;
   height: 2.75rem;
-  background-color: var(--c-glass);
+  background-color: var(--color-glass);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--c-border-strong);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-pill);
-  color: var(--c-text);
+  color: var(--color-text);
   transform: translate3d(0, -50%, 0);
   transition:
     background-color var(--t) var(--ease),
@@ -3069,8 +3069,8 @@ main[id] {
 }
 
 .lightbox__nav:hover {
-  background-color: var(--c-surface-2);
-  border-color: var(--c-accent-line);
+  background-color: var(--color-surface-2);
+  border-color: var(--color-accent-line);
 }
 
 .lightbox__nav .icon {
@@ -3125,12 +3125,12 @@ main[id] {
   .btn:hover .icon,
   .brand:hover .brand__mark,
   .text-link:hover .icon,
-  .work-card:hover,
-  .work-card:focus-within,
-  .work-card:hover .work-card__media > img,
-  .work-card:focus-within .work-card__media > img,
-  .work-card:hover .work-card__cta .icon,
-  .work-card:focus-within .work-card__cta .icon,
+  .project-card:hover,
+  .project-card:focus-within,
+  .project-card:hover .project-card__media > img,
+  .project-card:focus-within .project-card__media > img,
+  .project-card:hover .project-card__cta .icon,
+  .project-card:focus-within .project-card__cta .icon,
   .decision:hover,
   .gallery__link:hover .media,
   .gallery__link:focus-visible .media,
@@ -3154,10 +3154,10 @@ main[id] {
   .media,
   .metric,
   .decision,
-  .split__col,
+  .two-col__col,
   .checklist__item,
-  .work-card,
-  .work-card__badge,
+  .project-card,
+  .project-card__badge,
   .filter__btn,
   .contact,
   .nav-toggle,

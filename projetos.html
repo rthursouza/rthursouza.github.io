@@ -60,19 +60,22 @@
   <meta name="author" content="Arthur Souza">
   <meta name="robots" content="index, follow">
   <!-- Valor do modo escuro (o padrão). O script.js reescreve este content a
-       partir de --c-bg sempre que o tema muda. -->
+       partir de --color-bg sempre que o tema muda. -->
   <meta name="theme-color" content="#20293A">
 
   <!--
-    ATENÇÃO — TROQUE O DOMÍNIO ANTES DE PUBLICAR.
-    Um canonical apontando para o domínio errado prejudica a indexação.
-    Substitua "https://SEU-DOMINIO.com" em todas as tags abaixo.
+    URLS ABSOLUTAS — DESATIVADAS ATÉ O SITE SER HOSPEDADO.
+    As tags marcadas "PUBLICAR:" (canonical, og:url, og:image, twitter:image)
+    estão comentadas porque apontariam para um domínio que não existe.
+    Ao publicar: troque "https://SEU-DOMINIO.com" pelo endereço real e
+    tire o comentário em volta de cada uma (há um script pronto no README,
+    seção 2).
   -->
-  <link rel="canonical" href="https://SEU-DOMINIO.com/projetos.html">
+  <!-- PUBLICAR: <link rel="canonical" href="https://SEU-DOMINIO.com/projetos.html"> -->
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://SEU-DOMINIO.com/projetos.html">
+  <!-- PUBLICAR: <meta property="og:url" content="https://SEU-DOMINIO.com/projetos.html"> -->
   <meta property="og:site_name" content="Arthur Souza">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:locale:alternate" content="en_US">
@@ -83,7 +86,7 @@
         content="Estudos de caso de ERP, varejo e logística: do discovery ao resultado medido."
         data-en-content="Case studies in ERP, retail and logistics: from discovery to measured results.">
   <!-- OG IMAGE — 1200×630px. Crie e salve em assets/images/og-cover.jpg -->
-  <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg">
+  <!-- PUBLICAR: <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg"> -->
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt"
@@ -98,7 +101,7 @@
   <meta name="twitter:description"
         content="Estudos de caso de ERP, varejo e logística: do discovery ao resultado medido."
         data-en-content="Case studies in ERP, retail and logistics: from discovery to measured results.">
-  <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg">
+  <!-- PUBLICAR: <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg"> -->
 
   <!-- ==================== FAVICON ==================== -->
   <!--
@@ -442,13 +445,13 @@
           o id do título (+ aria-labelledby), o conteúdo e data-project-area.
           O selo "Destaque" só vai nos projetos que também estão na home.
         -->
-        <ul class="work-grid" role="list" data-project-grid>
+        <ul class="project-grid" role="list" data-project-grid>
 
           <!-- ---------------- PROJETO 01 ---------------- -->
-          <li class="work-grid__item" data-reveal data-project-area="erp-varejo mobile">
-            <article class="work-card" aria-labelledby="lista-01-titulo">
+          <li class="project-grid__item" data-reveal data-project-area="erp-varejo mobile">
+            <article class="project-card" aria-labelledby="lista-01-titulo">
 
-              <figure class="media media--4x3 work-card__media">
+              <figure class="media media--4x3 project-card__media">
                 <span class="media__label" aria-hidden="true">
                   <span lang="pt-BR">Capa do PDV Nasajon · 4:3 · 1200×900</span><span lang="en">Nasajon POS cover · 4:3 · 1200×900</span>
                 </span>
@@ -459,37 +462,37 @@
                 -->
               </figure>
 
-              <div class="work-card__body">
-                <ul class="meta-inline">
-                  <li class="meta-inline__item">2026</li>
-                  <li class="meta-inline__item">
+              <div class="project-card__body">
+                <ul class="meta-list">
+                  <li class="meta-list__item">2026</li>
+                  <li class="meta-list__item">
                     <span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span>
                   </li>
                 </ul>
 
-                <h2 class="work-card__title" id="lista-01-titulo">
-                  <a class="work-card__link" href="projects/projeto-01.html">
+                <h2 class="project-card__title" id="lista-01-titulo">
+                  <a class="project-card__link" href="projects/projeto-01.html">
                     <span lang="pt-BR">Um PDV que sai do balcão</span><span lang="en">A POS that leaves the counter</span>
                   </a>
                 </h2>
 
-                <p class="work-card__summary" lang="pt-BR">
+                <p class="project-card__summary" lang="pt-BR">
                   Redesenho mobile-first do ponto de venda para quem atende
                   longe do caixa.
                 </p>
-                <p class="work-card__summary" lang="en">
+                <p class="project-card__summary" lang="en">
                   Mobile-first redesign of the point of sale for staff who
                   serve away from the register.
                 </p>
 
-                <p class="work-card__metric">
-                  <span class="work-card__metric-value">−30%</span>
-                  <span class="work-card__metric-label">
+                <p class="project-card__metric">
+                  <span class="project-card__metric-value">−30%</span>
+                  <span class="project-card__metric-label">
                     <span lang="pt-BR">no tempo de fechamento de venda</span><span lang="en">in time to close a sale</span>
                   </span>
                 </p>
 
-                <p class="work-card__badge">
+                <p class="project-card__badge">
                   <span lang="pt-BR">Destaque</span><span lang="en">Featured</span>
                 </p>
               </div>
@@ -497,10 +500,10 @@
           </li>
 
           <!-- ---------------- PROJETO 02 ---------------- -->
-          <li class="work-grid__item" data-reveal data-project-area="logistica mobile">
-            <article class="work-card" aria-labelledby="lista-02-titulo">
+          <li class="project-grid__item" data-reveal data-project-area="logistica mobile">
+            <article class="project-card" aria-labelledby="lista-02-titulo">
 
-              <figure class="media media--4x3 work-card__media">
+              <figure class="media media--4x3 project-card__media">
                 <span class="media__label" aria-hidden="true">
                   <span lang="pt-BR">Capa do app de logística · 4:3 · 1200×900</span><span lang="en">Logistics app cover · 4:3 · 1200×900</span>
                 </span>
@@ -511,41 +514,41 @@
                 -->
               </figure>
 
-              <div class="work-card__body">
-                <ul class="meta-inline">
-                  <li class="meta-inline__item">2025</li>
-                  <li class="meta-inline__item">
+              <div class="project-card__body">
+                <ul class="meta-list">
+                  <li class="meta-list__item">2025</li>
+                  <li class="meta-list__item">
                     <span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span>
                   </li>
                 </ul>
 
-                <h2 class="work-card__title" id="lista-02-titulo">
-                  <a class="work-card__link" href="projects/projeto-02.html">
+                <h2 class="project-card__title" id="lista-02-titulo">
+                  <a class="project-card__link" href="projects/projeto-02.html">
                     <span lang="pt-BR">A próxima parada, e a prova</span><span lang="en">The next stop, and the proof</span>
                   </a>
                 </h2>
 
-                <p class="work-card__summary" lang="pt-BR">
+                <p class="project-card__summary" lang="pt-BR">
                   App de entrega com rota otimizada e prova digital no lugar do
                   papel.
                 </p>
-                <p class="work-card__summary" lang="en">
+                <p class="project-card__summary" lang="en">
                   Delivery app with an optimised route and digital proof in
                   place of paper.
                 </p>
 
                 <!-- PENDENTE (depende do Arthur): mesma métrica do card da
                      home. Ao preencher, troque nos dois lugares. -->
-                <p class="work-card__metric work-card__metric--pending">
-                  <span class="work-card__metric-value">
+                <p class="project-card__metric project-card__metric--pending">
+                  <span class="project-card__metric-value">
                     <span lang="pt-BR">[PENDENTE]</span><span lang="en">[PENDING]</span>
                   </span>
-                  <span class="work-card__metric-label">
+                  <span class="project-card__metric-label">
                     <span lang="pt-BR">[resultado do app de logística]</span><span lang="en">[logistics app result]</span>
                   </span>
                 </p>
 
-                <p class="work-card__badge">
+                <p class="project-card__badge">
                   <span lang="pt-BR">Destaque</span><span lang="en">Featured</span>
                 </p>
               </div>
@@ -553,10 +556,10 @@
           </li>
 
           <!-- ---------------- PROJETO 03 ---------------- -->
-          <li class="work-grid__item" data-reveal data-project-area="logistica gestao-dados">
-            <article class="work-card" aria-labelledby="lista-03-titulo">
+          <li class="project-grid__item" data-reveal data-project-area="logistica gestao-dados">
+            <article class="project-card" aria-labelledby="lista-03-titulo">
 
-              <figure class="media media--4x3 work-card__media">
+              <figure class="media media--4x3 project-card__media">
                 <span class="media__label" aria-hidden="true">
                   <span lang="pt-BR">Capa da Roteirização · 4:3 · 1200×900</span><span lang="en">Route planning cover · 4:3 · 1200×900</span>
                 </span>
@@ -567,37 +570,37 @@
                 -->
               </figure>
 
-              <div class="work-card__body">
-                <ul class="meta-inline">
-                  <li class="meta-inline__item">2025</li>
-                  <li class="meta-inline__item">
+              <div class="project-card__body">
+                <ul class="meta-list">
+                  <li class="meta-list__item">2025</li>
+                  <li class="meta-list__item">
                     <span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span>
                   </li>
                 </ul>
 
-                <h2 class="work-card__title" id="lista-03-titulo">
-                  <a class="work-card__link" href="projects/projeto-03.html">
+                <h2 class="project-card__title" id="lista-03-titulo">
+                  <a class="project-card__link" href="projects/projeto-03.html">
                     <span lang="pt-BR">Rota calculada, decisão preservada</span><span lang="en">Route calculated, decision preserved</span>
                   </a>
                 </h2>
 
-                <p class="work-card__summary" lang="pt-BR">
+                <p class="project-card__summary" lang="pt-BR">
                   Roteirização automática por veículo, peso e distância, sem
                   tirar a palavra final do gestor.
                 </p>
-                <p class="work-card__summary" lang="en">
+                <p class="project-card__summary" lang="en">
                   Automatic route planning by vehicle, weight and distance,
                   without taking the final say away from the manager.
                 </p>
 
-                <p class="work-card__metric">
-                  <span class="work-card__metric-value">−40%</span>
-                  <span class="work-card__metric-label">
+                <p class="project-card__metric">
+                  <span class="project-card__metric-value">−40%</span>
+                  <span class="project-card__metric-label">
                     <span lang="pt-BR">no custo por rota</span><span lang="en">in cost per route</span>
                   </span>
                 </p>
 
-                <p class="work-card__badge">
+                <p class="project-card__badge">
                   <span lang="pt-BR">Destaque</span><span lang="en">Featured</span>
                 </p>
               </div>
@@ -607,7 +610,7 @@
         </ul>
 
         <!-- Só aparece se um filtro não encontrar nenhum projeto. -->
-        <p class="work-grid__empty" hidden data-project-empty>
+        <p class="project-grid__empty" hidden data-project-empty>
           <span lang="pt-BR">Ainda não há projetos nesta área.</span><span lang="en">No projects in this area yet.</span>
         </p>
 

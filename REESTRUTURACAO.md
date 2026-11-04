@@ -18,7 +18,7 @@ fazem o trabalho que o parágrafo faz hoje.
   - textos PT/EN como gêmeos dentro do mesmo elemento;
   - `data-en-*` para atributos;
   - `class` só para estilo, `data-*` só para JS, `.is-*` para estado.
-- Usar os tokens e as fontes que já existem (`style.css`, `design-handoff/tokens.css`). O wireframe é cinza de propósito: **não copie as cores dele**, só a estrutura.
+- Usar os tokens e as fontes que já existem (bloco 02 · TOKENS do `style.css`, `assets/fonts/`). O wireframe é cinza de propósito: **não copie as cores dele**, só a estrutura.
 - Slots de imagem continuam como placeholder com proporção reservada (sem layout shift), com o `<img>` real comentado logo abaixo.
 - Não inventar conteúdo nem métrica. Onde faltar, deixe um placeholder visível `[ASSIM]`.
 

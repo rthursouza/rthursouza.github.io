@@ -260,7 +260,7 @@
        • manter a <meta name="theme-color"> em dia, que é a cor da barra do
          navegador no celular.
 
-     O valor do theme-color é lido do próprio --c-bg já computado, em vez de
+     O valor do theme-color é lido do próprio --color-bg já computado, em vez de
      repetido aqui. O bloco de tokens continua sendo o único lugar do projeto
      onde uma cor é escrita.
      ========================================================================== */
@@ -292,7 +292,7 @@
 
       /* Depois de trocar o atributo: a leitura tem de pegar o valor novo. */
       if (themeMeta) {
-        const bg = getComputedStyle(root).getPropertyValue('--c-bg').trim();
+        const bg = getComputedStyle(root).getPropertyValue('--color-bg').trim();
         if (bg) themeMeta.setAttribute('content', bg);
       }
 

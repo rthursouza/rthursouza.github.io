@@ -66,11 +66,11 @@
   <!-- Valor do modo escuro (o padrão); o script.js reescreve ao trocar. -->
   <meta name="theme-color" content="#20293A">
 
-  <!-- TROQUE O DOMÍNIO em todas as URLs absolutas abaixo -->
-  <link rel="canonical" href="https://SEU-DOMINIO.com/projects/projeto-02.html">
+  <!-- URLs absolutas desativadas até o site ser hospedado: veja o comentário "PUBLICAR:" no index.html e o README, seção 2. -->
+  <!-- PUBLICAR: <link rel="canonical" href="https://SEU-DOMINIO.com/projects/projeto-02.html"> -->
 
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://SEU-DOMINIO.com/projects/projeto-02.html">
+  <!-- PUBLICAR: <meta property="og:url" content="https://SEU-DOMINIO.com/projects/projeto-02.html"> -->
   <meta property="og:site_name" content="Arthur Souza">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:locale:alternate" content="en_US">
@@ -81,7 +81,7 @@
         content="Do papel ao app de campo: sequência otimizada, prova de entrega que não depende de assinatura, e offline por padrão."
         data-en-content="From paper to a field app: optimised sequence, proof of delivery that doesn't rest on a signature, and offline by default.">
   <!-- OG IMAGE — 1200×630px -->
-  <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-02.jpg">
+  <!-- PUBLICAR: <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-02.jpg"> -->
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt"
@@ -95,7 +95,7 @@
   <meta name="twitter:description"
         content="Do papel ao app de campo: sequência otimizada, prova de entrega que não depende de assinatura, e offline por padrão."
         data-en-content="From paper to a field app: optimised sequence, proof of delivery that doesn't rest on a signature, and offline by default.">
-  <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-02.jpg">
+  <!-- PUBLICAR: <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-02.jpg"> -->
 
   <!-- ==================== FAVICON ==================== -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2320293A'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23E08A63' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
@@ -203,7 +203,7 @@
     <div class="container header__inner">
 
       <a class="brand" href="../index.html" aria-label="Arthur Souza — voltar ao início"
-         data-en-aria-label="Arthur Souza — back home">
+         data-en-aria-label="Arthur Souza — back to home">
         <span class="brand__mark" aria-hidden="true">A</span>
         <span class="brand__text">
           <span class="brand__name">Arthur Souza</span>
@@ -213,22 +213,22 @@
         </span>
       </a>
 
+      <!-- Navegação principal — o mesmo <ul> serve desktop e drawer mobile -->
       <nav class="nav" id="nav-principal" data-nav-panel
            aria-label="Navegação principal" data-en-aria-label="Main navigation">
+        <!-- Mesmo menu da home. O case fica dentro de "Projetos" (por isso
+             aria-current="true", e não "page"); Sobre e Contato voltam
+             para as âncoras da home. Sem data-scrollspy:
+             não há seções da home nesta página para acompanhar. -->
         <ul class="nav__list">
           <li class="nav__item">
-            <a class="nav__link" href="../index.html#inicio">
-              <span lang="pt-BR">Início</span><span lang="en">Home</span>
+            <a class="nav__link" href="../projetos.html" aria-current="true">
+              <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
             </a>
           </li>
           <li class="nav__item">
             <a class="nav__link" href="../index.html#sobre">
               <span lang="pt-BR">Sobre</span><span lang="en">About</span>
-            </a>
-          </li>
-          <li class="nav__item">
-            <a class="nav__link" href="../projetos.html" aria-current="true">
-              <span lang="pt-BR">Projetos</span><span lang="en">Work</span>
             </a>
           </li>
           <li class="nav__item">
@@ -253,8 +253,14 @@
                       data-lang-value="en" aria-pressed="false" lang="en">EN</button>
             </div>
 
-            <!-- ALTERNÂNCIA DE TEMA — rótulo fixo, aria-pressed como único
-                 dono do estado. Ver a nota completa em ../index.html. -->
+            <!--
+              ALTERNÂNCIA DE TEMA
+              O rótulo é fixo ("Modo claro") e quem carrega o estado é o
+              aria-pressed — mesmo contrato do botão do menu, que mantém
+              "Abrir menu" nos dois estados e deixa o aria-expanded falar.
+              Reescrever o rótulo criaria um segundo dono para a informação
+              e brigaria com a troca de idioma, que também escreve nele.
+            -->
             <button class="theme-toggle" type="button"
                     data-theme-toggle
                     aria-pressed="false"
@@ -268,12 +274,27 @@
             </button>
           </div>
 
-          <a class="btn btn--secondary btn--sm" href="../index.html#contato">
-            <span lang="pt-BR">Vamos conversar</span><span lang="en">Let's talk</span>
+          <!--
+            CURRÍCULO — salve o PDF em assets/ com este nome exato.
+            Abre em nova aba (e não baixa): quem está avaliando dá uma olhada
+            rápida sem se comprometer a guardar arquivo. rel="noopener" basta
+            aqui, porque o PDF é do próprio domínio.
+          -->
+          <a class="btn btn--secondary btn--sm"
+             href="../assets/curriculo-arthursouza-ux.pdf"
+             target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-file"></use>
+            </svg>
+            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span class="visually-hidden">
+              <span lang="pt-BR">(PDF, abre em nova aba)</span><span lang="en">(PDF, opens in a new tab)</span>
+            </span>
           </a>
         </div>
       </nav>
 
+      <!-- Botão do menu mobile -->
       <button class="nav-toggle" type="button"
               data-nav-toggle
               aria-controls="nav-principal"
@@ -365,36 +386,36 @@
 
         <div class="container">
           <!-- FICHA DO PROJETO — faixa horizontal logo abaixo da imagem -->
-          <dl class="case-meta" data-reveal>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
+          <dl class="case-facts" data-reveal>
+            <div class="case-facts__row">
+              <dt class="case-facts__label">
                 <span lang="pt-BR">Meu papel</span><span lang="en">My role</span>
               </dt>
-              <dd class="case-meta__value">
+              <dd class="case-facts__value">
                 <span lang="pt-BR">UX Designer (único designer do projeto)</span><span lang="en">UX Designer (sole designer on the project)</span>
               </dd>
             </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
+            <div class="case-facts__row">
+              <dt class="case-facts__label">
                 <span lang="pt-BR">Time</span><span lang="en">Team</span>
               </dt>
-              <dd class="case-meta__value">
+              <dd class="case-facts__value">
                 <span lang="pt-BR">1 Product Lead · 2 desenvolvedores (front e back)</span><span lang="en">1 Product Lead · 2 developers (front and back)</span>
               </dd>
             </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
+            <div class="case-facts__row">
+              <dt class="case-facts__label">
                 <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
               </dt>
-              <dd class="case-meta__value">
+              <dd class="case-facts__value">
                 <span lang="pt-BR">6 meses, não contínuos</span><span lang="en">6 months, not continuous</span>
               </dd>
             </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
+            <div class="case-facts__row">
+              <dt class="case-facts__label">
                 <span lang="pt-BR">Ferramentas</span><span lang="en">Tools</span>
               </dt>
-              <dd class="case-meta__value">
+              <dd class="case-facts__value">
                 <ul class="chips chips--sm">
                   <li class="chip chip--sm">Figma</li>
                 </ul>
@@ -410,26 +431,26 @@
       <!-- antigo parágrafo de abertura. O que eu fiz: seção 04 (Meu papel).    -->
       <!-- Resultado: o primeiro resultado da seção 07.                         -->
       <!-- ==================================================================== -->
-      <section class="section case-summary" aria-labelledby="resumo-titulo">
+      <section class="section case-tldr" aria-labelledby="resumo-titulo">
         <div class="container">
 
-          <h2 class="case-summary__title" id="resumo-titulo" data-reveal>
+          <h2 class="case-tldr__title" id="resumo-titulo" data-reveal>
             <span lang="pt-BR">Em 30 segundos</span><span lang="en">In 30 seconds</span>
           </h2>
 
-          <div class="summary" data-reveal>
+          <div class="tldr" data-reveal>
 
-            <div class="summary__card">
-              <h3 class="summary__label">
+            <div class="tldr__card">
+              <h3 class="tldr__label">
                 <span lang="pt-BR">Problema</span><span lang="en">Problem</span>
               </h3>
-              <p class="summary__text" lang="pt-BR">
+              <p class="tldr__text" lang="pt-BR">
                 O entregador saía com uma lista no papel e escolhia a
                 ordem das paradas no caminho. A gestão não sabia onde
                 estava nada, e a prova de que a entrega aconteceu era
                 uma assinatura que se perde — e que pode ser forjada.
               </p>
-              <p class="summary__text" lang="en">
+              <p class="tldr__text" lang="en">
                 The driver left with a list on paper and picked the
                 order of stops along the way. Management had no idea
                 where anything was, and the proof a delivery had
@@ -438,35 +459,35 @@
               </p>
             </div>
 
-            <div class="summary__card">
-              <h3 class="summary__label">
+            <div class="tldr__card">
+              <h3 class="tldr__label">
                 <span lang="pt-BR">O que eu fiz</span><span lang="en">What I did</span>
               </h3>
-              <p class="summary__text" lang="pt-BR">
+              <p class="tldr__text" lang="pt-BR">
                 Único designer, do discovery ao handoff. Entrevistei
                 primeiro o gestor de logística, para entender o que a
                 empresa não conseguia ver, e depois os entregadores.
               </p>
-              <p class="summary__text" lang="en">
+              <p class="tldr__text" lang="en">
                 Sole designer, from discovery to handoff. I interviewed
                 the logistics manager first, to understand what the
                 company couldn't see, and then the drivers.
               </p>
             </div>
 
-            <div class="summary__card summary__card--result">
-              <h3 class="summary__label">
+            <div class="tldr__card tldr__card--result">
+              <h3 class="tldr__label">
                 <span lang="pt-BR">Resultado</span><span lang="en">Result</span>
               </h3>
               <!-- Resultado qualitativo — combustível e produtividade ainda não
            consolidados (ver seção 07). Ao ter o número, troque aqui também. -->
-              <p class="summary__value">
+              <p class="tldr__value">
                 <span lang="pt-BR">Sem papel</span><span lang="en">No paper</span>
               </p>
-              <p class="summary__text">
+              <p class="tldr__text">
                 <span lang="pt-BR">Gestão da entrega</span><span lang="en">Delivery management</span>
               </p>
-              <p class="summary__note">
+              <p class="tldr__note">
                 <span lang="pt-BR">O romaneio deixou de circular impresso e de ser redigitado no escritório</span><span lang="en">The manifest stopped circulating on paper and being retyped at the office</span>
               </p>
             </div>
@@ -581,10 +602,10 @@
           </header>
 
           <div class="case-section__body">
-            <div class="split" data-reveal>
+            <div class="two-col" data-reveal>
 
-              <div class="split__col">
-                <h3 class="split__title">
+              <div class="two-col__col">
+                <h3 class="two-col__title">
                   <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
                 </h3>
                 <div class="prose prose--sm">
@@ -609,8 +630,8 @@
                 </div>
               </div>
 
-              <div class="split__col">
-                <h3 class="split__title">
+              <div class="two-col__col">
+                <h3 class="two-col__title">
                   <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
                 </h3>
                 <div class="prose prose--sm">
@@ -1502,8 +1523,8 @@
       <section class="section case-more" aria-labelledby="outros-titulo">
         <div class="container">
 
-          <header class="section-bar" data-reveal>
-            <h2 class="section-bar__title" id="outros-titulo">
+          <header class="heading-row" data-reveal>
+            <h2 class="heading-row__title" id="outros-titulo">
               <span lang="pt-BR">Outros projetos</span><span lang="en">More work</span>
             </h2>
             <a class="text-link" href="../projetos.html">
@@ -1514,11 +1535,11 @@
             </a>
           </header>
 
-          <div class="work-pair">
+          <div class="project-pair">
 
             <!-- ANTERIOR -->
-            <article class="work-card" data-reveal aria-labelledby="anterior-titulo">
-              <figure class="media media--21x9 work-card__media">
+            <article class="project-card" data-reveal aria-labelledby="anterior-titulo">
+              <figure class="media media--21x9 project-card__media">
                 <span class="media__label" aria-hidden="true">
                   <span lang="pt-BR">Capa do PDV Nasajon · 21:9 · 1680×720</span><span lang="en">Nasajon POS cover · 21:9 · 1680×720</span>
                 </span>
@@ -1528,34 +1549,34 @@
                      width="1680" height="720" loading="lazy" decoding="async">
                 -->
               </figure>
-              <div class="work-card__body">
-                <p class="work-card__direction">
+              <div class="project-card__body">
+                <p class="project-card__direction">
                   <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="#i-arrow-left"></use></svg>
                   <span lang="pt-BR">Anterior</span><span lang="en">Previous</span>
                 </p>
-                <ul class="meta-inline">
-                  <li class="meta-inline__item">Nasajon</li>
-                  <li class="meta-inline__item">2026</li>
-                  <li class="meta-inline__item">
+                <ul class="meta-list">
+                  <li class="meta-list__item">Nasajon</li>
+                  <li class="meta-list__item">2026</li>
+                  <li class="meta-list__item">
                     <span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span>
                   </li>
                 </ul>
-                <h3 class="work-card__title" id="anterior-titulo">
-                  <a class="work-card__link" href="projeto-01.html">
+                <h3 class="project-card__title" id="anterior-titulo">
+                  <a class="project-card__link" href="projeto-01.html">
                     <span lang="pt-BR">Um PDV que sai do balcão</span><span lang="en">A POS that leaves the counter</span>
                   </a>
                 </h3>
-                <p class="work-card__summary" lang="pt-BR">
+                <p class="project-card__summary" lang="pt-BR">
                   Redesenho mobile-first do ponto de venda para quem
                   atende longe do caixa.
                 </p>
-                <p class="work-card__summary" lang="en">
+                <p class="project-card__summary" lang="en">
                   Mobile-first redesign of the point of sale for staff
                   who serve away from the register.
                 </p>
-                <p class="work-card__metric">
-                  <span class="work-card__metric-value">−30%</span>
-                  <span class="work-card__metric-label">
+                <p class="project-card__metric">
+                  <span class="project-card__metric-value">−30%</span>
+                  <span class="project-card__metric-label">
                     <span lang="pt-BR">no tempo de fechamento de venda</span><span lang="en">in time to close a sale</span>
                   </span>
                 </p>
@@ -1563,8 +1584,8 @@
             </article>
 
             <!-- PRÓXIMO -->
-            <article class="work-card" data-reveal aria-labelledby="proximo-titulo">
-              <figure class="media media--21x9 work-card__media">
+            <article class="project-card" data-reveal aria-labelledby="proximo-titulo">
+              <figure class="media media--21x9 project-card__media">
                 <span class="media__label" aria-hidden="true">
                   <span lang="pt-BR">Capa da Roteirização · 21:9 · 1680×720</span><span lang="en">Route planning cover · 21:9 · 1680×720</span>
                 </span>
@@ -1574,35 +1595,35 @@
                      width="1680" height="720" loading="lazy" decoding="async">
                 -->
               </figure>
-              <div class="work-card__body">
-                <p class="work-card__direction">
+              <div class="project-card__body">
+                <p class="project-card__direction">
                   <span lang="pt-BR">Próximo</span><span lang="en">Next</span>
                   <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
                 </p>
-                <ul class="meta-inline">
-                  <li class="meta-inline__item">Nasajon</li>
-                  <li class="meta-inline__item">2025</li>
-                  <li class="meta-inline__item">
+                <ul class="meta-list">
+                  <li class="meta-list__item">Nasajon</li>
+                  <li class="meta-list__item">2025</li>
+                  <li class="meta-list__item">
                     <span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span>
                   </li>
                 </ul>
-                <h3 class="work-card__title" id="proximo-titulo">
-                  <a class="work-card__link" href="projeto-03.html">
+                <h3 class="project-card__title" id="proximo-titulo">
+                  <a class="project-card__link" href="projeto-03.html">
                     <span lang="pt-BR">Rota calculada, decisão preservada</span><span lang="en">Route calculated, decision preserved</span>
                   </a>
                 </h3>
-                <p class="work-card__summary" lang="pt-BR">
+                <p class="project-card__summary" lang="pt-BR">
                   Roteirização automática por veículo, peso e distância,
                   sem tirar a palavra final do gestor.
                 </p>
-                <p class="work-card__summary" lang="en">
+                <p class="project-card__summary" lang="en">
                   Automatic route planning by vehicle, weight and
                   distance, without taking the final say away from the
                   manager.
                 </p>
-                <p class="work-card__metric">
-                  <span class="work-card__metric-value">−40%</span>
-                  <span class="work-card__metric-label">
+                <p class="project-card__metric">
+                  <span class="project-card__metric-value">−40%</span>
+                  <span class="project-card__metric-label">
                     <span lang="pt-BR">no custo por rota</span><span lang="en">in cost per route</span>
                   </span>
                 </p>
