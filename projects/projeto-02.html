@@ -321,51 +321,51 @@
             </ol>
           </nav>
 
+          <!-- Empresa e ano vivem no eyebrow; a ficha abaixo da imagem fica
+               só com Papel · Time · Duração · Ferramentas. -->
           <p class="eyebrow" data-reveal>
-            <span lang="pt-BR">Estudo de caso</span><span lang="en">Case study</span>
+            <span lang="pt-BR">Estudo de caso · Nasajon · 2025</span><span lang="en">Case study · Nasajon · 2025</span>
           </p>
 
           <h1 class="case-hero__title" id="case-titulo" data-reveal>
             <span lang="pt-BR">A próxima parada, e a prova de que a anterior aconteceu</span><span lang="en">The next stop, and proof the last one happened</span>
           </h1>
 
+          <!-- SUBTÍTULO — uma linha. O parágrafo de abertura que vivia aqui
+               passou para o cartão "Problema" do bloco Em 30 segundos. -->
           <p class="case-hero__lead" data-reveal lang="pt-BR">
-            O entregador saía com uma lista no papel e escolhia a ordem das
-            paradas no caminho. A gestão não sabia onde estava nada, e a prova de
-            que a entrega aconteceu era uma assinatura que se perde — e que pode
-            ser forjada.
+            App de entrega com rota otimizada e prova digital no lugar
+            do papel.
           </p>
           <p class="case-hero__lead" data-reveal lang="en">
-            The driver left with a list on paper and picked the order of stops
-            along the way. Management had no idea where anything was, and the
-            proof a delivery had happened was a signature that gets lost — and
-            that can be forged.
+            Delivery app with an optimised route and digital proof in
+            place of paper.
           </p>
 
-          <!-- METADADOS DO PROJETO -->
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="container container--wide case-hero__media" data-reveal>
+          <figure class="media media--21x9 media--framed">
+            <span class="media__label" aria-hidden="true">
+              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
+            </span>
+            <!--
+              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              Esta é a imagem LCP desta página: eager + fetchpriority="high".
+
+            <img src="../assets/images/projeto-02-hero.jpg"
+                 alt="Telas do aplicativo de logística em celular, com a lista de paradas e a captura de prova"
+                 data-en-alt="Logistics app screens on a phone, showing the stop list and proof capture"
+                 width="2100" height="900"
+                 loading="eager" fetchpriority="high" decoding="async">
+            -->
+          </figure>
+        </div>
+
+        <div class="container">
+          <!-- FICHA DO PROJETO — faixa horizontal logo abaixo da imagem -->
           <dl class="case-meta" data-reveal>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Empresa</span><span lang="en">Company</span>
-              </dt>
-              <dd class="case-meta__value">
-                <span lang="pt-BR">Nasajon · ERP</span><span lang="en">Nasajon · ERP</span>
-              </dd>
-            </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Ano</span><span lang="en">Year</span>
-              </dt>
-              <dd class="case-meta__value">2025</dd>
-            </div>
-            <div class="case-meta__row">
-              <dt class="case-meta__label">
-                <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
-              </dt>
-              <dd class="case-meta__value">
-                <span lang="pt-BR">6 meses, não contínuos</span><span lang="en">6 months, not continuous</span>
-              </dd>
-            </div>
             <div class="case-meta__row">
               <dt class="case-meta__label">
                 <span lang="pt-BR">Meu papel</span><span lang="en">My role</span>
@@ -384,6 +384,14 @@
             </div>
             <div class="case-meta__row">
               <dt class="case-meta__label">
+                <span lang="pt-BR">Duração</span><span lang="en">Duration</span>
+              </dt>
+              <dd class="case-meta__value">
+                <span lang="pt-BR">6 meses, não contínuos</span><span lang="en">6 months, not continuous</span>
+              </dd>
+            </div>
+            <div class="case-meta__row">
+              <dt class="case-meta__label">
                 <span lang="pt-BR">Ferramentas</span><span lang="en">Tools</span>
               </dt>
               <dd class="case-meta__value">
@@ -393,36 +401,105 @@
               </dd>
             </div>
           </dl>
-
-        </div>
-
-        <!-- HERO IMAGE -->
-        <div class="container container--wide" data-reveal>
-          <figure class="media media--21x9 media--framed">
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
-            </span>
-            <!--
-              SUBSTITUIR: apague o <span class="media__label"> e descomente.
-              Esta é a imagem LCP desta página: eager + fetchpriority="high".
-
-            <img src="../assets/images/projeto-02-hero.jpg"
-                 alt="Telas do aplicativo de logística em celular, com a lista de paradas e a captura de prova"
-                 data-en-alt="Logistics app screens on a phone, showing the stop list and proof capture"
-                 width="2100" height="900"
-                 loading="eager" fetchpriority="high" decoding="async">
-            -->
-          </figure>
         </div>
       </header>
+
+      <!-- ==================================================================== -->
+      <!-- EM 30 SEGUNDOS + ÍNDICE                                              -->
+      <!-- Texto tirado do próprio case — nada escrito do zero. Problema: o     -->
+      <!-- antigo parágrafo de abertura. O que eu fiz: seção 04 (Meu papel).    -->
+      <!-- Resultado: o primeiro resultado da seção 07.                         -->
+      <!-- ==================================================================== -->
+      <section class="section case-summary" aria-labelledby="resumo-titulo">
+        <div class="container">
+
+          <h2 class="case-summary__title" id="resumo-titulo" data-reveal>
+            <span lang="pt-BR">Em 30 segundos</span><span lang="en">In 30 seconds</span>
+          </h2>
+
+          <div class="summary" data-reveal>
+
+            <div class="summary__card">
+              <h3 class="summary__label">
+                <span lang="pt-BR">Problema</span><span lang="en">Problem</span>
+              </h3>
+              <p class="summary__text" lang="pt-BR">
+                O entregador saía com uma lista no papel e escolhia a
+                ordem das paradas no caminho. A gestão não sabia onde
+                estava nada, e a prova de que a entrega aconteceu era
+                uma assinatura que se perde — e que pode ser forjada.
+              </p>
+              <p class="summary__text" lang="en">
+                The driver left with a list on paper and picked the
+                order of stops along the way. Management had no idea
+                where anything was, and the proof a delivery had
+                happened was a signature that gets lost — and that can
+                be forged.
+              </p>
+            </div>
+
+            <div class="summary__card">
+              <h3 class="summary__label">
+                <span lang="pt-BR">O que eu fiz</span><span lang="en">What I did</span>
+              </h3>
+              <p class="summary__text" lang="pt-BR">
+                Único designer, do discovery ao handoff. Entrevistei
+                primeiro o gestor de logística, para entender o que a
+                empresa não conseguia ver, e depois os entregadores.
+              </p>
+              <p class="summary__text" lang="en">
+                Sole designer, from discovery to handoff. I interviewed
+                the logistics manager first, to understand what the
+                company couldn't see, and then the drivers.
+              </p>
+            </div>
+
+            <div class="summary__card summary__card--result">
+              <h3 class="summary__label">
+                <span lang="pt-BR">Resultado</span><span lang="en">Result</span>
+              </h3>
+              <!-- Resultado qualitativo — combustível e produtividade ainda não
+           consolidados (ver seção 07). Ao ter o número, troque aqui também. -->
+              <p class="summary__value">
+                <span lang="pt-BR">Sem papel</span><span lang="en">No paper</span>
+              </p>
+              <p class="summary__text">
+                <span lang="pt-BR">Gestão da entrega</span><span lang="en">Delivery management</span>
+              </p>
+              <p class="summary__note">
+                <span lang="pt-BR">O romaneio deixou de circular impresso e de ser redigitado no escritório</span><span lang="en">The manifest stopped circulating on paper and being retyped at the office</span>
+              </p>
+            </div>
+
+          </div>
+
+          <!-- ÍNDICE — o rótulo visível é aria-hidden porque o nome do <nav>
+               já diz a mesma coisa ao leitor de tela. -->
+          <nav class="case-toc" aria-label="Neste estudo de caso"
+               data-en-aria-label="In this case study" data-reveal>
+            <p class="case-toc__label" aria-hidden="true">
+              <span lang="pt-BR">Neste case:</span><span lang="en">In this case:</span>
+            </p>
+            <ul class="case-toc__list">
+              <li><a class="case-toc__link" href="#contexto"><span lang="pt-BR">Contexto</span><span lang="en">Context</span></a></li>
+              <li><a class="case-toc__link" href="#desafio"><span lang="pt-BR">Problema</span><span lang="en">Problem</span></a></li>
+              <li><a class="case-toc__link" href="#processo"><span lang="pt-BR">Processo</span><span lang="en">Process</span></a></li>
+              <li><a class="case-toc__link" href="#solucao"><span lang="pt-BR">Solução</span><span lang="en">Solution</span></a></li>
+              <li><a class="case-toc__link" href="#resultados"><span lang="pt-BR">Resultado</span><span lang="en">Results</span></a></li>
+              <li><a class="case-toc__link" href="#aprendizados"><span lang="pt-BR">Aprendizados</span><span lang="en">Learnings</span></a></li>
+            </ul>
+          </nav>
+
+        </div>
+      </section>
 
       <!-- ==================================================================== -->
       <!-- 02 · CONTEXTO                                                        -->
       <!-- ==================================================================== -->
       <section class="section" id="contexto" aria-labelledby="contexto-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">01 — Contexto</span><span lang="en">01 — Context</span>
             </p>
@@ -431,58 +508,60 @@
             </h2>
           </header>
 
-          <div class="prose" data-reveal>
-            <p lang="pt-BR">
-              O aplicativo é a ponta de logística do ERP da Nasajon. Quem usa é o
-              entregador — funcionário da empresa cliente — e o que ele carrega é
-              mercadoria em geral. O app organiza a ordem das entregas e, em cada
-              parada, recolhe a prova de que ela aconteceu: a assinatura do
-              entregador, a assinatura de quem recebeu e a foto da mercadoria no
-              cliente.
-            </p>
-            <p lang="en">
-              The app is the logistics edge of Nasajon's ERP. Its user is the
-              driver — an employee of the client company — and what he carries is
-              general merchandise. The app organises the order of deliveries and,
-              at each stop, collects the proof that it happened: the driver's
-              signature, the recipient's signature, and a photo of the goods at
-              the customer's door.
-            </p>
-            <p lang="pt-BR">
-              Antes, isso era papel. Sem ordem definida das paradas e sem rota
-              planejada, combustível e tempo viravam custo que ninguém media. Cada
-              empresa cliente tem, em média, cinco entregadores, e o projeto
-              nasceu como expansão natural do ERP: a Nasajon já tinha o pedido, o
-              estoque e a nota — faltava o trecho que acontece fora da empresa.
-              Que é justamente o trecho que ninguém vê acontecer, e por isso
-              seguia no papel.
-            </p>
-            <p lang="en">
-              Before, this was paper. With no defined order of stops and no
-              planned route, fuel and time turned into cost nobody measured. Each
-              client company has around five drivers, and the project started as a
-              natural extension of the ERP: Nasajon already had the order, the
-              stock and the invoice — what was missing was the stretch that
-              happens outside the company. Which is precisely the stretch nobody
-              watches happen, and why it was still on paper.
-            </p>
-          </div>
-          <!-- PESQUISA -->
-          <figure class="media media--16x9" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">A gestão de entrega no papel · 1600×900</span><span lang="en">Delivery management on paper · 1600×900</span>
-            </span>
-            <!--
-            <img src="../assets/images/projeto-02-contexto.png"
-                 alt="Diagrama do processo anterior: romaneio em papel, sem ordem de paradas nem rota planejada"
-                 data-en-alt="Diagram of the previous process: paper manifest, with no order of stops and no planned route"
-                 width="1600" height="900" loading="lazy" decoding="async">
-            -->
-            <figcaption class="media__caption">
-              <span lang="pt-BR">O processo anterior: a lista de entregas saía no papel, sem ordem definida, e a prova de entrega dependia de quem lembrasse de pedir assinatura.</span><span lang="en">The previous process: the delivery list came out on paper, with no defined order, and proof of delivery depended on whoever remembered to ask for a signature.</span>
-            </figcaption>
-          </figure>
+          <div class="case-section__body">
+            <div class="prose" data-reveal>
+              <p lang="pt-BR">
+                O aplicativo é a ponta de logística do ERP da Nasajon. Quem usa é o
+                entregador — funcionário da empresa cliente — e o que ele carrega é
+                mercadoria em geral. O app organiza a ordem das entregas e, em cada
+                parada, recolhe a prova de que ela aconteceu: a assinatura do
+                entregador, a assinatura de quem recebeu e a foto da mercadoria no
+                cliente.
+              </p>
+              <p lang="en">
+                The app is the logistics edge of Nasajon's ERP. Its user is the
+                driver — an employee of the client company — and what he carries is
+                general merchandise. The app organises the order of deliveries and,
+                at each stop, collects the proof that it happened: the driver's
+                signature, the recipient's signature, and a photo of the goods at
+                the customer's door.
+              </p>
+              <p lang="pt-BR">
+                Antes, isso era papel. Sem ordem definida das paradas e sem rota
+                planejada, combustível e tempo viravam custo que ninguém media. Cada
+                empresa cliente tem, em média, cinco entregadores, e o projeto
+                nasceu como expansão natural do ERP: a Nasajon já tinha o pedido, o
+                estoque e a nota — faltava o trecho que acontece fora da empresa.
+                Que é justamente o trecho que ninguém vê acontecer, e por isso
+                seguia no papel.
+              </p>
+              <p lang="en">
+                Before, this was paper. With no defined order of stops and no
+                planned route, fuel and time turned into cost nobody measured. Each
+                client company has around five drivers, and the project started as a
+                natural extension of the ERP: Nasajon already had the order, the
+                stock and the invoice — what was missing was the stretch that
+                happens outside the company. Which is precisely the stretch nobody
+                watches happen, and why it was still on paper.
+              </p>
+            </div>
+            <!-- PESQUISA -->
+            <figure class="media media--16x9" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">A gestão de entrega no papel · 1600×900</span><span lang="en">Delivery management on paper · 1600×900</span>
+              </span>
+              <!--
+              <img src="../assets/images/projeto-02-contexto.png"
+                   alt="Diagrama do processo anterior: romaneio em papel, sem ordem de paradas nem rota planejada"
+                   data-en-alt="Diagram of the previous process: paper manifest, with no order of stops and no planned route"
+                   width="1600" height="900" loading="lazy" decoding="async">
+              -->
+              <figcaption class="media__caption">
+                <span lang="pt-BR">O processo anterior: a lista de entregas saía no papel, sem ordem definida, e a prova de entrega dependia de quem lembrasse de pedir assinatura.</span><span lang="en">The previous process: the delivery list came out on paper, with no defined order, and proof of delivery depended on whoever remembered to ask for a signature.</span>
+              </figcaption>
+            </figure>
 
+          </div>
         </div>
       </section>
 
@@ -490,83 +569,85 @@
       <!-- 03 · DESAFIO / PROBLEMA                                              -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="desafio" aria-labelledby="desafio-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
-              <span lang="pt-BR">02 — Desafio</span><span lang="en">02 — Challenge</span>
+              <span lang="pt-BR">02 — Problema</span><span lang="en">02 — Problem</span>
             </p>
             <h2 class="section-head__title" id="desafio-titulo">
               <span lang="pt-BR">O problema, dos dois lados</span><span lang="en">The problem, from both sides</span>
             </h2>
           </header>
 
-          <div class="split" data-reveal>
+          <div class="case-section__body">
+            <div class="split" data-reveal>
 
-            <div class="split__col">
-              <h3 class="split__title">
-                <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
-              </h3>
-              <div class="prose prose--sm">
-                <p lang="pt-BR">
-                  O papel não deixava rastro. A gestão não sabia onde estava cada
-                  entrega e, por isso, não tinha o que responder quando o cliente
-                  ligava. Cada romaneio voltava para ser redigitado no escritório,
-                  e a prova de que a entrega aconteceu era uma assinatura no papel
-                  — que se perde e que pode ser forjada. Não havia número para o
-                  prejuízo, e isso era parte do problema: ninguém media o que não
-                  conseguia ver.
-                </p>
-                <p lang="en">
-                  Paper left no trail. Management didn't know where any given
-                  delivery was, so they had nothing to say when the client called.
-                  Every manifest came back to be retyped at the office, and the
-                  proof that a delivery had happened was a signature on paper —
-                  which gets lost, and which can be forged. There was no figure
-                  for the loss, and that was part of the problem: nobody measures
-                  what they can't see.
-                </p>
+              <div class="split__col">
+                <h3 class="split__title">
+                  <span lang="pt-BR">Problema de negócio</span><span lang="en">Business problem</span>
+                </h3>
+                <div class="prose prose--sm">
+                  <p lang="pt-BR">
+                    O papel não deixava rastro. A gestão não sabia onde estava cada
+                    entrega e, por isso, não tinha o que responder quando o cliente
+                    ligava. Cada romaneio voltava para ser redigitado no escritório,
+                    e a prova de que a entrega aconteceu era uma assinatura no papel
+                    — que se perde e que pode ser forjada. Não havia número para o
+                    prejuízo, e isso era parte do problema: ninguém media o que não
+                    conseguia ver.
+                  </p>
+                  <p lang="en">
+                    Paper left no trail. Management didn't know where any given
+                    delivery was, so they had nothing to say when the client called.
+                    Every manifest came back to be retyped at the office, and the
+                    proof that a delivery had happened was a signature on paper —
+                    which gets lost, and which can be forged. There was no figure
+                    for the loss, and that was part of the problem: nobody measures
+                    what they can't see.
+                  </p>
+                </div>
               </div>
+
+              <div class="split__col">
+                <h3 class="split__title">
+                  <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
+                </h3>
+                <div class="prose prose--sm">
+                  <p lang="pt-BR">
+                    O entregador saía com uma lista no papel e decidia a ordem das
+                    paradas no caminho, no melhor palpite. O resultado era rota mais
+                    longa do que precisava ser, pedido atrasado e, às vezes,
+                    mercadoria que voltava. E se o papel se perdesse no meio do dia,
+                    o dia acabava ali.
+                  </p>
+                  <p lang="en">
+                    The driver left with a list on paper and decided the order of
+                    stops along the way, on best guess. The result was a longer route
+                    than necessary, late orders and, sometimes, goods coming back
+                    undelivered. And if the paper got lost halfway through the day,
+                    the day was over.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
-            <div class="split__col">
-              <h3 class="split__title">
-                <span lang="pt-BR">Dor do usuário</span><span lang="en">User pain</span>
-              </h3>
-              <div class="prose prose--sm">
-                <p lang="pt-BR">
-                  O entregador saía com uma lista no papel e decidia a ordem das
-                  paradas no caminho, no melhor palpite. O resultado era rota mais
-                  longa do que precisava ser, pedido atrasado e, às vezes,
-                  mercadoria que voltava. E se o papel se perdesse no meio do dia,
-                  o dia acabava ali.
-                </p>
-                <p lang="en">
-                  The driver left with a list on paper and decided the order of
-                  stops along the way, on best guess. The result was a longer route
-                  than necessary, late orders and, sometimes, goods coming back
-                  undelivered. And if the paper got lost halfway through the day,
-                  the day was over.
-                </p>
-              </div>
-            </div>
+            <!-- INSIGHTS -->
+            <blockquote class="quote quote--lg" data-reveal>
+              <p class="quote__text" lang="pt-BR">
+                “Eu ficava perdido, sem saber qual era a próxima entrega nem qual
+                caminho devia seguir.”
+              </p>
+              <p class="quote__text" lang="en">
+                “I'd get lost, with no idea which delivery was next or which way I
+                was supposed to go.”
+              </p>
+              <footer class="quote__author">
+                <span lang="pt-BR">— Entregador, durante as entrevistas</span><span lang="en">— Delivery driver, during the interviews</span>
+              </footer>          </blockquote>
 
           </div>
-
-          <!-- INSIGHTS -->
-          <blockquote class="quote" data-reveal>
-            <p class="quote__text" lang="pt-BR">
-              “Eu ficava perdido, sem saber qual era a próxima entrega nem qual
-              caminho devia seguir.”
-            </p>
-            <p class="quote__text" lang="en">
-              “I'd get lost, with no idea which delivery was next or which way I
-              was supposed to go.”
-            </p>
-            <footer class="quote__author">
-              <span lang="pt-BR">— Entregador, durante as entrevistas</span><span lang="en">— Delivery driver, during the interviews</span>
-            </footer>          </blockquote>
-
         </div>
       </section>
 
@@ -574,9 +655,9 @@
       <!-- 04 · OBJETIVOS                                                       -->
       <!-- ==================================================================== -->
       <section class="section" id="objetivos" aria-labelledby="objetivos-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">03 — Objetivos</span><span lang="en">03 — Goals</span>
             </p>
@@ -585,39 +666,41 @@
             </h2>
           </header>
 
-          <ul class="checklist" data-reveal>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Dar ordem definida às paradas, no lugar do palpite do entregador.</span><span lang="en">Give the stops a defined order, instead of the driver's guess.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Produzir prova de entrega que não dependa apenas de assinatura — que se perde e pode ser forjada.</span><span lang="en">Produce proof of delivery that doesn't rest on a signature alone — which gets lost and can be forged.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Dar rastreabilidade à gestão, para responder ao cliente sem precisar ligar para o entregador.</span><span lang="en">Give management traceability, so they can answer the client without calling the driver.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Reduzir consumo de combustível e aumentar o número de entregas concluídas por dia.</span><span lang="en">Cut fuel consumption and increase the number of deliveries completed per day.</span>
-            </li>
-            <li class="checklist__item">
-              <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
-                <use href="#i-check"></use>
-              </svg>
-              <span lang="pt-BR">Funcionar offline: concluir a entrega sem sinal e sincronizar quando a conexão voltar (restrição inegociável).</span><span lang="en">Work offline: complete the delivery with no signal and sync once the connection returns (a non-negotiable constraint).</span>
-            </li>
-          </ul>
+          <div class="case-section__body">
+            <ul class="checklist" data-reveal>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Dar ordem definida às paradas, no lugar do palpite do entregador.</span><span lang="en">Give the stops a defined order, instead of the driver's guess.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Produzir prova de entrega que não dependa apenas de assinatura — que se perde e pode ser forjada.</span><span lang="en">Produce proof of delivery that doesn't rest on a signature alone — which gets lost and can be forged.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Dar rastreabilidade à gestão, para responder ao cliente sem precisar ligar para o entregador.</span><span lang="en">Give management traceability, so they can answer the client without calling the driver.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Reduzir consumo de combustível e aumentar o número de entregas concluídas por dia.</span><span lang="en">Cut fuel consumption and increase the number of deliveries completed per day.</span>
+              </li>
+              <li class="checklist__item">
+                <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">Funcionar offline: concluir a entrega sem sinal e sincronizar quando a conexão voltar (restrição inegociável).</span><span lang="en">Work offline: complete the delivery with no signal and sync once the connection returns (a non-negotiable constraint).</span>
+              </li>
+            </ul>
 
+          </div>
         </div>
       </section>
 
@@ -625,16 +708,19 @@
       <!-- 05 · MEU PAPEL                                                       -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="papel" aria-labelledby="papel-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">04 — Meu papel</span><span lang="en">04 — My role</span>
             </p>
             <h2 class="section-head__title" id="papel-titulo">
               <span lang="pt-BR">O que foi meu</span><span lang="en">What was mine</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               Mesmo papel do PDV: único designer, do discovery ao handoff. A
               diferença é que aqui o escopo já vinha definido — e isso não reduziu
               a pesquisa. Entrevistei primeiro o gestor de logística, para
@@ -642,7 +728,7 @@
               porque ninguém conhece o problema do dia melhor que quem o vive. A
               implementação foi dos dois desenvolvedores.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               Same role as on the POS project: sole designer, from discovery to
               handoff. The difference is that here the scope arrived already
               defined — and that didn't shrink the research. I interviewed the
@@ -651,21 +737,20 @@
               better than whoever lives them. Implementation belonged to the two
               developers.
             </p>
-          </header>
+            <ul class="chips chips--lg" data-reveal
+                aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
+              <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
+              <li class="chip"><span lang="pt-BR">Pesquisa de usuários</span><span lang="en">User research</span></li>
+              <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
+              <li class="chip"><span lang="pt-BR">Definição</span><span lang="en">Definition</span></li>
+              <li class="chip"><span lang="pt-BR">Ideação</span><span lang="en">Ideation</span></li>
+              <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
+              <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
+              <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
+              <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
+              <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>          </ul>
 
-          <ul class="chips chips--lg" data-reveal
-              aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
-            <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
-            <li class="chip"><span lang="pt-BR">Pesquisa de usuários</span><span lang="en">User research</span></li>
-            <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
-            <li class="chip"><span lang="pt-BR">Definição</span><span lang="en">Definition</span></li>
-            <li class="chip"><span lang="pt-BR">Ideação</span><span lang="en">Ideation</span></li>
-            <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
-            <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
-            <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
-            <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
-            <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>          </ul>
-
+          </div>
         </div>
       </section>
 
@@ -673,263 +758,265 @@
       <!-- 06 · PROCESSO                                                        -->
       <!-- ==================================================================== -->
       <section class="section" id="processo" aria-labelledby="processo-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">05 — Processo</span><span lang="en">05 — Process</span>
             </p>
             <h2 class="section-head__title" id="processo-titulo">
               <span lang="pt-BR">Como cheguei lá</span><span lang="en">How I got there</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               Seis etapas ao longo de seis meses não contínuos — o projeto dividia
               espaço com outros. A terceira é a que define o produto.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               Six stages across six non-continuous months — the project shared
               space with others. The third one is what defines the product.
             </p>
-          </header>
+            <ol class="timeline">
 
-          <ol class="timeline">
+              <!-- PESQUISA -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Entrevista com o gestor</span><span lang="en">Interviewing the manager</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Comecei pelo gestor de logística, porque a dor dele era a que a
+                    empresa sentia: não conseguir dizer onde estava uma entrega
+                    quando o cliente ligava. É também quem define a sequência de
+                    paradas — o romaneio otimizado sai de uma plataforma que eu
+                    projetei em paralelo, e o app do entregador é a outra ponta da
+                    mesma operação.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I started with the logistics manager, because his pain was the
+                    one the company felt: being unable to say where a delivery was
+                    when the client called. He's also the one who defines the
+                    sequence of stops — the optimised manifest comes out of a
+                    platform I designed in parallel, and the driver's app is the
+                    other end of the same operation.
+                  </p>
+                  <!-- PESQUISA -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">As duas pontas da operação · 1200×675</span><span lang="en">The two ends of the operation · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-pesquisa.png"
+                         alt="Diagrama ligando a plataforma de otimização do gestor ao aplicativo do entregador"
+                         data-en-alt="Diagram connecting the manager's optimisation platform to the driver's app"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- PESQUISA -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Entrevista com o gestor</span><span lang="en">Interviewing the manager</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Comecei pelo gestor de logística, porque a dor dele era a que a
-                  empresa sentia: não conseguir dizer onde estava uma entrega
-                  quando o cliente ligava. É também quem define a sequência de
-                  paradas — o romaneio otimizado sai de uma plataforma que eu
-                  projetei em paralelo, e o app do entregador é a outra ponta da
-                  mesma operação.
-                </p>
-                <p class="timeline__text" lang="en">
-                  I started with the logistics manager, because his pain was the
-                  one the company felt: being unable to say where a delivery was
-                  when the client called. He's also the one who defines the
-                  sequence of stops — the optimised manifest comes out of a
-                  platform I designed in parallel, and the driver's app is the
-                  other end of the same operation.
-                </p>
-                <!-- PESQUISA -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">As duas pontas da operação · 1200×675</span><span lang="en">The two ends of the operation · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-pesquisa.png"
-                       alt="Diagrama ligando a plataforma de otimização do gestor ao aplicativo do entregador"
-                       data-en-alt="Diagram connecting the manager's optimisation platform to the driver's app"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- INSIGHTS -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Entrevistas com entregadores</span><span lang="en">Interviewing the drivers</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Depois falei com entregadores, entre três e cinco, por vídeo.
+                    Escopo definido não é motivo para pular essa conversa: o gestor
+                    sabe o que falta para a empresa, mas quem sabe o que atrapalha o
+                    dia é quem passa o dia na rua. Foi ali que apareceu a frase que
+                    abre este case — o entregador não reclamava de tecnologia,
+                    reclamava de não saber qual era a próxima parada.
+                  </p>
+                  <p class="timeline__text" lang="pt-BR">
+                    Foram conversas remotas, e não acompanhamento de rota. É uma
+                    limitação real deste projeto: parte do que se aprende sobre
+                    trabalho de rua só aparece estando na rua.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Then I spoke to drivers — between three and five of them, over
+                    video. A defined scope is no reason to skip that conversation:
+                    the manager knows what the company is missing, but the person who
+                    knows what gets in the way of the day is the one out on the road
+                    all day. That's where the quote opening this case came from — the
+                    driver wasn't complaining about technology, he was complaining
+                    about not knowing which stop was next.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    These were remote conversations, not ride-alongs. That's a real
+                    limitation of this project: part of what you learn about street
+                    work only shows up on the street.
+                  </p>
+                  <!-- INSIGHTS -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Síntese das entrevistas · 1200×675</span><span lang="en">Interview synthesis · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-insights.png"
+                         alt="Síntese das entrevistas com entregadores, agrupada por tema"
+                         data-en-alt="Synthesis of the driver interviews, grouped by theme"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- INSIGHTS -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Entrevistas com entregadores</span><span lang="en">Interviewing the drivers</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Depois falei com entregadores, entre três e cinco, por vídeo.
-                  Escopo definido não é motivo para pular essa conversa: o gestor
-                  sabe o que falta para a empresa, mas quem sabe o que atrapalha o
-                  dia é quem passa o dia na rua. Foi ali que apareceu a frase que
-                  abre este case — o entregador não reclamava de tecnologia,
-                  reclamava de não saber qual era a próxima parada.
-                </p>
-                <p class="timeline__text" lang="pt-BR">
-                  Foram conversas remotas, e não acompanhamento de rota. É uma
-                  limitação real deste projeto: parte do que se aprende sobre
-                  trabalho de rua só aparece estando na rua.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Then I spoke to drivers — between three and five of them, over
-                  video. A defined scope is no reason to skip that conversation:
-                  the manager knows what the company is missing, but the person who
-                  knows what gets in the way of the day is the one out on the road
-                  all day. That's where the quote opening this case came from — the
-                  driver wasn't complaining about technology, he was complaining
-                  about not knowing which stop was next.
-                </p>
-                <p class="timeline__text" lang="en">
-                  These were remote conversations, not ride-alongs. That's a real
-                  limitation of this project: part of what you learn about street
-                  work only shows up on the street.
-                </p>
-                <!-- INSIGHTS -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Síntese das entrevistas · 1200×675</span><span lang="en">Interview synthesis · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-insights.png"
-                       alt="Síntese das entrevistas com entregadores, agrupada por tema"
-                       data-en-alt="Synthesis of the driver interviews, grouped by theme"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- ARQUITETURA -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Definição: quem decide a rota</span><span lang="en">Definition: who decides the route</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    A decisão de produto mais importante do projeto foi definir quem
+                    decide a rota. Não é o entregador. A sequência chega otimizada da
+                    plataforma do gestor, e o app entrega essa sequência pronta. O
+                    aplicativo é ferramenta de execução, não de escolha — e isso foi
+                    deliberado: pedir que o entregador otimize rota no meio da rua é
+                    transferir para ele, no pior momento possível, um problema que um
+                    algoritmo resolve melhor.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    The most important product decision was defining who decides the
+                    route. Not the driver. The sequence arrives already optimised
+                    from the manager's platform, and the app delivers it ready. The
+                    app is a tool for execution, not for choosing — and that was
+                    deliberate: asking a driver to optimise a route out on the street
+                    hands him, at the worst possible moment, a problem an algorithm
+                    solves better.
+                  </p>
+                  <!-- USER FLOW -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Fluxo da entrega, do romaneio à prova · 1200×675</span><span lang="en">Delivery flow, from manifest to proof · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-fluxos.png"
+                         alt="Fluxo da entrega, do romaneio otimizado até a prova de entrega sincronizada"
+                         data-en-alt="Delivery flow, from the optimised manifest to the synced proof of delivery"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- ARQUITETURA -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Definição: quem decide a rota</span><span lang="en">Definition: who decides the route</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  A decisão de produto mais importante do projeto foi definir quem
-                  decide a rota. Não é o entregador. A sequência chega otimizada da
-                  plataforma do gestor, e o app entrega essa sequência pronta. O
-                  aplicativo é ferramenta de execução, não de escolha — e isso foi
-                  deliberado: pedir que o entregador otimize rota no meio da rua é
-                  transferir para ele, no pior momento possível, um problema que um
-                  algoritmo resolve melhor.
-                </p>
-                <p class="timeline__text" lang="en">
-                  The most important product decision was defining who decides the
-                  route. Not the driver. The sequence arrives already optimised
-                  from the manager's platform, and the app delivers it ready. The
-                  app is a tool for execution, not for choosing — and that was
-                  deliberate: asking a driver to optimise a route out on the street
-                  hands him, at the worst possible moment, a problem an algorithm
-                  solves better.
-                </p>
-                <!-- USER FLOW -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Fluxo da entrega, do romaneio à prova · 1200×675</span><span lang="en">Delivery flow, from manifest to proof · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-fluxos.png"
-                       alt="Fluxo da entrega, do romaneio otimizado até a prova de entrega sincronizada"
-                       data-en-alt="Delivery flow, from the optimised manifest to the synced proof of delivery"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- WIREFRAMES / BAIXA FIDELIDADE -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Ideação e wireframes</span><span lang="en">Ideation and wireframes</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Explorei as alternativas sozinho e validei em baixa fidelidade
+                    antes de subir a fidelidade. Numa tela usada em pé, dentro de um
+                    veículo parado, com uma das mãos ocupada, o que precisa ser
+                    resolvido primeiro é alcance — não estilo.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I explored the alternatives on my own and validated them in low
+                    fidelity before raising it. On a screen used standing up, inside
+                    a parked vehicle, with one hand already busy, what has to be
+                    solved first is reach — not style.
+                  </p>
+                  <!-- BAIXA FIDELIDADE -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Wireframes de baixa fidelidade · 1200×675</span><span lang="en">Low-fidelity wireframes · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-wireframes.png"
+                         alt="Wireframes de baixa fidelidade da lista de paradas e da tela de prova de entrega"
+                         data-en-alt="Low-fidelity wireframes of the stop list and the proof-of-delivery screen"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- WIREFRAMES / BAIXA FIDELIDADE -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Ideação e wireframes</span><span lang="en">Ideation and wireframes</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Explorei as alternativas sozinho e validei em baixa fidelidade
-                  antes de subir a fidelidade. Numa tela usada em pé, dentro de um
-                  veículo parado, com uma das mãos ocupada, o que precisa ser
-                  resolvido primeiro é alcance — não estilo.
-                </p>
-                <p class="timeline__text" lang="en">
-                  I explored the alternatives on my own and validated them in low
-                  fidelity before raising it. On a screen used standing up, inside
-                  a parked vehicle, with one hand already busy, what has to be
-                  solved first is reach — not style.
-                </p>
-                <!-- BAIXA FIDELIDADE -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Wireframes de baixa fidelidade · 1200×675</span><span lang="en">Low-fidelity wireframes · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-wireframes.png"
-                       alt="Wireframes de baixa fidelidade da lista de paradas e da tela de prova de entrega"
-                       data-en-alt="Low-fidelity wireframes of the stop list and the proof-of-delivery screen"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- INTERFACE FINAL -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Interface final</span><span lang="en">Final interface</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Três decisões de interface vieram direto do contexto de rua:
+                    contraste alto o bastante para ler sob sol; tudo alcançável com
+                    uma mão só; e feedback visual explícito em cada passo, porque
+                    quem está na porta do cliente não pode ficar em dúvida se a foto
+                    foi salva ou não.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Three interface decisions came straight from the street context:
+                    contrast high enough to read in sunlight; everything reachable
+                    one-handed; and explicit visual feedback at every step, because
+                    someone standing at a customer's door can't be left wondering
+                    whether the photo saved or not.
+                  </p>
+                  <!-- MOCKUP -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Interface final do app · 1200×675</span><span lang="en">Final app interface · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-ui.png"
+                         alt="Telas finais do aplicativo, com alto contraste e alvos alcançáveis com uma mão"
+                         data-en-alt="Final app screens, with high contrast and one-handed reachable targets"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- INTERFACE FINAL -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Interface final</span><span lang="en">Final interface</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Três decisões de interface vieram direto do contexto de rua:
-                  contraste alto o bastante para ler sob sol; tudo alcançável com
-                  uma mão só; e feedback visual explícito em cada passo, porque
-                  quem está na porta do cliente não pode ficar em dúvida se a foto
-                  foi salva ou não.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Three interface decisions came straight from the street context:
-                  contrast high enough to read in sunlight; everything reachable
-                  one-handed; and explicit visual feedback at every step, because
-                  someone standing at a customer's door can't be left wondering
-                  whether the photo saved or not.
-                </p>
-                <!-- MOCKUP -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Interface final do app · 1200×675</span><span lang="en">Final app interface · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-ui.png"
-                       alt="Telas finais do aplicativo, com alto contraste e alvos alcançáveis com uma mão"
-                       data-en-alt="Final app screens, with high contrast and one-handed reachable targets"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
+              <!-- IMPLEMENTAÇÃO -->
+              <li class="timeline__step" data-reveal>
+                <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
+                <div class="timeline__body">
+                  <h3 class="timeline__title">
+                    <span lang="pt-BR">Handoff e revisão</span><span lang="en">Handoff and review</span>
+                  </h3>
+                  <p class="timeline__text" lang="pt-BR">
+                    Aqui o handoff foi diferente: arquivo de Figma estruturado, com
+                    variáveis, e revisão junto com o desenvolvedor — comparando o que
+                    foi construído com o que foi prototipado, comportamento incluído.
+                    Nem tudo sobrevive à travessia. Às vezes o que foi implementado
+                    corretamente não tem o impacto visual que eu esperava, e é na
+                    revisão que isso aparece.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Here the handoff was different: a structured Figma file with
+                    variables, plus review alongside the developer — comparing what
+                    was built with what was prototyped, behaviour included. Not
+                    everything survives the crossing. Sometimes what was implemented
+                    correctly doesn't land with the visual impact I expected, and
+                    review is where that shows up.
+                  </p>
+                  <!-- IMPLEMENTAÇÃO -->
+                  <figure class="media media--16x9 media--sm">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Arquivo de handoff com variáveis · 1200×675</span><span lang="en">Handoff file with variables · 1200×675</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-handoff.png"
+                         alt="Arquivo de Figma estruturado com variáveis, usado no handoff"
+                         data-en-alt="Structured Figma file with variables, used for handoff"
+                         width="1200" height="675" loading="lazy" decoding="async">
+                    -->
+                  </figure>
+                </div>
+              </li>
 
-            <!-- IMPLEMENTAÇÃO -->
-            <li class="timeline__step" data-reveal>
-              <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
-              <div class="timeline__body">
-                <h3 class="timeline__title">
-                  <span lang="pt-BR">Handoff e revisão</span><span lang="en">Handoff and review</span>
-                </h3>
-                <p class="timeline__text" lang="pt-BR">
-                  Aqui o handoff foi diferente: arquivo de Figma estruturado, com
-                  variáveis, e revisão junto com o desenvolvedor — comparando o que
-                  foi construído com o que foi prototipado, comportamento incluído.
-                  Nem tudo sobrevive à travessia. Às vezes o que foi implementado
-                  corretamente não tem o impacto visual que eu esperava, e é na
-                  revisão que isso aparece.
-                </p>
-                <p class="timeline__text" lang="en">
-                  Here the handoff was different: a structured Figma file with
-                  variables, plus review alongside the developer — comparing what
-                  was built with what was prototyped, behaviour included. Not
-                  everything survives the crossing. Sometimes what was implemented
-                  correctly doesn't land with the visual impact I expected, and
-                  review is where that shows up.
-                </p>
-                <!-- IMPLEMENTAÇÃO -->
-                <figure class="media media--16x9 media--sm">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Arquivo de handoff com variáveis · 1200×675</span><span lang="en">Handoff file with variables · 1200×675</span>
-                  </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-handoff.png"
-                       alt="Arquivo de Figma estruturado com variáveis, usado no handoff"
-                       data-en-alt="Structured Figma file with variables, used for handoff"
-                       width="1200" height="675" loading="lazy" decoding="async">
-                  -->
-                </figure>
-              </div>
-            </li>
-
-          </ol>
+            </ol>
+          </div>
         </div>
       </section>
 
@@ -937,9 +1024,9 @@
       <!-- 07 · SOLUÇÃO                                                         -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="solucao" aria-labelledby="solucao-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">06 — Solução</span><span lang="en">06 — Solution</span>
             </p>
@@ -948,101 +1035,103 @@
             </h2>
           </header>
 
-          <!-- MOCKUP -->
-          <figure class="media media--16x9 media--framed" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
-            </span>
-            <!--
-            <img src="../assets/images/projeto-02-solucao.png"
-                 alt="Telas do app: lista de paradas ordenada, captura de assinatura e foto da mercadoria"
-                 data-en-alt="App screens: ordered stop list, signature capture and photo of the goods"
-                 width="1600" height="900" loading="lazy" decoding="async">
-            -->
-          </figure>
+          <div class="case-section__body">
+            <!-- MOCKUP -->
+            <figure class="media media--16x9 media--framed" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
+              </span>
+              <!--
+              <img src="../assets/images/projeto-02-solucao.png"
+                   alt="Telas do app: lista de paradas ordenada, captura de assinatura e foto da mercadoria"
+                   data-en-alt="App screens: ordered stop list, signature capture and photo of the goods"
+                   width="1600" height="900" loading="lazy" decoding="async">
+              -->
+            </figure>
 
-          <div class="decisions" data-reveal>
+            <div class="decisions" data-reveal>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">A sequência chega pronta</span><span lang="en">The sequence arrives ready</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                O app não pede que o entregador decida nada sobre rota. A sequência
-                de paradas chega otimizada da plataforma do gestor, e a tela
-                principal responde a uma pergunta só: qual é a próxima. É a
-                resposta direta à frase que abre este case.
-              </p>
-              <p class="decision__text" lang="en">
-                The app doesn't ask the driver to decide anything about the route.
-                The sequence of stops arrives already optimised from the manager's
-                platform, and the main screen answers a single question: which one
-                is next. It's the direct answer to the quote that opens this case.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">A sequência chega pronta</span><span lang="en">The sequence arrives ready</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  O app não pede que o entregador decida nada sobre rota. A sequência
+                  de paradas chega otimizada da plataforma do gestor, e a tela
+                  principal responde a uma pergunta só: qual é a próxima. É a
+                  resposta direta à frase que abre este case.
+                </p>
+                <p class="decision__text" lang="en">
+                  The app doesn't ask the driver to decide anything about the route.
+                  The sequence of stops arrives already optimised from the manager's
+                  platform, and the main screen answers a single question: which one
+                  is next. It's the direct answer to the quote that opens this case.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">Foto, porque assinatura não é prova</span><span lang="en">A photo, because a signature isn't proof</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                A entrega se encerra com três registros: assinatura do entregador,
-                assinatura de quem recebeu e foto da mercadoria no local. A foto
-                existe por um motivo específico — assinatura em papel se perde e
-                pode ser forjada, e era disso que a gestão reclamava quando
-                precisava responder a um cliente. Prova que ninguém contesta vale
-                mais que prova que existe no formulário.
-              </p>
-              <p class="decision__text" lang="en">
-                A delivery closes with three records: the driver's signature, the
-                recipient's signature, and a photo of the goods on site. The photo
-                exists for a specific reason — a paper signature gets lost and can
-                be forged, and that was what management complained about when they
-                had to answer a client. Proof nobody disputes is worth more than
-                proof that merely exists on the form.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">Foto, porque assinatura não é prova</span><span lang="en">A photo, because a signature isn't proof</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  A entrega se encerra com três registros: assinatura do entregador,
+                  assinatura de quem recebeu e foto da mercadoria no local. A foto
+                  existe por um motivo específico — assinatura em papel se perde e
+                  pode ser forjada, e era disso que a gestão reclamava quando
+                  precisava responder a um cliente. Prova que ninguém contesta vale
+                  mais que prova que existe no formulário.
+                </p>
+                <p class="decision__text" lang="en">
+                  A delivery closes with three records: the driver's signature, the
+                  recipient's signature, and a photo of the goods on site. The photo
+                  exists for a specific reason — a paper signature gets lost and can
+                  be forged, and that was what management complained about when they
+                  had to answer a client. Proof nobody disputes is worth more than
+                  proof that merely exists on the form.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">Offline como estado normal, não como erro</span><span lang="en">Offline as a normal state, not an error</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                O entregador entra em prédio, em subsolo, em zona rural. O app
-                trata a falta de sinal como condição esperada e não como falha:
-                tudo é gravado em cache local, a entrega se conclui sem conexão e a
-                sincronização acontece quando o sinal volta. Um app de campo que só
-                funciona online não é um app de campo.
-              </p>
-              <p class="decision__text" lang="en">
-                Drivers walk into buildings, basements, rural areas. The app treats
-                loss of signal as an expected condition rather than a failure:
-                everything is written to a local cache, the delivery completes with
-                no connection, and syncing happens once the signal returns. A field
-                app that only works online isn't a field app.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">Offline como estado normal, não como erro</span><span lang="en">Offline as a normal state, not an error</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  O entregador entra em prédio, em subsolo, em zona rural. O app
+                  trata a falta de sinal como condição esperada e não como falha:
+                  tudo é gravado em cache local, a entrega se conclui sem conexão e a
+                  sincronização acontece quando o sinal volta. Um app de campo que só
+                  funciona online não é um app de campo.
+                </p>
+                <p class="decision__text" lang="en">
+                  Drivers walk into buildings, basements, rural areas. The app treats
+                  loss of signal as an expected condition rather than a failure:
+                  everything is written to a local cache, the delivery completes with
+                  no connection, and syncing happens once the signal returns. A field
+                  app that only works online isn't a field app.
+                </p>
+              </article>
 
-            <article class="decision">
-              <h3 class="decision__title">
-                <span lang="pt-BR">Uma mão, e sol na tela</span><span lang="en">One hand, and sun on the screen</span>
-              </h3>
-              <p class="decision__text" lang="pt-BR">
-                Contraste dimensionado para leitura sob sol direto, tudo alcançável
-                com uma das mãos e feedback visual explícito em cada passo. O
-                feedback não é enfeite: quem está na porta do cliente, com a caixa
-                no outro braço, precisa saber sem dúvida se a foto foi salva —
-                porque voltar depois não é uma opção.
-              </p>
-              <p class="decision__text" lang="en">
-                Contrast sized for reading in direct sunlight, everything reachable
-                one-handed, and explicit visual feedback at every step. The
-                feedback isn't decoration: someone at a customer's door, box under
-                the other arm, needs to know beyond doubt whether the photo saved —
-                because coming back later isn't an option.
-              </p>
-            </article>
+              <article class="decision">
+                <h3 class="decision__title">
+                  <span lang="pt-BR">Uma mão, e sol na tela</span><span lang="en">One hand, and sun on the screen</span>
+                </h3>
+                <p class="decision__text" lang="pt-BR">
+                  Contraste dimensionado para leitura sob sol direto, tudo alcançável
+                  com uma das mãos e feedback visual explícito em cada passo. O
+                  feedback não é enfeite: quem está na porta do cliente, com a caixa
+                  no outro braço, precisa saber sem dúvida se a foto foi salva —
+                  porque voltar depois não é uma opção.
+                </p>
+                <p class="decision__text" lang="en">
+                  Contrast sized for reading in direct sunlight, everything reachable
+                  one-handed, and explicit visual feedback at every step. The
+                  feedback isn't decoration: someone at a customer's door, box under
+                  the other arm, needs to know beyond doubt whether the photo saved —
+                  because coming back later isn't an option.
+                </p>
+              </article>
 
+            </div>
           </div>
         </div>
       </section>
@@ -1051,96 +1140,98 @@
       <!-- 08 · RESULTADOS                                                      -->
       <!-- ==================================================================== -->
       <section class="section" id="resultados" aria-labelledby="resultados-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">07 — Resultados</span><span lang="en">07 — Results</span>
             </p>
             <h2 class="section-head__title" id="resultados-titulo">
               <span lang="pt-BR">O que mudou, medido</span><span lang="en">What changed, measured</span>
             </h2>
-            <p class="section-head__lead" lang="pt-BR">
+          </header>
+
+          <div class="case-section__body">
+            <p class="section-head__lead" data-reveal lang="pt-BR">
               Combustível e produtividade eram os objetivos declarados, e apurar
               esses números depende de dados que ficam com a empresa cliente. Até
               o fechamento deste estudo de caso eles não estavam consolidados —
               então o que está abaixo é o que mudou na operação e é verificável
               hoje, não estimativa disfarçada de métrica.
             </p>
-            <p class="section-head__lead" lang="en">
+            <p class="section-head__lead" data-reveal lang="en">
               Fuel and productivity were the stated goals, and measuring them
               depends on data that sits with the client company. Up to the closing
               of this case study those figures weren't consolidated — so what
               follows is what changed in the operation and is verifiable today,
               not an estimate dressed up as a metric.
             </p>
-          </header>
+            <!-- MÉTRICAS -->
+            <!--
+              >> QUANDO OS NÚMEROS EXISTIREM
+              Duplique um bloco <div class="metric"> abaixo e preencha. Cada
+              métrica precisa das três partes, senão ela não sustenta pergunta:
+                metric__value  o número
+                metric__label  o que ele mede
+                metric__note   base anterior + como foi apurado
+              Ao inserir números, ajuste também o texto de abertura da seção,
+              que hoje declara que eles ainda não estavam consolidados.
 
-          <!-- MÉTRICAS -->
-          <!--
-            >> QUANDO OS NÚMEROS EXISTIREM
-            Duplique um bloco <div class="metric"> abaixo e preencha. Cada
-            métrica precisa das três partes, senão ela não sustenta pergunta:
-              metric__value  o número
-              metric__label  o que ele mede
-              metric__note   base anterior + como foi apurado
-            Ao inserir números, ajuste também o texto de abertura da seção,
-            que hoje declara que eles ainda não estavam consolidados.
+              <div class="metric">
+                <p class="metric__value">−00%</p>
+                <h3 class="metric__label">
+                  <span lang="pt-BR">Combustível por rota</span><span lang="en">Fuel per route</span>
+                </h3>
+                <p class="metric__note">
+                  <span lang="pt-BR">De X para Y · como foi apurado</span><span lang="en">From X to Y · how it was measured</span>
+                </p>
+              </div>
+            -->
 
-            <div class="metric">
-              <p class="metric__value">−00%</p>
-              <h3 class="metric__label">
-                <span lang="pt-BR">Combustível por rota</span><span lang="en">Fuel per route</span>
-              </h3>
-              <p class="metric__note">
-                <span lang="pt-BR">De X para Y · como foi apurado</span><span lang="en">From X to Y · how it was measured</span>
-              </p>
+            <div class="metrics" data-reveal>
+
+              <div class="metric">
+                <p class="metric__value">
+                  <span lang="pt-BR">Sem papel</span><span lang="en">No paper</span>
+                </p>
+                <h3 class="metric__label">
+                  <span lang="pt-BR">Gestão da entrega</span><span lang="en">Delivery management</span>
+                </h3>
+                <p class="metric__note">
+                  <span lang="pt-BR">O romaneio deixou de circular impresso e de ser redigitado no escritório</span><span lang="en">The manifest stopped circulating on paper and being retyped at the office</span>
+                </p>
+              </div>
+
+              <div class="metric">
+                <p class="metric__value">
+                  <span lang="pt-BR">Rastreável</span><span lang="en">Traceable</span>
+                </p>
+                <h3 class="metric__label">
+                  <span lang="pt-BR">Status da entrega</span><span lang="en">Delivery status</span>
+                </h3>
+                <p class="metric__note">
+                  <span lang="pt-BR">A gestão responde ao cliente sem precisar ligar para o entregador</span><span lang="en">Management answers the client without having to call the driver</span>
+                </p>
+              </div>
+
             </div>
-          -->
-
-          <div class="metrics" data-reveal>
-
-            <div class="metric">
-              <p class="metric__value">
-                <span lang="pt-BR">Sem papel</span><span lang="en">No paper</span>
-              </p>
-              <h3 class="metric__label">
-                <span lang="pt-BR">Gestão da entrega</span><span lang="en">Delivery management</span>
-              </h3>
-              <p class="metric__note">
-                <span lang="pt-BR">O romaneio deixou de circular impresso e de ser redigitado no escritório</span><span lang="en">The manifest stopped circulating on paper and being retyped at the office</span>
-              </p>
-            </div>
-
-            <div class="metric">
-              <p class="metric__value">
-                <span lang="pt-BR">Rastreável</span><span lang="en">Traceable</span>
-              </p>
-              <h3 class="metric__label">
-                <span lang="pt-BR">Status da entrega</span><span lang="en">Delivery status</span>
-              </h3>
-              <p class="metric__note">
-                <span lang="pt-BR">A gestão responde ao cliente sem precisar ligar para o entregador</span><span lang="en">Management answers the client without having to call the driver</span>
-              </p>
-            </div>
+            <!-- RESULTADOS -->
+            <figure class="media media--16x9" data-reveal>
+              <span class="media__label" aria-hidden="true">
+                <span lang="pt-BR">O ciclo completo da entrega · 1200×675</span><span lang="en">The full delivery cycle · 1200×675</span>
+              </span>
+              <!--
+              <img src="../assets/images/projeto-02-resultados.png"
+                   alt="Diagrama do ciclo: romaneio otimizado, execução no app e prova voltando para a gestão"
+                   data-en-alt="Cycle diagram: optimised manifest, execution in the app, and proof returning to management"
+                   width="1200" height="675" loading="lazy" decoding="async">
+              -->
+              <figcaption class="media__caption">
+                <span lang="pt-BR">O ciclo fechado: o gestor otimiza a sequência, o entregador executa no app, e a prova volta para a gestão sem ninguém redigitar nada.</span><span lang="en">The closed loop: the manager optimises the sequence, the driver executes it in the app, and the proof returns to management with nobody retyping anything.</span>
+              </figcaption>
+            </figure>
 
           </div>
-          <!-- RESULTADOS -->
-          <figure class="media media--16x9 container--prose" data-reveal>
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">O ciclo completo da entrega · 1200×675</span><span lang="en">The full delivery cycle · 1200×675</span>
-            </span>
-            <!--
-            <img src="../assets/images/projeto-02-resultados.png"
-                 alt="Diagrama do ciclo: romaneio otimizado, execução no app e prova voltando para a gestão"
-                 data-en-alt="Cycle diagram: optimised manifest, execution in the app, and proof returning to management"
-                 width="1200" height="675" loading="lazy" decoding="async">
-            -->
-            <figcaption class="media__caption">
-              <span lang="pt-BR">O ciclo fechado: o gestor otimiza a sequência, o entregador executa no app, e a prova volta para a gestão sem ninguém redigitar nada.</span><span lang="en">The closed loop: the manager optimises the sequence, the driver executes it in the app, and the proof returns to management with nobody retyping anything.</span>
-            </figcaption>
-          </figure>
-
         </div>
       </section>
 
@@ -1148,9 +1239,9 @@
       <!-- 09 · APRENDIZADOS                                                    -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="aprendizados" aria-labelledby="aprendizados-titulo">
-        <div class="container container--prose">
+        <div class="container case-section">
 
-          <header class="section-head" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">08 — Aprendizados</span><span lang="en">08 — Learnings</span>
             </p>
@@ -1159,45 +1250,47 @@
             </h2>
           </header>
 
-          <div class="prose" data-reveal>
-            <p lang="pt-BR">
-              <strong>Protótipo aprovado não é produto entregue.</strong> O handoff
-              aqui foi um arquivo de Figma bem estruturado, com variáveis, e eu
-              tratei isso como suficiente. Não era. Mais de uma vez o desenvolvedor
-              implementou exatamente o que estava especificado e o resultado não
-              teve o impacto que eu esperava — porque impacto depende de coisas que
-              um arquivo estático não carrega: timing, transição, e o que acontece
-              com o elemento quando o dado real é maior que o do exemplo. Eu
-              descobria isso na revisão, quando já era retrabalho.
-            </p>
-            <p lang="en">
-              <strong>An approved prototype isn't a shipped product.</strong> The
-              handoff here was a well-structured Figma file with variables, and I
-              treated that as enough. It wasn't. More than once the developer
-              implemented exactly what was specified and the result didn't land the
-              way I expected — because impact depends on things a static file
-              doesn't carry: timing, transition, and what happens to an element
-              when the real data is longer than the example. I found this out in
-              review, when it was already rework.
-            </p>
+          <div class="case-section__body">
+            <div class="prose" data-reveal>
+              <p lang="pt-BR">
+                <strong>Protótipo aprovado não é produto entregue.</strong> O handoff
+                aqui foi um arquivo de Figma bem estruturado, com variáveis, e eu
+                tratei isso como suficiente. Não era. Mais de uma vez o desenvolvedor
+                implementou exatamente o que estava especificado e o resultado não
+                teve o impacto que eu esperava — porque impacto depende de coisas que
+                um arquivo estático não carrega: timing, transição, e o que acontece
+                com o elemento quando o dado real é maior que o do exemplo. Eu
+                descobria isso na revisão, quando já era retrabalho.
+              </p>
+              <p lang="en">
+                <strong>An approved prototype isn't a shipped product.</strong> The
+                handoff here was a well-structured Figma file with variables, and I
+                treated that as enough. It wasn't. More than once the developer
+                implemented exactly what was specified and the result didn't land the
+                way I expected — because impact depends on things a static file
+                doesn't carry: timing, transition, and what happens to an element
+                when the real data is longer than the example. I found this out in
+                review, when it was already rework.
+              </p>
 
-            <p lang="pt-BR">
-              <strong>Hoje eu faço o MVP do MVP.</strong> Divido muito mais. Em vez
-              de validar um aplicativo, valido os mini-ecossistemas que o compõem:
-              cada fluxo que tem começo, meio e fim próprios é validado separado,
-              antes de existir tela integrada. Fatiar assim antecipa o que só
-              apareceria na revisão e reduz o tamanho do que precisa ser refeito
-              quando algo não sobrevive à implementação.
-            </p>
-            <p lang="en">
-              <strong>These days I build the MVP of the MVP.</strong> I break things
-              down much further. Instead of validating an app, I validate the
-              mini-ecosystems that make it up: every flow with its own beginning,
-              middle and end gets validated on its own, before any integrated
-              screen exists. Slicing it that way surfaces early what would
-              otherwise only appear in review, and shrinks how much has to be
-              redone when something doesn't survive implementation.
-            </p>
+              <p lang="pt-BR">
+                <strong>Hoje eu faço o MVP do MVP.</strong> Divido muito mais. Em vez
+                de validar um aplicativo, valido os mini-ecossistemas que o compõem:
+                cada fluxo que tem começo, meio e fim próprios é validado separado,
+                antes de existir tela integrada. Fatiar assim antecipa o que só
+                apareceria na revisão e reduz o tamanho do que precisa ser refeito
+                quando algo não sobrevive à implementação.
+              </p>
+              <p lang="en">
+                <strong>These days I build the MVP of the MVP.</strong> I break things
+                down much further. Instead of validating an app, I validate the
+                mini-ecosystems that make it up: every flow with its own beginning,
+                middle and end gets validated on its own, before any integrated
+                screen exists. Slicing it that way surfaces early what would
+                otherwise only appear in review, and shrinks how much has to be
+                redone when something doesn't survive implementation.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1206,9 +1299,9 @@
       <!-- 10 · GALERIA + LIGHTBOX                                              -->
       <!-- ==================================================================== -->
       <section class="section" id="galeria" aria-labelledby="galeria-titulo">
-        <div class="container">
+        <div class="container case-section">
 
-          <header class="section-head container--prose" data-reveal>
+          <header class="section-head case-section__head" data-reveal>
             <p class="eyebrow">
               <span lang="pt-BR">09 — Galeria</span><span lang="en">09 — Gallery</span>
             </p>
@@ -1217,153 +1310,155 @@
             </h2>
           </header>
 
-          <ul class="gallery" data-gallery data-reveal>
+          <div class="case-section__body">
+            <ul class="gallery" data-gallery data-reveal>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-02-galeria-01.jpg"
-                 data-caption="A tela que responde “qual é a próxima parada”"
-                 data-caption-en="The screen that answers “which stop is next”">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-02-galeria-01.jpg"
+                   data-caption="A tela que responde “qual é a próxima parada”"
+                   data-caption-en="The screen that answers “which stop is next”">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-galeria-01-thumb.jpg"
+                         alt="Tela principal do app com a sequência de paradas já ordenada"
+                         data-en-alt="App home screen with the stop sequence already ordered"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: lista de paradas</span><span lang="en">Enlarge: stop list</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-galeria-01-thumb.jpg"
-                       alt="Tela principal do app com a sequência de paradas já ordenada"
-                       data-en-alt="App home screen with the stop sequence already ordered"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: lista de paradas</span><span lang="en">Enlarge: stop list</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-02-galeria-02.jpg"
-                 data-caption="Captura de assinatura na porta do cliente"
-                 data-caption-en="Capturing a signature at the customer's door">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-02-galeria-02.jpg"
+                   data-caption="Captura de assinatura na porta do cliente"
+                   data-caption-en="Capturing a signature at the customer's door">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-galeria-02-thumb.jpg"
+                         alt="Tela de captura de assinatura do entregador e de quem recebeu"
+                         data-en-alt="Signature capture screen for the driver and the recipient"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: captura de assinatura</span><span lang="en">Enlarge: signature capture</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-galeria-02-thumb.jpg"
-                       alt="Tela de captura de assinatura do entregador e de quem recebeu"
-                       data-en-alt="Signature capture screen for the driver and the recipient"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: captura de assinatura</span><span lang="en">Enlarge: signature capture</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-02-galeria-03.jpg"
-                 data-caption="Foto da mercadoria no local: a prova que não pode ser forjada"
-                 data-caption-en="Photo of the goods on site: the proof that can't be forged">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-02-galeria-03.jpg"
+                   data-caption="Foto da mercadoria no local: a prova que não pode ser forjada"
+                   data-caption-en="Photo of the goods on site: the proof that can't be forged">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-galeria-03-thumb.jpg"
+                         alt="Tela de registro fotográfico da mercadoria entregue"
+                         data-en-alt="Screen for photographing the delivered goods"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: foto da mercadoria</span><span lang="en">Enlarge: photo of the goods</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-galeria-03-thumb.jpg"
-                       alt="Tela de registro fotográfico da mercadoria entregue"
-                       data-en-alt="Screen for photographing the delivered goods"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: foto da mercadoria</span><span lang="en">Enlarge: photo of the goods</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-02-galeria-04.jpg"
-                 data-caption="Sem sinal: a entrega se conclui e sincroniza depois"
-                 data-caption-en="No signal: the delivery completes and syncs later">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-02-galeria-04.jpg"
+                   data-caption="Sem sinal: a entrega se conclui e sincroniza depois"
+                   data-caption-en="No signal: the delivery completes and syncs later">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-galeria-04-thumb.jpg"
+                         alt="Estados de conexão do app, com entrega concluída offline e pendente de sincronização"
+                         data-en-alt="App connection states, with a delivery completed offline and pending sync"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: estados de offline e sincronização</span><span lang="en">Enlarge: offline and sync states</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-galeria-04-thumb.jpg"
-                       alt="Estados de conexão do app, com entrega concluída offline e pendente de sincronização"
-                       data-en-alt="App connection states, with a delivery completed offline and pending sync"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: estados de offline e sincronização</span><span lang="en">Enlarge: offline and sync states</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-02-galeria-05.jpg"
-                 data-caption="Wireframes de baixa fidelidade, validados antes de subir a fidelidade"
-                 data-caption-en="Low-fidelity wireframes, validated before raising fidelity">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-02-galeria-05.jpg"
+                   data-caption="Wireframes de baixa fidelidade, validados antes de subir a fidelidade"
+                   data-caption-en="Low-fidelity wireframes, validated before raising fidelity">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-galeria-05-thumb.jpg"
+                         alt="Conjunto de wireframes de baixa fidelidade do fluxo de entrega"
+                         data-en-alt="Set of low-fidelity wireframes of the delivery flow"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: wireframes de baixa fidelidade</span><span lang="en">Enlarge: low-fidelity wireframes</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-galeria-05-thumb.jpg"
-                       alt="Conjunto de wireframes de baixa fidelidade do fluxo de entrega"
-                       data-en-alt="Set of low-fidelity wireframes of the delivery flow"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: wireframes de baixa fidelidade</span><span lang="en">Enlarge: low-fidelity wireframes</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="gallery__item">
-              <a class="gallery__link" href="../assets/images/projeto-02-galeria-06.jpg"
-                 data-caption="A plataforma do gestor, onde a sequência é otimizada"
-                 data-caption-en="The manager's platform, where the sequence is optimised">
-                <figure class="media media--4x3">
-                  <span class="media__label" aria-hidden="true">
-                    <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
+              <li class="gallery__item">
+                <a class="gallery__link" href="../assets/images/projeto-02-galeria-06.jpg"
+                   data-caption="A plataforma do gestor, onde a sequência é otimizada"
+                   data-caption-en="The manager's platform, where the sequence is optimised">
+                  <figure class="media media--4x3">
+                    <span class="media__label" aria-hidden="true">
+                      <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
+                    </span>
+                    <!--
+                    <img src="../assets/images/projeto-02-galeria-06-thumb.jpg"
+                         alt="Tela da plataforma de otimização de romaneios usada pelo gestor de logística"
+                         data-en-alt="Screen of the manifest optimisation platform used by the logistics manager"
+                         width="1200" height="900" loading="lazy" decoding="async">
+                    -->
+                    <span class="gallery__zoom" aria-hidden="true">
+                      <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
+                    </span>
+                  </figure>
+                  <span class="visually-hidden">
+                    <span lang="pt-BR">Ampliar: plataforma do gestor</span><span lang="en">Enlarge: manager platform</span>
                   </span>
-                  <!--
-                  <img src="../assets/images/projeto-02-galeria-06-thumb.jpg"
-                       alt="Tela da plataforma de otimização de romaneios usada pelo gestor de logística"
-                       data-en-alt="Screen of the manifest optimisation platform used by the logistics manager"
-                       width="1200" height="900" loading="lazy" decoding="async">
-                  -->
-                  <span class="gallery__zoom" aria-hidden="true">
-                    <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
-                  </span>
-                </figure>
-                <span class="visually-hidden">
-                  <span lang="pt-BR">Ampliar: plataforma do gestor</span><span lang="en">Enlarge: manager platform</span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-          </ul>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -1395,13 +1490,124 @@
                 </svg>
                 <span lang="pt-BR">Entrar em contato</span><span lang="en">Get in touch</span>
               </a>
-              <a class="btn btn--secondary btn--lg" href="projeto-03.html">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="#i-arrow-right"></use>
-                </svg>
-                <span lang="pt-BR">Próximo caso: a Roteirização</span><span lang="en">Next case: route planning</span>
-              </a>
             </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- ==================================================================== -->
+      <!-- OUTROS PROJETOS — anterior e próximo, em ciclo (01 → 02 → 03 → 01). -->
+      <!-- Os textos são os mesmos dos cards da home e de /projetos.            -->
+      <!-- ==================================================================== -->
+      <section class="section case-more" aria-labelledby="outros-titulo">
+        <div class="container">
+
+          <header class="section-bar" data-reveal>
+            <h2 class="section-bar__title" id="outros-titulo">
+              <span lang="pt-BR">Outros projetos</span><span lang="en">More work</span>
+            </h2>
+            <a class="text-link" href="../projetos.html">
+              <span lang="pt-BR">Ver todos</span><span lang="en">View all</span>
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </a>
+          </header>
+
+          <div class="work-pair">
+
+            <!-- ANTERIOR -->
+            <article class="work-card" data-reveal aria-labelledby="anterior-titulo">
+              <figure class="media media--21x9 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa do PDV Nasajon · 21:9 · 1680×720</span><span lang="en">Nasajon POS cover · 21:9 · 1680×720</span>
+                </span>
+                <!--
+                <img src="../assets/images/projeto-01-capa-21x9.jpg"
+                     alt=""
+                     width="1680" height="720" loading="lazy" decoding="async">
+                -->
+              </figure>
+              <div class="work-card__body">
+                <p class="work-card__direction">
+                  <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="#i-arrow-left"></use></svg>
+                  <span lang="pt-BR">Anterior</span><span lang="en">Previous</span>
+                </p>
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">Nasajon</li>
+                  <li class="meta-inline__item">2026</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span>
+                  </li>
+                </ul>
+                <h3 class="work-card__title" id="anterior-titulo">
+                  <a class="work-card__link" href="projeto-01.html">
+                    <span lang="pt-BR">Um PDV que sai do balcão</span><span lang="en">A POS that leaves the counter</span>
+                  </a>
+                </h3>
+                <p class="work-card__summary" lang="pt-BR">
+                  Redesenho mobile-first do ponto de venda para quem
+                  atende longe do caixa.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Mobile-first redesign of the point of sale for staff
+                  who serve away from the register.
+                </p>
+                <p class="work-card__metric">
+                  <span class="work-card__metric-value">−30%</span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">no tempo de fechamento de venda</span><span lang="en">in time to close a sale</span>
+                  </span>
+                </p>
+              </div>
+            </article>
+
+            <!-- PRÓXIMO -->
+            <article class="work-card" data-reveal aria-labelledby="proximo-titulo">
+              <figure class="media media--21x9 work-card__media">
+                <span class="media__label" aria-hidden="true">
+                  <span lang="pt-BR">Capa da Roteirização · 21:9 · 1680×720</span><span lang="en">Route planning cover · 21:9 · 1680×720</span>
+                </span>
+                <!--
+                <img src="../assets/images/projeto-03-capa.jpg"
+                     alt=""
+                     width="1680" height="720" loading="lazy" decoding="async">
+                -->
+              </figure>
+              <div class="work-card__body">
+                <p class="work-card__direction">
+                  <span lang="pt-BR">Próximo</span><span lang="en">Next</span>
+                  <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+                </p>
+                <ul class="meta-inline">
+                  <li class="meta-inline__item">Nasajon</li>
+                  <li class="meta-inline__item">2025</li>
+                  <li class="meta-inline__item">
+                    <span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span>
+                  </li>
+                </ul>
+                <h3 class="work-card__title" id="proximo-titulo">
+                  <a class="work-card__link" href="projeto-03.html">
+                    <span lang="pt-BR">Rota calculada, decisão preservada</span><span lang="en">Route calculated, decision preserved</span>
+                  </a>
+                </h3>
+                <p class="work-card__summary" lang="pt-BR">
+                  Roteirização automática por veículo, peso e distância,
+                  sem tirar a palavra final do gestor.
+                </p>
+                <p class="work-card__summary" lang="en">
+                  Automatic route planning by vehicle, weight and
+                  distance, without taking the final say away from the
+                  manager.
+                </p>
+                <p class="work-card__metric">
+                  <span class="work-card__metric-value">−40%</span>
+                  <span class="work-card__metric-label">
+                    <span lang="pt-BR">no custo por rota</span><span lang="en">in cost per route</span>
+                  </span>
+                </p>
+              </div>
+            </article>
 
           </div>
         </div>

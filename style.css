@@ -29,7 +29,8 @@
    16b· PÁGINA DE PROJETOS (page-intro · page-toolbar · filter · work-grid)
    17 · CONTATO
    18 · FOOTER
-   19 · CASE · BREADCRUMB E HERO
+   19 · CASE · BREADCRUMB, HERO, FICHA, EM 30 SEGUNDOS, ÍNDICE, DUAS
+        COLUNAS E OUTROS PROJETOS
    20 · CASE · SPLIT E CHECKLIST
    21 · CASE · TIMELINE
    22 · CASE · DECISÕES E MÉTRICAS
@@ -45,7 +46,8 @@
    • Breakpoints:
        40rem (640px)  — grades de 2 colunas e ajustes de proporção
        56rem (896px)  — troca do menu mobile para a navegação desktop
-       72rem (1152px) — layout editorial dos cards de projeto
+                        e card grande de projeto na horizontal
+       64rem (1024px) — seções do case em duas colunas (título | conteúdo)
    • Animações usam somente transform e opacity: nunca geram reflow.
 
    CAMADAS (z-index) — uma lista curta e explícita evita a guerra de números
@@ -1010,6 +1012,21 @@ main[id] {
   color: var(--c-text-subtle);
   font-size: var(--fs-sm);
   font-weight: 500;
+}
+
+/* Fala de usuário em destaque (seção Problema dos cases): o mesmo filete,
+   sobre uma superfície, com o texto um degrau acima. */
+.quote--lg {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background-color: var(--c-surface);
+  border-inline-start-width: 3px;
+  border-start-end-radius: var(--radius-lg);
+  border-end-end-radius: var(--radius-lg);
+}
+
+.quote--lg .quote__text {
+  font-size: var(--fs-xl);
+  line-height: var(--lh-heading);
 }
 
 
@@ -2295,28 +2312,54 @@ main[id] {
   line-height: var(--lh-tight);
 }
 
+/* Subtítulo de uma linha no desktop: a medida acomoda ~75 caracteres. */
 .case-hero__lead {
   margin-block-start: var(--sp-5);
-  max-width: 54ch;
+  max-width: 68ch;
   color: var(--c-text-muted);
   font-size: var(--fs-md);
   text-wrap: pretty;
 }
 
-/* ---------- METADADOS DO PROJETO ----------
-   Grade de fatos com filetes: densa e escaneável, e cada linha continua
-   sendo um par <dt>/<dd> legítimo para leitores de tela. */
+/* Imagem hero: vem logo depois do subtítulo, antes da ficha. */
+.case-hero__media {
+  margin-block-start: clamp(2rem, 4vw, 3rem);
+}
+
+/* ---------- FICHA DO PROJETO ----------
+   Papel · Time · Duração · Ferramentas, numa faixa logo abaixo da imagem.
+   No mobile cada fato é uma linha com filete; a partir de 56rem viram
+   colunas lado a lado, separadas por filete vertical. grid-auto-flow
+   column aceita qualquer número de fatos sem mudar o CSS.
+   Cada fato continua sendo um par <dt>/<dd> legítimo. */
 .case-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  margin-block: clamp(2.5rem, 5vw, 3.5rem);
+  margin-block-start: clamp(1.5rem, 3vw, 2rem);
   border-block-start: 1px solid var(--c-border);
 }
 
 .case-meta__row {
   padding-block: var(--sp-4);
-  padding-inline-end: var(--sp-5);
   border-block-end: 1px solid var(--c-border);
+}
+
+@media (min-width: 56rem) {
+  .case-meta {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    border-block-end: 1px solid var(--c-border);
+  }
+
+  .case-meta__row {
+    padding-inline: var(--sp-5);
+    border-block-end: 0;
+    border-inline-start: 1px solid var(--c-border);
+  }
+
+  .case-meta__row:first-child {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
 }
 
 .case-meta__label {
@@ -2332,6 +2375,189 @@ main[id] {
   font-size: var(--fs-sm);
   font-weight: 500;
   line-height: var(--lh-snug);
+}
+
+/* ---------- EM 30 SEGUNDOS ----------
+   Problema · O que eu fiz · Resultado. Quem só tem meio minuto lê isto e
+   sai sabendo do case; o resto da página é para quem quer o porquê.
+   O cartão de resultado é o único com o número em display e accent. */
+.case-summary {
+  padding-block-end: 0;
+}
+
+.case-summary__title {
+  margin-block-end: var(--sp-5);
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.summary {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+.summary__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+}
+
+.summary__label {
+  color: var(--c-accent-text);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.summary__text {
+  color: var(--c-text-muted);
+  line-height: var(--lh-snug);
+  text-wrap: pretty;
+}
+
+.summary__card--result {
+  background-image: linear-gradient(160deg, var(--c-accent-soft), transparent 65%);
+  border-color: var(--c-accent-line);
+}
+
+.summary__value {
+  color: var(--c-accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary__card--result .summary__text {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.summary__note {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+}
+
+@media (min-width: 56rem) {
+  .summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---------- ÍNDICE DO CASE ----------
+   Chips com âncora para as seções. 44px de alvo de toque. */
+.case-toc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3) var(--sp-4);
+  margin-block-start: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.case-toc__label {
+  color: var(--c-text-subtle);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.case-toc__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.case-toc__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: var(--sp-4);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-pill);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition:
+    color        var(--t) var(--ease),
+    border-color var(--t) var(--ease);
+}
+
+.case-toc__link:hover {
+  border-color: var(--c-accent-line);
+  color: var(--c-text);
+}
+
+/* ---------- SEÇÕES EM DUAS COLUNAS ----------
+   Mobile e tablet: empilhado, como sempre. A partir de 64rem, eyebrow e
+   título ficam numa coluna estreita à esquerda — presos no topo enquanto
+   a seção rola — e todo o conteúdo à direita.
+   O espaço entre os blocos do corpo vem do gap; as margens próprias dos
+   componentes (quote, metrics, decisions…) são zeradas aqui para não
+   somarem. */
+.case-section__body {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+  min-width: 0;
+}
+
+/* Inclui o .section-head__lead, que saiu do cabeçalho para o corpo: os
+   gêmeos de idioma escondidos não ocupam célula, então o gap basta. */
+.case-section__body > * {
+  margin-block: 0;
+}
+
+@media (min-width: 64rem) {
+  .case-section {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    column-gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .case-section__head {
+    position: sticky;
+    inset-block-start: calc(var(--header-h) + var(--sp-5));
+    margin-block-end: 0;
+  }
+
+  .case-section__head .section-head__title {
+    font-size: var(--fs-xl);
+  }
+}
+
+/* ---------- OUTROS PROJETOS ----------
+   Fim da página: anterior e próximo, com os mesmos .work-card da home. */
+.work-pair {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+@media (min-width: 40rem) {
+  .work-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.work-card__direction {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--c-accent-text);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 
 

@@ -396,9 +396,19 @@ Abra o arquivo novo e percorra os blocos marcados com **`>> PREENCHER`**.
 Eles estão na ordem da narrativa, que é fixa e não deve ser reordenada:
 
 ```
-Hero → Contexto → Desafio → Objetivos → Meu Papel → Processo →
-Solução → Resultados → Aprendizados → Galeria
+Hero (título · subtítulo · imagem 21:9 · ficha) → Em 30 segundos + índice →
+Contexto → Problema → Objetivos → Meu Papel → Processo → Solução →
+Resultados → Aprendizados → Galeria → Contato → Outros projetos
 ```
+
+Três regras de leitura valem para todo case:
+
+- **Em 30 segundos** (Problema · O que eu fiz · Resultado) usa só texto que
+  já está no case — nada escrito do zero para o resumo.
+- **No máximo 2 parágrafos seguidos sem imagem.**
+- **Outros projetos** aponta para o anterior e o próximo na ordem de
+  `projetos.html`, em ciclo. Ao adicionar um case, atualize também os
+  vizinhos dele.
 
 Não esqueça do `<head>`: `title`, `description`, `canonical`, Open Graph e
 Twitter Card são por página.
