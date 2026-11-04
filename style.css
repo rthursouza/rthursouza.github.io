@@ -2486,11 +2486,40 @@ main[id] {
   line-height: var(--lh-snug);
 }
 
-/* ---------- FORMAÇÃO ---------- */
+/* ---------- FORMAÇÃO ----------
+   Graduação em destaque; "Outros cursos" abaixo de um filete, com o mesmo
+   rótulo em caixa alta do .term-list. Curso · instituição numa linha, com
+   o ponto gerado em CSS (não é lido em voz alta). */
 .education__course {
   margin-block-end: var(--sp-2);
   font-size: var(--fs-md);
   font-weight: 600;
+}
+
+.education__subtitle {
+  margin-block: var(--sp-5) var(--sp-2);
+  padding-block-start: var(--sp-4);
+  border-block-start: 1px solid var(--color-border);
+  color: var(--color-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.education__item {
+  padding-block: var(--sp-1);
+  line-height: var(--lh-snug);
+}
+
+.education__school {
+  color: var(--color-text-muted);
+}
+
+.education__school::before {
+  content: "·";
+  margin-inline: var(--sp-2);
+  color: var(--color-border-strong);
 }
 
 
