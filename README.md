@@ -77,13 +77,14 @@ arquivos que dependem de você.
 
 | Marcador | Onde aparece | Trocar por |
 |---|---|---|
-| `https://SEU-DOMINIO.com` | `canonical`, `og:url`, `og:image`, `twitter:image` | A URL final do site |
+| `https://SEU-DOMINIO.com` | `canonical`, `og:url`, `og:image`, `twitter:image` — hoje **comentadas** com `<!-- PUBLICAR: … -->` | A URL final do site, e tirar o comentário |
 | `assets/curriculo-arthursouza-ux.pdf` | botão Currículo e rodapé | O link já existe — falta **salvar o PDF** com esse nome exato |
 | `assets/images/og-cover.jpg` | `og:image` da home | Sua imagem de compartilhamento (1200×630) |
 | `assets/images/og-projeto-0*.jpg` | `og:image` de cada case | Uma por case (1200×630) |
 
-**Publicar com o `canonical` errado atrapalha a indexação** — é o único item
-desta lista que causa dano real se ficar para depois.
+**Publicar com o `canonical` errado atrapalha a indexação.** Por isso, enquanto
+o site não tem endereço, essas quatro tags ficam comentadas em todas as
+páginas. Os scripts abaixo trocam o domínio **e** reativam as tags de uma vez.
 
 ### Trocando o domínio quando você decidir
 
@@ -93,6 +94,7 @@ desta lista que causa dano real se ficar para depois.
 Get-ChildItem -Recurse -Include *.html | ForEach-Object {
   $t = Get-Content $_.FullName -Raw -Encoding UTF8
   $t = $t.Replace('https://SEU-DOMINIO.com', 'https://arthursouza.com')
+  $t = $t -replace '<!-- PUBLICAR: (<[^>]+>) -->', '$1'
   Set-Content $_.FullName -Value $t -Encoding UTF8 -NoNewline
 }
 ```
@@ -101,7 +103,8 @@ Get-ChildItem -Recurse -Include *.html | ForEach-Object {
 
 ```bash
 find . -name "*.html" -exec sed -i '' \
-  -e 's|https://SEU-DOMINIO\.com|https://arthursouza.com|g' {} +
+  -e 's|https://SEU-DOMINIO\.com|https://arthursouza.com|g' \
+  -e 's|<!-- PUBLICAR: \(<[^>]*>\) -->|\1|g' {} +
 ```
 
 > No Linux use `sed -i` sem o `''` logo depois.
@@ -109,7 +112,7 @@ find . -name "*.html" -exec sed -i '' \
 ### Conferindo se sobrou algo
 
 ```powershell
-Select-String -Path *.html, projects/*.html -Pattern 'SEU-DOMINIO'
+Select-String -Path *.html, projects/*.html -Pattern 'SEU-DOMINIO|PUBLICAR:'
 ```
 
 Nenhum resultado = pronto para publicar.
@@ -120,7 +123,7 @@ Nenhum resultado = pronto para publicar.
 - [x] Dados pessoais, bio, habilidades e cards
 - [x] Os três estudos de caso reescritos com projetos reais
 - [x] `curriculo-arthursouza-ux.pdf` salvo em `assets/`
-- [ ] Trocar `SEU-DOMINIO` pela URL final ← **único item que causa dano se ficar para depois**
+- [ ] Trocar `SEU-DOMINIO` pela URL final e reativar as tags `PUBLICAR:` ← **único item que causa dano se ficar para depois**
 - [ ] Substituir os placeholders de imagem (veja `IMAGENS.md`)
 - [ ] Gerar as 4 imagens de Open Graph (1200×630)
 - [ ] Gerar o favicon definitivo, se quiser substituir o SVG embutido
@@ -424,8 +427,8 @@ referência de tom e troque pelo seu conteúdo.
 
 ### 7.2 · O card em `projetos.html`
 
-Todo projeto entra aqui. Dentro de `<ul class="work-grid">`, duplique um
-`<li class="work-grid__item">` inteiro e troque:
+Todo projeto entra aqui. Dentro de `<ul class="project-grid">`, duplique um
+`<li class="project-grid__item">` inteiro e troque:
 
 - o `href` do link do título (é o **único** link do card — o `::after` dele
   cobre o card inteiro, então não há link na imagem);
@@ -435,22 +438,22 @@ Todo projeto entra aqui. Dentro de `<ul class="work-grid">`, duplique um
 - `data-project-area`: as áreas do filtro, separadas por espaço
   (`erp-varejo`, `logistica`, `mobile`, `gestao-dados`);
 - o placeholder da capa (4:3);
-- o selo `work-card__badge` ("Destaque"): mantenha só se o projeto também
+- o selo `project-card__badge` ("Destaque"): mantenha só se o projeto também
   estiver na home; senão, apague o `<p>` inteiro.
 
 ```html
-<li class="work-grid__item" data-reveal data-project-area="logistica mobile">
-  <article class="work-card" aria-labelledby="lista-04-titulo">
-    <figure class="media media--4x3 work-card__media">...</figure>
-    <div class="work-card__body">
-      <ul class="meta-inline">...</ul>
-      <h2 class="work-card__title" id="lista-04-titulo">
-        <a class="work-card__link" href="projects/projeto-04.html">
+<li class="project-grid__item" data-reveal data-project-area="logistica mobile">
+  <article class="project-card" aria-labelledby="lista-04-titulo">
+    <figure class="media media--4x3 project-card__media">...</figure>
+    <div class="project-card__body">
+      <ul class="meta-list">...</ul>
+      <h2 class="project-card__title" id="lista-04-titulo">
+        <a class="project-card__link" href="projects/projeto-04.html">
           <span lang="pt-BR">Título em português</span><span lang="en">Title in English</span>
         </a>
       </h2>
       ...
-      <p class="work-card__metric">...</p>
+      <p class="project-card__metric">...</p>
     </div>
   </article>
 </li>
@@ -463,14 +466,14 @@ HTML é só o fallback. O filtro por área já está no markup, escondido; o
 
 ### 7.3 · O card na home (só destaques)
 
-A home mostra três projetos: um card grande (`work-card work-card--lead`,
-imagem 16:9) e dois menores (`work-card`, imagem 21:9). Para trocar um
-destaque, edite o `<article>` correspondente em `<div class="featured">`,
+A home mostra três projetos: um card grande (`project-card project-card--featured`,
+imagem 16:9) e dois menores (`project-card`, imagem 21:9). Para trocar um
+destaque, edite o `<article>` correspondente em `<div class="featured-projects">`,
 com as mesmas regras do card acima (um link só, `id` único). Os títulos
 aqui são `h3`, porque ficam abaixo do `h2` "Projetos em destaque".
 
 Sem métrica real, não invente: deixe o placeholder `[PENDENTE]` com o
-modificador `work-card__metric--pending` até ter o número.
+modificador `project-card__metric--pending` até ter o número.
 
 ---
 
@@ -479,47 +482,47 @@ modificador `work-card__metric--pending` até ter o número.
 Toda a linguagem visual está no bloco **02 · TOKENS** do `style.css`. Fora dele
 não existe cor, raio, sombra ou duração escrita à mão.
 
-A paleta é **"Papel & Tinta"**: papel quente e tinta de caneta. Texto nunca é
-preto nem branco puro — no modo escuro é papel claro visto à luz de um abajur.
+A paleta é quente: terracota como cor de ação sobre azul-escuro (modo escuro)
+ou creme (modo claro). Texto nunca é preto nem branco puro.
 
 ```css
 :root {
-  --c-bg:            #20293A;   /* fundo da página                    */
-  --c-bg-alt:        #242E41;   /* seções alternadas                  */
-  --c-surface:       #2A3549;   /* cards                              */
-  --c-surface-2:     #33405A;   /* card em hover                      */
-  --c-text:          #F2EDE3;
-  --c-text-muted:    #B7BDCB;   /* texto secundário                   */
-  --c-text-subtle:   #7B8499;   /* meta e decoração                   */
-  --c-accent:        #E08A63;   /* terracota: a cor de ação           */
-  --c-accent-ink:    #20293A;   /* texto SOBRE a cor de destaque      */
-  --c-accent-text:   #E08A63;   /* a cor de ação em texto miúdo       */
-  --c-border:        rgba(242, 237, 227, .10);
+  --color-bg:            #20293A;   /* fundo da página                    */
+  --color-bg-alt:        #242E41;   /* seções alternadas                  */
+  --color-surface:       #2A3549;   /* cards                              */
+  --color-surface-2:     #33405A;   /* card em hover                      */
+  --color-text:          #F2EDE3;
+  --color-text-muted:    #B7BDCB;   /* texto secundário                   */
+  --color-text-subtle:   #7B8499;   /* meta e decoração                   */
+  --color-accent:        #E08A63;   /* terracota: a cor de ação           */
+  --color-on-accent:    #20293A;   /* texto SOBRE a cor de destaque      */
+  --color-accent-text:   #E08A63;   /* a cor de ação em texto miúdo       */
+  --color-border:        rgba(242, 237, 227, .10);
 }
 ```
 
-O mesmo bloco traz os tokens de estado (`--c-positive`, `--c-danger`,
-`--c-warning`), as lavagens de fundo (`--c-glow`, `--c-sheen`, `--c-hatch`) e
-a **tinta fixa** (`--c-ink-*`), que é o entorno escuro do lightbox nos dois
+O mesmo bloco traz os tokens de estado (`--color-positive`, `--color-danger`,
+`--color-warning`), as lavagens de fundo (`--color-glow`, `--color-sheen`, `--color-hatch`) e
+a **cor fixa do lightbox** (`--color-lightbox-*`), que é o entorno escuro do lightbox nos dois
 temas — uma captura clara sobre papel claro perderia os próprios limites.
 
 ### Trocando a cor de destaque
 
-Ao mudar `--c-accent`, **verifique três contrastes**, em cada tema:
+Ao mudar `--color-accent`, **verifique três contrastes**, em cada tema:
 
-1. `--c-accent` sobre `--c-bg` precisa de **≥ 3:1** — é cor de interface,
+1. `--color-accent` sobre `--color-bg` precisa de **≥ 3:1** — é cor de interface,
    filete e texto grande (escuro: 5,55:1 · claro: 4,34:1).
-2. `--c-accent-ink` sobre `--c-accent` precisa de **≥ 4.5:1** — é o texto
+2. `--color-on-accent` sobre `--color-accent` precisa de **≥ 4.5:1** — é o texto
    dentro do botão primário (escuro: 5,5:1 · claro: 4,71:1).
-3. `--c-accent-text` sobre `--c-bg` precisa de **≥ 4.5:1** — é a cor de ação
+3. `--color-accent-text` sobre `--color-bg` precisa de **≥ 4.5:1** — é a cor de ação
    em texto miúdo: eyebrow, CTA de card, link de rodapé
    (escuro: 5,55:1 · claro: 5,54:1).
 
 O segundo é o que costuma ser esquecido, e o terceiro é o motivo de existirem
 dois tokens de accent. No modo escuro, branco sobre o terracota daria 2,2:1 e
-reprovaria em AA — por isso o botão primário leva a tinta da noite, e não
+reprovaria em AA — por isso o botão primário leva o azul do fundo, e não
 branco. No modo claro o accent é escuro o bastante para carregar branco, mas
-claro demais para ser texto corrido: daí `--c-accent-text`, um tom abaixo.
+claro demais para ser texto corrido: daí `--color-accent-text`, um tom abaixo.
 
 Ferramenta: [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/).
 
