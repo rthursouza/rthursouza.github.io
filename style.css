@@ -3223,6 +3223,14 @@ main[id] {
   color: var(--color-text-muted);
 }
 
+/* Dois parágrafos na mesma etapa. O par é casado por idioma: o primeiro
+   parágrafo em inglês vem logo depois do último em português (oculto) e
+   não pode ganhar margem. */
+.timeline__text[lang="pt-BR"] + .timeline__text[lang="pt-BR"],
+.timeline__text[lang="en"] + .timeline__text[lang="en"] {
+  margin-block-start: var(--sp-3);
+}
+
 @media (min-width: 56rem) {
   .timeline {
     --timeline-marker: 3rem;
