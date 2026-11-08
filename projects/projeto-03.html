@@ -7,8 +7,10 @@
   ganchos de comportamento são idênticos ao template — só o conteúdo muda.
 
   Para editar: o guia completo está no README (seção 7). Para trocar as
-  imagens: apague o <span class="media__label"> e descomente o <img> logo
-  abaixo dele. Nada mais precisa mudar.
+  imagens: apague a capa (<div class="cover">) e descomente o <img> logo
+  abaixo dela. Figuras do corpo ainda sem imagem estão inteiras dentro de
+  comentários marcados "IMAGEM PENDENTE:"; para publicar, salve o arquivo e
+  tire o comentário. Nada mais precisa mudar.
 
   IDIOMAS — mesma regra da home (documentada no topo de ../index.html):
     • texto corrido  → elementos gêmeos <p lang="pt-BR"> / <p lang="en">
@@ -368,11 +370,15 @@
         <!-- HERO IMAGE -->
         <div class="container container--wide case-hero__media" data-reveal>
           <figure class="media media--21x9 media--framed">
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
-            </span>
+            <div class="cover cover--tone-3" role="img"
+                 aria-label="Capa do estudo de caso Roteirização: −40% no custo por rota"
+                 data-en-aria-label="Case study cover, route planning: −40% in cost per route">
+              <span class="cover__eyebrow"><span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span></span>
+              <span class="cover__title"><span lang="pt-BR">Roteirização</span><span lang="en">Route planning</span></span>
+              <span class="cover__value">−40%</span>
+            </div>
             <!--
-              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              SUBSTITUIR: apague a capa (<div class="cover">) e descomente.
               Esta é a imagem LCP desta página: eager + fetchpriority="high".
 
             <img src="../assets/images/projeto-03-hero.jpg"
@@ -563,20 +569,18 @@
               </p>
             </div>
             <!-- PESQUISA -->
+            <!-- IMAGEM PENDENTE: A rota otimizada e o override manual (1600×900).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">A rota otimizada e o override manual · 1600×900</span><span lang="en">The optimised route and the manual override · 1600×900</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-03-contexto.png"
                    alt="Tela da Roteirização com a rota calculada pelo sistema e as paradas reordenáveis por arraste"
                    data-en-alt="Roteirização screen with the system-calculated route and stops reorderable by dragging"
                    width="1600" height="900" loading="lazy" decoding="async">
-              -->
               <figcaption class="media__caption">
                 <span lang="pt-BR">O sistema calcula a sequência a partir do veículo, do peso e da distância — e o gestor mantém a palavra final, reordenando por arraste.</span><span lang="en">The system calculates the sequence from the vehicle, the weight and the distance — and the manager keeps the final say, reordering by dragging.</span>
               </figcaption>
             </figure>
+            -->
 
           </div>
         </div>
@@ -823,17 +827,15 @@
                     could ask directly what he was missing in order to decide.
                   </p>
                   <!-- PESQUISA -->
+                  <!-- IMAGEM PENDENTE: Notas da entrevista com o gestor (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Notas da entrevista com o gestor · 1200×675</span><span lang="en">Notes from the manager interview · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-pesquisa.png"
                          alt="Notas da entrevista com o gestor de logística, organizadas por decisão que ele precisa tomar"
                          data-en-alt="Notes from the logistics manager interview, organised by the decisions he needs to make"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -860,17 +862,15 @@
                     of it.
                   </p>
                   <!-- INSIGHTS -->
+                  <!-- IMAGEM PENDENTE: A planilha, anotada (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">A planilha, anotada · 1200×675</span><span lang="en">The spreadsheet, annotated · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-insights.png"
                          alt="A planilha antiga do gestor, anotada com o que virou requisito de tela"
                          data-en-alt="The manager's old spreadsheet, annotated with what became a screen requirement"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -898,17 +898,15 @@
                     workaround available here was going back to the spreadsheet.
                   </p>
                   <!-- USER FLOW -->
+                  <!-- IMAGEM PENDENTE: Cálculo automático e override manual (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Cálculo automático e override manual · 1200×675</span><span lang="en">Automatic calculation and manual override · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-fluxos.png"
                          alt="Fluxo do cálculo automático da rota e do ponto em que o gestor pode reordenar à mão"
                          data-en-alt="Flow of the automatic route calculation and the point where the manager can reorder by hand"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -937,17 +935,15 @@
                     question he's asking.
                   </p>
                   <!-- ARQUITETURA -->
+                  <!-- IMAGEM PENDENTE: As seções da plataforma (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">As seções da plataforma · 1200×675</span><span lang="en">The platform's sections · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-ia.png"
                          alt="Mapa das seções da plataforma, cada uma respondendo a uma pergunta do gestor"
                          data-en-alt="Map of the platform's sections, each answering one of the manager's questions"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -972,17 +968,15 @@
                     fit here?” better than a more capable one.
                   </p>
                   <!-- BAIXA FIDELIDADE -->
+                  <!-- IMAGEM PENDENTE: Wireframes da plataforma (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Wireframes da plataforma · 1200×675</span><span lang="en">Platform wireframes · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-wireframes.png"
                          alt="Wireframes das seções de roteirização e de acompanhamento"
                          data-en-alt="Wireframes of the routing and tracking sections"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1008,17 +1002,15 @@
                     doesn't spoil the look, it spoils the reading.
                   </p>
                   <!-- IMPLEMENTAÇÃO -->
+                  <!-- IMAGEM PENDENTE: Revisão da implementação (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Revisão da implementação · 1200×675</span><span lang="en">Implementation review · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-handoff.png"
                          alt="Comparação entre o protótipo e a tela implementada, com os ajustes de leitura apontados"
                          data-en-alt="Comparison between the prototype and the implemented screen, with reading fixes noted"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1044,17 +1036,15 @@
 
           <div class="case-section__body">
             <!-- MOCKUP -->
+            <!-- IMAGEM PENDENTE: Solução final (1600×900).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9 media--framed" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-03-solucao.png"
                    alt="Tela da Roteirização com a rota calculada, a estimativa de custo e as seções de acompanhamento"
                    data-en-alt="Roteirização screen with the calculated route, cost estimate and tracking sections"
                    width="1600" height="900" loading="lazy" decoding="async">
-              -->
             </figure>
+            -->
 
             <div class="decisions" data-reveal>
 
@@ -1186,20 +1176,18 @@
 
             </div>
             <!-- RESULTADOS -->
+            <!-- IMAGEM PENDENTE: Custo por rota, antes e depois (1200×675).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Custo por rota, antes e depois · 1200×675</span><span lang="en">Cost per route, before and after · 1200×675</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-03-resultados.png"
                    alt="Comparação do custo médio por rota antes e depois da plataforma de roteirização"
                    data-en-alt="Comparison of average cost per route before and after the routing platform"
                    width="1200" height="675" loading="lazy" decoding="async">
-              -->
               <figcaption class="media__caption">
                 <span lang="pt-BR">Custo médio por rota antes e depois da roteirização automática.</span><span lang="en">Average cost per route before and after automatic routing.</span>
               </figcaption>
             </figure>
+            -->
 
           </div>
         </div>
@@ -1272,6 +1260,10 @@
       <!-- ==================================================================== -->
       <!-- 10 · GALERIA + LIGHTBOX                                              -->
       <!-- ==================================================================== -->
+      <!-- IMAGEM PENDENTE: galeria "Telas e artefatos" (6 imagens 4:3, 1200×900, e as
+           versões -thumb). A seção inteira sai até existirem imagens. Para
+           publicar: salve os arquivos, tire este comentário e devolva o item
+           "Galeria" ao índice do case.
       <section class="section" id="galeria" aria-labelledby="galeria-titulo">
         <div class="container case-section">
 
@@ -1292,15 +1284,10 @@
                    data-caption="A rota calculada, com estimativa de custo e horário antes da saída"
                    data-caption-en="The calculated route, with cost and schedule estimates before departure">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-galeria-01-thumb.jpg"
                          alt="Tela da rota calculada, com a estimativa de custo e de horário"
                          data-en-alt="Calculated route screen, with cost and schedule estimates"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1316,15 +1303,10 @@
                    data-caption="Reordenar paradas por arraste: onde o gestor discorda do sistema"
                    data-caption-en="Reordering stops by dragging: where the manager disagrees with the system">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-galeria-02-thumb.jpg"
                          alt="Interação de arraste para reordenar as paradas da rota"
                          data-en-alt="Drag interaction for reordering the stops on a route"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1340,15 +1322,10 @@
                    data-caption="Acompanhamento da rota em andamento, com a posição do entregador"
                    data-caption-en="Tracking a route in progress, with the driver's position">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-galeria-03-thumb.jpg"
                          alt="Seção de acompanhamento com status das paradas e localização do entregador"
                          data-en-alt="Tracking section with stop status and the driver's location"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1364,15 +1341,10 @@
                    data-caption="Comparativo entre entregas e o histórico da operação"
                    data-caption-en="Comparison between deliveries and the operation's history">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-galeria-04-thumb.jpg"
                          alt="Seção de análise com comparativo entre entregas e histórico"
                          data-en-alt="Analysis section with delivery comparison and history"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1388,15 +1360,10 @@
                    data-caption="Os comentários do entregador chegando na gestão, sem redigitação"
                    data-caption-en="The driver's comments arriving in management, with no retyping">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-galeria-05-thumb.jpg"
                          alt="Comentários registrados pelo entregador exibidos na plataforma do gestor"
                          data-en-alt="Comments logged by the driver, displayed in the manager's platform"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1412,15 +1379,10 @@
                    data-caption="A planilha antiga, anotada com o que virou requisito de tela"
                    data-caption-en="The old spreadsheet, annotated with what became a screen requirement">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-03-galeria-06-thumb.jpg"
                          alt="A planilha que o gestor mantinha, anotada durante a pesquisa"
                          data-en-alt="The spreadsheet the manager kept, annotated during research"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1435,6 +1397,7 @@
           </div>
         </div>
       </section>
+      -->
 
       <!-- ==================================================================== -->
       <!-- CTA FINAL DO CASE                                                    -->
@@ -1493,9 +1456,11 @@
             <!-- ANTERIOR -->
             <article class="project-card" data-reveal aria-labelledby="anterior-titulo">
               <figure class="media media--21x9 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do app de logística · 21:9 · 1680×720</span><span lang="en">Logistics app cover · 21:9 · 1680×720</span>
-                </span>
+                <div class="cover cover--tone-2" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span></span>
+                  <span class="cover__title"><span lang="pt-BR">App de logística</span><span lang="en">Logistics app</span></span>
+                  <span class="cover__value"><span lang="pt-BR">Sem papel</span><span lang="en">Paperless</span></span>
+                </div>
                 <!--
                 <img src="../assets/images/projeto-02-capa.jpg"
                      alt=""
@@ -1543,9 +1508,11 @@
             <!-- PRÓXIMO -->
             <article class="project-card" data-reveal aria-labelledby="proximo-titulo">
               <figure class="media media--21x9 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do PDV Nasajon · 21:9 · 1680×720</span><span lang="en">Nasajon POS cover · 21:9 · 1680×720</span>
-                </span>
+                <div class="cover cover--tone-1" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span></span>
+                  <span class="cover__title"><span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span></span>
+                  <span class="cover__value">−30%</span>
+                </div>
                 <!--
                 <img src="../assets/images/projeto-01-capa-21x9.jpg"
                      alt=""

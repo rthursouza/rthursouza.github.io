@@ -33,12 +33,13 @@
   data-*        → apenas comportamento (JS). Nunca usado como seletor de estilo.
   .is-*         → estado, escrito pelo JS e lido pelo CSS.
 
-  PLACEHOLDERS
-  ------------
+  CAPAS NO LUGAR DAS IMAGENS
+  --------------------------
   Todo slot de mídia é um <figure class="media"> com proporção reservada
-  (sem layout shift) e o <img> real já pronto, comentado logo abaixo.
-  Para publicar a imagem: apague o <span class="media__label"> e descomente
-  o <img>. Nada mais precisa mudar.
+  (sem layout shift). Enquanto a imagem não existe, o slot mostra uma capa
+  tipográfica (<div class="cover">) e o <img> real fica pronto, comentado
+  logo abaixo. Para publicar a imagem: apague a <div class="cover"> e
+  descomente o <img>. Nada mais precisa mudar.
   ============================================================================
 -->
 <html lang="pt-BR" class="no-js">
@@ -445,11 +446,11 @@
         <!-- FOTO PERFIL · 1:1, no máximo ~280px -->
         <div class="hero__media" data-reveal>
           <figure class="media media--1x1 media--framed">
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Foto de perfil · 800×800</span><span lang="en">Profile photo · 800×800</span>
-            </span>
+            <div class="cover cover--monogram" aria-hidden="true">
+              <span class="cover__value">AS</span>
+            </div>
             <!--
-              SUBSTITUIR: apague o <span class="media__label"> acima e descomente.
+              SUBSTITUIR: apague a capa (<div class="cover">) acima e descomente.
               Continua sendo a maior imagem do primeiro scroll no mobile (LCP):
               use eager + fetchpriority="high" — nunca lazy.
 
@@ -501,9 +502,11 @@
           <article class="project-card project-card--featured" data-reveal aria-labelledby="proj-01-titulo">
 
             <figure class="media media--16x9 project-card__media">
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Capa do PDV Nasajon · 16:9 · 1600×900</span><span lang="en">Nasajon POS cover · 16:9 · 1600×900</span>
-              </span>
+              <div class="cover cover--tone-1" aria-hidden="true">
+                <span class="cover__eyebrow"><span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span></span>
+                <span class="cover__title"><span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span></span>
+                <span class="cover__value">−30%</span>
+              </div>
               <!--
               <img src="assets/images/projeto-01-capa.jpg"
                    alt=""
@@ -555,9 +558,11 @@
             <!-- 21:9 corta um celular em pé até ele ficar minúsculo: use 2 ou
                  3 telas lado a lado ou um recorte de detalhe. -->
             <figure class="media media--21x9 project-card__media">
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Capa do app de logística · 21:9 · 1680×720</span><span lang="en">Logistics app cover · 21:9 · 1680×720</span>
-              </span>
+              <div class="cover cover--tone-2" aria-hidden="true">
+                <span class="cover__eyebrow"><span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span></span>
+                <span class="cover__title"><span lang="pt-BR">App de logística</span><span lang="en">Logistics app</span></span>
+                <span class="cover__value"><span lang="pt-BR">Sem papel</span><span lang="en">Paperless</span></span>
+              </div>
               <!--
               <img src="assets/images/projeto-02-capa.jpg"
                    alt=""
@@ -606,9 +611,11 @@
           <article class="project-card" data-reveal aria-labelledby="proj-03-titulo">
 
             <figure class="media media--21x9 project-card__media">
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Capa da Roteirização · 21:9 · 1680×720</span><span lang="en">Route planning cover · 21:9 · 1680×720</span>
-              </span>
+              <div class="cover cover--tone-3" aria-hidden="true">
+                <span class="cover__eyebrow"><span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span></span>
+                <span class="cover__title"><span lang="pt-BR">Roteirização</span><span lang="en">Route planning</span></span>
+                <span class="cover__value">−40%</span>
+              </div>
               <!--
               <img src="assets/images/projeto-03-capa.jpg"
                    alt=""

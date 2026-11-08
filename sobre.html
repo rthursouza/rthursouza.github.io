@@ -424,11 +424,11 @@
           <!-- FOTO · 4:5 -->
           <div class="about-intro__media" data-reveal>
             <figure class="media media--4x5 media--framed">
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Foto · 4:5 · 800×1000</span><span lang="en">Photo · 4:5 · 800×1000</span>
-              </span>
+              <div class="cover cover--monogram" aria-hidden="true">
+                <span class="cover__value">AS</span>
+              </div>
               <!--
-                SUBSTITUIR: apague o <span class="media__label"> acima e descomente.
+                SUBSTITUIR: apague a capa (<div class="cover">) acima e descomente.
                 É a maior imagem do primeiro scroll desta página (LCP):
                 eager + fetchpriority="high" — nunca lazy.
 
@@ -596,8 +596,8 @@
               </p>
 
               <!--
-                AMOSTRAS — 3 peças em 4:3 (1200×900). Para cada uma: apague o
-                <span class="media__label"> e descomente o <img>. Escreva o alt
+                AMOSTRAS — 3 peças em 4:3 (1200×900). Para cada uma: apague a
+                capa (<div class="cover">) e descomente o <img>. Escreva o alt
                 dizendo o que a peça é e para quem foi — é o único lugar em que
                 quem usa leitor de tela "vê" o trabalho.
               -->
@@ -605,9 +605,10 @@
                   data-en-aria-label="Work samples">
                 <li>
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Amostra · identidade visual · 1200×900</span><span lang="en">Sample · visual identity · 1200×900</span>
-                    </span>
+                    <div class="cover cover--sample cover--tone-1" role="img"
+                         aria-label="Identidade visual" data-en-aria-label="Visual identity">
+                      <span class="cover__title"><span lang="pt-BR">Identidade visual</span><span lang="en">Visual identity</span></span>
+                    </div>
                     <!--
                     <img src="assets/images/sobre-amostra-01.jpg"
                          alt="[Identidade visual para (cliente): logotipo e aplicações]"
@@ -618,9 +619,10 @@
                 </li>
                 <li>
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Amostra · editorial · 1200×900</span><span lang="en">Sample · editorial · 1200×900</span>
-                    </span>
+                    <div class="cover cover--sample cover--tone-2" role="img"
+                         aria-label="Editorial" data-en-aria-label="Editorial">
+                      <span class="cover__title"><span lang="pt-BR">Editorial</span><span lang="en">Editorial</span></span>
+                    </div>
                     <!--
                     <img src="assets/images/sobre-amostra-02.jpg"
                          alt="[Peça editorial para (cliente): capa ou página dupla]"
@@ -631,9 +633,10 @@
                 </li>
                 <li>
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Amostra · redes sociais · 1200×900</span><span lang="en">Sample · social media · 1200×900</span>
-                    </span>
+                    <div class="cover cover--sample cover--tone-3" role="img"
+                         aria-label="Redes sociais" data-en-aria-label="Social media">
+                      <span class="cover__title"><span lang="pt-BR">Redes sociais</span><span lang="en">Social media</span></span>
+                    </div>
                     <!--
                     <img src="assets/images/sobre-amostra-03.jpg"
                          alt="[Posts para redes sociais de (cliente)]"

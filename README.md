@@ -314,13 +314,17 @@ sobrevive ao recarregamento.
 ## 6. Como trocar imagens
 
 Todo espaço de imagem é um `<figure class="media">` com a proporção já
-reservada e o `<img>` real **pronto e comentado logo abaixo**:
+reservada. Enquanto a imagem não existe, o espaço mostra uma **capa
+tipográfica** (`<div class="cover">`), e o `<img>` real fica **pronto e
+comentado logo abaixo**:
 
 ```html
-<figure class="media media--16x9">
-  <span class="media__label" aria-hidden="true">
-    <span lang="pt-BR">Capa do projeto 01 · 1600×900</span><span lang="en">Project 01 cover · 1600×900</span>
-  </span>
+<figure class="media media--16x9 project-card__media">
+  <div class="cover cover--tone-1" aria-hidden="true">
+    <span class="cover__eyebrow"><span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span></span>
+    <span class="cover__title"><span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span></span>
+    <span class="cover__value">−30%</span>
+  </div>
   <!--
   <img src="assets/images/projeto-01-capa.jpg"
        alt=""
@@ -331,11 +335,54 @@ reservada e o `<img>` real **pronto e comentado logo abaixo**:
 
 **São dois passos:**
 
-1. Apague o `<span class="media__label">` inteiro.
+1. Apague a `<div class="cover">` inteira.
 2. Descomente o `<img>` e ajuste `src`, `alt` e `data-en-alt`.
 
-Como a proporção está reservada por `aspect-ratio`, a troca não desloca um
-pixel do layout — o Cumulative Layout Shift continua zero.
+Como a proporção está reservada por `aspect-ratio` e a capa ocupa exatamente
+a mesma caixa, a troca não desloca um pixel do layout — o Cumulative Layout
+Shift continua zero.
+
+### A capa tipográfica
+
+| Classe | Uso |
+|---|---|
+| `cover` | A capa em si: área do projeto no topo, título e resultado no pé |
+| `cover__eyebrow` | Área do projeto (o mesmo texto da meta do card) |
+| `cover__title` | Nome curto do projeto |
+| `cover__value` | O número ou resultado em destaque (−30%, Sem papel, −40%) |
+| `cover--tone-1/2/3` | Fundo do projeto: um tom por projeto, dos tokens `--color-cover-*` |
+| `cover--monogram` | Foto de perfil: só o monograma "AS" |
+| `cover--sample` | Amostra do freelancer: só o nome da categoria |
+
+- **Projeto novo:** use o próximo tom (ou repita um) e os mesmos três textos
+  do card. As cores vêm de `--color-cover-*` no bloco 02 · TOKENS, derivadas
+  da superfície; por isso acompanham o tema claro sozinhas.
+- **Acessibilidade:** a capa de card leva `aria-hidden="true"`, porque o card
+  já diz tudo aquilo em texto (o `<img>` dela também seria `alt=""`). A capa
+  que faz papel de imagem (hero do case, amostras) leva `role="img"`,
+  `aria-label` e `data-en-aria-label`.
+
+### Figuras do corpo dos cases
+
+As figuras de dentro dos cases (benchmark, wireframes, solução, gráfico de
+resultado) não têm capa: enquanto a imagem não existe, a figura inteira fica
+**dentro de um comentário** marcado assim:
+
+```html
+<!-- IMAGEM PENDENTE: Benchmark dos concorrentes (1200×675).
+     Para publicar: salve o arquivo e tire este comentário.
+<figure class="media media--16x9 media--sm">
+  <img src="../assets/images/projeto-01-benchmark.png" alt="…" data-en-alt="…" …>
+</figure>
+-->
+```
+
+Para publicar, salve o arquivo com o nome do `src` e tire o comentário em
+volta do `<figure>`. A galeria "Telas e artefatos" segue a mesma regra: a
+seção inteira está comentada. Ao devolvê-la, devolva também o item "Galeria"
+ao índice do case (`.case-toc`).
+
+Para achar tudo o que falta: `grep -rn "IMAGEM PENDENTE" projects/`.
 
 ### As duas imagens que são exceção
 
@@ -352,7 +399,7 @@ Todas as outras usam `loading="lazy"` e `decoding="async"`.
 |---|---|---|
 | `media--21x9` | 21:9 | Hero dos estudos de caso (vira 16:10 no celular) |
 | `media--16x9` | 16:9 | Capas, telas, diagramas |
-| `media--4x3` | 4:3 | Itens da galeria |
+| `media--4x3` | 4:3 | Cards de /projetos, galeria e amostras |
 | `media--4x5` | 4:5 | Foto de perfil (retrato) |
 | `media--sm` | — | Modificador: limita a largura dentro da timeline |
 | `media--framed` | — | Modificador: sombra e filete de destaque |

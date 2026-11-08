@@ -7,8 +7,10 @@
   ganchos de comportamento são idênticos ao template — só o conteúdo muda.
 
   Para editar: o guia completo está no README (seção 7). Para trocar as
-  imagens: apague o <span class="media__label"> e descomente o <img> logo
-  abaixo dele. Nada mais precisa mudar.
+  imagens: apague a capa (<div class="cover">) e descomente o <img> logo
+  abaixo dela. Figuras do corpo ainda sem imagem estão inteiras dentro de
+  comentários marcados "IMAGEM PENDENTE:"; para publicar, salve o arquivo e
+  tire o comentário. Nada mais precisa mudar.
 
   IDIOMAS — mesma regra da home (documentada no topo de ../index.html):
     • texto corrido  → elementos gêmeos <p lang="pt-BR"> / <p lang="en">
@@ -368,11 +370,15 @@
         <!-- HERO IMAGE -->
         <div class="container container--wide case-hero__media" data-reveal>
           <figure class="media media--21x9 media--framed">
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
-            </span>
+            <div class="cover cover--tone-2" role="img"
+                 aria-label="Capa do estudo de caso App de logística: sem papel, o romaneio deixou de ser impresso e redigitado"
+                 data-en-aria-label="Case study cover, logistics app: paperless, manifests stopped being printed and retyped">
+              <span class="cover__eyebrow"><span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span></span>
+              <span class="cover__title"><span lang="pt-BR">App de logística</span><span lang="en">Logistics app</span></span>
+              <span class="cover__value"><span lang="pt-BR">Sem papel</span><span lang="en">Paperless</span></span>
+            </div>
             <!--
-              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              SUBSTITUIR: apague a capa (<div class="cover">) e descomente.
               Esta é a imagem LCP desta página: eager + fetchpriority="high".
 
             <img src="../assets/images/projeto-02-hero.jpg"
@@ -567,20 +573,18 @@
               </p>
             </div>
             <!-- PESQUISA -->
+            <!-- IMAGEM PENDENTE: A gestão de entrega no papel (1600×900).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">A gestão de entrega no papel · 1600×900</span><span lang="en">Delivery management on paper · 1600×900</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-02-contexto.png"
                    alt="Diagrama do processo anterior: romaneio em papel, sem ordem de paradas nem rota planejada"
                    data-en-alt="Diagram of the previous process: paper manifest, with no order of stops and no planned route"
                    width="1600" height="900" loading="lazy" decoding="async">
-              -->
               <figcaption class="media__caption">
                 <span lang="pt-BR">O processo anterior: a lista de entregas saía no papel, sem ordem definida, e a prova de entrega dependia de quem lembrasse de pedir assinatura.</span><span lang="en">The previous process: the delivery list came out on paper, with no defined order, and proof of delivery depended on whoever remembered to ask for a signature.</span>
               </figcaption>
             </figure>
+            -->
 
           </div>
         </div>
@@ -825,17 +829,15 @@
                     other end of the same operation.
                   </p>
                   <!-- PESQUISA -->
+                  <!-- IMAGEM PENDENTE: As duas pontas da operação (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">As duas pontas da operação · 1200×675</span><span lang="en">The two ends of the operation · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-pesquisa.png"
                          alt="Diagrama ligando a plataforma de otimização do gestor ao aplicativo do entregador"
                          data-en-alt="Diagram connecting the manager's optimisation platform to the driver's app"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -874,17 +876,15 @@
                     work only shows up on the street.
                   </p>
                   <!-- INSIGHTS -->
+                  <!-- IMAGEM PENDENTE: Síntese das entrevistas (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Síntese das entrevistas · 1200×675</span><span lang="en">Interview synthesis · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-insights.png"
                          alt="Síntese das entrevistas com entregadores, agrupada por tema"
                          data-en-alt="Synthesis of the driver interviews, grouped by theme"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -914,17 +914,15 @@
                     solves better.
                   </p>
                   <!-- USER FLOW -->
+                  <!-- IMAGEM PENDENTE: Fluxo da entrega, do romaneio à prova (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Fluxo da entrega, do romaneio à prova · 1200×675</span><span lang="en">Delivery flow, from manifest to proof · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-fluxos.png"
                          alt="Fluxo da entrega, do romaneio otimizado até a prova de entrega sincronizada"
                          data-en-alt="Delivery flow, from the optimised manifest to the synced proof of delivery"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -948,17 +946,15 @@
                     solved first is reach — not style.
                   </p>
                   <!-- BAIXA FIDELIDADE -->
+                  <!-- IMAGEM PENDENTE: Wireframes de baixa fidelidade (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Wireframes de baixa fidelidade · 1200×675</span><span lang="en">Low-fidelity wireframes · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-wireframes.png"
                          alt="Wireframes de baixa fidelidade da lista de paradas e da tela de prova de entrega"
                          data-en-alt="Low-fidelity wireframes of the stop list and the proof-of-delivery screen"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -984,17 +980,15 @@
                     whether the photo saved or not.
                   </p>
                   <!-- MOCKUP -->
+                  <!-- IMAGEM PENDENTE: Interface final do app (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Interface final do app · 1200×675</span><span lang="en">Final app interface · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-ui.png"
                          alt="Telas finais do aplicativo, com alto contraste e alvos alcançáveis com uma mão"
                          data-en-alt="Final app screens, with high contrast and one-handed reachable targets"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1022,17 +1016,15 @@
                     review is where that shows up.
                   </p>
                   <!-- IMPLEMENTAÇÃO -->
+                  <!-- IMAGEM PENDENTE: Arquivo de handoff com variáveis (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Arquivo de handoff com variáveis · 1200×675</span><span lang="en">Handoff file with variables · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-handoff.png"
                          alt="Arquivo de Figma estruturado com variáveis, usado no handoff"
                          data-en-alt="Structured Figma file with variables, used for handoff"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1058,17 +1050,15 @@
 
           <div class="case-section__body">
             <!-- MOCKUP -->
+            <!-- IMAGEM PENDENTE: Solução final (1600×900).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9 media--framed" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-02-solucao.png"
                    alt="Telas do app: lista de paradas ordenada, captura de assinatura e foto da mercadoria"
                    data-en-alt="App screens: ordered stop list, signature capture and photo of the goods"
                    width="1600" height="900" loading="lazy" decoding="async">
-              -->
             </figure>
+            -->
 
             <div class="decisions" data-reveal>
 
@@ -1237,20 +1227,18 @@
 
             </div>
             <!-- RESULTADOS -->
+            <!-- IMAGEM PENDENTE: O ciclo completo da entrega (1200×675).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">O ciclo completo da entrega · 1200×675</span><span lang="en">The full delivery cycle · 1200×675</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-02-resultados.png"
                    alt="Diagrama do ciclo: romaneio otimizado, execução no app e prova voltando para a gestão"
                    data-en-alt="Cycle diagram: optimised manifest, execution in the app, and proof returning to management"
                    width="1200" height="675" loading="lazy" decoding="async">
-              -->
               <figcaption class="media__caption">
                 <span lang="pt-BR">O ciclo fechado: o gestor otimiza a sequência, o entregador executa no app, e a prova volta para a gestão sem ninguém redigitar nada.</span><span lang="en">The closed loop: the manager optimises the sequence, the driver executes it in the app, and the proof returns to management with nobody retyping anything.</span>
               </figcaption>
             </figure>
+            -->
 
           </div>
         </div>
@@ -1319,6 +1307,10 @@
       <!-- ==================================================================== -->
       <!-- 10 · GALERIA + LIGHTBOX                                              -->
       <!-- ==================================================================== -->
+      <!-- IMAGEM PENDENTE: galeria "Telas e artefatos" (6 imagens 4:3, 1200×900, e as
+           versões -thumb). A seção inteira sai até existirem imagens. Para
+           publicar: salve os arquivos, tire este comentário e devolva o item
+           "Galeria" ao índice do case.
       <section class="section" id="galeria" aria-labelledby="galeria-titulo">
         <div class="container case-section">
 
@@ -1339,15 +1331,10 @@
                    data-caption="A tela que responde “qual é a próxima parada”"
                    data-caption-en="The screen that answers “which stop is next”">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-galeria-01-thumb.jpg"
                          alt="Tela principal do app com a sequência de paradas já ordenada"
                          data-en-alt="App home screen with the stop sequence already ordered"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1363,15 +1350,10 @@
                    data-caption="Captura de assinatura na porta do cliente"
                    data-caption-en="Capturing a signature at the customer's door">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-galeria-02-thumb.jpg"
                          alt="Tela de captura de assinatura do entregador e de quem recebeu"
                          data-en-alt="Signature capture screen for the driver and the recipient"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1387,15 +1369,10 @@
                    data-caption="Foto da mercadoria no local: a prova que não pode ser forjada"
                    data-caption-en="Photo of the goods on site: the proof that can't be forged">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-galeria-03-thumb.jpg"
                          alt="Tela de registro fotográfico da mercadoria entregue"
                          data-en-alt="Screen for photographing the delivered goods"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1411,15 +1388,10 @@
                    data-caption="Sem sinal: a entrega se conclui e sincroniza depois"
                    data-caption-en="No signal: the delivery completes and syncs later">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-galeria-04-thumb.jpg"
                          alt="Estados de conexão do app, com entrega concluída offline e pendente de sincronização"
                          data-en-alt="App connection states, with a delivery completed offline and pending sync"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1435,15 +1407,10 @@
                    data-caption="Wireframes de baixa fidelidade, validados antes de subir a fidelidade"
                    data-caption-en="Low-fidelity wireframes, validated before raising fidelity">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-galeria-05-thumb.jpg"
                          alt="Conjunto de wireframes de baixa fidelidade do fluxo de entrega"
                          data-en-alt="Set of low-fidelity wireframes of the delivery flow"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1459,15 +1426,10 @@
                    data-caption="A plataforma do gestor, onde a sequência é otimizada"
                    data-caption-en="The manager's platform, where the sequence is optimised">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-02-galeria-06-thumb.jpg"
                          alt="Tela da plataforma de otimização de romaneios usada pelo gestor de logística"
                          data-en-alt="Screen of the manifest optimisation platform used by the logistics manager"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1482,6 +1444,7 @@
           </div>
         </div>
       </section>
+      -->
 
       <!-- ==================================================================== -->
       <!-- CTA FINAL DO CASE                                                    -->
@@ -1540,9 +1503,11 @@
             <!-- ANTERIOR -->
             <article class="project-card" data-reveal aria-labelledby="anterior-titulo">
               <figure class="media media--21x9 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do PDV Nasajon · 21:9 · 1680×720</span><span lang="en">Nasajon POS cover · 21:9 · 1680×720</span>
-                </span>
+                <div class="cover cover--tone-1" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span></span>
+                  <span class="cover__title"><span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span></span>
+                  <span class="cover__value">−30%</span>
+                </div>
                 <!--
                 <img src="../assets/images/projeto-01-capa-21x9.jpg"
                      alt=""
@@ -1586,9 +1551,11 @@
             <!-- PRÓXIMO -->
             <article class="project-card" data-reveal aria-labelledby="proximo-titulo">
               <figure class="media media--21x9 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa da Roteirização · 21:9 · 1680×720</span><span lang="en">Route planning cover · 21:9 · 1680×720</span>
-                </span>
+                <div class="cover cover--tone-3" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span></span>
+                  <span class="cover__title"><span lang="pt-BR">Roteirização</span><span lang="en">Route planning</span></span>
+                  <span class="cover__value">−40%</span>
+                </div>
                 <!--
                 <img src="../assets/images/projeto-03-capa.jpg"
                      alt=""

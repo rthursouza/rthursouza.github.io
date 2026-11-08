@@ -256,6 +256,14 @@ p, h1, h2, h3, li, dd, figcaption {
   --color-sheen:         rgba(242, 237, 227, .10);    /* filete interno da mídia */
   --color-hatch:         rgba(242, 237, 227, .028);   /* hachura do placeholder  */
 
+  /* Fundos das capas tipográficas (.cover): um tom por projeto, sempre a
+     superfície tingida por uma cor que já existe. Declarados uma vez só:
+     como dependem de --color-surface e companhia, acompanham o tema claro
+     sem precisar de override. */
+  --color-cover-1: color-mix(in oklab, var(--color-accent) 16%, var(--color-surface));
+  --color-cover-2: color-mix(in oklab, var(--color-positive) 22%, var(--color-surface));
+  --color-cover-3: color-mix(in oklab, var(--color-warning) 18%, var(--color-surface));
+
   /* ---------- ESTADOS ----------
      Reservados para feedback de formulário. Sobre --color-bg:
      positive 7,22:1 · danger 5,53:1 · warning 7,37:1. */
@@ -830,6 +838,129 @@ main[id] {
 
 .media:has(> .media__caption) > img {
   border: 1px solid var(--color-border);
+}
+
+/* ---------- CAPA TIPOGRÁFICA ----------
+   Ocupa o slot da imagem enquanto ela não existe: mesma caixa, mesma
+   proporção (é absoluta sobre o .media), então trocar a capa pelo <img> não
+   move nada. Para trocar: apague a <div class="cover"> e descomente o <img>.
+
+   As medidas internas usam unidades de contêiner (cqi/cqb/cqmin): a mesma
+   capa serve ao card 4:3, à faixa 21:9 e ao hero do case, e o texto acompanha
+   o tamanho do slot — não o da janela. Os clamp() travam os extremos nos
+   tokens da escala tipográfica.
+
+     .cover--tone-1/2/3  fundo do projeto (tokens --color-cover-*)
+     .cover--monogram    foto de perfil: só o "AS", centralizado
+     .cover--sample      amostra do freelancer: só o nome da categoria
+
+   Acessibilidade: capa de card (o <img> seria alt="") leva aria-hidden;
+   capa que faz papel de imagem (hero do case, amostras) leva role="img" e
+   aria-label, com o par data-en-aria-label. */
+.cover {
+  --cover-bg: var(--color-surface-2);
+
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto auto;
+  grid-template-areas:
+    "eyebrow"
+    "."
+    "title"
+    "value";
+  padding: clamp(var(--sp-4), 5%, calc(var(--sp-6) * 1.5));
+  border-radius: inherit;
+  overflow: hidden;
+  background-color: var(--cover-bg);
+  background-image: radial-gradient(120% 90% at 100% 0%, var(--color-glow) 0%, transparent 60%);
+  color: var(--color-text);
+}
+
+/* Anéis concêntricos no canto: textura sem imagem e sem cor nova. */
+.cover::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -22cqb;
+  inset-inline-end: -10cqi;
+  width: 72cqmin;
+  aspect-ratio: 1;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  outline: 1px solid var(--color-border);
+  outline-offset: 7cqmin;
+  pointer-events: none;
+}
+
+.cover--tone-1 { --cover-bg: var(--color-cover-1); }
+.cover--tone-2 { --cover-bg: var(--color-cover-2); }
+.cover--tone-3 { --cover-bg: var(--color-cover-3); }
+
+.cover__eyebrow {
+  grid-area: eyebrow;
+  position: relative;
+  font-size: clamp(var(--fs-xs), 2.4cqi, var(--fs-sm));
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.cover__title {
+  grid-area: title;
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(var(--fs-md), 11cqmin, var(--fs-2xl));
+  font-weight: 600;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+/* O número (ou o resultado) é o protagonista. A largura também limita o
+   corpo: "Sem papel" precisa caber num card estreito sem estourar. */
+.cover__value {
+  grid-area: value;
+  position: relative;
+  margin-block-start: var(--sp-1);
+  color: var(--color-accent-text);
+  font-family: var(--font-display);
+  font-size: clamp(var(--fs-xl), min(26cqb, 15cqi), calc(var(--fs-4xl) * 1.6));
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Foto de perfil: monograma centralizado sobre um halo do accent. */
+.cover--monogram {
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-areas: "value";
+  place-items: center;
+  background-image: radial-gradient(circle at 50% 50%, var(--color-accent-soft) 0%, transparent 70%);
+}
+
+.cover--monogram::before {
+  inset-block-start: 50%;
+  inset-inline-end: auto;
+  inset-inline-start: 50%;
+  width: 70cqmin;
+  translate: -50% -50%;
+}
+
+.cover--monogram .cover__value {
+  margin: 0;
+  font-size: clamp(var(--fs-3xl), 30cqmin, calc(var(--fs-4xl) * 2));
+}
+
+/* Amostra do freelancer: só a categoria, no pé do bloco. */
+.cover--sample {
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "."
+    "title";
 }
 
 
@@ -2076,6 +2207,12 @@ main[id] {
    Vem por último no DOM (o leitor de tela o ouve depois do título), mas é
    desenhado sobre o canto da imagem. Accent sobre accent-ink: 5,5:1 no
    escuro, 4,71:1 no claro. */
+/* O selo fica sobre o canto da capa: o eyebrow dela desce para não ficar
+   embaixo do selo. */
+.project-card:has(.project-card__badge) .cover__eyebrow {
+  margin-block-start: var(--sp-6);
+}
+
 .project-card__badge {
   position: absolute;
   inset-block-start: calc(var(--project-card-pad) + var(--sp-3));
@@ -3524,8 +3661,14 @@ main[id] {
   body::before,
   .contact,
   .metric,
+  .cover,
   .brand__mark {
     background-image: none;
+  }
+
+  /* Os anéis da capa competiriam com o texto em alto contraste. */
+  .cover::before {
+    display: none;
   }
 
   /* O texto recortado em gradiente ficaria invisível: volta a ser texto. */

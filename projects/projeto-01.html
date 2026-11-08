@@ -7,8 +7,10 @@
   ganchos de comportamento são idênticos ao template — só o conteúdo muda.
 
   Para editar: o guia completo está no README (seção 7). Para trocar as
-  imagens: apague o <span class="media__label"> e descomente o <img> logo
-  abaixo dele. Nada mais precisa mudar.
+  imagens: apague a capa (<div class="cover">) e descomente o <img> logo
+  abaixo dela. Figuras do corpo ainda sem imagem estão inteiras dentro de
+  comentários marcados "IMAGEM PENDENTE:"; para publicar, salve o arquivo e
+  tire o comentário. Nada mais precisa mudar.
 
   IDIOMAS — mesma regra da home (documentada no topo de ../index.html):
     • texto corrido  → elementos gêmeos <p lang="pt-BR"> / <p lang="en">
@@ -368,11 +370,15 @@
         <!-- HERO IMAGE -->
         <div class="container container--wide case-hero__media" data-reveal>
           <figure class="media media--21x9 media--framed">
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
-            </span>
+            <div class="cover cover--tone-1" role="img"
+                 aria-label="Capa do estudo de caso PDV mobile-first: −30% no tempo de fechamento de venda"
+                 data-en-aria-label="Case study cover, mobile-first POS: −30% in time to close a sale">
+              <span class="cover__eyebrow"><span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span></span>
+              <span class="cover__title"><span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span></span>
+              <span class="cover__value">−30%</span>
+            </div>
             <!--
-              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              SUBSTITUIR: apague a capa (<div class="cover">) e descomente.
               Esta é a imagem LCP desta página: eager + fetchpriority="high".
 
             <img src="../assets/images/projeto-01-hero.jpg"
@@ -563,20 +569,18 @@
             </div>
 
             <!-- PESQUISA -->
+            <!-- IMAGEM PENDENTE: Fluxo antigo: a pré-venda no papel (1600×900).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Fluxo antigo: a pré-venda no papel · 1600×900</span><span lang="en">Legacy flow: the paper pre-sale · 1600×900</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-01-contexto.png"
                    alt="Diagrama do fluxo antigo: atendimento anotado no papel e busca manual do pedido no caixa"
                    data-en-alt="Diagram of the legacy flow: order written on paper and searched by hand at the register"
                    width="1600" height="900" loading="lazy" decoding="async">
-              -->
               <figcaption class="media__caption">
                 <span lang="pt-BR">O fluxo original: pedido anotado à mão, entregue no caixa e procurado manualmente entre todas as vendas abertas.</span><span lang="en">The original flow: order written by hand, carried to the register and searched for manually among every open sale.</span>
               </figcaption>
             </figure>
+            -->
 
           </div>
         </div>
@@ -825,17 +829,15 @@
                     list.
                   </p>
                   <!-- PESQUISA -->
+                  <!-- IMAGEM PENDENTE: Benchmark dos concorrentes (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Benchmark dos concorrentes · 1200×675</span><span lang="en">Competitor benchmark · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-benchmark.png"
                          alt="Comparação das frentes de caixa de Linx, TOTVS, Omie e Senior"
                          data-en-alt="Comparison of the Linx, TOTVS, Omie and Senior checkout products"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -864,17 +866,15 @@
                     works”.
                   </p>
                   <!-- PESQUISA -->
+                  <!-- IMAGEM PENDENTE: Registro da observação em loja (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Registro da observação em loja · 1200×675</span><span lang="en">In-store observation notes · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-pesquisa.png"
                          alt="Registro da observação da operação de loja, com anotações do fluxo de atendimento"
                          data-en-alt="Record of the in-store observation, with notes on the service flow"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -901,17 +901,15 @@
                     workaround — it was the missing product.
                   </p>
                   <!-- INSIGHTS -->
+                  <!-- IMAGEM PENDENTE: Síntese da pesquisa (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Síntese da pesquisa · 1200×675</span><span lang="en">Research synthesis · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-insights.png"
                          alt="Síntese da pesquisa apontando o operador de loja como persona principal"
                          data-en-alt="Research synthesis identifying the store operator as the primary persona"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -956,17 +954,15 @@
                     reverse was exactly what we were throwing away.
                   </p>
                   <!-- USER FLOW -->
+                  <!-- IMAGEM PENDENTE: Antes e depois da mudança de plataforma (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Antes e depois da mudança de plataforma · 1200×675</span><span lang="en">Before and after the platform shift · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-definicao.png"
                          alt="Comparação entre o fluxo desenhado para desktop e o novo fluxo mobile-first"
                          data-en-alt="Comparison between the desktop flow and the new mobile-first flow"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -992,17 +988,15 @@
                     big they are — not how they look.
                   </p>
                   <!-- BAIXA FIDELIDADE -->
+                  <!-- IMAGEM PENDENTE: Wireframes de baixa fidelidade (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Wireframes de baixa fidelidade · 1200×675</span><span lang="en">Low-fidelity wireframes · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-wireframes.png"
                          alt="Wireframes de baixa fidelidade das telas de atendimento e fechamento de venda"
                          data-en-alt="Low-fidelity wireframes of the service and checkout screens"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1030,17 +1024,15 @@
                     is worth more than a screen that looks like it.
                   </p>
                   <!-- ALTA FIDELIDADE -->
+                  <!-- IMAGEM PENDENTE: Protótipo implementado em código (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Protótipo implementado em código · 1200×675</span><span lang="en">Prototype implemented in code · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-prototipo.png"
                          alt="Protótipo funcional em código, com animações e interações do fluxo de venda"
                          data-en-alt="Working code prototype, with the animations and interactions of the sales flow"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1083,17 +1075,15 @@
                     the intent of whoever tapped.
                   </p>
                   <!-- MOCKUP -->
+                  <!-- IMAGEM PENDENTE: Alvos de toque e ações protegidas (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Alvos de toque e ações protegidas · 1200×675</span><span lang="en">Touch targets and protected actions · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-ui.png"
                          alt="Telas finais com os alvos de toque dimensionados e as ações críticas protegidas"
                          data-en-alt="Final screens with sized touch targets and protected critical actions"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1122,17 +1112,15 @@
                     shows and not what it does when something goes wrong.
                   </p>
                   <!-- IMPLEMENTAÇÃO -->
+                  <!-- IMAGEM PENDENTE: Handoff e revisão de sprint (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Handoff e revisão de sprint · 1200×675</span><span lang="en">Handoff and sprint review · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-handoff.png"
                          alt="Protótipo em código usado como handoff, ao lado da tela implementada"
                          data-en-alt="Code prototype used as handoff, alongside the implemented screen"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1158,17 +1146,15 @@
 
           <div class="case-section__body">
             <!-- MOCKUP -->
+            <!-- IMAGEM PENDENTE: Solução final (1600×900).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9 media--framed" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-01-solucao.png"
                    alt="Novo PDV mobile-first: venda sendo fechada no tablet e pedido recuperado no caixa por código"
                    data-en-alt="New mobile-first POS: a sale being closed on a tablet and the order retrieved at the register by code"
                    width="1600" height="900" loading="lazy" decoding="async">
-              -->
             </figure>
+            -->
 
             <div class="decisions" data-reveal>
 
@@ -1318,20 +1304,18 @@
 
             </div>
             <!-- RESULTADOS -->
+            <!-- IMAGEM PENDENTE: Tempo de fechamento antes e depois (1200×675).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Tempo de fechamento antes e depois · 1200×675</span><span lang="en">Time to close, before and after · 1200×675</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-01-resultados.png"
                    alt="Comparação do tempo médio de fechamento de venda antes e depois do novo PDV"
                    data-en-alt="Comparison of the average time to close a sale before and after the new POS"
                    width="1200" height="675" loading="lazy" decoding="async">
-              -->
               <figcaption class="media__caption">
                 <span lang="pt-BR">Tempo médio de fechamento de venda relatado pelas lojas, antes e depois da adoção do novo PDV.</span><span lang="en">Average time to close a sale as reported by the stores, before and after adopting the new POS.</span>
               </figcaption>
             </figure>
+            -->
 
           </div>
         </div>
@@ -1401,6 +1385,10 @@
       <!-- ==================================================================== -->
       <!-- 10 · GALERIA + LIGHTBOX                                              -->
       <!-- ==================================================================== -->
+      <!-- IMAGEM PENDENTE: galeria "Telas e artefatos" (6 imagens 4:3, 1200×900, e as
+           versões -thumb). A seção inteira sai até existirem imagens. Para
+           publicar: salve os arquivos, tire este comentário e devolva o item
+           "Galeria" ao índice do case.
       <section class="section" id="galeria" aria-labelledby="galeria-titulo">
         <div class="container case-section">
 
@@ -1421,15 +1409,10 @@
                    data-caption="Tela inicial do PDV no tablet, com a venda aberta fora do balcão"
                    data-caption-en="POS home screen on a tablet, with a sale open away from the counter">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-01-thumb.jpg"
                          alt="Tela inicial do PDV em tablet"
                          data-en-alt="POS home screen on a tablet"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1445,15 +1428,10 @@
                    data-caption="Pré-venda digital: o cupom que o cliente leva ao caixa"
                    data-caption-en="Digital pre-sale: the slip the customer carries to the register">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-02-thumb.jpg"
                          alt="Tela de geração da pré-venda com o cupom e o código"
                          data-en-alt="Pre-sale generation screen with the slip and its code"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1469,15 +1447,10 @@
                    data-caption="No caixa: o pedido encontrado por código, nome ou QR Code"
                    data-caption-en="At the register: the order found by code, name or QR code">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-03-thumb.jpg"
                          alt="Busca do pedido no caixa pelas três formas de identificação"
                          data-en-alt="Order lookup at the register through the three identification paths"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1493,15 +1466,10 @@
                    data-caption="Ações críticas: fora da tela inicial e atrás de senha gerencial"
                    data-caption-en="Critical actions: off the home screen and behind a manager password">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-04-thumb.jpg"
                          alt="Fluxo de uma ação crítica, com a confirmação por senha gerencial"
                          data-en-alt="Flow of a critical action, with manager password confirmation"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1517,15 +1485,10 @@
                    data-caption="Wireframes de baixa fidelidade, testados antes de qualquer decisão de estilo"
                    data-caption-en="Low-fidelity wireframes, tested before any decision about style">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-05-thumb.jpg"
                          alt="Conjunto de wireframes de baixa fidelidade do fluxo de venda"
                          data-en-alt="Set of low-fidelity wireframes of the sales flow"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1541,15 +1504,10 @@
                    data-caption="Observação da operação acontecendo na loja"
                    data-caption-en="Watching the operation happen on the shop floor">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-06-thumb.jpg"
                          alt="Registro da observação da operação de loja"
                          data-en-alt="Record of the in-store operation observation"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1564,6 +1522,7 @@
           </div>
         </div>
       </section>
+      -->
 
       <!-- ==================================================================== -->
       <!-- CTA FINAL DO CASE                                                    -->
@@ -1623,9 +1582,11 @@
             <!-- ANTERIOR -->
             <article class="project-card" data-reveal aria-labelledby="anterior-titulo">
               <figure class="media media--21x9 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa da Roteirização · 21:9 · 1680×720</span><span lang="en">Route planning cover · 21:9 · 1680×720</span>
-                </span>
+                <div class="cover cover--tone-3" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span></span>
+                  <span class="cover__title"><span lang="pt-BR">Roteirização</span><span lang="en">Route planning</span></span>
+                  <span class="cover__value">−40%</span>
+                </div>
                 <!--
                 <img src="../assets/images/projeto-03-capa.jpg"
                      alt=""
@@ -1669,9 +1630,11 @@
             <!-- PRÓXIMO -->
             <article class="project-card" data-reveal aria-labelledby="proximo-titulo">
               <figure class="media media--21x9 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do app de logística · 21:9 · 1680×720</span><span lang="en">Logistics app cover · 21:9 · 1680×720</span>
-                </span>
+                <div class="cover cover--tone-2" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span></span>
+                  <span class="cover__title"><span lang="pt-BR">App de logística</span><span lang="en">Logistics app</span></span>
+                  <span class="cover__value"><span lang="pt-BR">Sem papel</span><span lang="en">Paperless</span></span>
+                </div>
                 <!--
                 <img src="../assets/images/projeto-02-capa.jpg"
                      alt=""
