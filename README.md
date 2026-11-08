@@ -474,8 +474,10 @@ destaque, edite o `<article>` correspondente em `<div class="featured-projects">
 com as mesmas regras do card acima (um link só, `id` único). Os títulos
 aqui são `h3`, porque ficam abaixo do `h2` "Projetos em destaque".
 
-Sem métrica real, não invente: deixe o placeholder `[PENDENTE]` com o
-modificador `project-card__metric--pending` até ter o número.
+Sem número real, não invente: use um resultado qualitativo que já esteja
+escrito no case (o app de logística usa "Sem papel", tirado da seção
+"O que mudou, medido" do case 2) e repita o mesmo texto em todos os lugares
+onde o projeto aparece.
 
 ---
 
@@ -512,7 +514,7 @@ inteiro e troque o conteúdo:
     <p class="experience__summary" lang="en">One line about what you did.</p>
 
     <!-- Destaques (opcional): um resultado por linha, com link para o case.
-         Sem número real, use o modificador --pending e um placeholder. -->
+         Sem número real, use o resultado qualitativo do case. -->
     <ul class="experience__highlights">
       <li class="experience__highlight">
         <p class="experience__highlight-text">

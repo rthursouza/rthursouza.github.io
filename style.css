@@ -2024,18 +2024,6 @@ main[id] {
   line-height: var(--lh-snug);
 }
 
-/* Métrica que ainda não existe: placeholder visível, sem fingir número. */
-.project-card__metric--pending .project-card__metric-value {
-  color: var(--color-text-subtle);
-  font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  letter-spacing: var(--tracking-wide);
-}
-
-.project-card__metric--pending .project-card__metric-label {
-  color: var(--color-text-subtle);
-}
-
 .project-card__cta {
   display: inline-flex;
   align-items: center;
@@ -2374,19 +2362,6 @@ main[id] {
   line-height: 1.05;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
-}
-
-/* Resultado que ainda não existe: o mesmo tratamento de
-   .project-card__metric--pending — placeholder visível, sem fingir número. */
-.experience__highlight--pending .experience__metric {
-  color: var(--color-text-subtle);
-  font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  letter-spacing: var(--tracking-wide);
-}
-
-.experience__highlight--pending .experience__highlight-text {
-  color: var(--color-text-subtle);
 }
 
 .experience__body .chips {
