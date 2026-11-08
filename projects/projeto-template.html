@@ -203,6 +203,11 @@
             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
       <path d="M9 3H3v6M15 21h6v-6M21 9V3h-6M3 15v6h6"/>
     </symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/>
+    </symbol>
+
     <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
       <path d="m4 12.5 5 5 11-11"/>
@@ -245,8 +250,8 @@
            aria-label="Navegação principal" data-en-aria-label="Main navigation">
         <!-- Mesmo menu da home. O case fica dentro de "Projetos" (por isso
              aria-current="true", e não "page"); "Sobre" leva à página
-             própria e Contato volta para a âncora da home. Sem data-scrollspy:
-             não há seções da home nesta página para acompanhar. -->
+             própria e Contato desce para o #contato no fim desta página. Sem
+             data-scrollspy: não há seções para acompanhar. -->
         <ul class="nav__list">
           <li class="nav__item">
             <a class="nav__link" href="../projetos.html" aria-current="true">
@@ -259,7 +264,7 @@
             </a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="../index.html#contato">
+            <a class="nav__link" href="#contato">
               <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
             </a>
           </li>
@@ -1639,39 +1644,6 @@
       -->
 
       <!-- ==================================================================== -->
-      <!-- CTA FINAL DO CASE                                                    -->
-      <!-- ==================================================================== -->
-      <section class="section section--alt case-cta" aria-labelledby="case-cta-titulo">
-        <div class="container container--prose">
-          <div class="contact" data-reveal>
-
-            <header class="section-head section-head--center">
-              <h2 class="section-head__title" id="case-cta-titulo">
-                <span lang="pt-BR">Quer conversar sobre este projeto?</span><span lang="en">Want to talk about this project?</span>
-              </h2>
-              <p class="section-head__lead" lang="pt-BR">
-                Tenho muito mais detalhe do que cabe numa página — inclusive o
-                que não funcionou.
-              </p>
-              <p class="section-head__lead" lang="en">
-                There's far more detail than fits on one page — including what
-                didn't work.
-              </p>
-            </header>
-
-            <div class="cluster cluster--center">
-              <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="#i-mail"></use>
-                </svg>
-                <span lang="pt-BR">Entrar em contato</span><span lang="en">Get in touch</span>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </section>
-      <!-- ==================================================================== -->
       <!-- OUTROS PROJETOS — anterior e próximo, em ciclo (01 → 02 → 03 → 01). -->
       <!-- Os textos são os mesmos dos cards da home e de /projetos.            -->
       <!-- >> PREENCHER: aponte para os vizinhos deste case na ordem de     -->
@@ -1792,6 +1764,86 @@
             </article>
 
           </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           CONTATO — o mesmo bloco em todas as páginas (home, /projetos, sobre,
+           cases e template). O "Contato" do menu de cada página aponta para este
+           #contato. Nos cases ele substitui o antigo "Quer conversar
+           sobre este projeto?" e fica por último, depois de "Outros projetos".
+           ======================================================================== -->
+      <section class="section section--alt section--tight" id="contato" aria-labelledby="contato-titulo">
+        <div class="container">
+
+          <div class="contact contact--inline" data-reveal data-copy-scope>
+
+            <div class="contact__text">
+              <h2 class="contact__title" id="contato-titulo">
+                <span lang="pt-BR">Tem um problema difícil? Vamos conversar.</span><span lang="en">Got a hard problem? Let's talk.</span>
+              </h2>
+              <p class="contact__lead" lang="pt-BR">
+                Aberto a vagas de Product Designer, remoto ou no Rio de Janeiro.
+                Respondo todos os e-mails em até 48 horas.
+              </p>
+              <p class="contact__lead" lang="en">
+                Open to Product Designer roles, remote or in Rio de Janeiro. I reply
+                to every email within 48 hours.
+              </p>
+            </div>
+
+            <div class="contact__actions cluster">
+              <!-- E-MAIL — troque pelo seu endereço real (aqui e no botão de copiar) -->
+              <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-mail"></use>
+                </svg>
+                <span>arthursouza_7@outlook.com</span>
+              </a>
+
+              <!-- COPIAR E-MAIL — nasce com hidden. O script.js só o mostra quando o
+                   navegador tem a API de área de transferência; sem ela (ou sem JS),
+                   o link mailto acima continua sendo o caminho. Ao copiar, o botão
+                   ganha .is-copied por alguns segundos e troca o rótulo. -->
+              <button class="btn btn--secondary btn--lg contact__copy" type="button"
+                      data-copy-email="arthursouza_7@outlook.com" hidden>
+                <span class="contact__copy-idle">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="#i-copy"></use>
+                  </svg>
+                  <span lang="pt-BR">Copiar e-mail</span><span lang="en">Copy email</span>
+                </span>
+                <span class="contact__copy-done" data-copy-message>
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="#i-check"></use>
+                  </svg>
+                  <span lang="pt-BR">E-mail copiado</span><span lang="en">Email copied</span>
+                </span>
+              </button>
+
+              <a class="btn btn--secondary btn--lg"
+                 href="https://www.linkedin.com/in/arthursouza7/"
+                 target="_blank" rel="noopener noreferrer">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-linkedin"></use>
+                </svg>
+                <span>LinkedIn</span>
+                <svg class="icon icon--xs" aria-hidden="true" focusable="false">
+                  <use href="#i-arrow-up-right"></use>
+                </svg>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+                </span>
+              </a>
+            </div>
+
+            <!-- Aviso para leitor de tela. Começa vazio; ao copiar, o script coloca
+                 aqui uma cópia do rótulo "E-mail copiado" (os dois idiomas, e o CSS
+                 esconde o inativo) e limpa depois. -->
+            <p class="visually-hidden" role="status" data-copy-status></p>
+
+          </div>
+
         </div>
       </section>
 

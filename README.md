@@ -69,9 +69,9 @@ arquivos que dependem de você.
 | Item | Valor |
 |---|---|
 | Nome e cargo | Arthur Souza — Product Designer |
-| E-mail | `arthursouza_7@outlook.com` (6 ocorrências) |
-| LinkedIn | `linkedin.com/in/arthursouza7/` (4 ocorrências) |
-| Currículo | `assets/curriculo-arthursouza-ux.pdf` (6 ocorrências, abre em nova aba) |
+| E-mail | `arthursouza_7@outlook.com` (em todas as páginas: link `mailto`, rótulo do botão, `data-copy-email` do botão "Copiar e-mail" e rodapé — troque com busca e substituição) |
+| LinkedIn | `linkedin.com/in/arthursouza7/` (contato e rodapé de todas as páginas) |
+| Currículo | `assets/curriculo-arthursouza-ux.pdf` (header e rodapé de todas as páginas, abre em nova aba) |
 | Bio, habilidades e os 4 cards da seção Sobre | preenchidos |
 
 ### Ainda pendente
@@ -450,7 +450,8 @@ Eles estão na ordem da narrativa, que é fixa e não deve ser reordenada:
 ```
 Hero (título · subtítulo · imagem 21:9 · ficha) → Em 30 segundos + índice →
 Contexto → Problema → Objetivos → Meu Papel → Processo → Solução →
-Resultados → Aprendizados → Galeria → Contato → Outros projetos
+Resultados → Aprendizados → Galeria (comentada até ter imagens) →
+Outros projetos → Contato
 ```
 
 Três regras de leitura valem para todo case:

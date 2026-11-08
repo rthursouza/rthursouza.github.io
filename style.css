@@ -2637,7 +2637,8 @@ main[id] {
 
 /* ==========================================================================
    17 · CONTATO
-   Painel usado na home e no CTA final de cada estudo de caso.
+   O mesmo bloco no fim de todas as páginas (home, /projetos, sobre e cases),
+   sempre com o modificador --inline.
    ========================================================================== */
 
 .contact {
@@ -2653,13 +2654,11 @@ main[id] {
   text-align: center;
 }
 
-.contact .section-head {
-  margin-block-end: clamp(1.75rem, 4vw, 2.5rem);
-}
-
-/* ---------- CONTATO EM LINHA (home) ----------
-   Bloco único e baixo: título e prazo de resposta de um lado, botões do
-   outro. Empilha abaixo de 56rem. */
+/* ---------- CONTATO EM LINHA ----------
+   Bloco único e baixo: título e texto de apoio em cima, os três botões
+   (e-mail, copiar, LinkedIn) numa linha embaixo. Em todas as larguras: o
+   container nunca passa de 76rem, e lado a lado o texto ficaria espremido
+   numa coluna estreita. */
 .contact--inline {
   display: grid;
   gap: var(--sp-5);
@@ -2684,15 +2683,30 @@ main[id] {
   color: var(--color-text-muted);
 }
 
-@media (min-width: 56rem) {
-  .contact--inline {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--sp-6);
-  }
+/* ---------- COPIAR E-MAIL ----------
+   O botão tem dois rótulos e mostra um de cada vez: "Copiar e-mail" e, por
+   alguns segundos depois do clique, "E-mail copiado". .is-copied é escrito
+   pelo script.js. Sem JS ou sem a API de área de transferência o botão
+   continua com hidden e não aparece. */
+.contact__copy-idle,
+.contact__copy-done {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
 
-  .contact--inline .contact__actions {
-    justify-content: flex-end;
-  }
+.contact__copy-done,
+.contact__copy.is-copied .contact__copy-idle {
+  display: none;
+}
+
+.contact__copy.is-copied .contact__copy-done {
+  display: inline-flex;
+}
+
+.contact__copy.is-copied {
+  border-color: var(--color-accent-line);
+  color: var(--color-accent-text);
 }
 
 /* O botão principal traz o endereço de e-mail inteiro como rótulo — é o que

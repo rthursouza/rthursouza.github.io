@@ -24,12 +24,14 @@
      .is-nav-open   em <html>               trava a rolagem do documento
      .is-visible    em [data-reveal]        elemento entrou no viewport
      .is-current    em link do [data-scrollspy]
+     .is-copied     em [data-copy-email]    e-mail acabou de ser copiado
      data-theme     em <html>               tema em vigor: claro | escuro
 
    Além disso mantém corretos os atributos que o CSS lê diretamente:
    aria-expanded em [data-nav-toggle] e aria-pressed em [data-lang-value],
    em [data-theme-toggle] e em [data-filter-value]. E escreve hidden em
-   [data-project-filter] e nos itens de [data-project-grid] (/projetos).
+   [data-project-filter] e nos itens de [data-project-grid] (/projetos), e
+   tira o hidden de [data-copy-email] quando a cópia é possível.
    Estado de acessibilidade e estado visual têm uma fonte de verdade só.
 
    REGRAS DE MARCAÇÃO (herdadas do HTML)
@@ -56,7 +58,8 @@
    08 · Scrollspy
    09 · Lightbox
    10 · Filtro e contador de projetos
-   11 · Inicialização
+   11 · Copiar e-mail
+   12 · Inicialização
    ========================================================================== */
 
 (function () {
@@ -805,7 +808,76 @@
 
 
   /* ==========================================================================
-     11 · INICIALIZAÇÃO
+     11 · COPIAR E-MAIL (bloco de contato, em todas as páginas)
+     --------------------------------------------------------------------------
+     O botão nasce com hidden no HTML: sem JavaScript, ou sem a API de área
+     de transferência (navigator.clipboard só existe em contexto seguro), ele
+     nunca aparece e o link mailto ao lado continua sendo o caminho.
+
+     Ao copiar: o botão ganha .is-copied (o CSS troca o rótulo para "E-mail
+     copiado") e a região [data-copy-status], que é role="status", recebe uma
+     cópia do texto desse mesmo rótulo — os dois idiomas, com o inativo
+     escondido pelo CSS — para o leitor de tela anunciar. Nenhum texto vive
+     aqui: a fonte continua sendo o HTML. Se a escrita falhar, o botão some e
+     o foco vai para o link mailto.
+     ========================================================================== */
+
+  const COPY_FEEDBACK_MS = 3000;
+
+  function initCopyEmail() {
+    const buttons = $$('[data-copy-email]');
+    if (!buttons.length) return;
+
+    const clipboard = navigator.clipboard;
+    if (!clipboard || typeof clipboard.writeText !== 'function') return;
+
+    buttons.forEach((button) => {
+      const scope = button.closest('[data-copy-scope]') || document;
+      const status = $('[data-copy-status]', scope);
+      const message = $('[data-copy-message]', button);
+      const mailLink = $('a[href^="mailto:"]', scope);
+      let timer = 0;
+
+      function reset() {
+        button.classList.remove('is-copied');
+        if (status) status.textContent = '';
+      }
+
+      function announce() {
+        if (!status || !message) return;
+        /* Esvazia antes e preenche logo depois: assim um segundo clique
+           também é anunciado, mesmo com o texto igual. Só os spans de
+           idioma são copiados — o ícone fica de fora. */
+        status.textContent = '';
+        window.setTimeout(() => {
+          $$('[lang]', message).forEach((twin) => {
+            status.appendChild(twin.cloneNode(true));
+          });
+        }, 60);
+      }
+
+      button.addEventListener('click', () => {
+        clipboard.writeText(button.getAttribute('data-copy-email') || '').then(
+          () => {
+            button.classList.add('is-copied');
+            announce();
+            window.clearTimeout(timer);
+            timer = window.setTimeout(reset, COPY_FEEDBACK_MS);
+          },
+          () => {
+            button.hidden = true;
+            if (mailLink) mailLink.focus();
+          }
+        );
+      });
+
+      button.hidden = false;
+    });
+  }
+
+
+  /* ==========================================================================
+     12 · INICIALIZAÇÃO
      --------------------------------------------------------------------------
      Cada módulo verifica sozinho se os elementos de que precisa existem na
      página, então a mesma lista roda na home e nos estudos de caso — o
@@ -827,4 +899,5 @@
   initScrollSpy();
   initLightbox();
   initProjectFilter();
+  initCopyEmail();
 })();
