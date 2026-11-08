@@ -1,4 +1,4 @@
-# Portfólio — Arthur Souza · UX/Product Designer
+# Portfólio — Arthur Souza · Product Designer
 
 Portfólio pessoal em HTML5 semântico, CSS3 e JavaScript Vanilla. Sem framework,
 sem bibliotecas, sem etapa de build: o que está no repositório é exatamente o
@@ -68,7 +68,7 @@ arquivos que dependem de você.
 
 | Item | Valor |
 |---|---|
-| Nome e cargo | Arthur Souza — UX & Product Designer |
+| Nome e cargo | Arthur Souza — Product Designer |
 | E-mail | `arthursouza_7@outlook.com` (6 ocorrências) |
 | LinkedIn | `linkedin.com/in/arthursouza7/` (4 ocorrências) |
 | Currículo | `assets/curriculo-arthursouza-ux.pdf` (6 ocorrências, abre em nova aba) |
