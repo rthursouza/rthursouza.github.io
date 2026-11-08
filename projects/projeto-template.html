@@ -798,18 +798,6 @@
               I was the only designer on the project. Shipping pricing strategy
               and implementation belonged to the PM and the engineering team.
             </p>
-            <ul class="chips chips--lg" data-reveal
-                aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
-              <li class="chip"><span lang="pt-BR">UX Research</span><span lang="en">UX Research</span></li>
-              <li class="chip"><span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span></li>
-              <li class="chip"><span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span></li>
-              <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
-              <li class="chip"><span lang="pt-BR">Protótipos</span><span lang="en">Prototypes</span></li>
-              <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
-              <li class="chip"><span lang="pt-BR">Testes de usabilidade</span><span lang="en">Usability testing</span></li>
-              <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
-              <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>
-            </ul>
 
           </div>
         </div>
@@ -819,13 +807,14 @@
       <!-- 06 · PROCESSO                                          >> PREENCHER  -->
       <!-- ==================================================================== -->
       <!--
-        A timeline é o coração do case. Cada etapa tem: título, o que foi feito,
-        e o que aquilo mudou na decisão seguinte. Uma etapa que não mudou nada
-        deveria ser cortada, não documentada.
+        Sempre 3 etapas, uma DECISÃO em cada (não uma atividade). Junte as
+        etapas que se repetem: pesquisa + insights + personas viram uma só;
+        wireframe + protótipo + testes + handoff viram outra. Cada etapa tem
+        título, até 2 parágrafos e o que aquilo mudou na decisão seguinte. Uma
+        etapa que não mudou nada deveria ser cortada, não documentada.
 
-        Cada <li class="timeline__step"> tem um placeholder de mídia próprio.
-        Se você não tiver artefato para alguma etapa, apague o <figure> inteiro
-        daquela etapa — o layout continua correto.
+        As figuras ficam dentro de comentários "IMAGEM PENDENTE:" até a imagem
+        existir. Etapa sem artefato: apague o comentário da figura inteiro.
       -->
       <section class="section" id="processo" aria-labelledby="processo-titulo">
         <div class="container case-section">
@@ -841,12 +830,10 @@
 
           <div class="case-section__body">
             <p class="section-head__lead" data-reveal lang="pt-BR">
-              Onze etapas ao longo de 14 semanas. Duas delas invalidaram
-              hipóteses que eu tinha como certas.
+              Catorze semanas, em três decisões.
             </p>
             <p class="section-head__lead" data-reveal lang="en">
-              Eleven stages across 14 weeks. Two of them invalidated assumptions
-              I was sure about.
+              Fourteen weeks, in three decisions.
             </p>
             <ol class="timeline">
 
@@ -855,19 +842,34 @@
                 <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
                 <div class="timeline__body">
                   <h3 class="timeline__title">
-                    <span lang="pt-BR">Pesquisa</span><span lang="en">Research</span>
+                    <span lang="pt-BR">Pesquisa: o problema era a ordem, não o número de etapas</span><span lang="en">Research: the problem was the order, not the number of steps</span>
                   </h3>
                   <p class="timeline__text" lang="pt-BR">
-                    Doze entrevistas em profundidade com compradores que abandonaram
-                    o carrinho nos últimos 30 dias, mais análise de 40 sessões
-                    gravadas. Comecei pelos dados quantitativos para saber onde
-                    olhar, e pelas entrevistas para entender por quê.
+                    Doze entrevistas com compradores que abandonaram o
+                    carrinho, mais 40 sessões gravadas. Agrupei 214 trechos em
+                    9 temas, e o achado mudou o projeto: o problema não era o
+                    número de etapas, era a <em>ordem</em> delas.
+                  </p>
+                  <p class="timeline__text" lang="pt-BR">
+                    A jornada mostrou onde estava a ansiedade: na dúvida sobre
+                    o prazo de entrega, que só era respondida no fim. E as
+                    duas personas, a empreiteira que compra toda semana e o
+                    consumidor que compra uma vez por ano, puxavam o fluxo
+                    para lados opostos.
                   </p>
                   <p class="timeline__text" lang="en">
-                    Twelve in-depth interviews with buyers who had abandoned their
-                    cart in the previous 30 days, plus analysis of 40 recorded
-                    sessions. I started with quantitative data to know where to
-                    look, and with interviews to understand why.
+                    Twelve interviews with buyers who had abandoned their
+                    cart, plus 40 recorded sessions. I clustered 214 excerpts
+                    into 9 themes, and the finding changed the project: the
+                    problem wasn't the number of steps, it was their
+                    <em>order</em>.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    The journey showed where the anxiety was: in the
+                    uncertainty about delivery time, which was only answered
+                    at the end. And the two personas, the contractor who buys
+                    every week and the consumer who buys once a year, pulled
+                    the flow in opposite directions.
                   </p>
                   <!-- PESQUISA -->
                   <!-- IMAGEM PENDENTE: Quadro de pesquisa (1200×675).
@@ -879,29 +881,6 @@
                          width="1200" height="675" loading="lazy" decoding="async">
                   </figure>
                   -->
-                </div>
-              </li>
-
-              <!-- INSIGHTS -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Insights</span><span lang="en">Insights</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Agrupei 214 trechos em 9 temas. O achado que mudou o projeto:
-                    o problema não era o número de etapas, era a <em>ordem</em>
-                    delas. Ninguém reclamou de preencher formulário — reclamaram de
-                    preencher formulário sem saber se a compra faria sentido.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    I clustered 214 excerpts into 9 themes. The finding that changed
-                    the project: the problem wasn't the number of steps, it was
-                    their <em>order</em>. Nobody complained about filling in forms —
-                    they complained about filling them in without knowing whether
-                    the purchase would make sense.
-                  </p>
                   <!-- INSIGHTS -->
                   <!-- IMAGEM PENDENTE: Mapa de afinidades (1200×675).
                        Para publicar: salve o arquivo e tire este comentário.
@@ -912,28 +891,6 @@
                          width="1200" height="675" loading="lazy" decoding="async">
                   </figure>
                   -->
-                </div>
-              </li>
-
-              <!-- PERSONA -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Personas</span><span lang="en">Personas</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Duas personas com comportamentos de compra opostos: a
-                    empreiteira que compra o mesmo item toda semana e o consumidor
-                    que compra uma vez por ano. Otimizar para uma prejudicava a
-                    outra — essa tensão guiou todas as decisões seguintes.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    Two personas with opposite buying behaviour: the contractor who
-                    buys the same item weekly, and the consumer who buys once a
-                    year. Optimising for one hurt the other — that tension drove
-                    every decision that followed.
-                  </p>
                   <!-- PERSONA -->
                   <!-- IMAGEM PENDENTE: Personas (1200×675).
                        Para publicar: salve o arquivo e tire este comentário.
@@ -944,27 +901,6 @@
                          width="1200" height="675" loading="lazy" decoding="async">
                   </figure>
                   -->
-                </div>
-              </li>
-
-              <!-- USER JOURNEY -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">User Journey</span><span lang="en">User Journey</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Mapeei a jornada da busca no Google até o recebimento. Ficou
-                    visível que o pico de ansiedade acontecia fora do checkout —
-                    na dúvida sobre prazo de entrega, que só era respondida no fim.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    I mapped the journey from Google search to delivery. It became
-                    clear the anxiety peak happened outside checkout — in the
-                    uncertainty about delivery time, which was only answered at
-                    the very end.
-                  </p>
                   <!-- USER JOURNEY -->
                   <!-- IMAGEM PENDENTE: Mapa da jornada (1200×675).
                        Para publicar: salve o arquivo e tire este comentário.
@@ -978,22 +914,35 @@
                 </div>
               </li>
 
-              <!-- ARQUITETURA -->
+              <!-- DEFINIÇÃO -->
               <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
+                <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
                 <div class="timeline__body">
                   <h3 class="timeline__title">
-                    <span lang="pt-BR">Arquitetura de informação</span><span lang="en">Information architecture</span>
+                    <span lang="pt-BR">Definição: campos por momento de necessidade</span><span lang="en">Definition: fields by moment of need</span>
                   </h3>
                   <p class="timeline__text" lang="pt-BR">
-                    Reorganizei os 23 campos por <em>momento de necessidade</em>, e
-                    não por entidade de banco de dados. Onze campos foram
-                    eliminados; sete migraram para depois da confirmação do pedido.
+                    Reorganizei os 23 campos por <em>momento de
+                    necessidade</em>, e não por entidade de banco de dados:
+                    onze foram eliminados e sete migraram para depois da
+                    confirmação do pedido.
+                  </p>
+                  <p class="timeline__text" lang="pt-BR">
+                    Levei três fluxos alternativos para a engenharia antes de
+                    detalhar qualquer tela. O que eu preferia esbarrava numa
+                    limitação do gateway de pagamento, e descobrir isso na
+                    semana 4, e não na 11, salvou o cronograma.
                   </p>
                   <p class="timeline__text" lang="en">
-                    I reorganised the 23 fields by <em>moment of need</em> rather
-                    than by database entity. Eleven fields were removed; seven moved
-                    to after order confirmation.
+                    I reorganised the 23 fields by <em>moment of need</em>
+                    rather than by database entity: eleven were removed and
+                    seven moved to after order confirmation.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    I took three alternative flows to engineering before
+                    detailing any screen. The one I preferred hit a payment
+                    gateway limitation, and finding that out in week 4 instead
+                    of week 11 saved the timeline.
                   </p>
                   <!-- ARQUITETURA -->
                   <!-- IMAGEM PENDENTE: Nova arquitetura de informação (1200×675).
@@ -1005,28 +954,6 @@
                          width="1200" height="675" loading="lazy" decoding="async">
                   </figure>
                   -->
-                </div>
-              </li>
-
-              <!-- USER FLOW -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Fluxos</span><span lang="en">User flows</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Desenhei três fluxos alternativos e levei os três para
-                    engenharia antes de detalhar qualquer tela. O caminho que eu
-                    preferia esbarrava numa limitação do gateway de pagamento —
-                    descobrir isso na semana 4, e não na 11, salvou o cronograma.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    I drew three alternative flows and took all three to engineering
-                    before detailing any screen. The one I preferred hit a payment
-                    gateway limitation — finding that out in week 4 instead of week
-                    11 saved the timeline.
-                  </p>
                   <!-- USER FLOW -->
                   <!-- IMAGEM PENDENTE: Fluxos alternativos (1200×675).
                        Para publicar: salve o arquivo e tire este comentário.
@@ -1040,24 +967,38 @@
                 </div>
               </li>
 
-              <!-- WIREFRAMES / BAIXA FIDELIDADE -->
+              <!-- VALIDAÇÃO E HANDOFF -->
               <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>07</span></div>
+                <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
                 <div class="timeline__body">
                   <h3 class="timeline__title">
-                    <span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span>
+                    <span lang="pt-BR">Validação: testar a estrutura antes da cor</span><span lang="en">Validation: test the structure before the colour</span>
                   </h3>
                   <p class="timeline__text" lang="pt-BR">
-                    Baixa fidelidade, em papel e depois em Figma. Testei quatro
-                    variações da nova primeira etapa com cinco pessoas cada, ainda
-                    em preto e branco, para que o feedback fosse sobre a estrutura
-                    e não sobre a cor do botão.
+                    Testei quatro variações da nova primeira etapa em preto e
+                    branco, com cinco pessoas cada, e depois um protótipo em
+                    alta fidelidade com os casos de borda (CEP fora da área,
+                    item indisponível). Em dez testes moderados e um teste no
+                    Maze com 84 participantes, a taxa de sucesso na tarefa
+                    subiu de 61% para 94%.
+                  </p>
+                  <p class="timeline__text" lang="pt-BR">
+                    O handoff especificou comportamento, não só pixels:
+                    estados, validações, mensagens de erro e ordem de foco. O
+                    rollout foi gradual, em teste A/B com 10% do tráfego.
                   </p>
                   <p class="timeline__text" lang="en">
-                    Low fidelity, on paper first and then in Figma. I tested four
-                    variations of the new first step with five people each, still
-                    in black and white, so feedback would be about structure rather
-                    than button colour.
+                    I tested four variations of the new first step in black
+                    and white, with five people each, and then a high-fidelity
+                    prototype with the edge cases (out-of-range postcode,
+                    unavailable item). Across ten moderated sessions and a
+                    Maze test with 84 participants, task success rose from 61%
+                    to 94%.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Handoff specified behaviour, not just pixels: states,
+                    validation, error copy and focus order. Rollout was
+                    gradual, as an A/B test at 10% of traffic.
                   </p>
                   <!-- BAIXA FIDELIDADE -->
                   <!-- IMAGEM PENDENTE: Wireframes de baixa fidelidade (1200×675).
@@ -1069,28 +1010,6 @@
                          width="1200" height="675" loading="lazy" decoding="async">
                   </figure>
                   -->
-                </div>
-              </li>
-
-              <!-- PROTÓTIPOS -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>08</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Protótipos</span><span lang="en">Prototypes</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Protótipo navegável em alta fidelidade, incluindo estados de
-                    erro, CEP fora da área de entrega e carrinho com item
-                    indisponível. Os casos de borda foram prototipados junto — são
-                    eles que quebram na produção.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    A clickable high-fidelity prototype, including error states,
-                    out-of-range postcodes and carts with unavailable items. Edge
-                    cases were prototyped alongside the happy path — they're what
-                    breaks in production.
-                  </p>
                   <!-- ALTA FIDELIDADE -->
                   <!-- IMAGEM PENDENTE: Protótipo em alta fidelidade (1200×675).
                        Para publicar: salve o arquivo e tire este comentário.
@@ -1101,28 +1020,6 @@
                          width="1200" height="675" loading="lazy" decoding="async">
                   </figure>
                   -->
-                </div>
-              </li>
-
-              <!-- INTERFACE FINAL -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>09</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Interface final</span><span lang="en">Final interface</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    UI construída sobre o design system existente, com três
-                    componentes novos documentados e devolvidos à biblioteca.
-                    Contraste verificado em AA para todos os estados, incluindo
-                    mensagens de erro.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    UI built on the existing design system, with three new
-                    components documented and contributed back to the library.
-                    Contrast verified at AA for every state, error messages
-                    included.
-                  </p>
                   <!-- MOCKUP -->
                   <!-- IMAGEM PENDENTE: Interface final (1200×675).
                        Para publicar: salve o arquivo e tire este comentário.
@@ -1133,28 +1030,6 @@
                          width="1200" height="675" loading="lazy" decoding="async">
                   </figure>
                   -->
-                </div>
-              </li>
-
-              <!-- TESTES -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>10</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Testes</span><span lang="en">Testing</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Dez testes moderados de usabilidade e um teste não moderado com
-                    84 participantes no Maze. A taxa de sucesso na tarefa subiu de
-                    61% para 94%. Três problemas encontrados nos testes voltaram
-                    para o Figma antes de qualquer linha de código.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    Ten moderated usability sessions and one unmoderated test with
-                    84 participants in Maze. Task success rose from 61% to 94%.
-                    Three problems surfaced in testing went back to Figma before a
-                    single line of code was written.
-                  </p>
                   <!-- TESTES -->
                   <!-- IMAGEM PENDENTE: Resultados dos testes (1200×675).
                        Para publicar: salve o arquivo e tire este comentário.
@@ -1165,28 +1040,6 @@
                          width="1200" height="675" loading="lazy" decoding="async">
                   </figure>
                   -->
-                </div>
-              </li>
-
-              <!-- IMPLEMENTAÇÃO -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>11</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Implementação</span><span lang="en">Implementation</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Handoff com especificação de comportamento, não só de pixels:
-                    estados, validações, mensagens de erro e ordem de foco no
-                    teclado. Acompanhei o desenvolvimento em revisões semanais e
-                    fizemos rollout gradual em teste A/B com 10% do tráfego.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    Handoff specified behaviour, not just pixels: states,
-                    validation, error copy and keyboard focus order. I joined weekly
-                    build reviews, and we rolled out gradually as an A/B test at 10%
-                    of traffic.
-                  </p>
                   <!-- IMPLEMENTAÇÃO -->
                   <!-- IMAGEM PENDENTE: Documentação de handoff (1200×675).
                        Para publicar: salve o arquivo e tire este comentário.

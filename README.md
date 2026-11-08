@@ -462,11 +462,20 @@ Resultados → Aprendizados → Galeria (comentada até ter imagens) →
 Outros projetos → Contato
 ```
 
-Três regras de leitura valem para todo case:
+Regras de leitura que valem para todo case:
 
 - **Em 30 segundos** (Problema · O que eu fiz · Resultado) usa só texto que
-  já está no case — nada escrito do zero para o resumo.
-- **No máximo 2 parágrafos seguidos sem imagem.**
+  já está no case — nada escrito do zero para o resumo. E o corpo não repete
+  o que já está lá: "único designer, do discovery ao handoff" aparece uma vez
+  só, no cartão "O que eu fiz" (por isso "Meu papel" não tem lista de
+  responsabilidades).
+- **Corpo com cerca de 900 palavras** em PT (sem contar o Em 30 segundos).
+  O foco é decisão → porquê → resultado; fala de usuário, números, o que deu
+  errado e os aprendizados ficam.
+- **No máximo 2 parágrafos por seção.**
+- **"Como cheguei lá" tem 3 etapas**, uma decisão em cada. Etapas que só
+  descrevem atividade (wireframe, protótipo, handoff) entram dentro da
+  decisão a que serviram.
 - **Outros projetos** aponta para o anterior e o próximo na ordem de
   `projetos.html`, em ciclo. Ao adicionar um case, atualize também os
   vizinhos dele.
