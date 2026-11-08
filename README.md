@@ -11,7 +11,7 @@ que vai para o ar.
 ## Sumário
 
 1. [Rodando localmente](#1-rodando-localmente)
-2. [Antes de publicar — checklist obrigatório](#2-antes-de-publicar--checklist-obrigatório)
+2. [Publicação — o que já está e o que falta](#2-publicação--o-que-já-está-e-o-que-falta)
 3. [Estrutura de arquivos](#3-estrutura-de-arquivos)
 4. [Tecnologias e decisões](#4-tecnologias-e-decisões)
 5. [Como editar textos](#5-como-editar-textos)
@@ -59,10 +59,11 @@ Depois abra `http://localhost:8000`.
 
 ---
 
-## 2. Antes de publicar — checklist obrigatório
+## 2. Publicação — o que já está e o que falta
 
-Os dados pessoais **já estão preenchidos**. O que falta é o domínio e os
-arquivos que dependem de você.
+O site está publicado em **https://rthursouza.github.io** (GitHub Pages, na
+raiz do domínio). Os dados pessoais e o endereço já estão no código; o que
+falta são arquivos que dependem de você.
 
 ### Já feito
 
@@ -72,29 +73,32 @@ arquivos que dependem de você.
 | E-mail | `arthursouza_7@outlook.com` (em todas as páginas: link `mailto`, rótulo do botão, `data-copy-email` do botão "Copiar e-mail" e rodapé — troque com busca e substituição) |
 | LinkedIn | `linkedin.com/in/arthursouza7/` (contato e rodapé de todas as páginas) |
 | Currículo | `assets/curriculo-arthursouza-ux.pdf` (header e rodapé de todas as páginas, abre em nova aba) |
-| Bio, habilidades e os 4 cards da seção Sobre | preenchidos |
+| Domínio | `https://rthursouza.github.io` em `canonical` e `og:url`, **ativas** em todas as páginas |
 
 ### Ainda pendente
 
-| Marcador | Onde aparece | Trocar por |
+| Arquivo | Onde aparece | O que fazer |
 |---|---|---|
-| `https://SEU-DOMINIO.com` | `canonical`, `og:url`, `og:image`, `twitter:image` — hoje **comentadas** com `<!-- PUBLICAR: … -->` | A URL final do site, e tirar o comentário |
-| `assets/curriculo-arthursouza-ux.pdf` | botão Currículo e rodapé | O link já existe — falta **salvar o PDF** com esse nome exato |
-| `assets/images/og-cover.jpg` | `og:image` da home | Sua imagem de compartilhamento (1200×630) |
-| `assets/images/og-projeto-0*.jpg` | `og:image` de cada case | Uma por case (1200×630) |
+| `assets/images/og-cover.jpg` | `og:image` e `twitter:image` da home, de /projetos e de sobre | Gerar a imagem (1200×630) e tirar o comentário das duas tags |
+| `assets/images/og-projeto-0*.jpg` | `og:image` e `twitter:image` de cada case | Uma por case (1200×630), mesmo procedimento |
 
-**Publicar com o `canonical` errado atrapalha a indexação.** Por isso, enquanto
-o site não tem endereço, essas quatro tags ficam comentadas em todas as
-páginas. Os scripts abaixo trocam o domínio **e** reativam as tags de uma vez.
+**Por que `og:image` e `twitter:image` continuam comentadas.** As tags já
+apontam para o domínio certo, mas os arquivos ainda não existem. Uma
+`og:image` que dá 404 faz WhatsApp e LinkedIn montarem o card sem imagem, e
+esse card fica em cache por dias. Por isso cada uma está assim:
 
-### Trocando o domínio quando você decidir
+```html
+<!-- PUBLICAR: <meta property="og:image" content="https://rthursouza.github.io/assets/images/og-cover.jpg"> -->
+```
+
+Depois de salvar as imagens em `assets/images/`, tire o comentário de todas
+de uma vez:
 
 **PowerShell (Windows):**
 
 ```powershell
 Get-ChildItem -Recurse -Include *.html | ForEach-Object {
   $t = Get-Content $_.FullName -Raw -Encoding UTF8
-  $t = $t.Replace('https://SEU-DOMINIO.com', 'https://arthursouza.com')
   $t = $t -replace '<!-- PUBLICAR: (<[^>]+>) -->', '$1'
   Set-Content $_.FullName -Value $t -Encoding UTF8 -NoNewline
 }
@@ -104,29 +108,33 @@ Get-ChildItem -Recurse -Include *.html | ForEach-Object {
 
 ```bash
 find . -name "*.html" -exec sed -i '' \
-  -e 's|https://SEU-DOMINIO\.com|https://arthursouza.com|g' \
   -e 's|<!-- PUBLICAR: \(<[^>]*>\) -->|\1|g' {} +
 ```
 
 > No Linux use `sed -i` sem o `''` logo depois.
 
+Se um dia o site for para um domínio próprio, troque
+`https://rthursouza.github.io` pelo novo endereço em todos os `.html` (busca
+e substituição): são as tags `canonical`, `og:url`, `og:image` e
+`twitter:image`.
+
 ### Conferindo se sobrou algo
 
 ```powershell
-Select-String -Path *.html, projects/*.html -Pattern 'SEU-DOMINIO|PUBLICAR:'
+Select-String -Path *.html, projects/*.html -Pattern 'PUBLICAR:'
 ```
 
-Nenhum resultado = pronto para publicar.
+Nenhum resultado = imagens de compartilhamento publicadas.
 
-### Ainda antes do primeiro deploy
+### Ainda antes de divulgar o link
 
 - [x] Criar as pastas de `assets/`
 - [x] Dados pessoais, bio, habilidades e cards
 - [x] Os três estudos de caso reescritos com projetos reais
 - [x] `curriculo-arthursouza-ux.pdf` salvo em `assets/`
-- [ ] Trocar `SEU-DOMINIO` pela URL final e reativar as tags `PUBLICAR:` ← **único item que causa dano se ficar para depois**
-- [ ] Substituir os placeholders de imagem (veja `IMAGENS.md`)
-- [ ] Gerar as 4 imagens de Open Graph (1200×630)
+- [x] Domínio nas tags `canonical` e `og:url`
+- [ ] Gerar as 4 imagens de Open Graph (1200×630) e reativar as tags `PUBLICAR:`
+- [ ] Trocar as capas tipográficas e as figuras `IMAGEM PENDENTE` pelas imagens reais (veja a [seção 6](#6-como-trocar-imagens) e `IMAGENS.md`)
 - [ ] Gerar o favicon definitivo, se quiser substituir o SVG embutido
 - [ ] Rodar o Lighthouse ([seção 12](#12-performance))
 

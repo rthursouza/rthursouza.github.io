@@ -64,18 +64,19 @@
   <meta name="theme-color" content="#20293A">
 
   <!--
-    URLS ABSOLUTAS — DESATIVADAS ATÉ O SITE SER HOSPEDADO.
-    As tags marcadas "PUBLICAR:" (canonical, og:url, og:image, twitter:image)
-    estão comentadas porque apontariam para um domínio que não existe.
-    Ao publicar: troque "https://SEU-DOMINIO.com" pelo endereço real e
-    tire o comentário em volta de cada uma (há um script pronto no README,
-    seção 2).
+    URLS ABSOLUTAS — o site está publicado em https://rthursouza.github.io.
+    canonical e og:url estão ativas. og:image e twitter:image continuam
+    comentadas ("PUBLICAR:") porque os arquivos de imagem ainda não existem:
+    uma og:image apontando para um 404 faz WhatsApp e LinkedIn montarem o
+    card sem imagem, e esse card fica em cache. Ao salvar a imagem
+    (1200×630) em assets/images/, tire o comentário das duas tags.
+    Detalhes no README, seção 2.
   -->
-  <!-- PUBLICAR: <link rel="canonical" href="https://SEU-DOMINIO.com/sobre.html"> -->
+  <link rel="canonical" href="https://rthursouza.github.io/sobre.html">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <!-- PUBLICAR: <meta property="og:url" content="https://SEU-DOMINIO.com/sobre.html"> -->
+  <meta property="og:url" content="https://rthursouza.github.io/sobre.html">
   <meta property="og:site_name" content="Arthur Souza">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:locale:alternate" content="en_US">
@@ -86,7 +87,7 @@
         content="A trajetória de Arthur Souza: de capa de DVD a UX Designer de ERP e produtos B2B, e como ele trabalha antes da primeira tela."
         data-en-content="Arthur Souza's path: from DVD covers to UX Designer for ERP and B2B products, and how he works before the first screen.">
   <!-- OG IMAGE — 1200×630px. Crie e salve em assets/images/og-cover.jpg -->
-  <!-- PUBLICAR: <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg"> -->
+  <!-- PUBLICAR: <meta property="og:image" content="https://rthursouza.github.io/assets/images/og-cover.jpg"> -->
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt"
@@ -101,7 +102,7 @@
   <meta name="twitter:description"
         content="A trajetória de Arthur Souza: de capa de DVD a UX Designer de ERP e produtos B2B, e como ele trabalha antes da primeira tela."
         data-en-content="Arthur Souza's path: from DVD covers to UX Designer for ERP and B2B products, and how he works before the first screen.">
-  <!-- PUBLICAR: <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg"> -->
+  <!-- PUBLICAR: <meta name="twitter:image" content="https://rthursouza.github.io/assets/images/og-cover.jpg"> -->
 
   <!-- ==================== FAVICON ==================== -->
   <!--
