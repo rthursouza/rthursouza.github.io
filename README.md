@@ -547,7 +547,8 @@ inteiro e troque o conteúdo:
     <p class="experience__place">
       <span lang="pt-BR">Cidade · Remoto</span><span lang="en">City · Remote</span>
     </p>
-    <!-- Selo "Atual": só na experiência em andamento. -->
+    <!-- Selo: "Atual" no trabalho principal em andamento; "Em paralelo"
+         (EN "Alongside") no que corre ao mesmo tempo. Mesma classe. -->
     <!-- <p class="experience__badge"><span lang="pt-BR">Atual</span><span lang="en">Current</span></p> -->
   </div>
 
