@@ -51,7 +51,7 @@
   </script>
 
   <!-- ==================== SEO ==================== -->
-  <title data-en="Work — Arthur Souza · UX &amp; Product Designer">Projetos — Arthur Souza · UX &amp; Product Designer</title>
+  <title data-en="Work — Arthur Souza · Product Designer">Projetos — Arthur Souza · Product Designer</title>
 
   <meta name="description"
         content="Estudos de caso de ERP, varejo e logística: do discovery ao resultado medido."
@@ -64,18 +64,19 @@
   <meta name="theme-color" content="#20293A">
 
   <!--
-    URLS ABSOLUTAS — DESATIVADAS ATÉ O SITE SER HOSPEDADO.
-    As tags marcadas "PUBLICAR:" (canonical, og:url, og:image, twitter:image)
-    estão comentadas porque apontariam para um domínio que não existe.
-    Ao publicar: troque "https://SEU-DOMINIO.com" pelo endereço real e
-    tire o comentário em volta de cada uma (há um script pronto no README,
-    seção 2).
+    URLS ABSOLUTAS — o site está publicado em https://rthursouza.github.io.
+    canonical e og:url estão ativas. og:image e twitter:image continuam
+    comentadas ("PUBLICAR:") porque os arquivos de imagem ainda não existem:
+    uma og:image apontando para um 404 faz WhatsApp e LinkedIn montarem o
+    card sem imagem, e esse card fica em cache. Ao salvar a imagem
+    (1200×630) em assets/images/, tire o comentário das duas tags.
+    Detalhes no README, seção 2.
   -->
-  <!-- PUBLICAR: <link rel="canonical" href="https://SEU-DOMINIO.com/projetos.html"> -->
+  <link rel="canonical" href="https://rthursouza.github.io/projetos.html">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <!-- PUBLICAR: <meta property="og:url" content="https://SEU-DOMINIO.com/projetos.html"> -->
+  <meta property="og:url" content="https://rthursouza.github.io/projetos.html">
   <meta property="og:site_name" content="Arthur Souza">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:locale:alternate" content="en_US">
@@ -86,12 +87,12 @@
         content="Estudos de caso de ERP, varejo e logística: do discovery ao resultado medido."
         data-en-content="Case studies in ERP, retail and logistics: from discovery to measured results.">
   <!-- OG IMAGE — 1200×630px. Crie e salve em assets/images/og-cover.jpg -->
-  <!-- PUBLICAR: <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg"> -->
+  <!-- PUBLICAR: <meta property="og:image" content="https://rthursouza.github.io/assets/images/og-cover.jpg"> -->
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt"
-        content="Portfólio de Arthur Souza, UX &amp; Product Designer"
-        data-en-content="Arthur Souza's portfolio, UX &amp; Product Designer">
+        content="Portfólio de Arthur Souza, Product Designer"
+        data-en-content="Arthur Souza's portfolio, Product Designer">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -101,7 +102,7 @@
   <meta name="twitter:description"
         content="Estudos de caso de ERP, varejo e logística: do discovery ao resultado medido."
         data-en-content="Case studies in ERP, retail and logistics: from discovery to measured results.">
-  <!-- PUBLICAR: <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-cover.jpg"> -->
+  <!-- PUBLICAR: <meta name="twitter:image" content="https://rthursouza.github.io/assets/images/og-cover.jpg"> -->
 
   <!-- ==================== FAVICON ==================== -->
   <!--
@@ -214,6 +215,11 @@
       <path d="M9 3H3v6M15 21h6v-6M21 9V3h-6M3 15v6h6"/>
     </symbol>
 
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/>
+    </symbol>
+
     <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
       <path d="m4 12.5 5 5 11-11"/>
@@ -249,7 +255,7 @@
         <span class="brand__text">
           <span class="brand__name">Arthur Souza</span>
           <span class="brand__role">
-            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+            <span lang="pt-BR">Product Designer</span><span lang="en">Product Designer</span>
           </span>
         </span>
       </a>
@@ -257,9 +263,9 @@
       <!-- Navegação principal — o mesmo <ul> serve desktop e drawer mobile -->
       <nav class="nav" id="nav-principal" data-nav-panel
            aria-label="Navegação principal" data-en-aria-label="Main navigation">
-        <!-- Mesmo menu da home. Aqui "Projetos" é a página atual; Sobre e
-             Contato voltam para as âncoras da home. Sem data-scrollspy:
-             não há seções da home nesta página para acompanhar. -->
+        <!-- Mesmo menu da home. Aqui "Projetos" é a página atual; "Sobre"
+             leva à página própria e Contato desce para o #contato no fim desta
+             página. Sem data-scrollspy: não há seções para acompanhar. -->
         <ul class="nav__list">
           <li class="nav__item">
             <a class="nav__link" href="projetos.html" aria-current="page">
@@ -267,12 +273,12 @@
             </a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="index.html#sobre">
+            <a class="nav__link" href="sobre.html">
               <span lang="pt-BR">Sobre</span><span lang="en">About</span>
             </a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="index.html#contato">
+            <a class="nav__link" href="#contato">
               <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
             </a>
           </li>
@@ -326,7 +332,7 @@
             <svg class="icon" aria-hidden="true" focusable="false">
               <use href="#i-file"></use>
             </svg>
-            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span lang="pt-BR">Currículo</span><span lang="en">Resume</span>
             <span class="visually-hidden">
               <span lang="pt-BR">(PDF, abre em nova aba)</span><span lang="en">(PDF, opens in a new tab)</span>
             </span>
@@ -452,9 +458,11 @@
             <article class="project-card" aria-labelledby="lista-01-titulo">
 
               <figure class="media media--4x3 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do PDV Nasajon · 4:3 · 1200×900</span><span lang="en">Nasajon POS cover · 4:3 · 1200×900</span>
-                </span>
+                <div class="cover cover--tone-1" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span></span>
+                  <span class="cover__title"><span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span></span>
+                  <span class="cover__value">−30%</span>
+                </div>
                 <!--
                 <img src="assets/images/projeto-01-capa-4x3.jpg"
                      alt=""
@@ -504,9 +512,11 @@
             <article class="project-card" aria-labelledby="lista-02-titulo">
 
               <figure class="media media--4x3 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do app de logística · 4:3 · 1200×900</span><span lang="en">Logistics app cover · 4:3 · 1200×900</span>
-                </span>
+                <div class="cover cover--tone-2" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span></span>
+                  <span class="cover__title"><span lang="pt-BR">App de logística</span><span lang="en">Logistics app</span></span>
+                  <span class="cover__value"><span lang="pt-BR">Sem papel</span><span lang="en">Paperless</span></span>
+                </div>
                 <!--
                 <img src="assets/images/projeto-02-capa-4x3.jpg"
                      alt=""
@@ -537,14 +547,14 @@
                   place of paper.
                 </p>
 
-                <!-- PENDENTE (depende do Arthur): mesma métrica do card da
-                     home. Ao preencher, troque nos dois lugares. -->
-                <p class="project-card__metric project-card__metric--pending">
+                <!-- Resultado qualitativo, o mesmo do case 2 ("O que mudou, medido").
+                     Se um número for apurado, troque em todos os lugares. -->
+                <p class="project-card__metric">
                   <span class="project-card__metric-value">
-                    <span lang="pt-BR">[PENDENTE]</span><span lang="en">[PENDING]</span>
+                    <span lang="pt-BR">Sem papel</span><span lang="en">Paperless</span>
                   </span>
                   <span class="project-card__metric-label">
-                    <span lang="pt-BR">[resultado do app de logística]</span><span lang="en">[logistics app result]</span>
+                    <span lang="pt-BR">o romaneio deixou de ser impresso e redigitado</span><span lang="en">manifests stopped being printed and retyped</span>
                   </span>
                 </p>
 
@@ -560,9 +570,11 @@
             <article class="project-card" aria-labelledby="lista-03-titulo">
 
               <figure class="media media--4x3 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa da Roteirização · 4:3 · 1200×900</span><span lang="en">Route planning cover · 4:3 · 1200×900</span>
-                </span>
+                <div class="cover cover--tone-3" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span></span>
+                  <span class="cover__title"><span lang="pt-BR">Roteirização</span><span lang="en">Route planning</span></span>
+                  <span class="cover__value">−40%</span>
+                </div>
                 <!--
                 <img src="assets/images/projeto-03-capa-4x3.jpg"
                      alt=""
@@ -618,28 +630,78 @@
     </section>
 
     <!-- ========================================================================
-         02 · CONTATO (curto)
+         CONTATO — o mesmo bloco em todas as páginas (home, /projetos, sobre,
+         cases e template). O "Contato" do menu de cada página aponta para este
+         #contato.
          ======================================================================== -->
     <section class="section section--alt section--tight" id="contato" aria-labelledby="contato-titulo">
       <div class="container">
 
-        <div class="contact contact--inline" data-reveal>
+        <div class="contact contact--inline" data-reveal data-copy-scope>
 
           <div class="contact__text">
             <h2 class="contact__title" id="contato-titulo">
-              <span lang="pt-BR">Quer ver algum projeto em detalhe numa conversa?</span><span lang="en">Want to walk through a project in a conversation?</span>
+              <span lang="pt-BR">Tem um problema difícil? Vamos conversar.</span><span lang="en">Got a hard problem? Let's talk.</span>
             </h2>
+            <p class="contact__lead" lang="pt-BR">
+              Aberto a vagas de Product Designer, remoto ou no Rio de Janeiro.
+              Respondo todos os e-mails em até 48 horas.
+            </p>
+            <p class="contact__lead" lang="en">
+              Open to Product Designer roles, remote or in Rio de Janeiro. I reply
+              to every email within 48 hours.
+            </p>
           </div>
 
           <div class="contact__actions cluster">
-            <!-- E-MAIL — troque pelo seu endereço real -->
+            <!-- E-MAIL — troque pelo seu endereço real (aqui e no botão de copiar) -->
             <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
               <svg class="icon" aria-hidden="true" focusable="false">
                 <use href="#i-mail"></use>
               </svg>
               <span>arthursouza_7@outlook.com</span>
             </a>
+
+            <!-- COPIAR E-MAIL — nasce com hidden. O script.js só o mostra quando o
+                 navegador tem a API de área de transferência; sem ela (ou sem JS),
+                 o link mailto acima continua sendo o caminho. Ao copiar, o botão
+                 ganha .is-copied por alguns segundos e troca o rótulo. -->
+            <button class="btn btn--secondary btn--lg contact__copy" type="button"
+                    data-copy-email="arthursouza_7@outlook.com" hidden>
+              <span class="contact__copy-idle">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-copy"></use>
+                </svg>
+                <span lang="pt-BR">Copiar e-mail</span><span lang="en">Copy email</span>
+              </span>
+              <span class="contact__copy-done" data-copy-message>
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-check"></use>
+                </svg>
+                <span lang="pt-BR">E-mail copiado</span><span lang="en">Email copied</span>
+              </span>
+            </button>
+
+            <a class="btn btn--secondary btn--lg"
+               href="https://www.linkedin.com/in/arthursouza7/"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-linkedin"></use>
+              </svg>
+              <span>LinkedIn</span>
+              <svg class="icon icon--xs" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up-right"></use>
+              </svg>
+              <span class="visually-hidden">
+                <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+              </span>
+            </a>
           </div>
+
+          <!-- Aviso para leitor de tela. Começa vazio; ao copiar, o script coloca
+               aqui uma cópia do rótulo "E-mail copiado" (os dois idiomas, e o CSS
+               esconde o inativo) e limpa depois. -->
+          <p class="visually-hidden" role="status" data-copy-status></p>
 
         </div>
       </div>
@@ -664,6 +726,11 @@
           </a>
         </li>
         <li>
+          <a class="footer__link" href="sobre.html">
+            <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+          </a>
+        </li>
+        <li>
           <a class="footer__link" href="mailto:arthursouza_7@outlook.com">
             <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
           </a>
@@ -680,7 +747,7 @@
         <li>
           <a class="footer__link" href="assets/curriculo-arthursouza-ux.pdf"
              target="_blank" rel="noopener">
-            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span lang="pt-BR">Currículo</span><span lang="en">Resume</span>
             <span class="visually-hidden">
               <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
             </span>

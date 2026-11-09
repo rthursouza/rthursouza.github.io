@@ -4,7 +4,8 @@
    ----------------------------------------------------------------------------
    Arquivo : style.css
    Stack   : CSS3 puro · Mobile First · Tema claro e escuro (escuro é o padrão)
-   Consome : index.html · projects/projeto-template.html (e as cópias 01–03)
+   Consome : index.html · projetos.html · sobre.html ·
+             projects/projeto-template.html (e as cópias 01–03)
 
    ÍNDICE
    ------
@@ -27,6 +28,8 @@
    15 · SOBRE (curto)
    16 · PROJETOS (project-card · featured)
    16b· PÁGINA DE PROJETOS (page-intro · page-toolbar · filter · project-grid)
+   16c· PÁGINA SOBRE (about-intro · experience · method · term-list ·
+        education)
    17 · CONTATO
    18 · FOOTER
    19 · CASE · BREADCRUMB, HERO, FICHA, EM 30 SEGUNDOS, ÍNDICE, DUAS
@@ -44,7 +47,9 @@
    • class="…" → estilo.  data-* → comportamento (JS).  .is-* → estado.
    • Tema: data-theme="escuro" (padrão) | "claro" em <html>, escrito pelo JS.
    • Breakpoints:
+       30rem (480px)  — amostras de trabalho em 3 colunas (sobre.html)
        40rem (640px)  — grades de 2 colunas e ajustes de proporção
+       48rem (768px)  — card de experiência em duas colunas (sobre.html)
        56rem (896px)  — troca do menu mobile para a navegação desktop
                         e card grande de projeto na horizontal
        64rem (1024px) — seções do case em duas colunas (título | conteúdo)
@@ -250,6 +255,14 @@ p, h1, h2, h3, li, dd, figcaption {
   --color-glow-faint:    rgba(224, 138, 99, .07);
   --color-sheen:         rgba(242, 237, 227, .10);    /* filete interno da mídia */
   --color-hatch:         rgba(242, 237, 227, .028);   /* hachura do placeholder  */
+
+  /* Fundos das capas tipográficas (.cover): um tom por projeto, sempre a
+     superfície tingida por uma cor que já existe. Declarados uma vez só:
+     como dependem de --color-surface e companhia, acompanham o tema claro
+     sem precisar de override. */
+  --color-cover-1: color-mix(in oklab, var(--color-accent) 16%, var(--color-surface));
+  --color-cover-2: color-mix(in oklab, var(--color-positive) 22%, var(--color-surface));
+  --color-cover-3: color-mix(in oklab, var(--color-warning) 18%, var(--color-surface));
 
   /* ---------- ESTADOS ----------
      Reservados para feedback de formulário. Sobre --color-bg:
@@ -825,6 +838,129 @@ main[id] {
 
 .media:has(> .media__caption) > img {
   border: 1px solid var(--color-border);
+}
+
+/* ---------- CAPA TIPOGRÁFICA ----------
+   Ocupa o slot da imagem enquanto ela não existe: mesma caixa, mesma
+   proporção (é absoluta sobre o .media), então trocar a capa pelo <img> não
+   move nada. Para trocar: apague a <div class="cover"> e descomente o <img>.
+
+   As medidas internas usam unidades de contêiner (cqi/cqb/cqmin): a mesma
+   capa serve ao card 4:3, à faixa 21:9 e ao hero do case, e o texto acompanha
+   o tamanho do slot — não o da janela. Os clamp() travam os extremos nos
+   tokens da escala tipográfica.
+
+     .cover--tone-1/2/3  fundo do projeto (tokens --color-cover-*)
+     .cover--monogram    foto de perfil: só o "AS", centralizado
+     .cover--sample      amostra do freelancer: só o nome da categoria
+
+   Acessibilidade: capa de card (o <img> seria alt="") leva aria-hidden;
+   capa que faz papel de imagem (hero do case, amostras) leva role="img" e
+   aria-label, com o par data-en-aria-label. */
+.cover {
+  --cover-bg: var(--color-surface-2);
+
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto auto;
+  grid-template-areas:
+    "eyebrow"
+    "."
+    "title"
+    "value";
+  padding: clamp(var(--sp-4), 5%, calc(var(--sp-6) * 1.5));
+  border-radius: inherit;
+  overflow: hidden;
+  background-color: var(--cover-bg);
+  background-image: radial-gradient(120% 90% at 100% 0%, var(--color-glow) 0%, transparent 60%);
+  color: var(--color-text);
+}
+
+/* Anéis concêntricos no canto: textura sem imagem e sem cor nova. */
+.cover::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -22cqb;
+  inset-inline-end: -10cqi;
+  width: 72cqmin;
+  aspect-ratio: 1;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  outline: 1px solid var(--color-border);
+  outline-offset: 7cqmin;
+  pointer-events: none;
+}
+
+.cover--tone-1 { --cover-bg: var(--color-cover-1); }
+.cover--tone-2 { --cover-bg: var(--color-cover-2); }
+.cover--tone-3 { --cover-bg: var(--color-cover-3); }
+
+.cover__eyebrow {
+  grid-area: eyebrow;
+  position: relative;
+  font-size: clamp(var(--fs-xs), 2.4cqi, var(--fs-sm));
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.cover__title {
+  grid-area: title;
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(var(--fs-md), 11cqmin, var(--fs-2xl));
+  font-weight: 600;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+/* O número (ou o resultado) é o protagonista. A largura também limita o
+   corpo: "Sem papel" precisa caber num card estreito sem estourar. */
+.cover__value {
+  grid-area: value;
+  position: relative;
+  margin-block-start: var(--sp-1);
+  color: var(--color-accent-text);
+  font-family: var(--font-display);
+  font-size: clamp(var(--fs-xl), min(26cqb, 15cqi), calc(var(--fs-4xl) * 1.6));
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Foto de perfil: monograma centralizado sobre um halo do accent. */
+.cover--monogram {
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-areas: "value";
+  place-items: center;
+  background-image: radial-gradient(circle at 50% 50%, var(--color-accent-soft) 0%, transparent 70%);
+}
+
+.cover--monogram::before {
+  inset-block-start: 50%;
+  inset-inline-end: auto;
+  inset-inline-start: 50%;
+  width: 70cqmin;
+  translate: -50% -50%;
+}
+
+.cover--monogram .cover__value {
+  margin: 0;
+  font-size: clamp(var(--fs-3xl), 30cqmin, calc(var(--fs-4xl) * 2));
+}
+
+/* Amostra do freelancer: só a categoria, no pé do bloco. */
+.cover--sample {
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "."
+    "title";
 }
 
 
@@ -1790,6 +1926,51 @@ main[id] {
   margin-block-start: var(--sp-4);
 }
 
+/* ---------- RESUMO DA TRAJETÓRIA ----------
+   Duas linhas: cargo · empresa à esquerda, período à direita, com filete
+   entre elas. O ponto médio é decoração gerada em CSS — não é lido em voz
+   alta, como no .meta-list. Em tela estreita o período desce para baixo
+   do cargo. A trajetória completa vive em sobre.html (seção 16c). */
+.career-list {
+  margin-block-start: var(--sp-5);
+  max-width: var(--w-prose);
+}
+
+.career-list__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-1) var(--sp-4);
+  padding-block: var(--sp-3);
+}
+
+.career-list__item + .career-list__item {
+  border-block-start: 1px solid var(--color-border);
+}
+
+.career-list__role {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.career-list__org {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.career-list__org::before {
+  content: "·";
+  margin-inline: var(--sp-2);
+  color: var(--color-border-strong);
+}
+
+.career-list__period {
+  color: var(--color-text-subtle);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+}
+
 @media (min-width: 56rem) {
   .about {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
@@ -1974,18 +2155,6 @@ main[id] {
   line-height: var(--lh-snug);
 }
 
-/* Métrica que ainda não existe: placeholder visível, sem fingir número. */
-.project-card__metric--pending .project-card__metric-value {
-  color: var(--color-text-subtle);
-  font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  letter-spacing: var(--tracking-wide);
-}
-
-.project-card__metric--pending .project-card__metric-label {
-  color: var(--color-text-subtle);
-}
-
 .project-card__cta {
   display: inline-flex;
   align-items: center;
@@ -2038,6 +2207,12 @@ main[id] {
    Vem por último no DOM (o leitor de tela o ouve depois do título), mas é
    desenhado sobre o canto da imagem. Accent sobre accent-ink: 5,5:1 no
    escuro, 4,71:1 no claro. */
+/* O selo fica sobre o canto da capa: o eyebrow dela desce para não ficar
+   embaixo do selo. */
+.project-card:has(.project-card__badge) .cover__eyebrow {
+  margin-block-start: var(--sp-6);
+}
+
 .project-card__badge {
   position: absolute;
   inset-block-start: calc(var(--project-card-pad) + var(--sp-3));
@@ -2160,8 +2335,310 @@ main[id] {
 
 
 /* ==========================================================================
+   16c · PÁGINA SOBRE (/sobre.html)
+   --------------------------------------------------------------------------
+   Abertura em duas colunas, experiência, como eu trabalho, competências e
+   formação. Reaproveita page-intro, breadcrumb, eyebrow, prose, media,
+   heading-row, text-link, chips, two-col, meta-list e contact — os blocos
+   abaixo são só o que a página tem de próprio.
+   ========================================================================== */
+
+/* ---------- ABERTURA ----------
+   Texto à esquerda, foto 4:5 à direita. No mobile a foto vem depois do
+   texto, que é a ordem do HTML — como no hero da home. */
+.about-intro {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.about-intro__title {
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+}
+
+.about-intro__text {
+  margin-block-start: var(--sp-5);
+}
+
+.about-intro__media {
+  width: 100%;
+  max-width: 15rem;
+}
+
+@media (min-width: 56rem) {
+  .about-intro {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    align-items: start;
+  }
+
+  .about-intro__media {
+    max-width: none;
+  }
+}
+
+/* ---------- EXPERIÊNCIA ----------
+   <ol> com um card por experiência, da mais recente para a mais antiga.
+
+   .experience__meta        período, local e selo "Atual" (coluna esquerda)
+   .experience__body        cargo, empresa, resumo, destaques, amostras, chips
+   .experience__highlights  um resultado por linha, cada um com "Ver case →"
+   .experience__samples     grade de amostras 4:3 (trabalho sem case)
+
+   A partir de 48rem o card vira duas colunas: meta à esquerda, conteúdo à
+   direita. Abaixo disso, a meta é uma linha só acima do cargo. */
+.experience {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+.experience__item {
+  display: grid;
+  gap: var(--sp-4);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.experience__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: start;
+  gap: var(--sp-2) var(--sp-3);
+}
+
+.experience__period {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.experience__place {
+  color: var(--color-text-subtle);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+}
+
+.experience__badge {
+  padding: 0.1875rem 0.625rem;
+  background-color: var(--color-accent-soft);
+  border: 1px solid var(--color-accent-line);
+  border-radius: var(--radius-pill);
+  color: var(--color-accent-text);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.experience__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+
+.experience__role {
+  font-size: var(--fs-lg);
+}
+
+/* Cola na linha do cargo: os dois juntos são o "título" do card. */
+.experience__org {
+  margin-block-start: calc(var(--sp-2) * -1);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.experience__summary {
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+/* Destaques: resultado à esquerda, link à direita, filete entre as linhas.
+   Em tela estreita o link desce para baixo do resultado. */
+.experience__highlights {
+  width: 100%;
+  margin-block-start: var(--sp-1);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.experience__highlight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 var(--sp-4);
+  padding-block: var(--sp-2);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.experience__highlight-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-1) var(--sp-3);
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+}
+
+/* Número em display, como a métrica do .project-card. */
+.experience__metric {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.experience__body .chips {
+  margin-block-start: var(--sp-2);
+}
+
+/* Amostras: uma coluna no celular, três a partir de 30rem. */
+.experience__samples {
+  display: grid;
+  gap: var(--sp-3);
+  width: 100%;
+  margin-block-start: var(--sp-1);
+}
+
+.experience__samples .media {
+  border-radius: var(--radius);
+}
+
+@media (min-width: 30rem) {
+  .experience__samples {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 48rem) {
+  .experience__item {
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .experience__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- COMO EU TRABALHO ----------
+   Três cartões numerados. O número é decorativo (aria-hidden): a <ol> já
+   anuncia a ordem ao leitor de tela. */
+.method {
+  display: grid;
+  gap: var(--gap-card);
+}
+
+.method__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.method__number {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.method__title {
+  font-size: var(--fs-md);
+}
+
+.method__text {
+  color: var(--color-text-muted);
+  line-height: var(--lh-snug);
+}
+
+@media (min-width: 56rem) {
+  .method {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---------- COMPETÊNCIAS ----------
+   <dl> em texto corrido, sem chips: aqui a lista é de referência. */
+.term-list {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.term-list__term {
+  color: var(--color-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.term-list__desc {
+  margin-block-start: var(--sp-1);
+  color: var(--color-text-muted);
+  line-height: var(--lh-snug);
+}
+
+/* ---------- FORMAÇÃO ----------
+   Graduação em destaque; "Outros cursos" abaixo de um filete, com o mesmo
+   rótulo em caixa alta do .term-list. Curso · instituição numa linha, com
+   o ponto gerado em CSS (não é lido em voz alta). */
+.education__course {
+  margin-block-end: var(--sp-2);
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+
+.education__subtitle {
+  margin-block: var(--sp-5) var(--sp-2);
+  padding-block-start: var(--sp-4);
+  border-block-start: 1px solid var(--color-border);
+  color: var(--color-text-subtle);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.education__item {
+  padding-block: var(--sp-1);
+  line-height: var(--lh-snug);
+}
+
+.education__school {
+  color: var(--color-text-muted);
+}
+
+.education__school::before {
+  content: "·";
+  margin-inline: var(--sp-2);
+  color: var(--color-border-strong);
+}
+
+
+/* ==========================================================================
    17 · CONTATO
-   Painel usado na home e no CTA final de cada estudo de caso.
+   O mesmo bloco no fim de todas as páginas (home, /projetos, sobre e cases),
+   sempre com o modificador --inline.
    ========================================================================== */
 
 .contact {
@@ -2177,13 +2654,11 @@ main[id] {
   text-align: center;
 }
 
-.contact .section-head {
-  margin-block-end: clamp(1.75rem, 4vw, 2.5rem);
-}
-
-/* ---------- CONTATO EM LINHA (home) ----------
-   Bloco único e baixo: título e prazo de resposta de um lado, botões do
-   outro. Empilha abaixo de 56rem. */
+/* ---------- CONTATO EM LINHA ----------
+   Bloco único e baixo: título e texto de apoio em cima, os três botões
+   (e-mail, copiar, LinkedIn) numa linha embaixo. Em todas as larguras: o
+   container nunca passa de 76rem, e lado a lado o texto ficaria espremido
+   numa coluna estreita. */
 .contact--inline {
   display: grid;
   gap: var(--sp-5);
@@ -2208,15 +2683,30 @@ main[id] {
   color: var(--color-text-muted);
 }
 
-@media (min-width: 56rem) {
-  .contact--inline {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--sp-6);
-  }
+/* ---------- COPIAR E-MAIL ----------
+   O botão tem dois rótulos e mostra um de cada vez: "Copiar e-mail" e, por
+   alguns segundos depois do clique, "E-mail copiado". .is-copied é escrito
+   pelo script.js. Sem JS ou sem a API de área de transferência o botão
+   continua com hidden e não aparece. */
+.contact__copy-idle,
+.contact__copy-done {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
 
-  .contact--inline .contact__actions {
-    justify-content: flex-end;
-  }
+.contact__copy-done,
+.contact__copy.is-copied .contact__copy-idle {
+  display: none;
+}
+
+.contact__copy.is-copied .contact__copy-done {
+  display: inline-flex;
+}
+
+.contact__copy.is-copied {
+  border-color: var(--color-accent-line);
+  color: var(--color-accent-text);
 }
 
 /* O botão principal traz o endereço de e-mail inteiro como rótulo — é o que
@@ -2747,6 +3237,14 @@ main[id] {
   color: var(--color-text-muted);
 }
 
+/* Dois parágrafos na mesma etapa. O par é casado por idioma: o primeiro
+   parágrafo em inglês vem logo depois do último em português (oculto) e
+   não pode ganhar margem. */
+.timeline__text[lang="pt-BR"] + .timeline__text[lang="pt-BR"],
+.timeline__text[lang="en"] + .timeline__text[lang="en"] {
+  margin-block-start: var(--sp-3);
+}
+
 @media (min-width: 56rem) {
   .timeline {
     --timeline-marker: 3rem;
@@ -3159,6 +3657,9 @@ main[id] {
   .project-card,
   .project-card__badge,
   .filter__btn,
+  .experience__item,
+  .experience__badge,
+  .method__item,
   .contact,
   .nav-toggle,
   .lang-switch,
@@ -3182,8 +3683,14 @@ main[id] {
   body::before,
   .contact,
   .metric,
+  .cover,
   .brand__mark {
     background-image: none;
+  }
+
+  /* Os anéis da capa competiriam com o texto em alto contraste. */
+  .cover::before {
+    display: none;
   }
 
   /* O texto recortado em gradiente ficaria invisível: volta a ser texto. */

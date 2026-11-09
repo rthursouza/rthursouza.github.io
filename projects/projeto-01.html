@@ -7,8 +7,10 @@
   ganchos de comportamento são idênticos ao template — só o conteúdo muda.
 
   Para editar: o guia completo está no README (seção 7). Para trocar as
-  imagens: apague o <span class="media__label"> e descomente o <img> logo
-  abaixo dele. Nada mais precisa mudar.
+  imagens: apague a capa (<div class="cover">) e descomente o <img> logo
+  abaixo dela. Figuras do corpo ainda sem imagem estão inteiras dentro de
+  comentários marcados "IMAGEM PENDENTE:"; para publicar, salve o arquivo e
+  tire o comentário. Nada mais precisa mudar.
 
   IDIOMAS — mesma regra da home (documentada no topo de ../index.html):
     • texto corrido  → elementos gêmeos <p lang="pt-BR"> / <p lang="en">
@@ -66,11 +68,11 @@
   <!-- Valor do modo escuro (o padrão); o script.js reescreve ao trocar. -->
   <meta name="theme-color" content="#20293A">
 
-  <!-- URLs absolutas desativadas até o site ser hospedado: veja o comentário "PUBLICAR:" no index.html e o README, seção 2. -->
-  <!-- PUBLICAR: <link rel="canonical" href="https://SEU-DOMINIO.com/projects/projeto-01.html"> -->
+  <!-- canonical e og:url ativas. og:image e twitter:image ficam comentadas ("PUBLICAR:") até o arquivo de imagem existir: veja o topo do <head> do index.html e o README, seção 2. -->
+  <link rel="canonical" href="https://rthursouza.github.io/projects/projeto-01.html">
 
   <meta property="og:type" content="article">
-  <!-- PUBLICAR: <meta property="og:url" content="https://SEU-DOMINIO.com/projects/projeto-01.html"> -->
+  <meta property="og:url" content="https://rthursouza.github.io/projects/projeto-01.html">
   <meta property="og:site_name" content="Arthur Souza">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:locale:alternate" content="en_US">
@@ -81,7 +83,7 @@
         content="45% do projeto descartado depois da pesquisa. Mobile-first, ação crítica protegida e −30% no tempo de venda."
         data-en-content="45% of the project scrapped after research. Mobile-first, protected critical actions and −30% time per sale.">
   <!-- OG IMAGE — 1200×630px -->
-  <!-- PUBLICAR: <meta property="og:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-01.jpg"> -->
+  <!-- PUBLICAR: <meta property="og:image" content="https://rthursouza.github.io/assets/images/og-projeto-01.jpg"> -->
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt"
@@ -95,7 +97,7 @@
   <meta name="twitter:description"
         content="45% do projeto descartado depois da pesquisa. Mobile-first, ação crítica protegida e −30% no tempo de venda."
         data-en-content="45% of the project scrapped after research. Mobile-first, protected critical actions and −30% time per sale.">
-  <!-- PUBLICAR: <meta name="twitter:image" content="https://SEU-DOMINIO.com/assets/images/og-projeto-01.jpg"> -->
+  <!-- PUBLICAR: <meta name="twitter:image" content="https://rthursouza.github.io/assets/images/og-projeto-01.jpg"> -->
 
   <!-- ==================== FAVICON ==================== -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2320293A'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23E08A63' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
@@ -176,6 +178,11 @@
             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
       <path d="M9 3H3v6M15 21h6v-6M21 9V3h-6M3 15v6h6"/>
     </symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/>
+    </symbol>
+
     <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
       <path d="m4 12.5 5 5 11-11"/>
@@ -208,7 +215,7 @@
         <span class="brand__text">
           <span class="brand__name">Arthur Souza</span>
           <span class="brand__role">
-            <span lang="pt-BR">UX &amp; Product Designer</span><span lang="en">UX &amp; Product Designer</span>
+            <span lang="pt-BR">Product Designer</span><span lang="en">Product Designer</span>
           </span>
         </span>
       </a>
@@ -217,9 +224,9 @@
       <nav class="nav" id="nav-principal" data-nav-panel
            aria-label="Navegação principal" data-en-aria-label="Main navigation">
         <!-- Mesmo menu da home. O case fica dentro de "Projetos" (por isso
-             aria-current="true", e não "page"); Sobre e Contato voltam
-             para as âncoras da home. Sem data-scrollspy:
-             não há seções da home nesta página para acompanhar. -->
+             aria-current="true", e não "page"); "Sobre" leva à página
+             própria e Contato desce para o #contato no fim desta página. Sem
+             data-scrollspy: não há seções para acompanhar. -->
         <ul class="nav__list">
           <li class="nav__item">
             <a class="nav__link" href="../projetos.html" aria-current="true">
@@ -227,12 +234,12 @@
             </a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="../index.html#sobre">
+            <a class="nav__link" href="../sobre.html">
               <span lang="pt-BR">Sobre</span><span lang="en">About</span>
             </a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="../index.html#contato">
+            <a class="nav__link" href="#contato">
               <span lang="pt-BR">Contato</span><span lang="en">Contact</span>
             </a>
           </li>
@@ -286,7 +293,7 @@
             <svg class="icon" aria-hidden="true" focusable="false">
               <use href="#i-file"></use>
             </svg>
-            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span lang="pt-BR">Currículo</span><span lang="en">Resume</span>
             <span class="visually-hidden">
               <span lang="pt-BR">(PDF, abre em nova aba)</span><span lang="en">(PDF, opens in a new tab)</span>
             </span>
@@ -368,11 +375,15 @@
         <!-- HERO IMAGE -->
         <div class="container container--wide case-hero__media" data-reveal>
           <figure class="media media--21x9 media--framed">
-            <span class="media__label" aria-hidden="true">
-              <span lang="pt-BR">Imagem hero do case · 2100×900</span><span lang="en">Case hero image · 2100×900</span>
-            </span>
+            <div class="cover cover--tone-1" role="img"
+                 aria-label="Capa do estudo de caso PDV mobile-first: −30% no tempo de fechamento de venda"
+                 data-en-aria-label="Case study cover, mobile-first POS: −30% in time to close a sale">
+              <span class="cover__eyebrow"><span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span></span>
+              <span class="cover__title"><span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span></span>
+              <span class="cover__value">−30%</span>
+            </div>
             <!--
-              SUBSTITUIR: apague o <span class="media__label"> e descomente.
+              SUBSTITUIR: apague a capa (<div class="cover">) e descomente.
               Esta é a imagem LCP desta página: eager + fetchpriority="high".
 
             <img src="../assets/images/projeto-01-hero.jpg"
@@ -439,7 +450,7 @@
         <div class="container">
 
           <h2 class="case-tldr__title" id="resumo-titulo" data-reveal>
-            <span lang="pt-BR">Em 30 segundos</span><span lang="en">In 30 seconds</span>
+            <span lang="pt-BR">Em 30 segundos</span><span lang="en">At a glance</span>
           </h2>
 
           <div class="tldr" data-reveal>
@@ -533,50 +544,41 @@
           <div class="case-section__body">
             <div class="prose" data-reveal>
               <p lang="pt-BR">
-                A Nasajon é uma empresa de ERP, e o PDV é a frente de caixa que
-                atende as lojas físicas dos clientes dela: varejo genérico, de loja
-                única a rede. Já havia uma solução de frente de caixa no portfólio,
-                mas antiga o bastante para que a decisão fosse refazer do zero em
-                vez de continuar remendando.
+                A Nasajon é uma empresa de ERP, e o PDV é a frente de caixa
+                das lojas físicas dos clientes dela. A solução antiga era
+                velha demais para remendar: a decisão foi refazer do zero.
               </p>
               <p lang="en">
-                Nasajon is an ERP company, and the PDV is the point-of-sale front
-                end serving its clients' physical stores: general retail, from
-                single shops to chains. A checkout solution already existed in the
-                portfolio, but it was old enough that the decision was to rebuild
-                from scratch rather than keep patching it.
+                Nasajon is an ERP company, and the PDV is the point-of-sale
+                front end for its clients' physical stores. The legacy
+                solution was too old to patch: the decision was to rebuild
+                from scratch.
               </p>
               <p lang="pt-BR">
-                Na primeira leva são mais de 40 lojas, com no mínimo três operadores
-                cada. O projeto não nasceu de um incêndio — nasceu de uma
-                oportunidade de mercado que a solução antiga já não alcançava. Isso
-                muda o tipo de pressão: não havia um problema urgente para apagar,
-                havia um padrão a estabelecer.
+                Na primeira leva são mais de 40 lojas, com no mínimo três
+                operadores cada. Não havia incêndio para apagar: havia um
+                padrão a estabelecer.
               </p>
               <p lang="en">
                 The first wave covers more than 40 stores, with at least three
-                operators each. The project wasn't born from a fire — it was born
-                from a market opportunity the legacy solution could no longer reach.
-                That changes the kind of pressure: there was no urgent problem to
-                put out, there was a standard to set.
+                operators each. There was no fire to put out: there was a
+                standard to set.
               </p>
             </div>
 
             <!-- PESQUISA -->
+            <!-- IMAGEM PENDENTE: Fluxo antigo: a pré-venda no papel (1600×900).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Fluxo antigo: a pré-venda no papel · 1600×900</span><span lang="en">Legacy flow: the paper pre-sale · 1600×900</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-01-contexto.png"
                    alt="Diagrama do fluxo antigo: atendimento anotado no papel e busca manual do pedido no caixa"
                    data-en-alt="Diagram of the legacy flow: order written on paper and searched by hand at the register"
                    width="1600" height="900" loading="lazy" decoding="async">
-              -->
               <figcaption class="media__caption">
                 <span lang="pt-BR">O fluxo original: pedido anotado à mão, entregue no caixa e procurado manualmente entre todas as vendas abertas.</span><span lang="en">The original flow: order written by hand, carried to the register and searched for manually among every open sale.</span>
               </figcaption>
             </figure>
+            -->
 
           </div>
         </div>
@@ -606,21 +608,18 @@
                 </h3>
                 <div class="prose prose--sm">
                   <p lang="pt-BR">
-                    A Nasajon vendia ERP para lojistas que compravam a frente de
-                    caixa de outro fornecedor. Pelo menos cinco clientes já estavam
-                    nessa situação — número pequeno, mas suficiente para provar que
-                    a fatia existia e estava saindo. A solução antiga da casa não
-                    sobrevivia a uma demonstração: travava negócio novo, e o
-                    argumento contra ela raramente era função. Era aparência e
-                    facilidade de uso.
+                    A Nasajon vendia ERP para lojistas que compravam a frente
+                    de caixa de outro fornecedor; pelo menos cinco clientes já
+                    estavam nessa situação. Contra a solução antiga, o
+                    argumento raramente era função: era aparência e facilidade
+                    de uso.
                   </p>
                   <p lang="en">
-                    Nasajon sold ERP to retailers who bought their checkout software
-                    from someone else. At least five clients were already in that
-                    position — a small number, but enough to prove the slice existed
-                    and was leaking out. The in-house legacy solution didn't survive
-                    a demo: it blocked new deals, and the argument against it was
-                    rarely function. It was looks and ease of use.
+                    Nasajon sold ERP to retailers who bought their checkout
+                    software from someone else; at least five clients were
+                    already in that position. Against the legacy solution, the
+                    argument was rarely function: it was looks and ease of
+                    use.
                   </p>
                 </div>
               </div>
@@ -631,20 +630,16 @@
                 </h3>
                 <div class="prose prose--sm">
                   <p lang="pt-BR">
-                    Fora do balcão, o atendimento acontecia no papel. O operador
-                    anotava o pedido e voltava ao caixa — ou entregava o papel na
-                    mão do cliente para que ele mesmo levasse, uma pré-venda
-                    improvisada. No caixa, alguém precisava então encontrar aquele
-                    pedido no meio de todos os outros, manualmente. A fila crescia
-                    enquanto isso, e parte dela ia embora.
+                    Fora do balcão, o atendimento acontecia no papel. Às vezes
+                    o próprio cliente levava o pedido ao caixa, onde alguém
+                    precisava encontrá-lo à mão entre todos os outros, e parte
+                    da fila ia embora.
                   </p>
                   <p lang="en">
-                    Away from the counter, service happened on paper. The operator
-                    wrote the order down and walked back to the register — or handed
-                    the slip to the customer to carry over themselves, an improvised
-                    pre-sale. At the register, someone then had to find that order
-                    among all the others, by hand. The queue grew while that
-                    happened, and part of it walked out.
+                    Away from the counter, service happened on paper.
+                    Sometimes the customer carried the order to the register,
+                    where someone had to find it by hand among all the others,
+                    and part of the queue walked out.
                   </p>
                 </div>
               </div>
@@ -693,25 +688,25 @@
                 <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
                   <use href="#i-check"></use>
                 </svg>
-                <span lang="pt-BR">Capturar a fatia de frente de caixa que clientes de ERP da Nasajon já compravam de concorrentes.</span><span lang="en">Capture the point-of-sale slice that Nasajon's ERP clients were already buying from competitors.</span>
+                <span lang="pt-BR">Capturar a fatia de frente de caixa que clientes da Nasajon compravam de concorrentes.</span><span lang="en">Capture the point-of-sale slice that Nasajon's clients were buying from competitors.</span>
               </li>
               <li class="checklist__item">
                 <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
                   <use href="#i-check"></use>
                 </svg>
-                <span lang="pt-BR">Entregar mobile-first: o operador atende e fecha a venda circulando pela loja com tablet ou celular, sem ficar preso ao balcão.</span><span lang="en">Ship mobile-first: the operator serves and closes the sale while moving around the store with a tablet or phone, never tied to the counter.</span>
+                <span lang="pt-BR">Mobile-first: atender e fechar a venda circulando pela loja, com tablet ou celular.</span><span lang="en">Mobile-first: serve and close the sale while moving around the store, on a tablet or phone.</span>
               </li>
               <li class="checklist__item">
                 <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
                   <use href="#i-check"></use>
                 </svg>
-                <span lang="pt-BR">Reduzir o esforço de uso a ponto de o sistema ser operável sem treinamento longo.</span><span lang="en">Cut the effort of use to the point where the system is operable without lengthy training.</span>
+                <span lang="pt-BR">Ser operável sem treinamento longo.</span><span lang="en">Be operable without lengthy training.</span>
               </li>
               <li class="checklist__item">
                 <svg class="icon checklist__icon" aria-hidden="true" focusable="false">
                   <use href="#i-check"></use>
                 </svg>
-                <span lang="pt-BR">Sustentar a comparação comercial: a interface precisava ganhar da concorrente na demonstração, que era onde o negócio travava.</span><span lang="en">Hold up in a sales demo: the interface had to win the comparison against the competitor, which was where deals stalled.</span>
+                <span lang="pt-BR">Ganhar da concorrente na demonstração, que era onde o negócio travava.</span><span lang="en">Beat the competitor in the demo, which was where deals stalled.</span>
               </li>
             </ul>
 
@@ -721,6 +716,9 @@
 
       <!-- ==================================================================== -->
       <!-- 05 · MEU PAPEL                                                       -->
+      <!-- O "único designer, do discovery à UI" já está no Em 30 segundos;     -->
+      <!-- aqui ficam só as ressalvas (os chips de responsabilidade saíram     -->
+      <!-- pelo mesmo motivo).                                                 -->
       <!-- ==================================================================== -->
       <section class="section section--alt" id="papel" aria-labelledby="papel-titulo">
         <div class="container case-section">
@@ -736,45 +734,29 @@
 
           <div class="case-section__body">
             <p class="section-head__lead" data-reveal lang="pt-BR">
-              Fui o único designer do projeto: conduzi o discovery, a pesquisa, a
-              definição, a ideação, a validação e a UI final. Duas ressalvas
-              honestas. A decisão de abandonar o desktop não foi minha sozinha —
-              saiu por consenso, a partir do que a pesquisa mostrou. E boa parte
-              do que entendi sobre a operação de loja veio da pessoa do suporte
-              dentro do time, que conhecia as múltiplas facetas do dia a dia que
-              nenhuma entrevista minha teria alcançado.
+              Duas ressalvas. A decisão de abandonar o desktop não foi minha
+              sozinha: saiu por consenso, a partir da pesquisa. E boa parte do
+              que entendi sobre a operação de loja veio da pessoa do suporte
+              no time, que conhecia o dia a dia como nenhuma entrevista minha
+              teria alcançado.
             </p>
             <p class="section-head__lead" data-reveal lang="en">
-              I was the only designer on the project: I ran discovery, research,
-              definition, ideation, validation and the final UI. Two honest
-              caveats. Dropping desktop wasn't my call alone — it came out of
-              consensus, from what the research showed. And much of what I
-              understood about store operations came from the support specialist
-              on the team, who knew the many facets of the day-to-day that no
-              interview of mine would have reached.
+              Two caveats. Dropping desktop wasn't my call alone: it came out
+              of consensus, from the research. And much of what I understood
+              about store operations came from the support specialist on the
+              team, who knew the day-to-day in a way no interview of mine
+              would have reached.
             </p>
-            <ul class="chips chips--lg" data-reveal
-                aria-label="Responsabilidades" data-en-aria-label="Responsibilities">
-              <li class="chip"><span lang="pt-BR">Discovery</span><span lang="en">Discovery</span></li>
-              <li class="chip"><span lang="pt-BR">Pesquisa de usuários</span><span lang="en">User research</span></li>
-              <li class="chip"><span lang="pt-BR">Entrevistas</span><span lang="en">Interviews</span></li>
-              <li class="chip"><span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span></li>
-              <li class="chip"><span lang="pt-BR">Definição</span><span lang="en">Definition</span></li>
-              <li class="chip"><span lang="pt-BR">Ideação</span><span lang="en">Ideation</span></li>
-              <li class="chip"><span lang="pt-BR">Wireframes</span><span lang="en">Wireframes</span></li>
-              <li class="chip"><span lang="pt-BR">Prototipação</span><span lang="en">Prototyping</span></li>
-              <li class="chip"><span lang="pt-BR">UI Design</span><span lang="en">UI Design</span></li>
-              <li class="chip"><span lang="pt-BR">Design de Interação</span><span lang="en">Interaction Design</span></li>
-              <li class="chip"><span lang="pt-BR">Validação</span><span lang="en">Validation</span></li>
-              <li class="chip"><span lang="pt-BR">Handoff</span><span lang="en">Handoff</span></li>
-            </ul>
 
           </div>
         </div>
       </section>
 
       <!-- ==================================================================== -->
-      <!-- 06 · PROCESSO                                                        -->
+      <!-- 06 · PROCESSO — 3 etapas, uma decisão em cada.                       -->
+      <!-- Benchmark, observação e insights viraram "Pesquisa"; wireframes,     -->
+      <!-- protótipo e handoff viraram "Protótipo em código". Alvos de toque e  -->
+      <!-- ações críticas vivem só na Solução.                                  -->
       <!-- ==================================================================== -->
       <section class="section" id="processo" aria-labelledby="processo-titulo">
         <div class="container case-section">
@@ -790,349 +772,191 @@
 
           <div class="case-section__body">
             <p class="section-head__lead" data-reveal lang="pt-BR">
-              Double Diamond em dois meses. A terceira etapa trocou a persona do
-              projeto, e a quarta jogou fora 45% do que já estava desenhado.
+              Double Diamond em dois meses, em três decisões.
             </p>
             <p class="section-head__lead" data-reveal lang="en">
-              Double Diamond in two months. The third stage swapped the project's
-              persona, and the fourth threw away 45% of what was already designed.
+              Double Diamond in two months, in three decisions.
             </p>
             <ol class="timeline">
 
-              <!-- BENCHMARK -->
+              <!-- PESQUISA -->
               <li class="timeline__step" data-reveal>
                 <div class="timeline__marker" aria-hidden="true"><span>01</span></div>
                 <div class="timeline__body">
                   <h3 class="timeline__title">
-                    <span lang="pt-BR">Benchmark</span><span lang="en">Benchmark</span>
+                    <span lang="pt-BR">Pesquisa: ver a operação, não perguntar sobre ela</span><span lang="en">Research: watch the operation, don't ask about it</span>
                   </h3>
                   <p class="timeline__text" lang="pt-BR">
-                    Comecei olhando para quem já estava ganhando essa venda: Linx,
-                    TOTVS, Omie e Senior. O que eu procurava não era funcionalidade
-                    — a solução antiga da casa tinha função. Procurava entender por
-                    que a interface deles passava na demonstração e a nossa não.
-                    Isso fixou o critério de sucesso do projeto antes de eu desenhar
-                    qualquer coisa: a tela precisava vencer uma comparação, não só
-                    cumprir uma lista de requisitos.
+                    O benchmark (Linx, TOTVS, Omie e Senior) fixou o critério
+                    de sucesso: a solução antiga tinha função, mas não passava
+                    na demonstração. A tela precisava vencer uma comparação.
+                  </p>
+                  <p class="timeline__text" lang="pt-BR">
+                    Depois, em vez de entrevistar operadores fora de contexto,
+                    fui ver a operação acontecendo. Quem anda o dia todo com
+                    um papel na mão não relata isso como problema. A persona
+                    principal não era quem opera o caixa, e sim quem atende
+                    circulando pela loja: o papel que trocava de mão era o
+                    produto faltando.
                   </p>
                   <p class="timeline__text" lang="en">
-                    I started by looking at whoever was already winning this sale:
-                    Linx, TOTVS, Omie and Senior. What I was after wasn't features —
-                    the in-house legacy product had features. I wanted to understand
-                    why their interface survived a demo and ours didn't. That set
-                    the project's success criterion before I designed anything: the
-                    screen had to win a comparison, not just tick a requirements
-                    list.
+                    The benchmark (Linx, TOTVS, Omie and Senior) set the
+                    success criterion: the legacy product had features, but it
+                    didn't survive a demo. The screen had to win a comparison.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    Then, instead of interviewing operators out of context, I
+                    went to watch the operation happen. Someone who walks
+                    around all day with a slip of paper doesn't report it as a
+                    problem. The primary persona wasn't whoever operates the
+                    register but whoever serves customers while moving around
+                    the store: the slip changing hands was the missing
+                    product.
                   </p>
                   <!-- PESQUISA -->
+                  <!-- IMAGEM PENDENTE: Benchmark dos concorrentes (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Benchmark dos concorrentes · 1200×675</span><span lang="en">Competitor benchmark · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-benchmark.png"
                          alt="Comparação das frentes de caixa de Linx, TOTVS, Omie e Senior"
                          data-en-alt="Comparison of the Linx, TOTVS, Omie and Senior checkout products"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
-                </div>
-              </li>
-
-              <!-- PESQUISA -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Observação em loja</span><span lang="en">In-store observation</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Em vez de entrevistar operadores fora de contexto, fui ver a
-                    operação acontecendo. Foi a escolha que definiu o projeto: o
-                    comportamento mais importante — o operador atendendo longe do
-                    balcão, com um papel na mão — é o tipo de coisa que ninguém
-                    relata numa entrevista, porque para quem faz todo dia aquilo não
-                    é um problema, é só “como se trabalha”.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    Instead of interviewing operators out of context, I went to
-                    watch the operation happen. That choice defined the project: the
-                    most important behaviour — the operator serving customers away
-                    from the counter, with a slip of paper in hand — is the kind of
-                    thing nobody reports in an interview, because to someone who
-                    does it every day it isn't a problem, it's just “how the job
-                    works”.
-                  </p>
-                  <!-- PESQUISA -->
+                  -->
+                  <!-- IMAGEM PENDENTE: Registro da observação em loja (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Registro da observação em loja · 1200×675</span><span lang="en">In-store observation notes · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-pesquisa.png"
                          alt="Registro da observação da operação de loja, com anotações do fluxo de atendimento"
                          data-en-alt="Record of the in-store observation, with notes on the service flow"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
-                </div>
-              </li>
-
-              <!-- INSIGHTS -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Insights</span><span lang="en">Insights</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    A pesquisa devolveu uma persona que não era a que estávamos
-                    desenhando para. A principal não é quem opera o caixa: é quem
-                    atende o cliente circulando pela loja, justamente para que ele
-                    não precise chegar ao balcão. O papel anotado que trocava de mão
-                    não era um improviso do funcionário — era o produto faltando.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    Research handed back a persona that wasn't the one we were
-                    designing for. The primary user isn't whoever operates the
-                    register: it's whoever serves the customer while moving around
-                    the store, precisely so the customer never has to reach the
-                    counter. The handwritten slip changing hands wasn't an employee
-                    workaround — it was the missing product.
-                  </p>
-                  <!-- INSIGHTS -->
+                  -->
+                  <!-- IMAGEM PENDENTE: Síntese da pesquisa (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Síntese da pesquisa · 1200×675</span><span lang="en">Research synthesis · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-insights.png"
                          alt="Síntese da pesquisa apontando o operador de loja como persona principal"
                          data-en-alt="Research synthesis identifying the store operator as the primary persona"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
-              <!-- USER FLOW -->
+              <!-- DEFINIÇÃO -->
               <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>04</span></div>
+                <div class="timeline__marker" aria-hidden="true"><span>02</span></div>
                 <div class="timeline__body">
                   <h3 class="timeline__title">
                     <span lang="pt-BR">Definição: o desktop cai</span><span lang="en">Definition: desktop is dropped</span>
                   </h3>
                   <p class="timeline__text" lang="pt-BR">
-                    O projeto de desktop já estava desenhado. Com a persona correta
-                    na mesa ele deixou de fazer sentido — não se atende andando pela
-                    loja com uma tela de balcão. Cerca de <strong>45% do que estava
-                    pronto foi descartado</strong>, e a decisão saiu por consenso, a
-                    partir da pesquisa, não por preferência minha. A adaptação doeu
-                    menos do que o número sugere: o conceito e as regras de negócio
-                    continuaram valendo. O que mudou foi a plataforma — e com ela
-                    tudo que depende de mão, dedo e distância.
+                    O projeto de desktop já estava desenhado e, com a persona
+                    certa na mesa, deixou de fazer sentido. Cerca de
+                    <strong>45% do que estava pronto foi descartado</strong>.
+                    Doeu menos do que o número sugere: o conceito e as regras
+                    de negócio continuaram valendo.
                   </p>
                   <p class="timeline__text" lang="pt-BR">
                     Mobile-first, e não mobile-only: o mesmo produto roda em
-                    celular, tablet, computador e terminal PoS. A ordem é que
-                    importa. Partir do dedo e crescer para o mouse funciona; o
-                    contrário era exatamente o que estávamos jogando fora.
+                    celular, tablet, computador e terminal PoS. Partir do dedo e
+                    crescer para o mouse funciona; o contrário era exatamente o que
+                    estávamos jogando fora.
                   </p>
                   <p class="timeline__text" lang="en">
-                    The desktop design was already done. With the right persona on
-                    the table it stopped making sense — you don't serve customers
-                    walking around a store with a counter-bound screen. Roughly
-                    <strong>45% of the finished work was scrapped</strong>, and the
-                    call came out of consensus, from the research, not from my
-                    preference. Adapting hurt less than the number suggests: the
-                    concept and the business rules still held. What changed was the
-                    platform — and with it everything that depends on hands, thumbs
-                    and distance.
+                    The desktop design was already done and, with the right
+                    persona on the table, it stopped making sense. Roughly
+                    <strong>45% of the finished work was scrapped</strong>. It
+                    hurt less than the number suggests: the concept and the
+                    business rules still held.
                   </p>
                   <p class="timeline__text" lang="en">
                     Mobile-first, not mobile-only: the same product runs on phones,
-                    tablets, desktops and POS terminals. The order is what matters.
-                    Starting from the thumb and scaling up to the mouse works; the
-                    reverse was exactly what we were throwing away.
+                    tablets, desktops and POS terminals. Starting from the thumb and
+                    scaling up to the mouse works; the reverse was exactly what we
+                    were throwing away.
                   </p>
                   <!-- USER FLOW -->
+                  <!-- IMAGEM PENDENTE: Antes e depois da mudança de plataforma (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Antes e depois da mudança de plataforma · 1200×675</span><span lang="en">Before and after the platform shift · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-definicao.png"
                          alt="Comparação entre o fluxo desenhado para desktop e o novo fluxo mobile-first"
                          data-en-alt="Comparison between the desktop flow and the new mobile-first flow"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
-              <!-- WIREFRAMES / BAIXA FIDELIDADE -->
+              <!-- PROTÓTIPO E HANDOFF -->
               <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>05</span></div>
+                <div class="timeline__marker" aria-hidden="true"><span>03</span></div>
                 <div class="timeline__body">
                   <h3 class="timeline__title">
-                    <span lang="pt-BR">Ideação e wireframes</span><span lang="en">Ideation and wireframes</span>
+                    <span lang="pt-BR">Protótipo em código como handoff</span><span lang="en">A code prototype as the handoff</span>
                   </h3>
                   <p class="timeline__text" lang="pt-BR">
-                    Explorei as alternativas de estrutura sozinho e desci direto
-                    para baixa fidelidade, testando ali antes de qualquer decisão de
-                    cor ou estilo. Numa tela que vai ser tocada com o dedo, o que
-                    precisa ser validado primeiro é onde as coisas ficam e o quanto
-                    elas são grandes — não como elas parecem.
+                    Testei a estrutura em baixa fidelidade: numa tela tocada
+                    com o dedo, valida-se primeiro onde as coisas ficam e o
+                    quanto são grandes. Depois implementei o protótipo com
+                    Claude Code, porque num produto em que a interação
+                    <em>é</em> o argumento de venda, um protótipo que se
+                    comporta como o produto vale mais do que uma tela parecida
+                    com ele.
+                  </p>
+                  <p class="timeline__text" lang="pt-BR">
+                    Os desenvolvedores receberam esse comportamento rodando,
+                    não descrito, e eu acompanhei a sprint respondendo
+                    dúvidas. A especificação escrita diz o que a tela mostra,
+                    não o que ela faz quando algo sai do esperado.
                   </p>
                   <p class="timeline__text" lang="en">
-                    I explored the structural alternatives on my own and went
-                    straight to low fidelity, testing there before any decision
-                    about colour or style. On a screen that will be touched with a
-                    thumb, what needs validating first is where things sit and how
-                    big they are — not how they look.
+                    I tested the structure in low fidelity: on a screen
+                    touched with a thumb, you validate first where things sit
+                    and how big they are. Then I implemented the prototype
+                    with Claude Code, because in a product where interaction
+                    <em>is</em> the sales argument, a prototype that behaves
+                    like the product is worth more than a screen that looks
+                    like it.
+                  </p>
+                  <p class="timeline__text" lang="en">
+                    The developers got that behaviour running, not described,
+                    and I stayed through the sprint answering questions.
+                    Written specs say what the screen shows, not what it does
+                    when something goes wrong.
                   </p>
                   <!-- BAIXA FIDELIDADE -->
+                  <!-- IMAGEM PENDENTE: Wireframes de baixa fidelidade (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Wireframes de baixa fidelidade · 1200×675</span><span lang="en">Low-fidelity wireframes · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-wireframes.png"
                          alt="Wireframes de baixa fidelidade das telas de atendimento e fechamento de venda"
                          data-en-alt="Low-fidelity wireframes of the service and checkout screens"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
-                </div>
-              </li>
-
-              <!-- PROTÓTIPOS -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>06</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Protótipo em código</span><span lang="en">Prototype in code</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Levei o protótipo além do clicável de Figma: usei Claude Code
-                    para implementá-lo de verdade, com as animações e interações já
-                    definidas. Num produto em que a interação <em>é</em> o argumento
-                    de venda — o concorrente ganhava por parecer melhor de usar —, um
-                    protótipo que se comporta como o produto vale mais do que uma
-                    tela que se parece com ele.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    I took the prototype past a clickable Figma file: I used Claude
-                    Code to actually implement it, with the animations and
-                    interactions already defined. In a product where interaction
-                    <em>is</em> the sales argument — the competitor was winning by
-                    seeming nicer to use — a prototype that behaves like the product
-                    is worth more than a screen that looks like it.
-                  </p>
+                  -->
                   <!-- ALTA FIDELIDADE -->
+                  <!-- IMAGEM PENDENTE: Protótipo implementado em código (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Protótipo implementado em código · 1200×675</span><span lang="en">Prototype implemented in code · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-prototipo.png"
                          alt="Protótipo funcional em código, com animações e interações do fluxo de venda"
                          data-en-alt="Working code prototype, with the animations and interactions of the sales flow"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
-                </div>
-              </li>
-
-              <!-- INTERFACE FINAL -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>07</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Interface final</span><span lang="en">Final interface</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    Dimensionei os alvos seguindo as diretrizes de plataforma e
-                    depois testei com o dedo, em aparelho real. A diretriz garante o
-                    mínimo; ela não garante que funcione para quem está em pé,
-                    segurando o tablet com um braço e atendendo um cliente com o
-                    outro.
-                  </p>
-                  <p class="timeline__text" lang="pt-BR">
-                    Classifiquei como crítica toda ação capaz de causar dano ao
-                    usuário ou prejuízo à operação, e protegi em duas camadas. A
-                    primeira é posicional: essas ações saíram da tela inicial. Não é
-                    esconder por esconder — ninguém cancela uma venda de passagem, e
-                    quem vai fazer isso está focado só naquilo. A segunda é senha
-                    gerencial, para o que não pode depender apenas da intenção de
-                    quem tocou.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    I sized the targets by platform guidelines and then tested with
-                    my thumb, on real devices. Guidelines guarantee the minimum;
-                    they don't guarantee it works for someone standing up, holding
-                    the tablet with one arm and serving a customer with the other.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    I classified as critical every action capable of harming the
-                    user or costing the business, and protected them in two layers.
-                    The first is positional: those actions left the home screen. Not
-                    hiding for the sake of hiding — nobody cancels a sale in
-                    passing, and whoever is about to do it is focused on nothing
-                    else. The second is a manager password, for what can't rest on
-                    the intent of whoever tapped.
-                  </p>
-                  <!-- MOCKUP -->
-                  <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Alvos de toque e ações protegidas · 1200×675</span><span lang="en">Touch targets and protected actions · 1200×675</span>
-                    </span>
-                    <!--
-                    <img src="../assets/images/projeto-01-ui.png"
-                         alt="Telas finais com os alvos de toque dimensionados e as ações críticas protegidas"
-                         data-en-alt="Final screens with sized touch targets and protected critical actions"
-                         width="1200" height="675" loading="lazy" decoding="async">
-                    -->
-                  </figure>
-                </div>
-              </li>
-
-              <!-- IMPLEMENTAÇÃO -->
-              <li class="timeline__step" data-reveal>
-                <div class="timeline__marker" aria-hidden="true"><span>08</span></div>
-                <div class="timeline__body">
-                  <h3 class="timeline__title">
-                    <span lang="pt-BR">Handoff e revisão</span><span lang="en">Handoff and review</span>
-                  </h3>
-                  <p class="timeline__text" lang="pt-BR">
-                    O handoff não foi um arquivo: foi o próprio protótipo em código.
-                    Os desenvolvedores receberam o comportamento rodando, não
-                    descrito. Acompanhei a sprint fazendo revisões e respondendo
-                    dúvidas sobre como cada componente deveria funcionar — que é
-                    justamente onde a especificação escrita costuma falhar, porque
-                    ela responde o que a tela mostra e não o que ela faz quando algo
-                    sai do esperado.
-                  </p>
-                  <p class="timeline__text" lang="en">
-                    The handoff wasn't a file: it was the code prototype itself. The
-                    developers got the behaviour running, not described. I stayed
-                    through the sprint reviewing work and answering questions about
-                    how each component should behave — which is exactly where
-                    written specs tend to fail, because they answer what the screen
-                    shows and not what it does when something goes wrong.
-                  </p>
+                  -->
                   <!-- IMPLEMENTAÇÃO -->
+                  <!-- IMAGEM PENDENTE: Handoff e revisão de sprint (1200×675).
+                       Para publicar: salve o arquivo e tire este comentário.
                   <figure class="media media--16x9 media--sm">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Handoff e revisão de sprint · 1200×675</span><span lang="en">Handoff and sprint review · 1200×675</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-handoff.png"
                          alt="Protótipo em código usado como handoff, ao lado da tela implementada"
                          data-en-alt="Code prototype used as handoff, alongside the implemented screen"
                          width="1200" height="675" loading="lazy" decoding="async">
-                    -->
                   </figure>
+                  -->
                 </div>
               </li>
 
@@ -1158,17 +982,24 @@
 
           <div class="case-section__body">
             <!-- MOCKUP -->
+            <!-- IMAGEM PENDENTE: Solução final (1600×900).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9 media--framed" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Solução final · 1600×900</span><span lang="en">Final solution · 1600×900</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-01-solucao.png"
                    alt="Novo PDV mobile-first: venda sendo fechada no tablet e pedido recuperado no caixa por código"
                    data-en-alt="New mobile-first POS: a sale being closed on a tablet and the order retrieved at the register by code"
                    width="1600" height="900" loading="lazy" decoding="async">
-              -->
             </figure>
+            -->
+            <!-- IMAGEM PENDENTE: Alvos de toque e ações protegidas (1200×675).
+                 Para publicar: salve o arquivo e tire este comentário.
+            <figure class="media media--16x9 media--sm">
+              <img src="../assets/images/projeto-01-ui.png"
+                   alt="Telas finais com os alvos de toque dimensionados e as ações críticas protegidas"
+                   data-en-alt="Final screens with sized touch targets and protected critical actions"
+                   width="1200" height="675" loading="lazy" decoding="async">
+            </figure>
+            -->
 
             <div class="decisions" data-reveal>
 
@@ -1177,20 +1008,17 @@
                   <span lang="pt-BR">A venda inteira na mão do operador</span><span lang="en">The whole sale in the operator's hands</span>
                 </h3>
                 <p class="decision__text" lang="pt-BR">
-                  O operador fecha a venda completa de onde estiver na loja. Quando
-                  faz sentido pagar no caixa — dinheiro, por exemplo — ele gera uma
-                  pré-venda e o cliente leva o cupom. A pré-venda não foi eliminada:
-                  ela era um comportamento legítimo da operação, não um desvio. O
-                  que acabou foi o que a tornava cara — ela ser ilegível para quem
-                  recebe.
+                  O operador fecha a venda de onde estiver. Quando faz sentido
+                  pagar no caixa, gera uma pré-venda e o cliente leva o cupom.
+                  A pré-venda continuou, porque era um comportamento legítimo;
+                  acabou o que a tornava cara: ser ilegível para quem recebe.
                 </p>
                 <p class="decision__text" lang="en">
-                  The operator closes the entire sale from anywhere in the store.
-                  When paying at the register makes sense — cash, for instance — they
-                  generate a pre-sale and the customer carries the slip over. The
-                  pre-sale wasn't eliminated: it was a legitimate behaviour of the
-                  operation, not a workaround. What ended was what made it
-                  expensive — being illegible to whoever received it.
+                  The operator closes the sale from wherever they are. When
+                  paying at the register makes sense, they generate a pre-sale
+                  and the customer carries the slip. The pre-sale stayed,
+                  because it was a legitimate behaviour; what ended was what
+                  made it expensive: being illegible to whoever received it.
                 </p>
               </article>
 
@@ -1200,19 +1028,14 @@
                 </h3>
                 <p class="decision__text" lang="pt-BR">
                   No caixa, o pedido é encontrado por código, por nome ou por QR
-                  Code. Antes, a fila esperava alguém varrer venda a venda até achar
-                  a certa — e o custo não era só o tempo, era não haver clareza sobre
-                  o que se estava procurando. São três caminhos porque a loja não
-                  escolhe o cliente que chega: uns trazem o cupom, outros só sabem o
-                  próprio nome.
+                  Code. São três caminhos porque a loja não escolhe o cliente que
+                  chega: uns trazem o cupom, outros só sabem o próprio nome.
                 </p>
                 <p class="decision__text" lang="en">
                   At the register, the order is found by code, by name or by QR
-                  code. Before, the queue waited while someone swept through sale
-                  after sale to find the right one — and the cost wasn't only time,
-                  it was having no clarity about what was being looked for. Three
-                  paths, because a shop doesn't get to choose which customer walks
-                  in: some bring the slip, others only know their own name.
+                  code. Three paths, because a shop doesn't get to choose which
+                  customer walks in: some bring the slip, others only know their
+                  own name.
                 </p>
               </article>
 
@@ -1221,20 +1044,18 @@
                   <span lang="pt-BR">Ação crítica protegida em duas camadas</span><span lang="en">Critical actions protected in two layers</span>
                 </h3>
                 <p class="decision__text" lang="pt-BR">
-                  Ação capaz de causar dano ao usuário ou prejuízo à operação não
-                  fica na tela inicial, e parte delas exige senha gerencial. As duas
-                  camadas resolvem coisas diferentes: tirar da tela inicial evita o
-                  toque acidental de quem está com pressa e o tablet numa mão só; a
-                  senha cobre o que não pode depender apenas da intenção de quem
-                  tocou.
+                  Toda ação capaz de causar dano ao usuário ou prejuízo à
+                  operação saiu da tela inicial, o que evita o toque acidental
+                  de quem está com pressa. Parte delas também exige senha
+                  gerencial, para o que não pode depender só da intenção de
+                  quem tocou.
                 </p>
                 <p class="decision__text" lang="en">
-                  Any action capable of harming the user or costing the business
-                  stays off the home screen, and some require a manager password.
-                  The two layers solve different problems: moving them off the home
-                  screen prevents the accidental tap of someone in a hurry holding
-                  the tablet one-handed; the password covers what can't rest on the
-                  intent of whoever tapped.
+                  Every action capable of harming the user or costing the
+                  business left the home screen, which prevents the accidental
+                  tap of someone in a hurry. Some also require a manager
+                  password, for what can't rest only on the intent of whoever
+                  tapped.
                 </p>
               </article>
 
@@ -1243,20 +1064,17 @@
                   <span lang="pt-BR">Área de toque desenhada para o pior caso</span><span lang="en">Touch targets designed for the worst case</span>
                 </h3>
                 <p class="decision__text" lang="pt-BR">
-                  Dimensionei os alvos pela diretriz de plataforma e validei com o
-                  dedo, em aparelho real, considerando o pior caso: pessoa em pé,
-                  tablet apoiado em um braço, cliente esperando. É a decisão mais
-                  invisível do projeto e a que mais aparece no uso — errar o botão
-                  numa venda é o tipo de falha que o operador paga na frente do
-                  cliente.
+                  Dimensionei os alvos pela diretriz de plataforma e validei
+                  em aparelho real, no pior caso: pessoa em pé, tablet num
+                  braço, cliente esperando. Errar o botão é uma falha que o
+                  operador paga na frente do cliente.
                 </p>
                 <p class="decision__text" lang="en">
-                  I sized the targets by platform guidelines and validated them with
-                  my thumb, on real devices, against the worst case: someone
-                  standing, tablet balanced on one arm, customer waiting. It's the
-                  most invisible decision in the project and the one that shows up
-                  most in use — hitting the wrong button during a sale is the kind
-                  of failure the operator pays for in front of the customer.
+                  I sized the targets by platform guidelines and validated
+                  them on real devices, in the worst case: someone standing,
+                  tablet on one arm, customer waiting. Hitting the wrong
+                  button is a failure the operator pays for in front of the
+                  customer.
                 </p>
               </article>
 
@@ -1282,16 +1100,12 @@
 
           <div class="case-section__body">
             <p class="section-head__lead" data-reveal lang="pt-BR">
-              Apurado por relato das lojas que adotaram o PDV — não houve janela
-              de telemetria até o fechamento deste estudo. Estão aqui porque
-              foram consistentes o bastante para orientar decisão, e declarados
-              pelo que são.
+              Apurado por relato das lojas que adotaram o PDV, sem telemetria
+              até o fechamento deste estudo.
             </p>
             <p class="section-head__lead" data-reveal lang="en">
-              Measured through reports from the stores that adopted the PDV —
-              there was no telemetry window up to the closing of this case study.
-              They're here because they were consistent enough to guide decisions,
-              and stated for exactly what they are.
+              Measured through reports from the stores that adopted the PDV,
+              with no telemetry up to the closing of this case study.
             </p>
             <!-- MÉTRICAS -->
             <div class="metrics" data-reveal>
@@ -1318,20 +1132,18 @@
 
             </div>
             <!-- RESULTADOS -->
+            <!-- IMAGEM PENDENTE: Tempo de fechamento antes e depois (1200×675).
+                 Para publicar: salve o arquivo e tire este comentário.
             <figure class="media media--16x9" data-reveal>
-              <span class="media__label" aria-hidden="true">
-                <span lang="pt-BR">Tempo de fechamento antes e depois · 1200×675</span><span lang="en">Time to close, before and after · 1200×675</span>
-              </span>
-              <!--
               <img src="../assets/images/projeto-01-resultados.png"
                    alt="Comparação do tempo médio de fechamento de venda antes e depois do novo PDV"
                    data-en-alt="Comparison of the average time to close a sale before and after the new POS"
                    width="1200" height="675" loading="lazy" decoding="async">
-              -->
               <figcaption class="media__caption">
                 <span lang="pt-BR">Tempo médio de fechamento de venda relatado pelas lojas, antes e depois da adoção do novo PDV.</span><span lang="en">Average time to close a sale as reported by the stores, before and after adopting the new POS.</span>
               </figcaption>
             </figure>
+            -->
 
           </div>
         </div>
@@ -1355,43 +1167,36 @@
           <div class="case-section__body">
             <div class="prose" data-reveal>
               <p lang="pt-BR">
-                <strong>Premissa herdada também é premissa.</strong> Quando entrei
-                no produto, a plataforma já estava definida: era desktop, e ninguém
-                questionava, porque frente de caixa historicamente é desktop. Tratei
-                aquilo como dado do problema em vez de decisão a validar, e desenhei
-                em cima. A pesquisa veio depois e derrubou. Os 45% descartados são a
-                conta dessa ordem invertida — não de erro no desenho, mas de eu ter
-                aceitado como pergunta respondida algo que ninguém tinha perguntado.
+                <strong>Premissa herdada também é premissa.</strong> Quando
+                entrei no produto, a plataforma já era desktop, porque frente
+                de caixa historicamente é desktop. Tratei aquilo como dado do
+                problema, não como decisão a validar. Os 45% descartados são a
+                conta dessa ordem invertida: não de erro no desenho, mas de
+                aceitar como respondida uma pergunta que ninguém tinha feito.
               </p>
               <p lang="en">
-                <strong>An inherited assumption is still an assumption.</strong> When
-                I joined the product, the platform was already settled: desktop, and
-                nobody questioned it, because point of sale has historically been
-                desktop. I treated that as a given of the problem rather than a
-                decision to validate, and designed on top of it. The research came
-                later and knocked it down. The 45% we scrapped is the bill for that
-                inverted order — not for bad design, but for my accepting as answered
-                a question nobody had asked.
+                <strong>An inherited assumption is still an
+                assumption.</strong> When I joined the product, the platform
+                was already desktop, because point of sale has historically
+                been desktop. I treated that as a given of the problem, not a
+                decision to validate. The 45% we scrapped is the bill for that
+                inverted order: not for bad design, but for accepting as
+                answered a question nobody had asked.
               </p>
 
               <p lang="pt-BR">
                 <strong>Hoje a pesquisa vem antes, e procura pessoa, não opinião.</strong>
-                O que mudou não foi “pesquisar mais” — foi o alvo. Ir à loja ver a
-                operação acontecer entregou em uma visita o que nenhuma rodada de
-                entrevista teria entregado, porque a dor central era invisível para
-                quem a vivia: para o operador, andar com um papel na mão não era um
-                problema, era o trabalho. Começo pelo comportamento real de quem usa,
-                e só depois olho para o que o produto já assumiu sobre essa pessoa.
+                Uma visita à loja entregou o que nenhuma rodada de entrevista teria
+                entregado, porque a dor central era invisível para quem a vivia.
+                Começo pelo comportamento real de quem usa e só depois olho para o
+                que o produto já assumiu sobre essa pessoa.
               </p>
               <p lang="en">
                 <strong>Now research comes first, and it looks for people, not opinions.</strong>
-                What changed wasn't “doing more research” — it was the target. Going
-                to the shop floor to watch the operation happen delivered in a single
-                visit what no round of interviews would have, because the core pain
-                was invisible to the people living it: for the operator, walking
-                around with a slip of paper wasn't a problem, it was the job. I start
-                from the real behaviour of whoever uses the thing, and only then look
-                at what the product has already assumed about them.
+                One visit to the store delivered what no round of interviews would
+                have, because the core pain was invisible to the people living it.
+                I start from the real behaviour of whoever uses the product, and
+                only then look at what it has already assumed about them.
               </p>
             </div>
           </div>
@@ -1401,6 +1206,10 @@
       <!-- ==================================================================== -->
       <!-- 10 · GALERIA + LIGHTBOX                                              -->
       <!-- ==================================================================== -->
+      <!-- IMAGEM PENDENTE: galeria "Telas e artefatos" (6 imagens 4:3, 1200×900, e as
+           versões -thumb). A seção inteira sai até existirem imagens. Para
+           publicar: salve os arquivos, tire este comentário e devolva o item
+           "Galeria" ao índice do case.
       <section class="section" id="galeria" aria-labelledby="galeria-titulo">
         <div class="container case-section">
 
@@ -1421,15 +1230,10 @@
                    data-caption="Tela inicial do PDV no tablet, com a venda aberta fora do balcão"
                    data-caption-en="POS home screen on a tablet, with a sale open away from the counter">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 01 · 1200×900</span><span lang="en">Gallery 01 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-01-thumb.jpg"
                          alt="Tela inicial do PDV em tablet"
                          data-en-alt="POS home screen on a tablet"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1445,15 +1249,10 @@
                    data-caption="Pré-venda digital: o cupom que o cliente leva ao caixa"
                    data-caption-en="Digital pre-sale: the slip the customer carries to the register">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 02 · 1200×900</span><span lang="en">Gallery 02 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-02-thumb.jpg"
                          alt="Tela de geração da pré-venda com o cupom e o código"
                          data-en-alt="Pre-sale generation screen with the slip and its code"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1469,15 +1268,10 @@
                    data-caption="No caixa: o pedido encontrado por código, nome ou QR Code"
                    data-caption-en="At the register: the order found by code, name or QR code">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 03 · 1200×900</span><span lang="en">Gallery 03 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-03-thumb.jpg"
                          alt="Busca do pedido no caixa pelas três formas de identificação"
                          data-en-alt="Order lookup at the register through the three identification paths"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1493,15 +1287,10 @@
                    data-caption="Ações críticas: fora da tela inicial e atrás de senha gerencial"
                    data-caption-en="Critical actions: off the home screen and behind a manager password">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 04 · 1200×900</span><span lang="en">Gallery 04 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-04-thumb.jpg"
                          alt="Fluxo de uma ação crítica, com a confirmação por senha gerencial"
                          data-en-alt="Flow of a critical action, with manager password confirmation"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1517,15 +1306,10 @@
                    data-caption="Wireframes de baixa fidelidade, testados antes de qualquer decisão de estilo"
                    data-caption-en="Low-fidelity wireframes, tested before any decision about style">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 05 · 1200×900</span><span lang="en">Gallery 05 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-05-thumb.jpg"
                          alt="Conjunto de wireframes de baixa fidelidade do fluxo de venda"
                          data-en-alt="Set of low-fidelity wireframes of the sales flow"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1541,15 +1325,10 @@
                    data-caption="Observação da operação acontecendo na loja"
                    data-caption-en="Watching the operation happen on the shop floor">
                   <figure class="media media--4x3">
-                    <span class="media__label" aria-hidden="true">
-                      <span lang="pt-BR">Galeria 06 · 1200×900</span><span lang="en">Gallery 06 · 1200×900</span>
-                    </span>
-                    <!--
                     <img src="../assets/images/projeto-01-galeria-06-thumb.jpg"
                          alt="Registro da observação da operação de loja"
                          data-en-alt="Record of the in-store operation observation"
                          width="1200" height="900" loading="lazy" decoding="async">
-                    -->
                     <span class="gallery__zoom" aria-hidden="true">
                       <svg class="icon" focusable="false"><use href="#i-expand"></use></svg>
                     </span>
@@ -1564,40 +1343,8 @@
           </div>
         </div>
       </section>
+      -->
 
-      <!-- ==================================================================== -->
-      <!-- CTA FINAL DO CASE                                                    -->
-      <!-- ==================================================================== -->
-      <section class="section section--alt case-cta" aria-labelledby="case-cta-titulo">
-        <div class="container container--prose">
-          <div class="contact" data-reveal>
-
-            <header class="section-head section-head--center">
-              <h2 class="section-head__title" id="case-cta-titulo">
-                <span lang="pt-BR">Quer conversar sobre este projeto?</span><span lang="en">Want to talk about this project?</span>
-              </h2>
-              <p class="section-head__lead" lang="pt-BR">
-                Tenho muito mais detalhe do que cabe numa página — inclusive o
-                que não funcionou.
-              </p>
-              <p class="section-head__lead" lang="en">
-                There's far more detail than fits on one page — including what
-                didn't work.
-              </p>
-            </header>
-
-            <div class="cluster cluster--center">
-              <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="#i-mail"></use>
-                </svg>
-                <span lang="pt-BR">Entrar em contato</span><span lang="en">Get in touch</span>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       <!-- ==================================================================== -->
       <!-- OUTROS PROJETOS — anterior e próximo, em ciclo (01 → 02 → 03 → 01). -->
@@ -1623,9 +1370,11 @@
             <!-- ANTERIOR -->
             <article class="project-card" data-reveal aria-labelledby="anterior-titulo">
               <figure class="media media--21x9 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa da Roteirização · 21:9 · 1680×720</span><span lang="en">Route planning cover · 21:9 · 1680×720</span>
-                </span>
+                <div class="cover cover--tone-3" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">Gestão &amp; Análise</span><span lang="en">Management &amp; Analytics</span></span>
+                  <span class="cover__title"><span lang="pt-BR">Roteirização</span><span lang="en">Route planning</span></span>
+                  <span class="cover__value">−40%</span>
+                </div>
                 <!--
                 <img src="../assets/images/projeto-03-capa.jpg"
                      alt=""
@@ -1669,9 +1418,11 @@
             <!-- PRÓXIMO -->
             <article class="project-card" data-reveal aria-labelledby="proximo-titulo">
               <figure class="media media--21x9 project-card__media">
-                <span class="media__label" aria-hidden="true">
-                  <span lang="pt-BR">Capa do app de logística · 21:9 · 1680×720</span><span lang="en">Logistics app cover · 21:9 · 1680×720</span>
-                </span>
+                <div class="cover cover--tone-2" aria-hidden="true">
+                  <span class="cover__eyebrow"><span lang="pt-BR">Logística &amp; Campo</span><span lang="en">Logistics &amp; Field</span></span>
+                  <span class="cover__title"><span lang="pt-BR">App de logística</span><span lang="en">Logistics app</span></span>
+                  <span class="cover__value"><span lang="pt-BR">Sem papel</span><span lang="en">Paperless</span></span>
+                </div>
                 <!--
                 <img src="../assets/images/projeto-02-capa.jpg"
                      alt=""
@@ -1703,20 +1454,100 @@
                   Delivery app with an optimised route and digital proof in
                   place of paper.
                 </p>
-                <!-- PENDENTE (depende do Arthur): mesma métrica da home e de
-                     /projetos. Ao preencher, troque nos três lugares. -->
-                <p class="project-card__metric project-card__metric--pending">
+                <!-- Resultado qualitativo, o mesmo do case 2 ("O que mudou, medido").
+                     Se um número for apurado, troque em todos os lugares. -->
+                <p class="project-card__metric">
                   <span class="project-card__metric-value">
-                    <span lang="pt-BR">[PENDENTE]</span><span lang="en">[PENDING]</span>
+                    <span lang="pt-BR">Sem papel</span><span lang="en">Paperless</span>
                   </span>
                   <span class="project-card__metric-label">
-                    <span lang="pt-BR">[resultado do app de logística]</span><span lang="en">[logistics app result]</span>
+                    <span lang="pt-BR">o romaneio deixou de ser impresso e redigitado</span><span lang="en">manifests stopped being printed and retyped</span>
                   </span>
                 </p>
               </div>
             </article>
 
           </div>
+        </div>
+      </section>
+
+      <!-- ========================================================================
+           CONTATO — o mesmo bloco em todas as páginas (home, /projetos, sobre,
+           cases e template). O "Contato" do menu de cada página aponta para este
+           #contato. Nos cases ele substitui o antigo "Quer conversar
+           sobre este projeto?" e fica por último, depois de "Outros projetos".
+           ======================================================================== -->
+      <section class="section section--alt section--tight" id="contato" aria-labelledby="contato-titulo">
+        <div class="container">
+
+          <div class="contact contact--inline" data-reveal data-copy-scope>
+
+            <div class="contact__text">
+              <h2 class="contact__title" id="contato-titulo">
+                <span lang="pt-BR">Tem um problema difícil? Vamos conversar.</span><span lang="en">Got a hard problem? Let's talk.</span>
+              </h2>
+              <p class="contact__lead" lang="pt-BR">
+                Aberto a vagas de Product Designer, remoto ou no Rio de Janeiro.
+                Respondo todos os e-mails em até 48 horas.
+              </p>
+              <p class="contact__lead" lang="en">
+                Open to Product Designer roles, remote or in Rio de Janeiro. I reply
+                to every email within 48 hours.
+              </p>
+            </div>
+
+            <div class="contact__actions cluster">
+              <!-- E-MAIL — troque pelo seu endereço real (aqui e no botão de copiar) -->
+              <a class="btn btn--primary btn--lg" href="mailto:arthursouza_7@outlook.com">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-mail"></use>
+                </svg>
+                <span>arthursouza_7@outlook.com</span>
+              </a>
+
+              <!-- COPIAR E-MAIL — nasce com hidden. O script.js só o mostra quando o
+                   navegador tem a API de área de transferência; sem ela (ou sem JS),
+                   o link mailto acima continua sendo o caminho. Ao copiar, o botão
+                   ganha .is-copied por alguns segundos e troca o rótulo. -->
+              <button class="btn btn--secondary btn--lg contact__copy" type="button"
+                      data-copy-email="arthursouza_7@outlook.com" hidden>
+                <span class="contact__copy-idle">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="#i-copy"></use>
+                  </svg>
+                  <span lang="pt-BR">Copiar e-mail</span><span lang="en">Copy email</span>
+                </span>
+                <span class="contact__copy-done" data-copy-message>
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="#i-check"></use>
+                  </svg>
+                  <span lang="pt-BR">E-mail copiado</span><span lang="en">Email copied</span>
+                </span>
+              </button>
+
+              <a class="btn btn--secondary btn--lg"
+                 href="https://www.linkedin.com/in/arthursouza7/"
+                 target="_blank" rel="noopener noreferrer">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="#i-linkedin"></use>
+                </svg>
+                <span>LinkedIn</span>
+                <svg class="icon icon--xs" aria-hidden="true" focusable="false">
+                  <use href="#i-arrow-up-right"></use>
+                </svg>
+                <span class="visually-hidden">
+                  <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
+                </span>
+              </a>
+            </div>
+
+            <!-- Aviso para leitor de tela. Começa vazio; ao copiar, o script coloca
+                 aqui uma cópia do rótulo "E-mail copiado" (os dois idiomas, e o CSS
+                 esconde o inativo) e limpa depois. -->
+            <p class="visually-hidden" role="status" data-copy-status></p>
+
+          </div>
+
         </div>
       </section>
 
@@ -1782,6 +1613,11 @@
 
       <ul class="footer__links">
         <li>
+          <a class="footer__link" href="../sobre.html">
+            <span lang="pt-BR">Sobre</span><span lang="en">About</span>
+          </a>
+        </li>
+        <li>
           <a class="footer__link" href="mailto:arthursouza_7@outlook.com">
             <span lang="pt-BR">E-mail</span><span lang="en">Email</span>
           </a>
@@ -1798,7 +1634,7 @@
         <li>
           <a class="footer__link" href="../assets/curriculo-arthursouza-ux.pdf"
              target="_blank" rel="noopener">
-            <span lang="pt-BR">Currículo</span><span lang="en">Résumé</span>
+            <span lang="pt-BR">Currículo</span><span lang="en">Resume</span>
             <span class="visually-hidden">
               <span lang="pt-BR">(abre em nova aba)</span><span lang="en">(opens in a new tab)</span>
             </span>

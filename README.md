@@ -1,4 +1,4 @@
-# Portfólio — Arthur Souza · UX/Product Designer
+# Portfólio — Arthur Souza · Product Designer
 
 Portfólio pessoal em HTML5 semântico, CSS3 e JavaScript Vanilla. Sem framework,
 sem bibliotecas, sem etapa de build: o que está no repositório é exatamente o
@@ -11,20 +11,21 @@ que vai para o ar.
 ## Sumário
 
 1. [Rodando localmente](#1-rodando-localmente)
-2. [Antes de publicar — checklist obrigatório](#2-antes-de-publicar--checklist-obrigatório)
+2. [Publicação — o que já está e o que falta](#2-publicação--o-que-já-está-e-o-que-falta)
 3. [Estrutura de arquivos](#3-estrutura-de-arquivos)
 4. [Tecnologias e decisões](#4-tecnologias-e-decisões)
 5. [Como editar textos](#5-como-editar-textos)
 6. [Como trocar imagens](#6-como-trocar-imagens)
 7. [Como adicionar um novo projeto](#7-como-adicionar-um-novo-projeto)
-8. [Como mudar a identidade visual](#8-como-mudar-a-identidade-visual)
-9. [Como o CSS e o JavaScript conversam](#9-como-o-css-e-o-javascript-conversam)
-10. [Acessibilidade](#10-acessibilidade)
-11. [Performance](#11-performance)
-12. [Publicando no GitHub Pages](#12-publicando-no-github-pages)
-13. [Publicando na Vercel](#13-publicando-na-vercel)
-14. [Publicando na Netlify](#14-publicando-na-netlify)
-15. [Manutenção — o que não quebrar](#15-manutenção--o-que-não-quebrar)
+8. [Como adicionar uma experiência](#8-como-adicionar-uma-experiência)
+9. [Como mudar a identidade visual](#9-como-mudar-a-identidade-visual)
+10. [Como o CSS e o JavaScript conversam](#10-como-o-css-e-o-javascript-conversam)
+11. [Acessibilidade](#11-acessibilidade)
+12. [Performance](#12-performance)
+13. [Publicando no GitHub Pages](#13-publicando-no-github-pages)
+14. [Publicando na Vercel](#14-publicando-na-vercel)
+15. [Publicando na Netlify](#15-publicando-na-netlify)
+16. [Manutenção — o que não quebrar](#16-manutenção--o-que-não-quebrar)
 
 ---
 
@@ -58,42 +59,46 @@ Depois abra `http://localhost:8000`.
 
 ---
 
-## 2. Antes de publicar — checklist obrigatório
+## 2. Publicação — o que já está e o que falta
 
-Os dados pessoais **já estão preenchidos**. O que falta é o domínio e os
-arquivos que dependem de você.
+O site está publicado em **https://rthursouza.github.io** (GitHub Pages, na
+raiz do domínio). Os dados pessoais e o endereço já estão no código; o que
+falta são arquivos que dependem de você.
 
 ### Já feito
 
 | Item | Valor |
 |---|---|
-| Nome e cargo | Arthur Souza — UX & Product Designer |
-| E-mail | `arthursouza_7@outlook.com` (6 ocorrências) |
-| LinkedIn | `linkedin.com/in/arthursouza7/` (4 ocorrências) |
-| Currículo | `assets/curriculo-arthursouza-ux.pdf` (6 ocorrências, abre em nova aba) |
-| Bio, habilidades e os 4 cards da seção Sobre | preenchidos |
+| Nome e cargo | Arthur Souza — Product Designer |
+| E-mail | `arthursouza_7@outlook.com` (em todas as páginas: link `mailto`, rótulo do botão, `data-copy-email` do botão "Copiar e-mail" e rodapé — troque com busca e substituição) |
+| LinkedIn | `linkedin.com/in/arthursouza7/` (contato e rodapé de todas as páginas) |
+| Currículo | `assets/curriculo-arthursouza-ux.pdf` (header e rodapé de todas as páginas, abre em nova aba) |
+| Domínio | `https://rthursouza.github.io` em `canonical` e `og:url`, **ativas** em todas as páginas |
 
 ### Ainda pendente
 
-| Marcador | Onde aparece | Trocar por |
+| Arquivo | Onde aparece | O que fazer |
 |---|---|---|
-| `https://SEU-DOMINIO.com` | `canonical`, `og:url`, `og:image`, `twitter:image` — hoje **comentadas** com `<!-- PUBLICAR: … -->` | A URL final do site, e tirar o comentário |
-| `assets/curriculo-arthursouza-ux.pdf` | botão Currículo e rodapé | O link já existe — falta **salvar o PDF** com esse nome exato |
-| `assets/images/og-cover.jpg` | `og:image` da home | Sua imagem de compartilhamento (1200×630) |
-| `assets/images/og-projeto-0*.jpg` | `og:image` de cada case | Uma por case (1200×630) |
+| `assets/images/og-cover.jpg` | `og:image` e `twitter:image` da home, de /projetos e de sobre | Gerar a imagem (1200×630) e tirar o comentário das duas tags |
+| `assets/images/og-projeto-0*.jpg` | `og:image` e `twitter:image` de cada case | Uma por case (1200×630), mesmo procedimento |
 
-**Publicar com o `canonical` errado atrapalha a indexação.** Por isso, enquanto
-o site não tem endereço, essas quatro tags ficam comentadas em todas as
-páginas. Os scripts abaixo trocam o domínio **e** reativam as tags de uma vez.
+**Por que `og:image` e `twitter:image` continuam comentadas.** As tags já
+apontam para o domínio certo, mas os arquivos ainda não existem. Uma
+`og:image` que dá 404 faz WhatsApp e LinkedIn montarem o card sem imagem, e
+esse card fica em cache por dias. Por isso cada uma está assim:
 
-### Trocando o domínio quando você decidir
+```html
+<!-- PUBLICAR: <meta property="og:image" content="https://rthursouza.github.io/assets/images/og-cover.jpg"> -->
+```
+
+Depois de salvar as imagens em `assets/images/`, tire o comentário de todas
+de uma vez:
 
 **PowerShell (Windows):**
 
 ```powershell
 Get-ChildItem -Recurse -Include *.html | ForEach-Object {
   $t = Get-Content $_.FullName -Raw -Encoding UTF8
-  $t = $t.Replace('https://SEU-DOMINIO.com', 'https://arthursouza.com')
   $t = $t -replace '<!-- PUBLICAR: (<[^>]+>) -->', '$1'
   Set-Content $_.FullName -Value $t -Encoding UTF8 -NoNewline
 }
@@ -103,31 +108,35 @@ Get-ChildItem -Recurse -Include *.html | ForEach-Object {
 
 ```bash
 find . -name "*.html" -exec sed -i '' \
-  -e 's|https://SEU-DOMINIO\.com|https://arthursouza.com|g' \
   -e 's|<!-- PUBLICAR: \(<[^>]*>\) -->|\1|g' {} +
 ```
 
 > No Linux use `sed -i` sem o `''` logo depois.
 
+Se um dia o site for para um domínio próprio, troque
+`https://rthursouza.github.io` pelo novo endereço em todos os `.html` (busca
+e substituição): são as tags `canonical`, `og:url`, `og:image` e
+`twitter:image`.
+
 ### Conferindo se sobrou algo
 
 ```powershell
-Select-String -Path *.html, projects/*.html -Pattern 'SEU-DOMINIO|PUBLICAR:'
+Select-String -Path *.html, projects/*.html -Pattern 'PUBLICAR:'
 ```
 
-Nenhum resultado = pronto para publicar.
+Nenhum resultado = imagens de compartilhamento publicadas.
 
-### Ainda antes do primeiro deploy
+### Ainda antes de divulgar o link
 
 - [x] Criar as pastas de `assets/`
 - [x] Dados pessoais, bio, habilidades e cards
 - [x] Os três estudos de caso reescritos com projetos reais
 - [x] `curriculo-arthursouza-ux.pdf` salvo em `assets/`
-- [ ] Trocar `SEU-DOMINIO` pela URL final e reativar as tags `PUBLICAR:` ← **único item que causa dano se ficar para depois**
-- [ ] Substituir os placeholders de imagem (veja `IMAGENS.md`)
-- [ ] Gerar as 4 imagens de Open Graph (1200×630)
+- [x] Domínio nas tags `canonical` e `og:url`
+- [ ] Gerar as 4 imagens de Open Graph (1200×630) e reativar as tags `PUBLICAR:`
+- [ ] Trocar as capas tipográficas e as figuras `IMAGEM PENDENTE` pelas imagens reais (veja a [seção 6](#6-como-trocar-imagens) e `IMAGENS.md`)
 - [ ] Gerar o favicon definitivo, se quiser substituir o SVG embutido
-- [ ] Rodar o Lighthouse ([seção 11](#11-performance))
+- [ ] Rodar o Lighthouse ([seção 12](#12-performance))
 
 ### Os três cases
 
@@ -193,6 +202,7 @@ LinkedIn faz cache agressivo, e o Post Inspector força a releitura.
 portfolio/
 ├── index.html                      Home: hero, projetos em destaque, sobre, contato
 ├── projetos.html                   Listagem de todos os projetos (grade + filtro)
+├── sobre.html                      Trajetória: experiência, como eu trabalho, formação
 ├── style.css                       Toda a folha de estilo (seções numeradas)
 ├── script.js                       Todo o comportamento (10 módulos)
 ├── README.md                       Este arquivo
@@ -312,13 +322,17 @@ sobrevive ao recarregamento.
 ## 6. Como trocar imagens
 
 Todo espaço de imagem é um `<figure class="media">` com a proporção já
-reservada e o `<img>` real **pronto e comentado logo abaixo**:
+reservada. Enquanto a imagem não existe, o espaço mostra uma **capa
+tipográfica** (`<div class="cover">`), e o `<img>` real fica **pronto e
+comentado logo abaixo**:
 
 ```html
-<figure class="media media--16x9">
-  <span class="media__label" aria-hidden="true">
-    <span lang="pt-BR">Capa do projeto 01 · 1600×900</span><span lang="en">Project 01 cover · 1600×900</span>
-  </span>
+<figure class="media media--16x9 project-card__media">
+  <div class="cover cover--tone-1" aria-hidden="true">
+    <span class="cover__eyebrow"><span lang="pt-BR">ERP &amp; Varejo</span><span lang="en">ERP &amp; Retail</span></span>
+    <span class="cover__title"><span lang="pt-BR">PDV mobile-first</span><span lang="en">Mobile-first POS</span></span>
+    <span class="cover__value">−30%</span>
+  </div>
   <!--
   <img src="assets/images/projeto-01-capa.jpg"
        alt=""
@@ -329,11 +343,54 @@ reservada e o `<img>` real **pronto e comentado logo abaixo**:
 
 **São dois passos:**
 
-1. Apague o `<span class="media__label">` inteiro.
+1. Apague a `<div class="cover">` inteira.
 2. Descomente o `<img>` e ajuste `src`, `alt` e `data-en-alt`.
 
-Como a proporção está reservada por `aspect-ratio`, a troca não desloca um
-pixel do layout — o Cumulative Layout Shift continua zero.
+Como a proporção está reservada por `aspect-ratio` e a capa ocupa exatamente
+a mesma caixa, a troca não desloca um pixel do layout — o Cumulative Layout
+Shift continua zero.
+
+### A capa tipográfica
+
+| Classe | Uso |
+|---|---|
+| `cover` | A capa em si: área do projeto no topo, título e resultado no pé |
+| `cover__eyebrow` | Área do projeto (o mesmo texto da meta do card) |
+| `cover__title` | Nome curto do projeto |
+| `cover__value` | O número ou resultado em destaque (−30%, Sem papel, −40%) |
+| `cover--tone-1/2/3` | Fundo do projeto: um tom por projeto, dos tokens `--color-cover-*` |
+| `cover--monogram` | Foto de perfil: só o monograma "AS" |
+| `cover--sample` | Amostra do freelancer: só o nome da categoria |
+
+- **Projeto novo:** use o próximo tom (ou repita um) e os mesmos três textos
+  do card. As cores vêm de `--color-cover-*` no bloco 02 · TOKENS, derivadas
+  da superfície; por isso acompanham o tema claro sozinhas.
+- **Acessibilidade:** a capa de card leva `aria-hidden="true"`, porque o card
+  já diz tudo aquilo em texto (o `<img>` dela também seria `alt=""`). A capa
+  que faz papel de imagem (hero do case, amostras) leva `role="img"`,
+  `aria-label` e `data-en-aria-label`.
+
+### Figuras do corpo dos cases
+
+As figuras de dentro dos cases (benchmark, wireframes, solução, gráfico de
+resultado) não têm capa: enquanto a imagem não existe, a figura inteira fica
+**dentro de um comentário** marcado assim:
+
+```html
+<!-- IMAGEM PENDENTE: Benchmark dos concorrentes (1200×675).
+     Para publicar: salve o arquivo e tire este comentário.
+<figure class="media media--16x9 media--sm">
+  <img src="../assets/images/projeto-01-benchmark.png" alt="…" data-en-alt="…" …>
+</figure>
+-->
+```
+
+Para publicar, salve o arquivo com o nome do `src` e tire o comentário em
+volta do `<figure>`. A galeria "Telas e artefatos" segue a mesma regra: a
+seção inteira está comentada. Ao devolvê-la, devolva também o item "Galeria"
+ao índice do case (`.case-toc`).
+
+Para achar tudo o que falta: `grep -rn "IMAGEM PENDENTE" projects/`.
 
 ### As duas imagens que são exceção
 
@@ -350,7 +407,7 @@ Todas as outras usam `loading="lazy"` e `decoding="async"`.
 |---|---|---|
 | `media--21x9` | 21:9 | Hero dos estudos de caso (vira 16:10 no celular) |
 | `media--16x9` | 16:9 | Capas, telas, diagramas |
-| `media--4x3` | 4:3 | Itens da galeria |
+| `media--4x3` | 4:3 | Cards de /projetos, galeria e amostras |
 | `media--4x5` | 4:5 | Foto de perfil (retrato) |
 | `media--sm` | — | Modificador: limita a largura dentro da timeline |
 | `media--framed` | — | Modificador: sombra e filete de destaque |
@@ -401,14 +458,24 @@ Eles estão na ordem da narrativa, que é fixa e não deve ser reordenada:
 ```
 Hero (título · subtítulo · imagem 21:9 · ficha) → Em 30 segundos + índice →
 Contexto → Problema → Objetivos → Meu Papel → Processo → Solução →
-Resultados → Aprendizados → Galeria → Contato → Outros projetos
+Resultados → Aprendizados → Galeria (comentada até ter imagens) →
+Outros projetos → Contato
 ```
 
-Três regras de leitura valem para todo case:
+Regras de leitura que valem para todo case:
 
 - **Em 30 segundos** (Problema · O que eu fiz · Resultado) usa só texto que
-  já está no case — nada escrito do zero para o resumo.
-- **No máximo 2 parágrafos seguidos sem imagem.**
+  já está no case — nada escrito do zero para o resumo. E o corpo não repete
+  o que já está lá: "único designer, do discovery ao handoff" aparece uma vez
+  só, no cartão "O que eu fiz" (por isso "Meu papel" não tem lista de
+  responsabilidades).
+- **Corpo com cerca de 900 palavras** em PT (sem contar o Em 30 segundos).
+  O foco é decisão → porquê → resultado; fala de usuário, números, o que deu
+  errado e os aprendizados ficam.
+- **No máximo 2 parágrafos por seção.**
+- **"Como cheguei lá" tem 3 etapas**, uma decisão em cada. Etapas que só
+  descrevem atividade (wireframe, protótipo, handoff) entram dentro da
+  decisão a que serviram.
 - **Outros projetos** aponta para o anterior e o próximo na ordem de
   `projetos.html`, em ciclo. Ao adicionar um case, atualize também os
   vizinhos dele.
@@ -472,12 +539,83 @@ destaque, edite o `<article>` correspondente em `<div class="featured-projects">
 com as mesmas regras do card acima (um link só, `id` único). Os títulos
 aqui são `h3`, porque ficam abaixo do `h2` "Projetos em destaque".
 
-Sem métrica real, não invente: deixe o placeholder `[PENDENTE]` com o
-modificador `project-card__metric--pending` até ter o número.
+Sem número real, não invente: use um resultado qualitativo que já esteja
+escrito no case (o app de logística usa "Sem papel", tirado da seção
+"O que mudou, medido" do case 2) e repita o mesmo texto em todos os lugares
+onde o projeto aparece.
 
 ---
 
-## 8. Como mudar a identidade visual
+## 8. Como adicionar uma experiência
+
+A trajetória completa vive em `sobre.html`, na seção **Experiência**: uma
+`<ol class="experience">` com um card por experiência, da mais recente para a
+mais antiga. Para adicionar uma, duplique um `<li class="experience__item">`
+inteiro e troque o conteúdo:
+
+```html
+<li class="experience__item" data-reveal>
+
+  <!-- Coluna da esquerda: período, local e (só na atual) o selo. -->
+  <div class="experience__meta">
+    <p class="experience__period">
+      <span lang="pt-BR">2021 — 2023</span><span lang="en">2021 — 2023</span>
+    </p>
+    <p class="experience__place">
+      <span lang="pt-BR">Cidade · Remoto</span><span lang="en">City · Remote</span>
+    </p>
+    <!-- Selo: "Atual" no trabalho principal em andamento; "Em paralelo"
+         (EN "Alongside") no que corre ao mesmo tempo. Mesma classe. -->
+    <!-- <p class="experience__badge"><span lang="pt-BR">Atual</span><span lang="en">Current</span></p> -->
+  </div>
+
+  <div class="experience__body">
+    <h3 class="experience__role">
+      <span lang="pt-BR">Cargo</span><span lang="en">Role</span>
+    </h3>
+    <p class="experience__org">
+      <span lang="pt-BR">Empresa · área</span><span lang="en">Company · area</span>
+    </p>
+    <p class="experience__summary" lang="pt-BR">Uma linha sobre o que você fazia.</p>
+    <p class="experience__summary" lang="en">One line about what you did.</p>
+
+    <!-- Destaques (opcional): um resultado por linha, com link para o case.
+         Sem número real, use o resultado qualitativo do case. -->
+    <ul class="experience__highlights">
+      <li class="experience__highlight">
+        <p class="experience__highlight-text">
+          <span class="experience__metric">−00%</span>
+          <span lang="pt-BR">no que mudou</span><span lang="en">in what changed</span>
+        </p>
+        <a class="text-link" href="projects/projeto-04.html">
+          <span lang="pt-BR">Ver case</span><span lang="en">View case</span>
+          <span class="visually-hidden"><span lang="pt-BR">(nome do case)</span><span lang="en">(case name)</span></span>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-right"></use></svg>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Amostras (opcional): para trabalho que não tem case. 3 peças 4:3. -->
+    <!-- <ul class="experience__samples" aria-label="Amostras de peças" data-en-aria-label="Work samples">…</ul> -->
+
+    <ul class="chips chips--sm" aria-label="Competências usadas" data-en-aria-label="Skills used">
+      <li class="chip chip--sm"><span lang="pt-BR">Competência</span><span lang="en">Skill</span></li>
+    </ul>
+  </div>
+</li>
+```
+
+- **Destaques ou amostras.** Destaques apontam para cases; amostras mostram
+  peças de trabalho que não viraram case.
+- **O texto oculto do "Ver case"** diz qual é o case. Sem ele, o leitor de
+  tela anuncia vários links iguais ("Ver case", "Ver case"…) sem contexto.
+- **Atualize também o resumo da home.** A seção Sobre do `index.html` tem uma
+  `<ul class="career-list">` com uma linha por experiência principal (cargo ·
+  empresa e período). A lista completa fica em `sobre.html`.
+
+---
+
+## 9. Como mudar a identidade visual
 
 Toda a linguagem visual está no bloco **02 · TOKENS** do `style.css`. Fora dele
 não existe cor, raio, sombra ou duração escrita à mão.
@@ -565,7 +703,7 @@ cuida do clique, do `aria-pressed` e da `<meta name="theme-color">`.
 
 ---
 
-## 9. Como o CSS e o JavaScript conversam
+## 10. Como o CSS e o JavaScript conversam
 
 Uma convenção de três linhas que vale para o projeto inteiro:
 
@@ -601,7 +739,7 @@ Não existe um único listener de `scroll` no projeto.
 
 ---
 
-## 10. Acessibilidade
+## 11. Acessibilidade
 
 O que já está implementado:
 
@@ -629,7 +767,7 @@ Escape. Se você conseguir chegar em tudo e sempre enxergar onde está, está bo
 
 ---
 
-## 11. Performance
+## 12. Performance
 
 Metas do projeto no Lighthouse: **≥ 95** em Performance, Acessibilidade,
 Boas Práticas e SEO.
@@ -663,7 +801,7 @@ site publicado, nunca contra `file://`.
 
 ---
 
-## 12. Publicando no GitHub Pages
+## 13. Publicando no GitHub Pages
 
 Gratuito, e não exige nenhum build.
 
@@ -719,7 +857,7 @@ certificado for emitido (leva alguns minutos).
 
 ---
 
-## 13. Publicando na Vercel
+## 14. Publicando na Vercel
 
 Deploy mais rápido e *preview* automático a cada branch.
 
@@ -753,7 +891,7 @@ Depois, atualize o `canonical` e as tags Open Graph para o domínio final.
 
 ---
 
-## 14. Publicando na Netlify
+## 15. Publicando na Netlify
 
 A opção mais simples se você não quiser usar Git.
 
@@ -782,7 +920,7 @@ certificado Let's Encrypt automaticamente.
 
 ---
 
-## 15. Manutenção — o que não quebrar
+## 16. Manutenção — o que não quebrar
 
 **Um valor está duplicado de propósito.** O breakpoint de **56rem** (896px),
 onde o menu mobile vira navegação desktop, existe no `style.css` e no
