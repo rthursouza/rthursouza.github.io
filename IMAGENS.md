@@ -69,7 +69,7 @@ apague o `<figure>` inteiro daquela etapa — o layout continua correto.
 |---|---|---|
 | `projeto-02-hero.jpg` | 2100x900 | Telas do aplicativo de logística em celular, com a lista de paradas e a captura de prova |
 | `projeto-02-contexto.png` | 1600x900 | Diagrama do processo anterior: romaneio em papel, sem ordem de paradas nem rota planejada |
-| `projeto-02-pesquisa.png` | 1200x675 | Diagrama ligando a plataforma de otimização do gestor ao aplicativo do entregador |
+| `projeto-02-pesquisa.png` | 1200x675 | Roteiro e anotações das entrevistas com o gestor de logística e com os entregadores |
 | `projeto-02-insights.png` | 1200x675 | Síntese das entrevistas com entregadores, agrupada por tema |
 | `projeto-02-fluxos.png` | 1200x675 | Fluxo da entrega, do romaneio otimizado até a prova de entrega sincronizada |
 | `projeto-02-wireframes.png` | 1200x675 | Wireframes de baixa fidelidade da lista de paradas e da tela de prova de entrega |
