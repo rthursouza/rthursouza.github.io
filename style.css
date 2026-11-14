@@ -2790,7 +2790,7 @@ main[id] {
 
 .case-hero {
   padding-block-start: clamp(2rem, 5vw, 3.5rem);
-  padding-block-end: 0;   /* a imagem hero fecha a seção */
+  padding-block-end: 0;   /* a ficha do projeto fecha a seção */
 }
 
 /* ---------- BREADCRUMB ---------- */
@@ -2864,20 +2864,24 @@ main[id] {
   text-wrap: pretty;
 }
 
-/* Imagem hero: vem logo depois do subtítulo, antes da ficha. */
+/* Imagem hero: vem logo depois do subtítulo, antes da ficha. Enquanto a
+   imagem não existe, o bloco inteiro fica comentado no HTML (IMAGEM
+   PENDENTE) e a ficha sobe para logo abaixo do subtítulo. */
 .case-hero__media {
   margin-block-start: clamp(2rem, 4vw, 3rem);
 }
 
 /* ---------- FICHA DO PROJETO ----------
-   Papel · Time · Duração · Ferramentas, numa faixa logo abaixo da imagem.
+   Papel · Time · Duração · Ferramentas, numa faixa logo abaixo da imagem
+   hero (ou do subtítulo, sem imagem). A margem é um token só, que serve
+   aos dois casos sem deixar vão.
    No mobile cada fato é uma linha com filete; a partir de 56rem viram
    colunas lado a lado, separadas por filete vertical. grid-auto-flow
    column aceita qualquer número de fatos sem mudar o CSS.
    Cada fato continua sendo um par <dt>/<dd> legítimo. */
 .case-facts {
   display: grid;
-  margin-block-start: clamp(1.5rem, 3vw, 2rem);
+  margin-block-start: var(--sp-6);
   border-block-start: 1px solid var(--color-border);
 }
 

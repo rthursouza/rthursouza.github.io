@@ -392,6 +392,44 @@ ao índice do case (`.case-toc`).
 
 Para achar tudo o que falta: `grep -rn "IMAGEM PENDENTE" projects/`.
 
+### O hero dos cases
+
+O hero dos cases (21:9, largura toda) também fica **comentado inteiro**
+enquanto a imagem real não existe: uma capa tipográfica desse tamanho só
+repetia o nome do produto e empurrava o "Em 30 segundos" para baixo da
+primeira dobra. Sem o bloco, a ficha (Meu papel · Time · Duração ·
+Ferramentas) sobe para logo abaixo do subtítulo, sem vão. A margem dela é
+um token só (`--sp-6`), que serve com e sem imagem.
+
+O comentário envolve o `<div class="case-hero__media">` e o `<figure>` com
+a capa e o `<img>`:
+
+```html
+<!-- IMAGEM PENDENTE: hero do case (projeto-01-hero.jpg, 2100×900). Para publicar: salve a imagem, tire este comentário, apague a capa e descomente o <img>.
+     …
+<div class="container container--wide case-hero__media" data-reveal>
+  <figure class="media media--21x9 media--framed">
+    <div class="cover cover--tone-1" role="img" aria-label="…" data-en-aria-label="…">…</div>
+    <img src="../assets/images/projeto-01-hero.jpg" alt="…" data-en-alt="…"
+         width="2100" height="900" loading="eager" fetchpriority="high" decoding="async">
+  </figure>
+</div>
+-->
+```
+
+**Para publicar:**
+
+1. Salve a imagem em `assets/images/` com o nome do `src` (2100 × 900).
+2. Tire o comentário `IMAGEM PENDENTE` (a linha de abertura, com as notas,
+   e o `-->` do fim).
+3. Apague a `<div class="cover">` inteira.
+4. Confira `alt` e `data-en-alt` do `<img>`.
+
+O `<img>` já vem pronto dentro do comentário, sem um comentário próprio:
+comentário HTML não pode ficar dentro de outro (o `-->` de dentro fecharia
+o de fora e deixaria `</figure>` e `</div>` soltos na página). Por isso,
+"descomentar o `<img>`" acontece junto com o passo 2.
+
 ### As duas imagens que são exceção
 
 A foto do hero (home) e a imagem hero de cada case são o **LCP** da sua página.
@@ -456,7 +494,7 @@ Abra o arquivo novo e percorra os blocos marcados com **`>> PREENCHER`**.
 Eles estão na ordem da narrativa, que é fixa e não deve ser reordenada:
 
 ```
-Hero (título · subtítulo · imagem 21:9 · ficha) → Em 30 segundos + índice →
+Hero (título · subtítulo · imagem 21:9, comentada até existir · ficha) → Em 30 segundos + índice →
 Contexto → Problema → Objetivos → Meu Papel → Processo → Solução →
 Resultados → Aprendizados → Galeria (comentada até ter imagens) →
 Outros projetos → Contato
